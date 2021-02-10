@@ -4,7 +4,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs"
   },
   "dependencies": {
     "@popperjs/core": "^2.6.0",
@@ -16,6 +19,7 @@
     "@vitejs/plugin-vue": "^1.1.4",
     "@vue/compiler-sfc": "^3.0.5",
     "sass": "^1.32.6",
-    "vite": "^2.0.0-beta.65"
+    "vite": "^2.0.0-beta.65",
+    "vitepress": "^0.12.0"
   }
 }

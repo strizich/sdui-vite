@@ -50,8 +50,8 @@ export default {
 </script>
 
 <style lang="scss">
-  @use './lib/scss/main';
-
+  @use './lib/scss/engine';
+  
   .demo{
     padding: 40px 0;
   }
