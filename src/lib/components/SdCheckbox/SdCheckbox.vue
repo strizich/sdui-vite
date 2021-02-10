@@ -216,7 +216,7 @@ export default defineComponent({
   %indeterminate{
     &:before{
       border:2px solid var(--background-accent);
-      background: url(/img/icon-indeterminate.svg) var(--background-accent) no-repeat center center;
+      background: var(--background-accent) no-repeat center center;
       box-shadow: inset 0 0 0 0px var(--background-accent);
       background-size: 8px;
     }
