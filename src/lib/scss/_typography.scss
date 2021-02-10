@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500;700&display=swap');
+
+h1, h2, h3, h4, h5{
+  line-height: 1;
+  margin-bottom:16px;
+}
+
+article > p {
+  line-height: 1.5;
+  letter-spacing: -.0004px;
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-family: -apple-system-serif;
+  font-weight: 100;
+  font-size: 20px;
+}
+
+ul, li {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+ul > ul{
+  padding-top:0;
+  padding-bottom:0;
+}
+
+p{
+  line-height: 1.5;
+  font-size: 16px;
+}
+
+
+.sd--text{
+  &--light{
+    color:v(--text-light);
+  }
+  &--dark{
+    color: v(--text-dark);
+  }
+  &__lead {
+    font-size: rem(18);
+    text-transform: uppercase;
+    margin-bottom:0;
+    margin-top: 16px;
+    padding-top: 0;
+    font-weight: 700;
+    color: v(--text-accent);
+    letter-spacing: .25px;
+    &--light{
+      color:v(--text-accent-light);
+    }
+    &--dark{
+      color: v(--text-accent-dark);
+    }
+  }
+  &__header{
+    font-weight: 300;
+    letter-spacing: rem(1.2);
+    color: v(--text);
+    margin: 0;
+    &--light{
+      color:v(--text-light);
+    }
+    &--dark{
+      color: v(--text-dark);
+    }
+  }
+  &__headline{
+    font-size: rem(40);
+    line-height: rem(42);
+    font-weight: 300;
+    letter-spacing: rem(1.2);
+    color: v(--text);
+    &--light{
+      color:v(--text-light);
+    }
+    &--dark{
+      color: v(--text-dark);
+    }
+  }
+  &__caption{
+    color: v(--text-hint);
+    font-size: rem(16);
+    font-weight: 500;
+    line-height: rem(16);
+    letter-spacing: 1.5;
+    padding-bottom: rem(4);
+    margin:0;
+    &--uppercase {
+      text-transform: uppercase;
+    }
+    &--light{
+      color:v(--text-accent-light);
+    }
+    &--dark{
+      color: v(--text-accent-dark);
+    }
+  }
+  &__footnote{
+    color: v(--text-accent);
+    font-size: rem(12);
+    line-height: rem(14);
+    margin-bottom: 0;
+    &--light{
+      color:v(--text-accent-light);
+    }
+    &--dark{
+      color: v(--text-accent-dark);
+    }
+  }
+  &--underline{
+    text-decoration: underline;
+  }
+}
+
+.sd--divider{
+  border:none;
+  box-shadow: 0 0 0 1px var(--divider);
+  margin-bottom: 16px;
+  margin-top: 16px;
+}

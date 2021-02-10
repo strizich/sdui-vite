@@ -1,0 +1,25 @@
+$space: (
+  inset: (
+    default: 16px,
+    xs: 4px,
+    sm: 8px,
+    md: 16px,
+    lg: 32px,
+    xl: 64px
+  ),
+  offset: (
+    default: 8px 16px,
+    sm: 4px 8px,
+    md: 8px 16px,
+    lg: 16px 16px,
+    xl: 16px 32px
+  ),
+  stack: (
+    default: 0 0 16px,
+    xs: 0 0 4px,
+    sm: 0 0 8px,
+    md: 0 0 16px,
+    lg: 0 0 32px,
+    xl: 0 0 64px
+  )
+);

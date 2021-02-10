@@ -1,0 +1,57 @@
+$min-width: (
+  'xs': 0,
+  'sm': 576px,
+  'md': 768px,
+  'lg': 992px,
+  'xl': 1200px,
+);
+
+$max-width: (
+  'xs': 575.95px,
+  'sm': 767.95px,
+  'md': 991.95px,
+  'lg': 1199.95px,
+  'xl': 1439.95px
+);
+
+
+@mixin breakpoint-down($breakpoint-size) {
+  // Check to see if the value is in the map
+  @if map-has-key($max-width, $breakpoint-size) {
+    @media (max-width: map-get($max-width, $breakpoint-size)) {
+      @content;
+    }
+  }
+
+  // Throw error if the value is not mapped.
+  @else {
+    @warn "`#{$breakpoint-size}` has not been defined."
+    +"Available breakpoints are: #{map-keys($max-width)}.";
+  }
+}
+
+@mixin breakpoint-up($breakpoint-size) {
+  // Check to see if the value is in the map
+  @if map-has-key($min-width, $breakpoint-size) {
+    @media (min-width: map-get($min-width, $breakpoint-size)) {
+      @content;
+    }
+  }
+  // Throw error if the value is not mapped.
+  @else {
+    @warn "`#{$breakpoint-size}` has not been defined."
+    +"Available breakpoints are: #{map-keys($min-width)}.";
+  }
+}
+
+@mixin breakpoints($breakpoint-min, $breakpoint-max) {
+  @if map-has-key($min-width, $breakpoint-min) and map-has-key($max-width, $breakpoint-max) {
+    @media (min-width: map-get($min-width, $breakpoint-min)) and (max-width: map-get($max-width, $breakpoint-max)){
+      @content;
+    }
+  }
+  @else {
+    @warn "`#{$breakpoint-min}` or `#{$breakpoint-max}` has not been defined."
+    + "Available breakpoints are: #{map-keys($min-width)}.";
+  }
+}

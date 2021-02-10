@@ -1,0 +1,37 @@
+@use 'sass:map';
+@use 'sass:meta';
+
+@import 'variables';
+@import 'functions';
+@import 'mixins';
+// FUTURE: Map the color schemes of the text color based on the contrast value
+@each $scheme, $map in $sd-color-schemes {
+  @include root-color-scheme($scheme){
+    @each $key, $color in $map {
+      $color: sd-color($scheme, $key);
+      --#{$key}: #{$color};
+    }
+  }
+}
+
+:root {
+  @each $key, $color in $sd-color-global {
+      $key: $key;
+      $base: map.get($sd-color-global, $key, base);
+      $highlight: map.get($sd-color-global, $key, highlight);
+      $accent: map.get($sd-color-global, $key, accent);
+      $contrast: sd-pick-contrast($base);
+      $contrast-highlight: sd-pick-contrast($highlight);
+      $contrast-accent: sd-pick-contrast($accent);
+      $text: sd-color($contrast, text);
+      $text-highlight: sd-color($contrast-highlight, text);
+      $text-accent: sd-color($contrast-accent, text);
+    --#{$key}: #{$base};
+    --#{$key}-text: #{$text};
+    --#{$key}-highlight: #{$highlight};
+    --#{$key}-highlight-text: #{$text-highlight};
+    --#{$key}-accent: #{$accent};
+    --#{$key}-accent-text: #{$text-accent};
+  };
+}
+

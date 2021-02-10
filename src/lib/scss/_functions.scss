@@ -1,0 +1,54 @@
+@use 'sass:map';
+@import './spacing';
+// Converts to rem
+$base-font: 16;
+
+// Shorthand for var()
+// Usage: v(--css-var)
+@function v($val) {
+  @return var(#{$val});
+};
+
+// Converts PX to REM
+// Usage: font-size: rem(16);
+@function rem($pixels, $context: $base-font){
+  @if(unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+  @if(unitless($context)) {
+    $context: $context * 1px;
+  }
+  @return #{$pixels/$context * 1rem};
+};
+
+// Gets color from color map
+// Useage sd-color(dark, text)
+@function sd-color($scheme, $type) {
+  $selectedColor: map.get($sd-color-schemes, $scheme, $type);
+  @return $selectedColor;
+};
+
+// Creates a CSS gradient
+@function sd-gradient($primary, $secondary, $deg: 145deg) {
+  @return linear-gradient($deg, $primary, $secondary);
+};
+
+// Manages spacing
+@function spacing($type, $size: 'md'){
+  @return map.get($space, $type, $size);
+};
+
+// Creates a map of colors ($base-color, $highlight, $accent);
+@function color-map($color, $highlight, $accent) {
+  $map: (
+    'base': $color,
+    'highlight': mix(#fff, $color, $highlight),
+    'accent': mix(#000, $color, $accent)
+  );
+
+  @return $map;
+};
+
+@function ios-safe-area($position){
+  @return m#{a}x(16px, env(safe-area-inset-#{$position}))
+}

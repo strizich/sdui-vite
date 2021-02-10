@@ -1,0 +1,10 @@
+@import "./variables";
+@import "./mixins";
+
+$elevation-count: length($elevation-umbra) - 1;
+
+@for $i from 0 through $elevation-count {
+  .elevation--#{$i} {
+    @include elevation($i);
+  }
+}

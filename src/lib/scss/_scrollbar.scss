@@ -1,0 +1,23 @@
+@import '../components/SdElevation/mixins';
+
+::-webkit-scrollbar{
+  width: 8px;
+  padding: 4px;
+}
+
+::-webkit-scrollbar-track{
+  background-color: var(--background-accent);
+}
+
+::-webkit-scrollbar-thumb{
+  border-radius: 30px;
+  background-color: var(--disabled);
+  transition: all .6s ease-in-out;
+  &:hover{
+    background-color: var(--disabled-background);
+  }
+}
+
+::-webkit-scrollbar-button{
+  display:none;
+}
