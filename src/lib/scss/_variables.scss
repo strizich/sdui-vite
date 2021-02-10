@@ -1,12 +1,12 @@
 @import './functions';
 
-$primary: #8F00F8;
-$secondary: #A77DF2;
-$default: #646066;
-$danger: #AE1A2C;
-$success: #83CF2A;
-$warning: #F5A623;
-$dark: #0E0E0E;
+$primary: #8F00F8 !default;
+$secondary: #A77DF2 !default;
+$default: #646066 !default;
+$danger: #AE1A2C !default;
+$success: #83CF2A !default;
+$warning: #F5A623 !default;
+$dark: #0E0E0E !default;
 
 $sd-color-global: (
   primary: color-map($primary, 25%, 25%),

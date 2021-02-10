@@ -162,8 +162,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-  @import '../../scss/variables';
-  @import '../../scss/mixins';
   @import '../../scss/breakpoints';
 
   .sd--dialog{

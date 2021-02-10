@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'SdDialogTitle',
+  name: 'SdDialogHeader',
   props: {
     title: String,
     subtitle: String

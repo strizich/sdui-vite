@@ -2,7 +2,6 @@ import packageData from '../../package.json'
 import { toCamelCase, toKebab } from './core/utilities/SdTextTransform'
 
 // Components
-import './scss/main.scss'
 import './components/SdElevation/elevation.scss'
 import SdButton from './components/SdButton/SdButton.vue'
 import SdRouterLink from './components/SdButton/SdRouterLink.vue'
@@ -13,7 +12,7 @@ import SdCardHeader from './components/SdCard/SdCardHeader.vue'
 import SdCardFooter from './components/SdCard/SdCardFooter.vue'
 import SdCardMedia from './components/SdCard/SdCardMedia.vue'
 import SdDialog from './components/SdDialog/SdDialog.vue'
-import SdDialogTitle from './components/SdDialog/SdDialogTitle.vue'
+import SdDialogHeader from './components/SdDialog/SdDialogHeader.vue'
 import SdDialogContent from './components/SdDialog/SdDialogContent.vue'
 import SdDialogFooter from './components/SdDialog/SdDialogFooter.vue'
 import SdOverlay from './components/SdDialog/SdOverlay.vue'
@@ -75,7 +74,7 @@ const components = {
   SdChip,
   // Dialog (modal)
   SdDialog,
-  SdDialogTitle,
+  SdDialogHeader,
   SdDialogContent,
   SdDialogFooter,
   SdOverlay,
@@ -168,7 +167,7 @@ export {
   SdSelect,
   // Dialog (modal)
   SdDialog,
-  SdDialogTitle,
+  SdDialogHeader,
   SdDialogContent,
   SdDialogFooter,
   SdOverlay,
