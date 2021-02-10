@@ -1,5 +1,3 @@
-
-
 # Hello Buttons
-[router](./buttons.md)
-<sd-button>okay</sd-button>
+- [Sd Button](./buttons.md)
+
