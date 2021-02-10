@@ -2,7 +2,6 @@
   <sd-layout>
     <template v-slot:content>
       <sd-button>huh</sd-button>
-      <p>kljlkjlj</p>
     </template>
   </sd-layout>
 </template>
