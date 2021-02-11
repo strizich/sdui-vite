@@ -62,7 +62,7 @@
   .language-html{
     position: relative;
     background-color: var(--background-highlight);
-    padding: 32px 16px;
+    padding: 32px 16px 8px;
     margin-bottom: 24px;
     border-radius: 6px;
     @include elevation(12);

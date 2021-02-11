@@ -45,7 +45,7 @@
 </script>
 
 <style lang="scss">
-  @use '../src/lib/scss/engine.scss';
   @use 'scss/docs';
+  @use '../src/lib/scss/engine.scss';
   @import url('../../../node_modules/prismjs/themes/prism-dark.css');
 </style>
