@@ -1,12 +1,10 @@
 <template>
   <sd-layout class="sd--docs" :floating="floating" :sidebar="sidebar">
-
     <template v-slot:header>
       <sd-header :aside-open="sidebar" @toggle="(e) => toggleSidebar(e)" />
     </template>
     <template v-slot:sidebar>
       Im here
-      {{floating}}
     </template>
     <template v-slot:content>
       <sd-container>
@@ -17,11 +15,11 @@
 </template>
 
 <script>
+  import { reactive, toRefs, watchEffect } from 'vue'
   import SdHeader from '../../../src/lib/components/SdLayout/SdHeader.vue'
   import SdLayout from '../../../src/lib/components/SdLayout/SdLayout.vue'
   import SdContainer from '../../../src/lib/components/SdGrid/SdContainer.vue'
   import useWindowWidth from '../../../src/lib/hooks/useWindowWidth'
-  import { reactive, toRefs, watchEffect } from 'vue'
 
   export default {
     name: 'Layout',
