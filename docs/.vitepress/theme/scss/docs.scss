@@ -87,9 +87,26 @@
 
 
 // LISTS
-
 li{
   &::marker{
     content: '- ';
+  }
+}
+
+
+// PRISM Overides
+
+.token{
+  &.tag{
+    color: var(--warning-highlight);
+  }
+  &.attr-name{
+    color: var(--secondary-highlight);
+  }
+  &.attr-value{
+    color: var(--text-accent);
+  }
+  &.punctuation{
+    color: var(--text-accent);
   }
 }
