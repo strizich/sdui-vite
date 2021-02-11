@@ -1,7 +1,7 @@
 <template>
-  <sd-layout class="sd--docs" floating :sidebar="state.sidebar">
+  <sd-layout class="sd--docs" floating :sidebar="sidebar">
     <template v-slot:header>
-      <sd-header @toggle="toggleSidebar"/>
+      <sd-header :aside-open="sidebar" @toggle="(e) => toggleSidebar(e)" />
     </template>
     <template v-slot:sidebar>
       Im here
@@ -18,7 +18,8 @@
   import SdHeader from '../../../src/lib/components/SdLayout/SdHeader.vue'
   import SdLayout from '../../../src/lib/components/SdLayout/SdLayout.vue'
   import SdContainer from '../../../src/lib/components/SdGrid/SdContainer.vue'
-  import { reactive } from 'vue'
+  import { reactive, toRefs } from 'vue'
+
   export default {
     name: 'Layout',
     components: { SdLayout, SdHeader, SdContainer },
@@ -26,10 +27,11 @@
       const state = reactive({
         sidebar: false
       })
-      const toggleSidebar = () => {
-        state.sidebar = !state.sidebar
+      const toggleSidebar = (e) => {
+        console.log(e)
+        state.sidebar = e
       }
-      return { state, toggleSidebar }
+      return { ...toRefs(state), toggleSidebar }
     }
   }
 </script>

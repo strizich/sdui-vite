@@ -5,5 +5,9 @@ import vue from '@vitejs/plugin-vue'
  * @type {import('vite').UserConfig}
  */
 export default {
+  alias: {
+    '@': require('path').resolve(__dirname, 'src'),
+    '@lib/': require('path').resolve(__dirname, 'src/lib')
+  },
   plugins: [vue()]
 }
