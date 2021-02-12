@@ -219,6 +219,10 @@ export default defineComponent({
         width: 100%;
       }
 
+      &.is--block + &.is--block {
+        margin-left: 0px;
+      }
+
       &.is--active, &.is--exact-active{
         @include elevation(6);
         color: var(--#{$state}-highlight-text);
