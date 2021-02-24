@@ -1,7 +1,7 @@
 <template>
-  <sd-layout class="sd--docs" floating :sidebar="state.sidebar">
+  <sd-layout class="sd--docs" :sidebar="state.sidebar">
     <template v-slot:header>
-      <sd-header @toggle="toggleSidebar"/>
+      <sd-header @toggle="(e) => toggleSidebar(e)"/>
     </template>
     <template v-slot:sidebar>
       Im here
@@ -15,10 +15,10 @@
 </template>
 
 <script>
+  import { reactive } from 'vue'
   import SdHeader from '../../../src/lib/components/SdLayout/SdHeader.vue'
   import SdLayout from '../../../src/lib/components/SdLayout/SdLayout.vue'
   import SdContainer from '../../../src/lib/components/SdGrid/SdContainer.vue'
-  import { reactive } from 'vue'
   export default {
     name: 'Layout',
     components: { SdLayout, SdHeader, SdContainer },
@@ -26,7 +26,7 @@
       const state = reactive({
         sidebar: false
       })
-      const toggleSidebar = () => {
+      const toggleSidebar = (event) => {
         state.sidebar = !state.sidebar
       }
       return { state, toggleSidebar }
@@ -35,7 +35,7 @@
 </script>
 
 <style lang="scss">
-  @use '../src/lib/scss/engine.scss';
   @use 'scss/docs';
+  @use '../src/lib/scss/engine.scss';
   @import url('../../../node_modules/prismjs/themes/prism-dark.css');
 </style>

@@ -6,7 +6,7 @@
     <div :class="['sd--layout__body', layoutClasses]">
       <!-- FUTURE: Disable transition on mobile and set body to fixed when floating-->
         <transition name="sidebar" @leave="afterLeave">
-          <div :class="['sd--layout__sidebar', sidebarClasses]" :style="{handleTabIndex}">
+          <div :class="['sd--layout__sidebar', sidebarClasses]" :style="handleTabIndex">
             <slot name="sidebar"/>
           </div>
         </transition>
@@ -20,7 +20,7 @@
       <sd-overlay
         v-if="sidebar"
         :active="floating && sidebar"
-        @click="() => handleOutsideClick()"
+        @click="handleOutsideClick"
       />
     </transition>
   </div>
@@ -73,14 +73,18 @@ export default {
     const handleOutsideClick = () => {
       emit('toggle', false)
     }
+
     const afterLeave = () => {
       if (!props.sidebar) {
         state.shouldSkip = true
       }
     }
+
     const handleTabIndex = () => {
+      // Tabs should skip the sidebar if the sidebar is not visible.
       return state.shouldSkip ? { visibility: 'hidden' } : null
     }
+
     watch(() => [props.sidebar, props.floating], ([sidebarVal, floatVal]) => {
       const animationTiming = 200 // ms
       setTimeout(() => {
