@@ -15,11 +15,13 @@
 html{
   height:100%;
 }
+
 body{
   min-height: 100%;
 }
+
 body, html {
-  font-family: Roboto;
+  font-family: -apple-system, BlinkMacSystemFont, Roboto, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-display: swap;
   font-size: 16px;
   margin: 0;
