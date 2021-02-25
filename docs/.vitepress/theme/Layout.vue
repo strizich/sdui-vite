@@ -1,7 +1,7 @@
 <template>
-  <sd-layout class="sd--docs" :sidebar="state.sidebar">
+  <sd-layout class="sd--docs" :sidebar="sidebar" :floating="floating">
     <template v-slot:header>
-      <sd-header @toggle="(e) => toggleSidebar(e)"/>
+      <sd-header :asideOpen="sidebar" @toggle="(e) => toggleSidebar(e)"/>
     </template>
     <template v-slot:sidebar>
       Im here
@@ -15,21 +15,31 @@
 </template>
 
 <script>
-  import { reactive } from 'vue'
+  import { reactive, toRefs, watchEffect } from 'vue'
   import SdHeader from '../../../src/lib/components/SdLayout/SdHeader.vue'
   import SdLayout from '../../../src/lib/components/SdLayout/SdLayout.vue'
   import SdContainer from '../../../src/lib/components/SdGrid/SdContainer.vue'
+  import useWindowWidth from '../../../src/lib/hooks/useWindowWidth'
+
   export default {
     name: 'Layout',
     components: { SdLayout, SdHeader, SdContainer },
     setup() {
       const state = reactive({
-        sidebar: false
+        sidebar: false,
+        floating: false
       })
-      const toggleSidebar = (event) => {
+
+      const { smallDevice } = useWindowWidth()
+
+      watchEffect(() => {
+        state.floating = smallDevice.value
+      })
+
+      const toggleSidebar = (e) => {
         state.sidebar = !state.sidebar
       }
-      return { state, toggleSidebar }
+      return { ...toRefs(state), toggleSidebar }
     }
   }
 </script>

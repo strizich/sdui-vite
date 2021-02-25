@@ -25,6 +25,11 @@
     margin-top: -8px;
   }
 
+  hr {
+    border: 1px solid var(--divider);
+    margin: 32px 0;
+  }
+
   // TABLES
   table {
     th { 
@@ -47,15 +52,20 @@
         font-weight: 700;
       }
     }
-  
-    hr {
-      border-color: var(--divider);
-      margin: 32px 0;
-    }
      
     code:not(pre > code){
       color: var(--secondary-highlight);
     }
+  }
+
+  //MKDN NAVIGATION
+  .header-anchor{
+    color: var(--primary);
+    font-size: 16px;
+    position: absolute;
+    left: -16px;
+    top: 50%;
+    margin-top: -8px;
   }
 
   // CODE BLOCKS
@@ -63,7 +73,7 @@
   .language-html{
     position: relative;
     background-color: var(--background-highlight);
-    padding: 32px 16px;
+    padding: 32px 16px 8px;
     margin-bottom: 24px;
     border-radius: 6px;
     @include elevation(12);
@@ -87,9 +97,26 @@
 
 
 // LISTS
-
 li{
   &::marker{
     content: '- ';
+  }
+}
+
+
+// PRISM Overides
+
+.token{
+  &.tag{
+    color: var(--warning-highlight);
+  }
+  &.attr-name{
+    color: var(--secondary-highlight);
+  }
+  &.attr-value{
+    color: var(--text-accent);
+  }
+  &.punctuation{
+    color: var(--text-accent);
   }
 }
