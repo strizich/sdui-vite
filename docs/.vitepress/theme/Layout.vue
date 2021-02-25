@@ -7,7 +7,7 @@
       Im here
     </template>
     <template v-slot:content>
-      <sd-container>
+      <sd-container article>
         <Content/>
       </sd-container>
     </template>

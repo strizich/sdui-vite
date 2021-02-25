@@ -1,18 +1,13 @@
-<template>
-  <div :class="[classes]">
-    <slot/>
-  </div>
-</template>
-
 <script>
-import { computed } from 'vue'
-export default {
+import { defineComponent, computed, h } from 'vue'
+export default defineComponent({
   name: 'SdContainer',
   props: {
     break: String,
-    full: Boolean
+    full: Boolean,
+    article: Boolean
   },
-  setup (props) {
+  setup (props, { slots }) {
     const classes = computed(() => {
       if (props.full) {
         return 'sd--container--full'
@@ -22,9 +17,21 @@ export default {
         return 'sd--container'
       }
     })
-    return { classes }
+    
+    const elementTag = computed(() => {
+      return props.article ? 'article' : 'div'
+    })
+
+    return () =>
+      h(
+        elementTag.value,
+        {
+          class: classes.value
+        },
+        slots
+      )
   }
-}
+})
 </script>
 
 <style lang="scss">
