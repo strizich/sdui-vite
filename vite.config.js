@@ -18,7 +18,8 @@ module.exports = {
     vue(),
     copy({
       targets: [
-        { src: 'src/lib/scss/**/*', dest: 'dist/scss' }
+        { src: 'src/lib/scss/**/*', dest: 'dist/scss' },
+        { src: 'README.md', dest: 'dist' }
       ],
       hook: 'writeBundle'
     })
