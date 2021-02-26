@@ -38,13 +38,12 @@ app.mount('#app')
 
 Now that the components are mounted we need to pull down the styles. At this time `scss` is required.
 
-```
+``` vue
 // App.vue
-<style lang=scss>
+<style lang="scss">
   @import url('../node_modules/@strizich/sdui/dist/styles.css');
   @use '../node_modules/@strizich/sdui/dist/scss/engine';
 </style>
-
 ```
 
 
