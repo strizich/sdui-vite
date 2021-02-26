@@ -41,8 +41,8 @@ Now that the components are mounted we need to pull down the styles. At this tim
 ``` vue
 // App.vue
 <style lang="scss">
-  @import url('../node_modules/@strizich/sdui/dist/styles.css');
   @use '../node_modules/@strizich/sdui/dist/scss/engine';
+  @import url('../node_modules/@strizich/sdui/dist/style.css');
 </style>
 ```
 
