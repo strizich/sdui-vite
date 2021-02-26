@@ -1,13 +1,44 @@
 import vue from '@vitejs/plugin-vue'
+import copy from 'rollup-plugin-copy'
 
 /**
- * https://vitejs.dev/config/
  * @type {import('vite').UserConfig}
  */
-export default {
-  alias: {
-    '@': require('path').resolve(__dirname, 'src'),
-    '@lib/': require('path').resolve(__dirname, 'src/lib')
+
+const path = require('path')
+
+module.exports = {
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+      '@lib/': path.resolve(__dirname, 'src/lib')
+    }
   },
-  plugins: [vue()]
+  plugins: [
+    vue(),
+    copy({
+      targets: [
+        { src: 'src/lib/scss/**/*', dest: 'dist/scss' }
+      ],
+      hook: 'writeBundle'
+    })
+  ],
+  build: {
+    lib: {
+      name: 'sdui',
+      entry: path.resolve(__dirname, 'src/lib/index.js')
+    },
+    rollupOptions: {
+      // make sure to externalize deps that shouldn't be bundled
+      // into your library
+      external: ['vue'],
+      output: {
+        // Provide global variables to use in the UMD build
+        // for externalized deps
+        globals: {
+          vue: 'Vue'
+        }
+      }
+    }
+  }
 }

@@ -1,6 +1,19 @@
 {
-  "name": "sdui",
-  "version": "0.0.0",
+  "name": "@strizich/sdui",
+  "version": "1.0.1-alpha.4",
+  "author": "Jason Strizich (https://www.strizichdesign.com)",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/sdui.umd.js",
+  "module": "./dist/sdui.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/sdui.es.js",
+      "require": "./dist/sdui.umd.js"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -12,14 +25,18 @@
   "dependencies": {
     "@popperjs/core": "^2.6.0",
     "animejs": "^3.2.1",
-    "vue": "^3.0.5",
+    "vue": "^3.0.6",
     "vue-router": "^4.0.3"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.1.4",
     "@vue/compiler-sfc": "^3.0.5",
+    "fs": "^0.0.1-security",
+    "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-postcss": "^4.0.0",
+    "rollup-plugin-scss": "^2.6.1",
     "sass": "^1.32.6",
-    "vite": "^2.0.0-beta.65",
+    "vite": "^2.0.0-beta.67",
     "vitepress": "^0.12.0"
   }
 }
