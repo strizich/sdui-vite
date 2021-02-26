@@ -6,6 +6,10 @@ import vue from '@vitejs/plugin-vue'
  */
 
 export default {
+  alias: {
+    '@': require('path').resolve(__dirname, 'src'),
+    '@lib/': require('path').resolve(__dirname, 'src/lib')
+  },
   plugins: [vue()]
 }
 

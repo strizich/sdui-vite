@@ -8,16 +8,13 @@ Are made for clicking.
 ## Demo
 <sd-button>Button Content</sd-button>
 <sd-button flat>Button Content</sd-button>
-<sd-button outline>Button Content</sd-button>
+<sd-button outline>Button content</sd-button>
 
 ---
 
 ## Example
 ```html
-<!-- Default configuration -->
-<sd-button @click="clickHander">
-  Button Content
-</sd-button>
+<sd-button @click="clickHander">Button Content</sd-button>
 ```
 
 ```html
@@ -26,15 +23,15 @@ Are made for clicking.
   icon="undefined"
   type="button"
   theme="primary"
-  disabled="false"
-  pill="false"
-  outline="false"
-  flat="false"
-  block="false"
-  icon-only="false"
-  size="md"
   casing="uppercase"
   align="center"
+  :disabled="false"
+  :pill="false"
+  :outline="false"
+  :flat="false"
+  :block="false"
+  :icon-only="false"
+  :size="md"
   :href="null"
   @click="clickHander"
 >
