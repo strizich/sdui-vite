@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { reactive, toRefs, computed, watch, nextTick } from 'vue'
+import { reactive, toRefs, computed, watch, nextTick, onMounted } from 'vue'
 import SdOverlay from '../SdDialog/SdOverlay.vue'
 // import { useRouter } from 'vue-router'
 export default {
@@ -36,7 +36,10 @@ export default {
   props: {
     sidebar: Boolean,
     floating: Boolean,
-    overlay: Boolean
+    overlay: Boolean,
+    scheme: {
+      default: 'auto'
+    }
   },
   components: {
     SdOverlay
@@ -44,14 +47,20 @@ export default {
   emits: ['toggle'],
   // components: { JsLogo },
   setup (props, { emit }) {
-    // doesnt work if router isnt setup find solution for this
-    // const route = useRouter()
+    const scheme = computed(() => {
+      return `sd--scheme--${props.scheme}`
+    })
 
-    // watch(() => route.currentRoute.value, (newValue) => {
-    //   if (props.floating) {
-    //     emit('toggle', false)
-    //   }
-    // })
+    watch(() => scheme.value, (newValue, oldValue) => {
+      nextTick().then(() => {
+        document.body.classList.remove(`${oldValue}`)
+        document.body.classList.add(`${newValue}`)
+      })
+    })
+    
+    onMounted(() => {
+        document.body.classList.add(`${scheme.value}`)
+    })
 
     const state = reactive({
       shouldSkip: false

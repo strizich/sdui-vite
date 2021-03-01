@@ -101,6 +101,7 @@ export default defineComponent({
         }
       }, 20)
     }
+
     // When the modal is active we set the body of the document to fixed and position
     // it based on its current scoll location. This keeps the body of the document from
     // bouncing back to position [0,0] if the use is scrolled down and disables scrolling
@@ -175,11 +176,11 @@ export default defineComponent({
     align-items: center;
     justify-content: center;
     transform: translate(0, 0);
-    &--open{
-      @include breakpoint-up('sm') {
-        padding-right: 10px;
-      }
-    }
+    // &--open{
+    //   @include breakpoint-up('sm') {
+    //     padding-right: 10px;
+    //   }
+    // }
     &__wrapper{
       margin: auto;
       display: flex;
