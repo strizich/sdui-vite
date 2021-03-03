@@ -1,4 +1,4 @@
-[![npm version](https://badge.fury.io/js/%40strizich%2Fsdui.svg)](https://badge.fury.io/js/%40strizich%2Fsdui)]
+[![npm version](https://badge.fury.io/js/%40strizich%2Fsdui.svg)](https://badge.fury.io/js/%40strizich%2Fsdui)
 
 # SDUI
 A component library written for Vue3. [Demo](https://www.strizichdesign.com)
