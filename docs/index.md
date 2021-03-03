@@ -1,3 +1,4 @@
 # Hello Buttons
-- [Sd Button](./buttons.md)
+- [Button](./buttons.md)
+- [Dialogs](./dialogs.md)
 

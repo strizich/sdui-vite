@@ -1,5 +1,8 @@
 import Layout from './Layout.vue'
 
 export default {
-  Layout
+  Layout,
+  enhanceApp({ app, router, siteData}) {
+    // 
+  }
 }

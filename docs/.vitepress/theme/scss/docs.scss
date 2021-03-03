@@ -1,15 +1,70 @@
 @import '../../../../src/lib/components/SdElevation/mixins.scss';
 
+%leading{
+  & + p {
+    font-size: 18px;
+    font-weight: 300;
+  }
+}
+
+article.sd--container{
+  padding-bottom:40px;
+}
+
 .sd--docs{
-  h1, h2, h3, h4, h4 {
+  h1, h2, h3, h4, h5 {
     position:relative;
-    margin-top: 16px;
-    margin-bottom: 24px;
+    margin-top: 32px;
+    margin-bottom: 16px;
+  }
+  
+  h1 {
+    margin-top: 40px;
+    font-size: 36px;
+    font-weight: 300;
+    @extend %leading;
   }
 
-  h1{
-    margin-top: 40px;
+  h2 {
+    margin-top: 32px;
+    font-size: 24px;
+    @extend %leading;
   }
+
+  h3 {
+    font-size: 20px;
+    @extend %leading;
+  }
+
+  p{
+    font-size: 16px;
+  }
+  blockquote {
+    width: 80%;
+    margin: 32px auto;
+    position: relative;
+    padding: 16px 16px 16px 32px;
+    background-color: var(--background-accent);
+    border-radius: 3px;
+    @include elevation(12);
+    &:before{
+      display:block;
+      content: '';
+      width: 8px;
+      top: 0;
+      bottom:0;
+      left:0;
+      position:absolute;
+      background-color: var(--primary);
+      border-radius: 3px 0px 0px 3px;
+    }
+    p{
+      margin-bottom:0;
+    }
+  }
+
+
+
 
   // ANCHORS AND LINKS
   a {
@@ -32,7 +87,9 @@
 
   // TABLES
   table {
-    th { 
+    width: 100%;
+    margin-bottom: 40px;
+    th {
       padding: 16px 8px;
       font-size: 14px;
     }
