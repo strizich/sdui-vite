@@ -26,9 +26,9 @@ An overlayed content window.
 
 ## Demo
 <div class="demo">
-<sd-button @click="toggleModal">Trigger Aside</sd-button>
+<sd-button @click="toggleModal">Trigger Modal</sd-button>
 <sd-dialog aside v-model:active="state.aside"><sd-dialog-header title="Aside" subtitle="I am an aside">Header</sd-dialog-header><sd-dialog-content>Content</sd-dialog-content><sd-dialog-footer><sd-button @click="toggleAside">Close</sd-button></sd-dialog-footer></sd-dialog>
-<sd-button @click="toggleAside">Trigger Modal</sd-button><sd-dialog v-model:active="state.modal"><sd-dialog-header title="Modal" subtitle="I am a modal">Header</sd-dialog-header><sd-dialog-content>Content</sd-dialog-content><sd-dialog-footer><sd-button @click="toggleModal">Close</sd-button></sd-dialog-footer></sd-dialog>
+<sd-button @click="toggleAside">Trigger Aside</sd-button><sd-dialog v-model:active="state.modal"><sd-dialog-header title="Modal" subtitle="I am a modal">Header</sd-dialog-header><sd-dialog-content>Content</sd-dialog-content><sd-dialog-footer><sd-button @click="toggleModal">Close</sd-button></sd-dialog-footer></sd-dialog>
 </div>
 
 ---
