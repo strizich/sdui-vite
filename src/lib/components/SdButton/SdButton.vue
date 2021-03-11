@@ -129,11 +129,11 @@ export default defineComponent({
 <style lang="scss">
 @import '../../scss/variables';
 @import '../../scss/mixins';
-
 @import '../SdElevation/mixins';
 
 .sd--button {
   touch-action: manipulation;
+  user-select:none;
   -webkit-user-select: none;
   border: none;
   border-radius: 3px;

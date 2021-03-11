@@ -4,7 +4,7 @@ const useKeyboardFocus = ($el) => {
   const currentElement = ref(null)
   let hasEvents = false
   let eventTarget = null
-  let supportsPassiveEvent = false
+  let supportsPassiveEvent = { passive: false }
 
   const checkPassiveEventSupport = () => {
     try {

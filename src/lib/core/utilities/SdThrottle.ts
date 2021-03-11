@@ -1,4 +1,4 @@
-const SdThrottle = (delay, fn) => {
+const SdThrottle = (delay: number, fn: any) => {
   let lastCall = 0
   return function (...args) {
     const now = (new Date()).getTime()

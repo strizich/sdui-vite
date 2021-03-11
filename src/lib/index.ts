@@ -1,4 +1,4 @@
-import packageData from '../../package.json'
+import * as packageData from '../../package.json'
 import { toCamelCase, toKebab } from './core/utilities/SdTextTransform'
 
 // Components
@@ -121,7 +121,7 @@ const sdComponentsDesc = Object.keys(components).map((item) => {
 const sdComponents = Object.keys(components).map((item) => item.slice(1))
 
 const sdInstall = (app) => {
-  if (!app || sdInstall.installed) {
+  if (!app) {
     return
   }
   sdComponentsDesc.forEach((item) => {
