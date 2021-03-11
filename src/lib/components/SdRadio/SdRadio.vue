@@ -79,7 +79,7 @@ export default {
   height:0;
   &:before{
     content:'';
-    box-shadow: inset 0 0 0 2px v(--divider);
+    box-shadow: inset 0 0 0 2px var(--divider);
     width: 20px;
     height: 20px;
     display: block;
@@ -90,26 +90,26 @@ export default {
     background-color: transparent;
     border-radius: 50%;
     transition: box-shadow .23s ease-in-out, background-color .23s ease-in-out;
-    background-color: v(--background);
+    background-color: var(--background);
     z-index: 15;
   }
   &:checked{
     &:before{
-      box-shadow: inset 0 0 0 2px v(--primary),
-                  inset 0 0 0 4px v(--background);
-      background-color: v(--primary);
+      box-shadow: inset 0 0 0 2px var(--primary),
+                  inset 0 0 0 4px var(--background);
+      background-color: var(--primary);
     }
   }
   &:focus{
     outline:none;
     &:before{
-      box-shadow: inset 0 0 0 2px v(--primary-highlight),
-                  inset 0 0 0 10px v(--background);
+      box-shadow: inset 0 0 0 2px var(--primary-highlight),
+                  inset 0 0 0 10px var(--background);
     }
     &:checked{
       &:before{
-        box-shadow: inset 0 0 0 2px v(--primary-accent),
-                    inset 0 0 0 4px v(--background);
+        box-shadow: inset 0 0 0 2px var(--primary-accent),
+                    inset 0 0 0 4px var(--background);
       }
     }
   }
@@ -117,27 +117,27 @@ export default {
     outline:none;
     &:checked{
       &:before{
-        box-shadow: inset 0 0 0 2px v(--disabled),
-                    inset 0 0 0 4px v(--background);
-        background-color: v(--disabled);
+        box-shadow: inset 0 0 0 2px var(--disabled),
+                    inset 0 0 0 4px var(--background);
+        background-color: var(--disabled);
       }
     }
     &:before{
-      box-shadow: inset 0 0 0 2px v(--disabled),
-                  inset 0 0 0 10px v(--background);
+      box-shadow: inset 0 0 0 2px var(--disabled),
+                  inset 0 0 0 10px var(--background);
     }
   }
   &:hover{
     outline:none;
     &:checked{
       &:before{
-        box-shadow: inset 0 0 0 2px v(--primary-accent),
-                    inset 0 0 0 4px v(--background);
+        box-shadow: inset 0 0 0 2px var(--primary-accent),
+                    inset 0 0 0 4px var(--background);
       }
     }
     &:before{
-      box-shadow: inset 0 0 0 2px v(--primary-accent),
-                  inset 0 0 0 10px v(--background);
+      box-shadow: inset 0 0 0 2px var(--primary-accent),
+                  inset 0 0 0 10px var(--background);
     }
   }
 }

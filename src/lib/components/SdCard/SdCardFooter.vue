@@ -35,7 +35,7 @@ export default defineComponent({
   border-radius: 0 0 3px 3px;
   position: relative;
   align-items: center;
-  border-top: 1px solid v(--divider);
+  border-top: 1px solid var(--divider);
   flex-grow: 0;
 }
 </style>

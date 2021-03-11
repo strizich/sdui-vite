@@ -28,7 +28,7 @@ export default {
       background-color: var(--background);
       border-radius: 3px 3px 0 0;
       flex-shrink: 0;
-      border-bottom: 1px solid v(--divider);
+      border-bottom: 1px solid var(--divider);
     }
     &__title {
       font-size: 20px;

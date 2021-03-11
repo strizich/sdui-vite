@@ -26,7 +26,7 @@ export default {
   .sd--mast{
     margin: 0 0 32px 0;
     min-height: $mast-height;
-    background: sd-gradient(v(--background), v(--background-accent));
+    background: sd-gradient(var(--background), var(--background-accent));
     position: relative;
     display:flex;
     flex-direction: column;

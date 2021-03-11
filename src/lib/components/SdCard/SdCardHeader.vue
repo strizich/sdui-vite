@@ -34,7 +34,7 @@ export default {
     //   right: 0;
     //   bottom: 0;
     //   height: 1px;
-    //   background-color: v(--divider);
+    //   background-color: var(--divider);
     // }
   }
   &__title{

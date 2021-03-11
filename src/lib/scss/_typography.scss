@@ -32,10 +32,10 @@ p{
 
 .sd--text{
   &--light{
-    color:v(--text-light);
+    color:var(--text-light);
   }
   &--dark{
-    color: v(--text-dark);
+    color: var(--text-dark);
   }
   &__lead {
     font-size: rem(18);
@@ -44,25 +44,25 @@ p{
     margin-top: 16px;
     padding-top: 0;
     font-weight: 700;
-    color: v(--text-accent);
+    color: var(--text-accent);
     letter-spacing: .25px;
     &--light{
-      color:v(--text-accent-light);
+      color:var(--text-accent-light);
     }
     &--dark{
-      color: v(--text-accent-dark);
+      color: var(--text-accent-dark);
     }
   }
   &__header{
     font-weight: 300;
     letter-spacing: rem(1.2);
-    color: v(--text);
+    color: var(--text);
     margin: 0;
     &--light{
-      color:v(--text-light);
+      color:var(--text-light);
     }
     &--dark{
-      color: v(--text-dark);
+      color: var(--text-dark);
     }
   }
   &__headline{
@@ -70,16 +70,16 @@ p{
     line-height: rem(42);
     font-weight: 300;
     letter-spacing: rem(1.2);
-    color: v(--text);
+    color: var(--text);
     &--light{
-      color:v(--text-light);
+      color:var(--text-light);
     }
     &--dark{
-      color: v(--text-dark);
+      color: var(--text-dark);
     }
   }
   &__caption{
-    color: v(--text-hint);
+    color: var(--text-hint);
     font-size: rem(16);
     font-weight: 500;
     line-height: rem(16);
@@ -90,22 +90,22 @@ p{
       text-transform: uppercase;
     }
     &--light{
-      color:v(--text-accent-light);
+      color:var(--text-accent-light);
     }
     &--dark{
-      color: v(--text-accent-dark);
+      color: var(--text-accent-dark);
     }
   }
   &__footnote{
-    color: v(--text-accent);
+    color: var(--text-accent);
     font-size: rem(12);
     line-height: rem(14);
     margin-bottom: 0;
     &--light{
-      color:v(--text-accent-light);
+      color:var(--text-accent-light);
     }
     &--dark{
-      color: v(--text-accent-dark);
+      color: var(--text-accent-dark);
     }
   }
   &--underline{

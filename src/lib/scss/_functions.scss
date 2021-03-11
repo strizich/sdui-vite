@@ -4,7 +4,7 @@
 $base-font: 16;
 
 // Shorthand for var()
-// Usage: v(--css-var)
+// Usage: var(--css-var)
 @function v($val) {
   @return var(#{$val});
 };
