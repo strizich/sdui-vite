@@ -19,7 +19,8 @@ module.exports = {
     copy({
       targets: [
         { src: 'src/lib/scss/**/*', dest: 'dist/scss' },
-        { src: 'README.md', dest: 'dist' }
+        { src: 'README.md', dest: 'dist' },
+        { src: 'types/*.d.ts', dest: 'dist/types' }
       ],
       hook: 'writeBundle'
     })
