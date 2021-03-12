@@ -108,7 +108,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .sd--mouse-icon{
   g {
     fill: var(--background-inverse);

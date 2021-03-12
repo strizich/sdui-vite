@@ -9,8 +9,10 @@
       @content;
     }
   }
-  .sd--scheme--#{$scheme}{
-    @content;
+  @if $scheme == 'dark' {
+    .sd--scheme--#{$scheme}{
+      @content;
+    }
   }
 }
 

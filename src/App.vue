@@ -9,6 +9,8 @@
           >
             Open Modal
           </sd-button>
+          <sd-button @click="handleToast">Make Toast</sd-button>
+          <sd-toast v-model:active="toast" dismissable>Okay</sd-toast>
           <sd-dialog aside v-model:active="modal">
             <sd-dialog-header title="Title" subtitle="Subtitle"/>
             <sd-dialog-content>
@@ -29,7 +31,8 @@ import { reactive, toRefs } from 'vue'
 export default {
   setup() {
     const state = reactive({
-      modal: false
+      modal: false,
+      toast: false
     })
 
     const handleDialogOpen = () => {
@@ -40,10 +43,15 @@ export default {
       state.modal = false
     }
 
+    const handleToast = () => {
+      state.toast = true
+    }
+
     return {
       ...toRefs(state),
       handleDialogOpen, 
-      handleDialogClose
+      handleDialogClose,
+      handleToast
     }
   }
 }

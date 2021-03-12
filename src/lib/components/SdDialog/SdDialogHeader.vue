@@ -18,7 +18,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .sd--dialog{
     &__header{
       display:flex;
