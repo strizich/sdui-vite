@@ -8,7 +8,7 @@ export default {
   name: 'SdNavHeading'
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .sd--nav__heading{
   padding: 16px 16px 8px;
   .sd--text__footnote{

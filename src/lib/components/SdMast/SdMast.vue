@@ -19,7 +19,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   $header-height: 50px;
   $mast-height: calc(100vh - 140px);
 

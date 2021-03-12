@@ -15,13 +15,13 @@
           </div>
         </div>
       <sd-overlay
-        :parent="`#${id}`"
         fixed
+        :parent="`#${id}`"
         :class="backdropClass"
         :active="active"
+        :blur="backdropBlur"
         @click="onOutsideClick"
         v-if="backdrop && active"
-        :blur="backdropBlur"
       />
     </div>
     </transition>

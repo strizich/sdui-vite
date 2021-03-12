@@ -12,7 +12,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .sd--dialog__content{
     background-color: var(--background);
     padding: 16px;

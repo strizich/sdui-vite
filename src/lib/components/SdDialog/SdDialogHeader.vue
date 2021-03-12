@@ -1,6 +1,6 @@
 <template>
   <div class="sd--dialog__header">
-    <div class="sd--dialog__content" v-if="title || subtitle">
+    <div class="sd--dialog__header-content" v-if="title || subtitle">
       <h3 class="sd--dialog__title" v-if="title">{{title}}</h3>
       <p class="sd--dialog__subtitle" v-if="subtitle">{{subtitle}}</p>
     </div>
@@ -18,7 +18,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .sd--dialog{
     &__header{
       display:flex;

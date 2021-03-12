@@ -36,7 +36,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   @import '../../scss/mixins';
   @import '../../scss/breakpoints';
 
