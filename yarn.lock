@@ -684,15 +684,10 @@ entities@~2.0.0:
   resolved "https://registry.yarnpkg.com/entities/-/entities-2.0.3.tgz#5c487e5742ab93c15abb5da22759b8590ec03b7f"
   integrity sha512-MyoZ0jgnLvB2X3Lg5HqpFmn1kybDiIfEQmKzTb5apr51Rb+T3KdmMiqa70T+bhGnyv7bQ6WMj2QMHpGMmlrUYQ==
 
-esbuild@^0.8.34:
-  version "0.8.43"
-  resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.8.43.tgz#19d79f8c6d1cc6dadd50942057a5aff906a1ecf2"
-  integrity sha512-ZVE2CpootS4jtnfV0bbtJdgRsHEXcMP0P7ZXGfTmNzzhBr2e5ag7Vp3ry0jmw8zduJz4iHzxg4m5jtPxWERz1w==
-
-esbuild@^0.8.47:
-  version "0.8.52"
-  resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.8.52.tgz#6dabf11c517af449a96d66da20dfc204ee7b5294"
-  integrity sha512-b5KzFweLLXoXQwdC/e2+Z80c8uo2M5MgP7yQEEebkFw6In4T9CvYcNoM2ElvJt8ByO04zAZUV0fZkXmXoi2s9A==
+esbuild@^0.8.52:
+  version "0.8.57"
+  resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.8.57.tgz#a42d02bc2b57c70bcd0ef897fe244766bb6dd926"
+  integrity sha512-j02SFrUwFTRUqiY0Kjplwjm1psuzO1d6AjaXKuOR9hrY0HuPsT6sV42B6myW34h1q4CRy+Y3g4RU/cGJeI/nNA==
 
 escape-html@^1.0.3:
   version "1.0.3"
@@ -770,11 +765,6 @@ fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
   integrity sha1-FQStJSMVjKpA20onh8sBQRmU6k8=
-
-fsevents@~2.1.2:
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.1.3.tgz#fb738703ae8d2f9fe900c33836ddebee8b97f23e"
-  integrity sha512-Auw9a4AxqWpa9GUfj370BMPzzyncfBABW8Mab7BGWBYDj4Isgq+cDKtx0i6u9jcX9pQDnswsaaOTgTmA5pEjuQ==
 
 fsevents@~2.3.1:
   version "2.3.2"
@@ -1387,7 +1377,7 @@ rollup-plugin-copy@^3.4.0:
     globby "10.0.1"
     is-plain-object "^3.0.0"
 
-rollup@^2.35.1, rollup@^2.38.5:
+rollup@^2.38.5:
   version "2.38.5"
   resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.38.5.tgz#be41ad4fe0c103a8794377afceb5f22b8f603d6a"
   integrity sha512-VoWt8DysFGDVRGWuHTqZzT02J0ASgjVq/hPs9QcBOGMd7B+jfTr/iqMVEyOi901rE3xq+Deq66GzIT1yt7sGwQ==
@@ -1569,34 +1559,22 @@ vary@~1.1.2:
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
 
-vite@2.0.0-beta.50:
-  version "2.0.0-beta.50"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-2.0.0-beta.50.tgz#04e66d009470ca90ab8a4a43687e899b670a0f25"
-  integrity sha512-zzMgrWJK92/aQ1rxvc+0QKeOCdOP4m2EPGwK2HKhlifQVnSdpYQzQkWLzaGh1GQAp61W+Su8cu6cWINpFgNrfQ==
+vite@^2.0.0-beta.70, vite@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-2.0.5.tgz#ac46857a3fa8686d077921e61bd48a986931df1d"
+  integrity sha512-QTgEDbq1WsTtr6j+++ewjhBFEk6c8v0xz4fb/OWJQKNYU8ZZtphOshwOqAlnarSstPBtWCBR0tsugXx6ajfoUg==
   dependencies:
-    esbuild "^0.8.34"
-    postcss "^8.2.1"
-    resolve "^1.19.0"
-    rollup "^2.35.1"
-  optionalDependencies:
-    fsevents "~2.1.2"
-
-vite@^2.0.0-beta.67:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-2.0.3.tgz#ea0329295d4da9341e670036e5e7f0bfa30ae2cf"
-  integrity sha512-4CUm3FVUHyTSSSK6vHWkj3SVkP+GGNNzwYcFsHOjjc8xQ3BPjJa1JDDmFlYxpxR29ANa+7RWptYPoyHyJ29Nhw==
-  dependencies:
-    esbuild "^0.8.47"
+    esbuild "^0.8.52"
     postcss "^8.2.1"
     resolve "^1.19.0"
     rollup "^2.38.5"
   optionalDependencies:
     fsevents "~2.3.1"
 
-vitepress@^0.12.0:
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/vitepress/-/vitepress-0.12.0.tgz#1dbb590a86da873dcd348550dcf56c840683ed71"
-  integrity sha512-S5ye8WdyEMDSOshzuGun7AIA86RV6dKZZS75lejBcxv9SjCMz8fzYODw+smSlVNv/quaASfjzjKbwsaS/67qzw==
+vitepress@^0.12.2:
+  version "0.12.2"
+  resolved "https://registry.yarnpkg.com/vitepress/-/vitepress-0.12.2.tgz#5e53c78a3ca045f8513cd4bedf2e280f98d48f61"
+  integrity sha512-dU4O7nG4TfI4CbGbrry1TAXlg19+xm9wlHJdvZnYYjTFRlS7zvHDWgxcP7zduUvhqXCGoGURFKjMPo8MRghVNg==
   dependencies:
     "@docsearch/css" "^1.0.0-alpha.28"
     "@docsearch/js" "^1.0.0-alpha.28"
@@ -1623,7 +1601,7 @@ vitepress@^0.12.0:
     prismjs "^1.23.0"
     sirv "^1.0.11"
     slash "^3.0.0"
-    vite "2.0.0-beta.50"
+    vite "^2.0.0-beta.70"
     vue "^3.0.5"
 
 vue-router@^4.0.3:

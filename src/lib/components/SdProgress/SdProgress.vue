@@ -87,9 +87,10 @@ export default {
 </script>
 
 <style lang="scss">
+  @use 'sass:map';
   @import '../../scss/variables';
   @import '../../scss/mixins';
-
+  @import '../../scss/get-contrast';
   .sd--progress{
     margin-bottom: 16px;
     &__track {
@@ -110,7 +111,7 @@ export default {
       align-items: center;
       overflow: hidden;
       @each $state, $color in $sd-color-global {
-        $base: nth($color, 1);
+        $base: map.get($color, base);
         $contrast: sd-pick-contrast($base);
         &--#{$state} {
           background-color: $base;
