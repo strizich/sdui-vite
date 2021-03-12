@@ -48,7 +48,9 @@ import SdSheet from './components/SdSheet/SdSheet.vue'
 import SdToast from './components/SdToast/SdToast.vue'
 import SdList from './components/SdList/SdList.vue'
 import SdListItem from './components/SdList/SdListItem.vue'
-
+import useAlignment from './hooks/useAlignment'
+import useKeyboardFocus from './hooks/useKeyboardFocus'
+import useWindowWidth from './hooks/useWindowWidth'
 const components = {
   SdSkeleton,
   // Button
@@ -133,9 +135,8 @@ const sdInstall = (app) => {
   })
   if (process.env.NODE_ENV !== 'development') {
     console.info('%cSDUI Component Library', 'color: #8F00F8; font-weight: 700; font-size: 12px;')
-    console.info('%cA Vue3 component library', 'font-weight: 500; font-size: 10px;')
-    console.info('%cMain Page: https://www.strizichdesign.com', 'font-size: 8px;')
-    console.info('%cGithub: https://github.com/strizich/v3-jsdesign', 'font-size: 8px;')
+    console.info('%cVersion ', version, 'color: #8F00F8; font-weight: 700; font-size: 12px;')
+    console.info('%cGithub: https://github.com/strizich/sdui-vite', 'font-size: 8px;')
     console.info('--')
   }
 }
@@ -200,5 +201,8 @@ export {
   SdSheet,
   SdToast,
   SdList,
-  SdListItem
+  SdListItem,
+  useKeyboardFocus,
+  useAlignment,
+  useWindowWidth
 }
