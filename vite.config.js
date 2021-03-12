@@ -27,7 +27,7 @@ module.exports = {
   build: {
     lib: {
       name: 'sdui',
-      entry: path.resolve(__dirname, 'src/lib/index.js')
+      entry: path.resolve(__dirname, 'src/lib/index.ts')
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled

@@ -52,7 +52,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 // Math to calculate required values
 import {
   defineComponent,

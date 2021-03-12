@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 import { defineComponent, computed, ref, h } from 'vue'
 import useKeyboardFocus from '../../hooks/useKeyboardFocus'
 import sdUuid from '../../core/utilities/SdUuid'
@@ -50,13 +50,12 @@ export default defineComponent({
     align: {
       type: String,
       default: 'center'
-      // ...SdPropValidator('start', 'end', 'center')
     },
     casing: String,
     block: Boolean,
     iconOnly: Boolean
   },
-  setup (props, { slots, emits }) {
+  setup (props, { slots }) {
     const root = ref(null)
     const hasFocus = useKeyboardFocus(root)
 
@@ -110,17 +109,18 @@ export default defineComponent({
           disabled: props.disabled,
           style: alignmentStyle.value
         },
-        props.icon && h(SdIcon, {
-          name: props.icon,
-          size: props.size
-        }),
-        h(
-          'div',
-          {
-            class: ['sd--button__content', sizeClass.value]
-          },
-          slots
-        )
+        [
+          props.icon && h(SdIcon, {
+            name: props.icon,
+            size: props.size
+          }),
+          h('div',
+            {
+              class: ['sd--button__content', sizeClass.value]
+            },
+            slots
+          )
+        ]
       )
   }
 })

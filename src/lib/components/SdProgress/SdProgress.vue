@@ -19,7 +19,7 @@
 <script>
 import { computed } from 'vue'
 import { SdLabel } from '../..'
-import '../../components/SdElevation'
+import '../SdElevation'
 export default {
   name: 'SdProgress',
   components: { SdLabel },
