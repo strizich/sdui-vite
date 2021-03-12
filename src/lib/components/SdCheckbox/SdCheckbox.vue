@@ -45,9 +45,11 @@ export default defineComponent({
     disabled: Boolean,
     indeterminate: Boolean,
     trueValue: {
+      type: [String, Boolean, Number] as PropType<string | boolean | number>,
       default: true
     },
     falseValue: {
+      type: [String, Boolean, Number] as PropType<string | boolean | number>,
       default: false
     },
     id: {
