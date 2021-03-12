@@ -45,12 +45,10 @@ export default defineComponent({
     disabled: Boolean,
     indeterminate: Boolean,
     trueValue: {
-      type: String,
-      default: 'true'
+      default: true
     },
     falseValue: {
-      type: String,
-      default: 'false'
+      default: false
     },
     id: {
       type: String,

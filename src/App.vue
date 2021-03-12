@@ -13,6 +13,7 @@
           <sd-button @click="handleToast">Make Toast</sd-button>
           </div>
         </sd-container>
+        <sd-checkbox v-model="toast">Toast</sd-checkbox>
       </div>
       <sd-toast v-model:active="toast" dismissable>Okay</sd-toast>
       <sd-dialog aside v-model:active="modal">
