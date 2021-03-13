@@ -217,6 +217,10 @@ export default defineComponent({
       &.is--block {
         display: flex;
         width: 100%;
+
+        & + & {
+           margin-left: 0px;
+        }
       }
 
       &.is--active, &.is--exact-active{

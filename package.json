@@ -3,8 +3,25 @@
   "version": "1.0.1-alpha.9",
   "author": "Jason Strizich (https://www.strizichdesign.com)",
   "license": "MIT",
+  "homepage": "https://www.strizichdesign.com/",
+  "repository": "https://github.com/strizich/sdui-vite.git",
+  "bugs": "https://github.com/strizich/sdui-vite/issues",
+  "description": "A modern component library for Vue 3",
   "files": [
-    "dist/*", "types/*"
+    "dist/*",
+    "types/*"
+  ],
+  "browserslist": [
+    "> 1%",
+    "not edge <= 18",
+    "not ie 11",
+    "not op_mini all"
+  ],
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "contributors": [
+    "Sergio Masellis <sergio@sergiomasellis.com>"
   ],
   "main": "./dist/sdui.umd.js",
   "module": "./dist/sdui.es.js",
