@@ -13,7 +13,7 @@
   </teleport>
 </template>
 
-<script>
+<script lang="ts">
 // FUTURE: Split popper.js logic into a composable
 import {
   computed,
@@ -22,11 +22,14 @@ import {
   watch,
   nextTick,
   onMounted,
-  onUnmounted
+  onUnmounted,
+  PropType,
+  defineComponent,
+  Prop
 } from 'vue'
-import { createPopper } from '@popperjs/core'
+import { createPopper, Placement } from '@popperjs/core'
 
-export default {
+export default defineComponent({
   name: 'SdTooltip',
   emits: ['update:active', 'open', 'close'],
   props: {
@@ -38,7 +41,7 @@ export default {
       default: 100
     },
     placement: {
-      type: String,
+      type: String as PropType<Placement>,
       default: 'top'
     },
     autoOpen: {
@@ -46,7 +49,7 @@ export default {
       default: true
     },
     offset: {
-      type: Array,
+      type: Array as PropType<number[]>,
       default: () => [0, 8]
     },
     showArrow: Boolean,
@@ -180,7 +183,7 @@ export default {
       themeClass
     }
   }
-}
+})
 </script>
 
 <style lang="scss">

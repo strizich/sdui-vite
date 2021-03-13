@@ -11,9 +11,9 @@
           </div>
         </transition>
         <div class="sd--layout__content">
-          <slot name="subheader"/>
-          <slot name="content"/>
-          <slot name="footer"/>
+          <slot name="subheader" />
+          <slot name="content" />
+          <slot name="footer" />
         </div>
     </div>
     <transition name="overlay-fade">
@@ -26,11 +26,11 @@
   </div>
 </template>
 
-<script>
-import { reactive, toRefs, computed, watch, nextTick, onMounted } from 'vue'
+<script lang="ts">
+import { reactive, toRefs, computed, watch, nextTick, onMounted, defineComponent } from 'vue'
 import SdOverlay from '../SdDialog/SdOverlay.vue'
 // import { useRouter } from 'vue-router'
-export default {
+export default defineComponent({
   name: 'SdLayout',
   // may be able to use provide/inject to handing the excessive prop casting.
   props: {
@@ -45,7 +45,6 @@ export default {
     SdOverlay
   },
   emits: ['toggle'],
-  // components: { JsLogo },
   setup (props, { emit }) {
     const scheme = computed(() => {
       return `sd--scheme--${props.scheme}`
@@ -112,7 +111,7 @@ export default {
       afterLeave
     }
   }
-}
+})
 </script>
 
 <style lang="scss">

@@ -16,12 +16,12 @@
   </label>
 </template>
 
-<script>
-import { computed, ref } from 'vue'
+<script lang="ts">
+import { computed, defineComponent, ref } from 'vue'
 import sdUuid from '../../core/utilities/SdUuid'
 import useKeyboardFocus from '../../hooks/useKeyboardFocus'
 
-export default {
+export default defineComponent({
   name: 'SdRadio',
   props: {
     modelValue: [String, Number, Boolean, Object],
@@ -70,7 +70,7 @@ export default {
       handleChecked
     }
   }
-}
+})
 </script>
 
 <style lang="scss">

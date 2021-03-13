@@ -8,15 +8,17 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "@vue/runtime-core"
+
+export default defineComponent({
   name: 'SdMast',
   props: {
     alignment: String,
     title: String,
     subtitle: String
   }
-}
+})
 </script>
 
 <style lang="scss">

@@ -135,7 +135,6 @@ const sdInstall = (app) => {
   })
   if (process.env.NODE_ENV !== 'development') {
     console.info('%cSDUI Component Library', 'color: #8F00F8; font-weight: 700; font-size: 12px;')
-    console.info('%cVersion ', version, 'color: #8F00F8; font-weight: 700; font-size: 12px;')
     console.info('%cGithub: https://github.com/strizich/sdui-vite', 'font-size: 8px;')
     console.info('--')
   }

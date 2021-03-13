@@ -20,12 +20,12 @@
   </header>
 </template>
 
-<script>
-import { reactive } from 'vue'
+<script lang="ts">
+import { defineComponent, reactive } from 'vue'
 import useWindowWidth from '../../hooks/useWindowWidth'
 import SdHamburger from '../SdButton/SdHamburger.vue'
 
-export default {
+export default defineComponent({
   name: 'SdHeader',
   emits: ['toggle'],
   components: { SdHamburger },
@@ -48,7 +48,7 @@ export default {
     const updateWindowWidth = () => {
       const smScreen = smallDevice.value
       if (smScreen === true) {
-        window.localStorage.setItem('SDUI:navState', false)
+        window.localStorage.setItem('SDUI:navState', 'false')
         emit('toggle', false)
       }
     }
@@ -56,20 +56,19 @@ export default {
     const handleMenu = (e) => {
       const smScreen = smallDevice.value
       if (!smScreen) {
-        window.localStorage.setItem('SDUI:navState', !props.asideOpen)
+        window.localStorage.setItem('SDUI:navState', `${!props.asideOpen}`)
       } else {
-        window.localStorage.setItem('SDUI:navState', false)
+        window.localStorage.setItem('SDUI:navState', 'false')
       }
       emit('toggle', e)
     }
 
     updateWindowWidth()
     getStoredMenuState()
-    console.log(sidebar.open)
 
     return { handleMenu }
   }
-}
+})
 </script>
 
 <style lang="scss">

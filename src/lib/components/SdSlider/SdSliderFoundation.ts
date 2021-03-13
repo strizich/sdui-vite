@@ -1,9 +1,11 @@
+import { roundTo } from '../../core/utilities/RoundTo'
+
 const minMax = (min, value, max) => {
   return Math.max(min, Math.min(value, max))
 }
 
 const pctComplete = (value, maxValue) => {
-  return Number(Math.round(minMax(0, value / maxValue, 1) + 'e2') + 'e-2')
+  return roundTo(minMax(0, value / maxValue, 1), 2)
 }
 
 const quantizeValue = (value, step) => {

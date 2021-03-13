@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import { computed } from 'vue'
-export default {
+import { computed, defineComponent } from 'vue'
+export default defineComponent({
   name: 'SdSkeleton',
   props: {
     minWidth: {
@@ -40,7 +40,7 @@ export default {
       computedStyles
     }
   }
-}
+})
 </script>
 
 <style lang="scss">

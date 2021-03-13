@@ -9,6 +9,7 @@
             @click="handleDialogOpen"
           >
             Open Modal
+            <sd-tooltip>huh</sd-tooltip>
           </sd-button>
           <sd-button @click="handleToast">Make Toast</sd-button>
           </div>
@@ -25,6 +26,10 @@
           <sd-button theme="dark" @click="handleDialogClose()">Close</sd-button>
         </sd-dialog-footer>
       </sd-dialog>
+      <sd-progress :total="100" :current="90" animated/>
+      <sd-progress :progress="0.96"/>
+
+      <sd-slider v-model:value="sliderything"/>
     </template>
   </sd-layout>
 </template>
@@ -38,6 +43,7 @@ export default {
     const state = reactive({
       modal: false,
       toast: false,
+      sliderything: 10
     })
 
     const handleDialogOpen = () => {

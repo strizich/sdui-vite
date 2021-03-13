@@ -23,7 +23,7 @@
   </label>
 </template>
 
-<script>
+<script lang="ts">
 // Research way to properly split this code.
 
 import { defineComponent, ref, computed } from 'vue'
@@ -46,10 +46,6 @@ export default defineComponent({
     },
     falseValue: {
       default: false
-    },
-    fieldType: {
-      type: String,
-      default: 'checkbox'
     },
     theme: {
       type: String,

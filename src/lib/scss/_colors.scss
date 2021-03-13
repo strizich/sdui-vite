@@ -4,6 +4,7 @@
 @import 'variables';
 @import 'functions';
 @import 'mixins';
+
 // FUTURE: Map the color schemes of the text color based on the contrast value
 @each $scheme, $map in $sd-color-schemes {
   @include root-color-scheme($scheme){

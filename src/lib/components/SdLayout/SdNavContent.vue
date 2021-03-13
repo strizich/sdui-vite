@@ -7,7 +7,7 @@
   </a>
 </template>
 
-<script>
+<script lang="ts">
 import { computed, defineComponent } from 'vue'
 import SdIcon from '../SdIcon/SdIcon.vue'
 export default defineComponent({

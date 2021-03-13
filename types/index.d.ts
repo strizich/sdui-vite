@@ -56,7 +56,11 @@ declare module '@strizich/sdui' {
   const SdList: ReturnType<typeof defineComponent>
   const SdListItem: ReturnType<typeof defineComponent>
 
+  // Installation
+  const sdInstall: (app: any) => void
+
   export {
+    sdInstall,
     SdSkeleton,
     // Button
     SdButton,
