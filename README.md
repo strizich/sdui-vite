@@ -1,7 +1,10 @@
-[![npm version](https://badge.fury.io/js/%40strizich%2Fsdui.svg)](https://badge.fury.io/js/%40strizich%2Fsdui)
-
 # SDUI
 A component library written for Vue3. [Demo](https://www.strizichdesign.com)
+
+[![npm version](https://badge.fury.io/js/%40strizich%2Fsdui.svg)](https://badge.fury.io/js/%40strizich%2Fsdui)
+![license](https://img.shields.io/npm/l/@strizich/sdui)
+![issues](https://img.shields.io/github/issues/strizich/sdui-vite)
+![size](https://img.shields.io/bundlephobia/minzip/@strizich/sdui)
 
 ## Getting Started
 
@@ -45,6 +48,4 @@ Now that the components are mounted we need to pull down the styles. At this tim
   @import url('../node_modules/@strizich/sdui/dist/style.css');
 </style>
 ```
-
-
 
