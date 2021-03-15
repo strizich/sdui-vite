@@ -4,11 +4,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue'
 
-export default {
+export default defineComponent({
   name: 'SdCardBody'
-}
+})
 </script>
 
 <style lang="scss">

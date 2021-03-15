@@ -62,11 +62,11 @@
   </svg>
 </template>
 
-<script>
+<script lang="ts">
 import anime from 'animejs'
-import { onMounted } from 'vue'
+import { onMounted, defineComponent } from 'vue'
 
-export default {
+export default defineComponent({
   name: 'SdIconMouse',
   props: {
     hover: Boolean,
@@ -104,8 +104,7 @@ export default {
       }, '-=360')
     })
   }
-
-}
+})
 </script>
 
 <style lang="scss">

@@ -4,9 +4,9 @@
   </div>
 </template>
 
-<script>
-import { computed } from 'vue'
-export default {
+<script lang="ts">
+import { computed, defineComponent } from 'vue'
+export default defineComponent({
   name: 'SdCard',
   props: {
     title: String,
@@ -29,7 +29,7 @@ export default {
     })
     return { classes }
   }
-}
+})
 </script>
 
 <style lang="scss">

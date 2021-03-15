@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { computed, defineComponent } from 'vue'
 
 export default defineComponent({
@@ -12,7 +12,7 @@ export default defineComponent({
   props: {
     ratio: {
       type: String,
-      validator: (value) => {
+      validator: (value: string) => {
         return [
           '16-9',
           '16/9',
@@ -32,7 +32,7 @@ export default defineComponent({
     size: {
       type: String,
       default: 'md',
-      validator: (value) => {
+      validator: (value: string) => {
         return [
           'sm',
           'md',

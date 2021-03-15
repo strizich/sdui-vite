@@ -28,7 +28,6 @@
       </sd-dialog>
       <sd-progress :total="100" :current="90" animated/>
       <sd-progress :progress="0.96"/>
-
       <sd-slider v-model:value="sliderything"/>
     </template>
   </sd-layout>
@@ -71,7 +70,7 @@ export default {
 
 <style lang="scss">
   @use '@/lib/scss/engine';
-  
+
   .demo{
     padding: 40px 0;
   }

@@ -46,10 +46,10 @@ export default defineComponent({
   setup (props) {
     const progressDisplay = computed(() => {
       if (props.progress) {
-        return roundTo(props.progress * 100, props.decimalPlaces)
+        return roundTo(props.progress * 100, props.decimalPlaces) + '%'
       }
       if (props.current && props.total) {
-        return roundTo(props.current / props.total * 100, props.decimalPlaces)
+        return roundTo(props.current / props.total * 100, props.decimalPlaces) + '%'
       }
       if (props.current && !props.total) {
         return 'Total is required with value'
@@ -70,7 +70,7 @@ export default defineComponent({
 
     const computedStyles = computed(() => {
       return {
-        width: `${progressDisplay.value}%`,
+        width: progressDisplay.value,
         transition: props.animated ? 'width .23s ease-in-out' : 'unset'
       }
     })

@@ -4,10 +4,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue'
 import useAlignment from '../../hooks/useAlignment'
 
-export default {
+export default defineComponent({
   name: 'SdDialogFooter',
   props: {
     align: {
@@ -23,7 +24,7 @@ export default {
     const { alignmentStyle } = useAlignment(props.align, props.direction)
     return { alignmentStyle }
   }
-}
+})
 </script>
 
 <style lang="scss">

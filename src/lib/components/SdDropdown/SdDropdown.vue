@@ -10,8 +10,10 @@
   </teleport>
 </template>
 
-<script>
+<script lang="ts">
 import {
+  defineComponent,
+  PropType,
   computed,
   ref,
   reactive,
@@ -20,9 +22,9 @@ import {
   onMounted,
   onUnmounted
 } from 'vue'
-import { createPopper } from '@popperjs/core'
+import { createPopper, Placement } from '@popperjs/core'
 
-export default {
+export default defineComponent({
   name: 'SdDropdown',
   emits: ['update:active', 'open', 'close'],
   props: {
@@ -36,7 +38,7 @@ export default {
       default: 100
     },
     placement: {
-      type: String,
+      type: String as PropType<Placement>,
       default: 'bottom'
     },
     autoClose: {
@@ -180,7 +182,7 @@ export default {
       hide
     }
   }
-}
+})
 </script>
 
 <style lang="scss">

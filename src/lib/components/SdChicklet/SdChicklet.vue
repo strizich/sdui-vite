@@ -8,10 +8,10 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { SdIcon } from '../..'
-import { computed } from 'vue'
-export default {
+import { computed, defineComponent } from 'vue'
+export default defineComponent({
   name: 'SdChicklet',
   components: { SdIcon },
   props: {
@@ -44,7 +44,7 @@ export default {
       classes
     }
   }
-}
+})
 </script>
 
 <style lang="scss">

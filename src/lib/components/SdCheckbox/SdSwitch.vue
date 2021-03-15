@@ -1,8 +1,9 @@
 <template>
   <label
     :for="id"
-    :class="['sd--switch']"
+    :class="['sd--switch', containerClasses]"
     @click.prevent="handleChecked"
+    tabindex="-1"
   >
       <span class="sd--switch__label">
         <slot/>
@@ -26,25 +27,30 @@
 <script lang="ts">
 // Research way to properly split this code.
 
-import { defineComponent, ref, computed } from 'vue'
+import { defineComponent, ref, computed, PropType } from 'vue'
 import sdUuid from '../../core/utilities/SdUuid'
 import useKeyboardFocus from '../../hooks/useKeyboardFocus'
 
 export default defineComponent({
   name: 'SdSwitch',
   props: {
-    modelValue: [String, Boolean, Object, Number, Array],
+    modelValue: {
+      type: [String, Boolean, Object, Number, Array] as PropType<any>,
+      default: null
+    },
     value: {
-      type: [String, Boolean, Object, Number],
+      type: [String, Boolean, Object, Number] as PropType<string | boolean | object | number>,
       default: null
     },
     name: [String, Number],
     required: Boolean,
     disabled: Boolean,
     trueValue: {
+      type: [String, Boolean, Number] as PropType<string | boolean | number>,
       default: true
     },
     falseValue: {
+      type: [String, Boolean, Number] as PropType<string | boolean | number>,
       default: false
     },
     theme: {
@@ -122,6 +128,7 @@ export default defineComponent({
         name: props.name,
         disabled: props.disabled,
         required: props.required,
+        value: props.value,
         'true-value': props.trueValue,
         'false-value': props.falseValue
       }
@@ -228,9 +235,20 @@ $checkmarkSvgDarkUri: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
   &:focus{
     outline:none;
   }
+  &.is--focused{
+    color: var(--primary-highlight);
+    input:before{
+      border-color: var(--primary-highlight);
+    }
+  }
+
+  &.is--disabled{
+      &:after{
+        background-color: var(--disabled);
+      }
+  }
   &:hover{
     background-color: var(--background-highlight);
-
   }
   @each $state, $color in $sd-color-global {
     // FUTURE: Adjust change checkbox (light/dark) based on theme.
@@ -252,6 +270,13 @@ $checkmarkSvgDarkUri: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     width: 48px;
     height: 12px;
     position:relative;
+    &.is--disabled{
+        background-color: var(--background-highlight);
+      &:after{
+        @extend %knob;
+        background-color:var(--disabled);
+      }
+    }
     &:after{
       transition: all .3s ease-in-out;
       @extend %knob;
