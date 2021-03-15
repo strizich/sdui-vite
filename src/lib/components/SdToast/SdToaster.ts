@@ -2,7 +2,7 @@ let currentToast = null
 let timeout = null
 
 const promiseToast = (duration, persist) => {
-  return new Promise(resolve => {
+  return new Promise<void>(resolve => {
     currentToast = {
       destroy: () => {
         currentToast = null
@@ -23,7 +23,7 @@ const promiseToast = (duration, persist) => {
 }
 
 const destroyToast = () => {
-  return new Promise(resolve => {
+  return new Promise<void>(resolve => {
     if (currentToast) {
       window.clearTimeout(timeout)
       currentToast.destroy()

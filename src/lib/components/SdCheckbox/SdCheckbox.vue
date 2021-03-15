@@ -13,17 +13,31 @@
   </label>
 </template>
 
-<script>
-import { defineComponent, ref, computed } from 'vue'
+<script lang="ts">
+import { defineComponent, ref, computed, PropType, ComputedRef } from 'vue'
 import sdUuid from '../../core/utilities/SdUuid'
 import useKeyboardFocus from '../../hooks/useKeyboardFocus'
 
 export default defineComponent({
   name: 'SdCheckbox',
   props: {
-    modelValue: [String, Boolean, Object, Number, Array],
+    modelValue: {
+      type: [
+        String,
+        Boolean,
+        Object,
+        Number,
+        Array
+      ] as PropType<any>,
+      default: null
+    },
     value: {
-      type: [String, Boolean, Object, Number],
+      type: [
+        String,
+        Boolean,
+        Object,
+        Number
+      ] as PropType<string | boolean | number | object>,
       default: null
     },
     name: [String, Number],
@@ -31,14 +45,12 @@ export default defineComponent({
     disabled: Boolean,
     indeterminate: Boolean,
     trueValue: {
+      type: [String, Boolean, Number] as PropType<string | boolean | number>,
       default: true
     },
     falseValue: {
+      type: [String, Boolean, Number] as PropType<string | boolean | number>,
       default: false
-    },
-    fieldType: {
-      type: String,
-      default: 'sd--checkbox'
     },
     id: {
       type: String,
@@ -50,18 +62,18 @@ export default defineComponent({
     }
   },
   setup (props, { emit }) {
-    const checkbox = ref(false)
+    const checkbox = ref(null)
     const isFocused = useKeyboardFocus(checkbox)
 
-    const isModelArray = computed(() => {
-      return Array.isArray(props.modelValue)
-    })
-
-    const hasValue = computed(() => {
+    const hasValue: ComputedRef<boolean> = computed(() => {
       return props.value !== null
     })
 
-    const isSelected = computed(() => {
+    const isModelArray: ComputedRef<boolean> = computed(() => {
+      return Array.isArray(props.modelValue)
+    })
+
+    const isSelected: ComputedRef<boolean> = computed(() => {
       if (isModelArray.value) {
         return props.modelValue.includes(props.value)
       }
@@ -80,7 +92,7 @@ export default defineComponent({
     }
 
     const handleArrayCheckbox = () => {
-      const newModel = props.modelValue
+      let newModel = props.modelValue
       if (!isSelected.value) {
         newModel.push(props.value)
       } else {
@@ -115,8 +127,9 @@ export default defineComponent({
         name: props.name,
         disabled: props.disabled,
         required: props.required,
+        value: props.value,
         'true-value': props.trueValue,
-        'false-value': props.falseValue
+        'false-value': props.falseValue,
       }
       if (props.value === null || typeof props.value !== 'object') {
         attrs.value = (props.value === null || props.value === undefined) ? '' : String(props.value)
@@ -248,6 +261,7 @@ export default defineComponent({
       border:none;
       outline:none;
     }
+    user-select: none;
     -webkit-user-select: none;
     &:hover{
       cursor: pointer;

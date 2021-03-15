@@ -5,25 +5,20 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from '@vue/runtime-core'
 import SdNavHeading from './SdNavHeading.vue'
 
-export default {
+export default defineComponent({
   name: 'SdNav',
   props: {
     title: String
   },
-  components: { SdNavHeading },
-  setup () {
-    return {
-
-    }
-  }
-}
+  components: { SdNavHeading }
+})
 </script>
 
 <style lang="scss">
-
   .sd--nav{
     list-style-type: none;
     margin: 16px 0 16px;

@@ -3,10 +3,12 @@
   <h4 class="sd--text__footnote"><slot/></h4>
 </div>
 </template>
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "@vue/runtime-core"
+
+export default defineComponent({
   name: 'SdNavHeading'
-}
+})
 </script>
 <style lang="scss">
 .sd--nav__heading{

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 import { defineComponent, computed, h } from 'vue'
 export default defineComponent({
   name: 'SdContainer',

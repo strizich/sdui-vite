@@ -16,7 +16,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent, computed } from 'vue'
 import SdTooltip from '../SdTooltip'
 import SdIcon from '../SdIcon'

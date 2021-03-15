@@ -28,11 +28,11 @@
   </teleport>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent, watch, computed, nextTick, onMounted, ref } from 'vue'
 import SdOverlay from './SdOverlay.vue'
 import sdUuid from '../../core/utilities/SdUuid'
-import '../../components/SdElevation'
+import '../SdElevation'
 
 export default defineComponent({
   name: 'SdDialog',
@@ -77,7 +77,7 @@ export default defineComponent({
     SdOverlay
   },
   emits: ['update:active', 'clicked-outside', 'opened', 'closed'],
-  setup (props, { emit, root, attrs }) {
+  setup (props, { emit }) {
     const modalContainer = ref(null)
     const classes = computed(() => {
       const sizeClass = `is--${props.size}`

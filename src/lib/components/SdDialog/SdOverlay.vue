@@ -4,7 +4,7 @@
   </transition>
 </template>
 
-<script>
+<script lang="ts">
 // import SdPortal from '@/layout/SdPortal'
 import { computed, defineComponent } from 'vue'
 export default defineComponent({

@@ -20,7 +20,9 @@ const useWindowWidth = () => {
   }
 
   const removeResizeListener = () => {
-    window.removeEventListener('resize', updateWindowWidth())
+    window.removeEventListener('resize', () => {
+      SdThrottle(600, updateWindowWidth())
+    })
   }
 
   updateWindowWidth()

@@ -11,10 +11,10 @@
   </teleport>
 </template>
 
-<script>
-import { computed, watch, reactive } from 'vue'
+<script lang="ts">
+import { computed, watch, reactive, defineComponent} from 'vue'
 
-export default {
+export default defineComponent({
   name: 'SdToast',
   props: {
     active: Boolean,
@@ -58,7 +58,7 @@ export default {
     }
 
     const promiseToast = (duration, persist) => {
-      return new Promise(resolve => {
+      return new Promise<void>(resolve => {
         currentToast = {
           destroy: () => {
             currentToast = null
@@ -77,7 +77,7 @@ export default {
     }
 
     const destroyToast = () => {
-      return new Promise(resolve => {
+      return new Promise<void>(resolve => {
         if (currentToast.value) {
           window.clearTimeout(timeout)
           window.setTimeout(resolve, 400)
@@ -112,7 +112,7 @@ export default {
 
     return { classes, currentToast, state, destroyToast, handleClose }
   }
-}
+})
 </script>
 
 <style lang="scss">

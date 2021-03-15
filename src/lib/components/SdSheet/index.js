@@ -1,3 +1,3 @@
-import SdSheet from './SdSheet'
+import SdSheet from './SdSheet.vue'
 
 export default SdSheet

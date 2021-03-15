@@ -26,12 +26,16 @@
     </div>
 </template>
 
-<script>
-import { defineComponent, reactive, computed, toRefs, watch, ref } from 'vue'
+<script lang="ts">
+import { defineComponent, reactive, computed, toRefs, watch, PropType, ref } from 'vue'
 import SdUuid from '../../core/utilities/SdUuid'
-
 import SdLabel from './SdLabel.vue'
 import SdError from './SdError.vue'
+
+interface ModelModifiers {
+  number: boolean;
+}
+
 export default defineComponent({
   name: 'SdField',
   emits: ['update:modelValue', 'focus', 'blur', 'change', 'input'],
@@ -44,6 +48,7 @@ export default defineComponent({
       default: () => 'sd--field--' + SdUuid()
     },
     modelModifiers: {
+      type: Object as PropType<ModelModifiers>,
       default: () => ({})
     },
     icon: String,
@@ -72,7 +77,8 @@ export default defineComponent({
 
     const state = reactive({
       touched: false,
-      focused: false
+      focused: false,
+      autofill: null
     })
 
     const handleValidation = computed(() => {

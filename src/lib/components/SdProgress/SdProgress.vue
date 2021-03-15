@@ -16,11 +16,12 @@
   </div>
 </template>
 
-<script>
-import { computed } from 'vue'
+<script lang="ts">
+import { computed, defineComponent } from 'vue'
+import { roundTo } from '../../core/utilities/RoundTo'
 import { SdLabel } from '../..'
-import '../../components/SdElevation'
-export default {
+import '../SdElevation'
+export default defineComponent({
   name: 'SdProgress',
   components: { SdLabel },
   props: {
@@ -38,26 +39,23 @@ export default {
     },
     decimalPlaces: {
       type: Number,
-      default: 2
+      default: 0
     },
     animated: Boolean
   },
   setup (props) {
-    const roundNumber = (number, decimalPlaces) =>
-      Number(Math.round(number + 'e' + decimalPlaces) + 'e-' + decimalPlaces)
-
     const progressDisplay = computed(() => {
       if (props.progress) {
-        return roundNumber(props.progress * 100, props.decimalPlaces) + '%'
+        return roundTo(props.progress * 100, props.decimalPlaces) + '%'
       }
       if (props.current && props.total) {
-        return roundNumber(props.current / props.total * 100, props.decimalPlaces) + '%'
+        return roundTo(props.current / props.total * 100, props.decimalPlaces) + '%'
       }
       if (props.current && !props.total) {
-        return 'Count is required with value'
+        return 'Total is required with value'
       }
-      if (props.value && props.progress) {
-        return 'Cannot do both. Pick Progress or Value/Count'
+      if (props.total && props.current && props.progress) {
+        return 'Cannot do both. Pick Progress or Total/Current'
       }
     })
 
@@ -83,7 +81,7 @@ export default {
       computedClasses
     }
   }
-}
+})
 </script>
 
 <style lang="scss">
