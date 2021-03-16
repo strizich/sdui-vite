@@ -1,5 +1,5 @@
 <template>
-  <teleport to="#app">
+  <teleport :to="teleport">
     <transition name="dialog">
       <div
         class="sd--dialog"
@@ -40,6 +40,10 @@ export default defineComponent({
     id: {
       type: String,
       default: 'modal-' + sdUuid()
+    },
+    teleport: {
+      type: String,
+      default: '#app'
     },
     active: Boolean,
     backdrop: {

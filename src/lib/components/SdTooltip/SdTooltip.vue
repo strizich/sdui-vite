@@ -33,6 +33,10 @@ export default defineComponent({
   name: 'SdTooltip',
   emits: ['update:active', 'open', 'close'],
   props: {
+    teleport: {
+      type: String,
+      default: '#app'
+    },
     active: Boolean,
     theme: String,
     // FUTURE: Update options obj with editable settings.
@@ -208,6 +212,7 @@ export default defineComponent({
     white-space: wrap;
     opacity: 1;
     background-color: var(--background-highlight);
+    color: var(--text);
     font-weight: 500;
     min-width: 40px;
     @include elevation(4);
