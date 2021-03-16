@@ -129,6 +129,7 @@ export default defineComponent({
 <style lang="scss">
 @import '../../scss/variables';
 @import '../../scss/mixins';
+@import '../../scss/functions';
 @import '../SdElevation/mixins';
 
 .sd--button {
@@ -138,7 +139,7 @@ export default defineComponent({
   border: none;
   border-radius: 3px;
   font-weight: 500;
-  letter-spacing: 1px;
+  letter-spacing: .5px;
   display: inline-flex;
   align-self: center;
   align-items: center;
@@ -160,6 +161,10 @@ export default defineComponent({
     padding-bottom:8px;
 
     &.is {
+      &--xs {
+        font-size: rem(12);
+        padding: spacing(inset, xs);
+      }
       &--sm {
         font-size: rem(14);
         line-height: 1;
