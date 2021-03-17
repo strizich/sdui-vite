@@ -2,15 +2,15 @@ import { SdButton, SdTooltip} from '../lib'
 import '../lib/scss/engine.scss'
 
 export default {
-  title: 'SdTooltip',
-  component: SdTooltip
+  title: 'Components/SdTooltip',
+  component: SdTooltip,
+  argTypes: {
+    placement: { control: { type: 'select', options: ['right', 'left'] } },
+    handles: ['mouseover', 'huh']
+  }
 };
 
 const Template = (args => ({
-  components: { SdButton, SdTooltip },
-  setup () {
-    return { args };
-  },
   template: `
   <sd-button>
     <span>Hover Me!</span>
@@ -18,7 +18,11 @@ const Template = (args => ({
       {{args.label}}
     </sd-tooltip>
   </sd-button>
-  `
+  `,
+  setup () {
+    return { args };
+  },
+  components: { SdButton, SdTooltip },
 }))
 
 export const Default = Template.bind({});

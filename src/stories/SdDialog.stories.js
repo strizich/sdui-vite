@@ -1,32 +1,66 @@
-import { SdDialog, SdDialogHeader, SdDialogContent, SdDialogFooter} from '../lib'
+import { SdButton, SdDialog, SdDialogHeader, SdDialogContent, SdDialogFooter} from '../lib'
+import { action } from '@storybook/addon-actions'
+import { reactive } from 'vue'
 import '../lib/scss/engine.scss'
+
 export default {
-  title: 'SdDialog',
-  component: SdDialog,
-  argTypes: {
-    size: { control: { type: 'select', options: ['xs', 'sm', 'md', 'lg'] } },
-    placement: { control: { type: 'select', options: ['right', 'left'] } },
-  }
+  title: 'Components/SdDialog',
+  component: SdDialog
 };
 
 const Template = (args => ({
-  components: { SdDialog, SdDialogHeader, SdDialogContent, SdDialogFooter },
+  components: { SdDialog, SdDialogHeader, SdDialogContent, SdDialogFooter, SdButton },
   setup () {
-    return { args };
+    const state = reactive({
+      active: args.active
+    })
+
+    const toggled = () => {
+      state.active = !state.active
+      action('update:active')
+    }
+    // const action = action('close')
+    return { args, toggled, state  };
   },
   template: `
-  <sd-dialog :teleport="null" v-bind="args">
+  <sd-button @click="toggled">Modal</sd-button> 
+  <sd-dialog 
+    :id="args.id"
+    :size="args.size"
+    :fullscreen="args.fullscreen"
+    :portal-to="args.portalTo"
+    :portal-disabled="args.portalDisabled"
+    :aside="args.aside"
+    :placement="args.placement"
+    :backdrop-blur="args.backdropBlur"
+    v-model:active="state.active"
+  >
     <sd-dialog-header :title="args.title" :subtitle="args.subtitle"/>
-    <sd-dialog-content>Here be the body</sd-dialog-content>
-    <sd-dialog-footer>Here be the foot</sd-dialog-footer>
+    <sd-dialog-content>{{args.content}}</sd-dialog-content>
+    <sd-dialog-footer>
+      <sd-button theme="default" @click="toggled">Dismiss</sd-button>
+    </sd-dialog-footer>
   </sd-dialog>
   `
 }))
 
-export const Default = Template.bind({});
-Default.args = {
+export const Dialog = Template.bind({});
+Dialog.args = {
   active: false,
   title: 'Dialog',
   subtitle: 'Its alive!',
-  teleport: 'body',
+  content: 'Content goes here',
+  portalTo: 'body',
+  portalDisabled: true
+};
+
+export const Aside = Template.bind({});
+Aside.args = {
+  title: 'Aside',
+  active: false,
+  aside: true,
+  subtitle: 'Its alive!',
+  content: 'Content goes here',
+  portalTo: 'body',
+  portalDisabled: true
 };

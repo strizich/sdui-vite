@@ -2,8 +2,11 @@ import '../lib/scss/engine.scss'
 import SdButton from '../lib/components/SdButton/SdButton.vue';
 
 export default {
-  title: 'SdButton',
+  title: 'Components/SdButton',
   component: SdButton,
+  decorators: [() => ({
+    template: '<div style="text-align:center; padding: 40px"><story /></div>'
+  })],
   argTypes: {
     theme: { control: { type: 'select', options: [
       'primary',
@@ -11,12 +14,14 @@ export default {
       'default',
       'warning',
       'success',
-      'danger'
+      'danger',
+      'dark'
     ] }},
     casing: {control: {type: 'select', options: [
+      null,
       'uppercase',
       'lowercase',
-      'captialize'
+      'captialize',
     ]}},
     type: { control: { type: 'select', options: [
       'button',
@@ -27,9 +32,9 @@ export default {
       'end',
       'center'
     ] }},
-    size: { control: { type: 'select', options: ['xs', 'sm', 'md', 'lg'] } },
-    onClick: {},
-  },
+    size: { control: { type: 'select', options: ['xs', 'sm', 'md', 'lg', 'xl'] } },
+    onClick: {action : 'clicked'},
+  }
 };
 
 const Template = (args) => ({
@@ -45,21 +50,63 @@ const Template = (args) => ({
 
 export const Primary = Template.bind({});
 Primary.args = {
-  label: 'Button',
+  label: 'Primary',
   theme: 'primary'
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
   label: 'Secondary',
-  theme: 'primary',
-  outline: true
+  theme: 'secondary'
+};
+
+export const Default = Template.bind({});
+Default.args = {
+  label: 'Default',
+  theme: 'default'
+};
+
+export const Success = Template.bind({});
+Success.args = {
+  label: 'Success',
+  theme: 'success',
 };
 
 export const Danger = Template.bind({});
 Danger.args = {
   label: 'Danger',
-  theme: 'danger',
-  flat: true
+  theme: 'danger'
 };
 
+export const Warning = Template.bind({});
+Warning.args = {
+  label: 'Warning',
+  theme: 'warning'
+};
+
+export const Dark = Template.bind({});
+Dark.args = {
+  label: 'Dark',
+  theme: 'dark'
+};
+
+export const Outline = Template.bind({});
+Outline.args = {
+  label: 'Outline',
+  theme: 'primary',
+  outline: true
+};
+
+export const Pill = Template.bind({});
+Pill.args = {
+  label: 'Pill',
+  theme: 'primary',
+  pill: true
+};
+
+export const Rounded = Template.bind({});
+Rounded.args = {
+  label: 'Rounded',
+  theme: 'primary',
+  rounded: true
+};
