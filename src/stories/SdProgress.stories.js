@@ -5,6 +5,20 @@ export default {
   title: 'Components/SdProgress',
   component: SdProgress,
   argTypes: {
+    theme: {
+      control: {
+        type: 'select',
+        options: [
+          'primary',
+          'secondary',
+          'default',
+          'warning',
+          'success',
+          'danger',
+          'dark'
+        ]
+      }
+    },
     animated: {
       control: {
         type: 'boolean'
@@ -27,13 +41,7 @@ const Template = (args => ({
     return { args };
   },
   template: `
-    <sd-progress theme="primary" v-bind="args"/>
-    <sd-progress theme="secondary" v-bind="args"/>
-    <sd-progress theme="default" v-bind="args"/>
-    <sd-progress theme="success" v-bind="args"/>
-    <sd-progress theme="warning" v-bind="args"/>
-    <sd-progress theme="danger" v-bind="args"/>
-    <sd-progress theme="dark" v-bind="args"/>
+    <sd-progress v-bind="args"/>
   `
 }))
 

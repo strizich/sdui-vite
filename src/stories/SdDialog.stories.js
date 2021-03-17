@@ -1,11 +1,21 @@
 import { SdButton, SdDialog, SdDialogHeader, SdDialogContent, SdDialogFooter} from '../lib'
-import { action } from '@storybook/addon-actions'
 import { reactive } from 'vue'
 import '../lib/scss/engine.scss'
 
 export default {
   title: 'Components/SdDialog',
-  component: SdDialog
+  component: SdDialog,
+  subcomponents: {
+    SdDialogHeader, SdDialogContent, SdDialogFooter
+  },
+  argTypes: {
+    portalTo: {
+      control: false
+    },
+    portalDisabled: {
+      control: false
+    }
+  }
 };
 
 const Template = (args => ({
@@ -17,7 +27,6 @@ const Template = (args => ({
 
     const toggled = () => {
       state.active = !state.active
-      action('update:active')
     }
     // const action = action('close')
     return { args, toggled, state  };
@@ -31,6 +40,7 @@ const Template = (args => ({
     :portal-to="args.portalTo"
     :portal-disabled="args.portalDisabled"
     :aside="args.aside"
+    :backdrop="args.backdrop"
     :placement="args.placement"
     :backdrop-blur="args.backdropBlur"
     v-model:active="state.active"
