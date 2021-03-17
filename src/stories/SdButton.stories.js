@@ -8,6 +8,11 @@ export default {
     template: '<div style="text-align:center; padding: 40px"><story /></div>'
   })],
   argTypes: {
+    id: {
+      control: {
+        type: 'text'
+      }
+    },
     theme: { control: { type: 'select', options: [
       'primary',
       'secondary',
@@ -42,7 +47,7 @@ const Template = (args) => ({
   setup() {
     return { args };
   },
-  template: '<sd-button v-bind="args">{{args.label}}</label>',
+  template: '<sd-button v-bind="args">{{args.label}}</sd-button>',
 });
 
 export const Primary = Template.bind({});
