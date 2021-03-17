@@ -1,6 +1,6 @@
 <template>
   <div class="sd--progress">
-    <sd-label>{{title}}</sd-label>
+    <sd-label>{{label}}</sd-label>
     <div class="sd--progress__track">
       <div :class="[computedClasses]" :style="[computedStyles]">
         <span>
@@ -25,7 +25,7 @@ export default defineComponent({
   name: 'SdProgress',
   components: { SdLabel },
   props: {
-    title: String,
+    label: String,
     hint: String,
     total: Number,
     current: Number,
@@ -71,6 +71,7 @@ export default defineComponent({
     const computedStyles = computed(() => {
       return {
         width: progressDisplay.value,
+        maxWidth: '100%',
         transition: props.animated ? 'width .23s ease-in-out' : 'unset'
       }
     })
