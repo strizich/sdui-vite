@@ -21,13 +21,16 @@
   import SdContainer from '../../../src/lib/components/SdGrid/SdContainer.vue'
   import useWindowWidth from '../../../src/lib/hooks/useWindowWidth'
 
+const floatState = window.localStorage.getItem('SDUI:sidebarFloating') === 'true'
+const navState = window.localStorage.getItem('SDUI:navState') === 'true'
+
   export default {
     name: 'Layout',
     components: { SdLayout, SdHeader, SdContainer },
     setup() {
       const state = reactive({
-        sidebar: false,
-        floating: false
+        sidebar: navState,
+        floating: floatState
       })
 
       const { smallDevice } = useWindowWidth()
