@@ -1,5 +1,9 @@
 <template>
-  <teleport ref="tooltipPortal" to="#app" :disabled="attachToParent">
+  <teleport 
+    ref="tooltipPortal"
+    :to="portalTo"
+    :disabled="portalDisabled"
+  >
     <transition name="tooltip">
       <div ref="tooltipRef" class="sd--tooltip" v-if="state.shouldRender">
         <div :class="['sd--tooltip__content', themeClass]">
@@ -54,10 +58,17 @@ export default defineComponent({
     },
     offset: {
       type: Array as PropType<number[]>,
-      default: () => [0, 8]
+      default: [0, 8]
     },
     showArrow: Boolean,
-    attachToParent: Boolean
+    portalTo: {
+      type: String,
+      default: '#app'
+    },
+    portalDisabled: {
+      type: Boolean,
+      default: false
+    }
   },
   setup (props, { emit }) {
     // Element Bindings
@@ -158,10 +169,10 @@ export default defineComponent({
         // Gets the orignal parent instance of <teleport />
         state.targetEl = tooltipPortal.value?.parentNode
         if (props.autoOpen && state.targetEl) {
-          document.body.addEventListener('touchstart', outsideTouch, false)
-          state.targetEl.addEventListener('touchstart', touched, false)
-          state.targetEl.addEventListener('mouseenter', show, false)
-          state.targetEl.addEventListener('mouseleave', hide, false)
+          document.body.addEventListener('touchstart', outsideTouch, { passive: true })
+          state.targetEl.addEventListener('touchstart', touched, { passive: true })
+          state.targetEl.addEventListener('mouseenter', show, { passive: true })
+          state.targetEl.addEventListener('mouseleave', hide, { passive: true })
         }
       })
     }
@@ -196,10 +207,12 @@ export default defineComponent({
 
 .sd--tooltip{
   // position:fixed;
+  position:relative;
   min-height: 32px;
   transition: opacity .5s;
   z-index: 500;
   user-select: none;
+  pointer-events: none;
   &__content {
     max-width: 300px;
     min-height: 24px;
