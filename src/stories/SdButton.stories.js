@@ -101,6 +101,12 @@ Rounded.args = {
   rounded: true
 };
 
+export const Flat = Template.bind({});
+Flat.args = {
+  label: '',
+  flat: true
+};
+
 export const WithIcon = Template.bind({});
 WithIcon.args = {
   label: '',
@@ -113,3 +119,4 @@ WithIconOnly.args = {
   icon: 'bluetooth',
   iconOnly: true
 };
+
