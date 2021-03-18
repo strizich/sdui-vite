@@ -32,6 +32,7 @@
       <sd-radio v-model="scheme" value="auto">Scheme</sd-radio>
       <sd-radio v-model="scheme" value="dark">Scheme</sd-radio>
       <sd-radio v-model="scheme" value="light">Scheme</sd-radio>
+      {{scheme}}
     </template>
   </sd-layout>
 </template>
