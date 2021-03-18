@@ -27,7 +27,7 @@
           </svg>
           <sd-tooltip
             ref="ttip"
-            attach-to-parent
+            portal-disabled
             :active="state.isDragging || hasFocus"
             :autoOpen="false"
             :show-arrow="false"
