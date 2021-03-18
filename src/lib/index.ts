@@ -48,10 +48,11 @@ import SdSheet from './components/SdSheet/SdSheet.vue'
 import SdToast from './components/SdToast/SdToast.vue'
 import SdList from './components/SdList/SdList.vue'
 import SdListItem from './components/SdList/SdListItem.vue'
-import SdScheme from './components/SdScheme/SdScheme.vue'
 import useAlignment from './hooks/useAlignment'
 import useKeyboardFocus from './hooks/useKeyboardFocus'
 import useWindowWidth from './hooks/useWindowWidth'
+import useScheme from './hooks/useScheme'
+
 const components = {
   SdSkeleton,
   // Button
@@ -110,9 +111,8 @@ const components = {
   SdToast,
   // WIP
   SdList,
-  SdListItem,
+  SdListItem
   // Utilities
-  SdScheme
 }
 
 const sdComponentsDesc = Object.keys(components).map((item) => {
@@ -204,8 +204,8 @@ export {
   SdToast,
   SdList,
   SdListItem,
-  SdScheme,
   useKeyboardFocus,
   useAlignment,
-  useWindowWidth
+  useWindowWidth,
+  useScheme
 }

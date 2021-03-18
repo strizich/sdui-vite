@@ -21,8 +21,8 @@
   import SdContainer from '../../../src/lib/components/SdGrid/SdContainer.vue'
   import useWindowWidth from '../../../src/lib/hooks/useWindowWidth'
 
-const floatState = window.localStorage.getItem('SDUI:sidebarFloating') === 'true'
-const navState = window.localStorage.getItem('SDUI:navState') === 'true'
+  const floatState = window.localStorage.getItem('SDUI:sidebarFloating') === 'true'
+  const navState = window.localStorage.getItem('SDUI:navState') === 'true'
 
   export default {
     name: 'Layout',

@@ -1,5 +1,5 @@
 declare module '@strizich/sdui' {
-  import { defineComponent } from 'vue'
+  import { defineComponent, Ref, ComputedRef } from 'vue'
   const SdSkeleton: ReturnType<typeof defineComponent>
   const SdButton: ReturnType<typeof defineComponent>
   const SdRouterLink: ReturnType<typeof defineComponent>
@@ -55,9 +55,22 @@ declare module '@strizich/sdui' {
   // WIP
   const SdList: ReturnType<typeof defineComponent>
   const SdListItem: ReturnType<typeof defineComponent>
-  const SdScheme: ReturnType<typeof defineComponent>
 
   // Installation
+  const useKeyboardFocus: ($el: any) => ComputedRef<boolean>
+  const useScheme: (mode: Ref<string>) => void
+  const useWindowWidth: () => {
+    windowWidth: any;
+    smallDevice: Ref<boolean>;
+  }
+
+  const useAlignment: (align: string, direction: string) => {
+    alignmentStyle: ComputedRef<{
+        'justify-content': string;
+        'flex-direction': string;
+    }>;
+}
+
   const sdInstall: (app: any) => void
 
   export {
@@ -120,7 +133,13 @@ declare module '@strizich/sdui' {
     // WIP
     SdList,
     SdListItem,
-    // Utility Components
-    SdScheme
+    
+    //Color Scheme Hook
+    useScheme,
+
+    // Utility Hooks
+    useKeyboardFocus,
+    useWindowWidth,
+    useAlignment
   }
 }
