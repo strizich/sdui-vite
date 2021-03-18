@@ -3,7 +3,7 @@
     <div class="sd--header__container">
       <sd-hamburger
         :active="asideOpen"
-        @toggled="handleMenu"
+        @update:active="handleMenu"
       />
       <div class="sd--header__content">
         <div class="sd--header__brand">

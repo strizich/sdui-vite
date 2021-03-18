@@ -1,6 +1,6 @@
 // https://stackoverflow.com/questions/15762768/javascript-math-round-to-two-decimal-places
 
-export const roundTo = (n: any, digits: number): number | string => {
+export const roundTo = (n: any, digits: number): number => {
   let negative = false
   if (digits === undefined) {
     digits = 0
@@ -13,7 +13,7 @@ export const roundTo = (n: any, digits: number): number | string => {
   n = parseFloat((n * multiplicator).toFixed(11))
   n = (Math.round(n) / multiplicator).toFixed(digits)
   if (negative) {
-    n = (n * -1).toFixed(digits)
+    n = parseFloat((n * -1).toFixed(digits))
   }
   return n;
 }

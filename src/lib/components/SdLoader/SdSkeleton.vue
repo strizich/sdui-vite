@@ -5,7 +5,7 @@
   </span>
 </template>
 
-<script>
+<script lang="ts">
 import { computed, defineComponent } from 'vue'
 export default defineComponent({
   name: 'SdSkeleton',
@@ -19,6 +19,10 @@ export default defineComponent({
       default: 100
     },
     maxHeight: {
+      type: Number,
+      default: null
+    },
+    width: {
       type: Number,
       default: null
     },

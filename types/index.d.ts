@@ -55,6 +55,7 @@ declare module '@strizich/sdui' {
   // WIP
   const SdList: ReturnType<typeof defineComponent>
   const SdListItem: ReturnType<typeof defineComponent>
+  const SdScheme: ReturnType<typeof defineComponent>
 
   // Installation
   const sdInstall: (app: any) => void
@@ -118,6 +119,8 @@ declare module '@strizich/sdui' {
     SdToast,
     // WIP
     SdList,
-    SdListItem
+    SdListItem,
+    // Utility Components
+    SdScheme
   }
 }

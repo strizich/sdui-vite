@@ -1,5 +1,5 @@
 <template>
-  <teleport to="#app">
+  <teleport :to="portalTo" :disabled="portalDisabled">
     <transition name="dialog">
       <div
         class="sd--dialog"
@@ -40,6 +40,14 @@ export default defineComponent({
     id: {
       type: String,
       default: 'modal-' + sdUuid()
+    },
+    portalTo: {
+      type: String,
+      default: '#app'
+    },
+    portalDisabled: {
+      type: Boolean,
+      default: false
     },
     active: Boolean,
     backdrop: {
@@ -176,6 +184,7 @@ export default defineComponent({
     align-items: center;
     justify-content: center;
     transform: translate(0, 0);
+    color: var(--text);
     // &--open{
     //   @include breakpoint-up('sm') {
     //     padding-right: 10px;

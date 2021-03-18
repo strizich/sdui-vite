@@ -34,7 +34,7 @@ $base-font: 16;
 };
 
 // Manages spacing
-@function spacing($type, $size: 'md'){
+@function spacing($type, $size: 'default'){
   @return map.get($space, $type, $size);
 };
 

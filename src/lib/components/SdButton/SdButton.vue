@@ -7,53 +7,112 @@ export default defineComponent({
   name: 'SdButton',
   components: { SdIcon },
   props: {
+    /**
+     * ID of the button.
+     */
     id: {
       type: String,
       default: () => 'sd--button--' + sdUuid()
     },
-    type: {
-      type: String,
-      default: 'button'
-    },
-    href: String,
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    icon: String,
-    rounded: {
-      type: Boolean,
-      default: false
-    },
-    pill: {
-      type: Boolean,
-      default: false
-    },
-    outline: {
-      type: Boolean,
-      default: false
-    },
-    flat: {
-      type: Boolean,
-      default: false
-    },
+    /**
+     * Sets the component to `display:block` and fill its avaiable horizontal space.
+     * @values xs, sm, md, lg, xl
+    */
     size: {
       type: String,
-      default: 'md'
+      default: 'md',
+      validator: (value: string) => ['xs', 'sm', 'md', 'lg', 'xl'].indexOf(value) !== -1
     },
+    /**
+     * Controls the color theme
+     * @values primary, secondary, default, warning, danger, success, dark
+    */
     theme: {
       type: String,
       default: 'primary'
     },
-    active: Boolean,
-    exactActive: Boolean,
+    /**
+     * Use the flattened layout
+    */
+    flat: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Use the outline layout
+    */
+    outline: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Rounded corners
+    */
+    pill: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Rounded corners, less padding. Use `rounded` with `iconOnly` to remove excess padding.
+    */
+    rounded: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Sets the component to `display:block` and fill its avaiable horizontal space.
+    */
+    block: Boolean,
+    /**
+     * Only works with `block`. Aligns the button content.
+     * @values start, end, center
+    */
     align: {
       type: String,
       default: 'center'
     },
+    /**
+     * Disables the button
+    */
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Show an icon in the button
+    */
+    icon: String,
+    /**
+     * Use when there is no other content in the button other than an icon.
+    */
+    iconOnly: Boolean,
+    /**
+     *  Allows the button to link to external urls. Changes the root node to `a`
+     * @values uppercase, captialize, lowercase
+    */
     casing: String,
-    block: Boolean,
-    iconOnly: Boolean
+    /**
+     * Type of button. Changes the root elements to a `button` or `a` depending on context.
+     * @values button, link
+    */
+    type: {
+      type: String,
+      default: 'button'
+    },
+    /**
+     *  Allows the button to link to external urls. Changes the root node to `a`
+    */
+    href: String,
+    /**
+     *  Use by the SdRouterLink component
+     * @ignore
+    */
+    active: Boolean,
+    /**
+     * Used by the SdRouterLink component
+     * @ignore
+    */
+    exactActive: Boolean
   },
   setup (props, { slots }) {
     const root = ref(null)
@@ -299,21 +358,27 @@ export default defineComponent({
     & + .sd--button__content{
       padding-left:0px;
     }
-    &.is--sm{
-      width: 30px;
-      height:30px;
-    }
-    &.is--md{
-      width: 32px;
-      height:32px;
-    }
-    &.is--lg{
-      min-width: 42px;
-      min-height:42px;
-    }
-    &.is--xl{
-      min-width: 56px;
-      min-height:56px;
+    &.is{
+      &--xs {
+        width: 20px;
+        height: 20px;
+      }
+      &--sm{
+        width: 30px;
+        height:30px;
+      }
+      &--md{
+        width: 32px;
+        height:32px;
+      }
+      &--lg{
+        min-width: 42px;
+        min-height:42px;
+      }
+      &--xl{
+        min-width: 56px;
+        min-height:56px;
+      }
     }
   }
 }

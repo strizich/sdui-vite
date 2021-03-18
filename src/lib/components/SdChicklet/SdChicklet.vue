@@ -20,24 +20,18 @@ export default defineComponent({
       type: String,
       default: 'primary'
     },
-    sm: Boolean,
-    xs: Boolean,
-    md: {
-      type: Boolean,
-      default: true
+    size: {
+      type: String, 
+      default: 'md'
     },
-    lg: Boolean,
     dismissable: Boolean
   },
   setup (props) {
     const classes = computed(() => {
       return {
         [`sd--chicklet__${props.theme}`]: true,
-        'is--dismissable': props.dismissable,
-        'is--xs': props.xs,
-        'is--sm': props.sm,
-        'is--md': props.md,
-        'is--lg': props.lg
+        [`is--${props.size}`]: props.size,
+        'is--dismissable': props.dismissable
       }
     })
     return {

@@ -6,12 +6,12 @@
     </button>
 </template>
 
-<script>
+<script lang="ts">
 import anime from 'animejs'
-import { ref, reactive, computed, watchEffect } from 'vue'
+import { ref, reactive, computed, watchEffect, defineComponent } from 'vue'
 import useKeyboardFocus from '../../hooks/useKeyboardFocus'
 import sdUuid from '../../core/utilities/SdUuid'
-export default {
+export default defineComponent({
   name: 'SdHamburger',
   props: {
     id: {
@@ -24,6 +24,7 @@ export default {
       default: true
     }
   },
+  emits: ['update:active'],
   setup (props, { emit }) {
     const hamburgerRef = ref(null)
     const hasFocus = useKeyboardFocus(hamburgerRef)
@@ -101,15 +102,14 @@ export default {
 
     const handleToggle = (e) => {
       state.active = !props.active
-      emit('toggled', state.active)
+      emit('update:active', state.active)
     }
 
     return {
       hasFocus, handleToggle, classes, activeClass, hamburgerRef
     }
-  },
-  emits: ['toggled']
-}
+  }
+})
 </script>
 
 <style lang="scss">
