@@ -1,6 +1,5 @@
 import { SdButton, SdDialog, SdDialogHeader, SdDialogContent, SdDialogFooter} from '../lib'
 import { reactive } from 'vue'
-import '../lib/scss/engine.scss'
 
 export default {
   title: 'Components/SdDialog',

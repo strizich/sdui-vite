@@ -1,4 +1,5 @@
 <template>
+<sd-scheme :mode="scheme">
   <div class="sd--layout">
     <div class="sd--layout__header">
       <slot name="header"/>
@@ -24,43 +25,28 @@
       />
     </transition>
   </div>
+</sd-scheme>
 </template>
 
 <script lang="ts">
 import { reactive, toRefs, computed, watch, nextTick, onMounted, defineComponent } from 'vue'
 import SdOverlay from '../SdDialog/SdOverlay.vue'
-// import { useRouter } from 'vue-router'
+import SdScheme from '../SdScheme/SdScheme.vue'
 export default defineComponent({
   name: 'SdLayout',
   // may be able to use provide/inject to handing the excessive prop casting.
   props: {
+    scheme: String,
     sidebar: Boolean,
     floating: Boolean,
     overlay: Boolean,
-    scheme: {
-      default: 'auto'
-    }
   },
   components: {
-    SdOverlay
+    SdOverlay,
+    SdScheme
   },
   emits: ['toggle'],
   setup (props, { emit }) {
-    const scheme = computed(() => {
-      return `sd--scheme--${props.scheme}`
-    })
-
-    watch(() => scheme.value, (newValue, oldValue) => {
-      nextTick().then(() => {
-        document.body.classList.remove(`${oldValue}`)
-        document.body.classList.add(`${newValue}`)
-      })
-    })
-    
-    onMounted(() => {
-        document.body.classList.add(`${scheme.value}`)
-    })
-
     const state = reactive({
       shouldSkip: false
     })

@@ -1,5 +1,4 @@
 import { SdHamburger } from '../lib'
-import '../lib/scss/engine.scss'
 
 export default {
   title: 'Components/SdHamburger',

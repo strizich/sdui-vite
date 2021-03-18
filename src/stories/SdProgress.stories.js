@@ -1,5 +1,4 @@
 import { SdProgress } from '../lib'
-import '../lib/scss/engine.scss'
 
 export default {
   title: 'Components/SdProgress',

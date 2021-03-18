@@ -1,12 +1,8 @@
-import '../lib/scss/engine.scss'
 import SdButton from '../lib/components/SdButton/SdButton.vue';
 
 export default {
   title: 'Components/SdButton',
   component: SdButton,
-  decorators: [() => ({
-    template: '<div style="text-align:center; padding: 40px"><story /></div>'
-  })],
   argTypes: {
     id: {
       control: {
@@ -42,73 +38,78 @@ export default {
   }
 };
 
+const themes = [
+  'primary',
+  'secondary',
+  'success',
+  'warning',
+  'danger',
+  'dark'
+]
+
 const Template = (args) => ({
   components: { SdButton },
   setup() {
-    return { args };
+    return { args, themes };
   },
-  template: '<sd-button v-bind="args">{{args.label}}</sd-button>',
+  template: `
+    <sd-button 
+      v-for="theme in themes"
+      :key="theme"
+      :theme="theme"
+      :type="args.type"
+      :href="args.href"
+      :align="args.align"
+      :size="args.size"
+      :flat="args.flat"
+      :pill="args.pill"
+      :rounded="args.rounded"
+      :outline="args.outline"
+      :block="args.block"
+      :icon="args.icon"
+      :icon-only="args.iconOnly"
+      :disabled="args.disabled"
+      :casing="args.casing"
+    >
+      <span v-if="!args.iconOnly">
+        {{args.label ? args.label : theme}}
+      </span>
+    </sd-button>
+  `,
 });
-
-export const Primary = Template.bind({});
-Primary.args = {
-  label: 'Primary',
-  theme: 'primary'
-};
-
-export const Secondary = Template.bind({});
-Secondary.args = {
-  label: 'Secondary',
-  theme: 'secondary'
-};
 
 export const Default = Template.bind({});
 Default.args = {
-  label: 'Default',
-  theme: 'default'
-};
-
-export const Success = Template.bind({});
-Success.args = {
-  label: 'Success',
-  theme: 'success',
-};
-
-export const Danger = Template.bind({});
-Danger.args = {
-  label: 'Danger',
-  theme: 'danger'
-};
-
-export const Warning = Template.bind({});
-Warning.args = {
-  label: 'Warning',
-  theme: 'warning'
-};
-
-export const Dark = Template.bind({});
-Dark.args = {
-  label: 'Dark',
-  theme: 'dark'
+  label: '',
 };
 
 export const Outline = Template.bind({});
 Outline.args = {
-  label: 'Outline',
-  theme: 'primary',
+  label: '',
   outline: true
 };
 
 export const Pill = Template.bind({});
 Pill.args = {
-  label: 'Pill',
-  theme: 'primary',
+  label: '',
   pill: true
 };
 
 export const Rounded = Template.bind({});
 Rounded.args = {
-  label: 'Rounded',
-  theme: 'primary',
+  label: '',
   rounded: true
+};
+
+export const WithIcon = Template.bind({});
+WithIcon.args = {
+  label: '',
+  icon: 'bluetooth'
+};
+
+export const WithIconOnly = Template.bind({});
+WithIconOnly.args = {
+  label: '',
+  icon: 'bluetooth',
+  iconOnly: true
 };

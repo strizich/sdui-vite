@@ -184,6 +184,7 @@ export default defineComponent({
     align-items: center;
     justify-content: center;
     transform: translate(0, 0);
+    color: var(--text);
     // &--open{
     //   @include breakpoint-up('sm') {
     //     padding-right: 10px;

@@ -1,5 +1,5 @@
 <template>
-  <sd-layout>
+  <sd-layout :scheme="scheme">
     <template v-slot:content>
       <div class="demo">
         <sd-container>
@@ -29,6 +29,9 @@
       <sd-progress :total="100" :current="90" animated/>
       <sd-progress :progress="0.96"/>
       <sd-slider v-model:value="sliderything"/>
+      <sd-radio v-model="scheme" value="auto">Scheme</sd-radio>
+      <sd-radio v-model="scheme" value="dark">Scheme</sd-radio>
+      <sd-radio v-model="scheme" value="light">Scheme</sd-radio>
     </template>
   </sd-layout>
 </template>
@@ -42,7 +45,8 @@ export default {
     const state = reactive({
       modal: false,
       toast: false,
-      sliderything: 10
+      sliderything: 10,
+      scheme: 'auto'
     })
 
     const handleDialogOpen = () => {
