@@ -1,9 +1,5 @@
-<template>
-  <slot />
-</template>
-
 <script lang="ts">
-import { computed, watch, onMounted, nextTick, defineComponent } from 'vue'
+import { h, resolveComponent, computed, watch, onMounted, nextTick, defineComponent } from 'vue'
 export default defineComponent({
   name: 'SdScheme',
   props: {
@@ -16,7 +12,7 @@ export default defineComponent({
       default: 'auto'
     }
   },
-  setup (props) {
+  setup (props, {slots}) {
     const scheme = computed(() => {
       return `sd--scheme--${props.mode}`
     })
@@ -29,6 +25,9 @@ export default defineComponent({
     onMounted(() => {
       document.body.classList.add(`${scheme.value}`)
     })
+    return () => h(
+      slots.default
+    )
   }
 })
 </script>
