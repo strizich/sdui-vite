@@ -28,10 +28,6 @@ $base-font: 16;
   @return $selectedColor;
 };
 
-// Creates a CSS gradient
-@function sd-gradient($primary, $secondary, $deg: 145deg) {
-  @return linear-gradient($deg, $primary, $secondary);
-};
 
 // Manages spacing
 @function spacing($type, $size: 'default'){

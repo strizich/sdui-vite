@@ -40,7 +40,7 @@ export default defineComponent({
       ] as PropType<string | boolean | number | object>,
       default: null
     },
-    name: [String, Number],
+    name: String,
     required: Boolean,
     disabled: Boolean,
     indeterminate: Boolean,

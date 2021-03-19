@@ -1,5 +1,7 @@
 import { themes } from '@storybook/theming'
 import { computed } from 'vue'
+import { useScheme } from '../src/lib'
+import { toRef } from 'vue'
 import '../src/lib/scss/engine.scss'
 
 export const globalTypes = {
@@ -15,16 +17,18 @@ export const globalTypes = {
   },
 };
 
-export const parameters = {
-  docs: {
-    theme: themes.dark
-  }
-}
+// export const parameters = {
+//   docs: {
+//     theme: themes.dark
+//   }
+// }
 
 const withColorScheme = (args, context) => ({
   setup() {
+    const { globals } = context
+    useScheme(toRef(globals, 'theme'))
     const scheme = computed(() => {
-      return `sd--scheme--${context.globals.theme}`
+      return `sd--scheme--${globals.theme}`
     })
     return  { args, scheme };
   },

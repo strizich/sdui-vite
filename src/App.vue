@@ -1,6 +1,7 @@
 <template>
   <sd-layout :scheme="scheme">
     <template v-slot:content>
+      <sd-mast>Things here</sd-mast>
       <div class="demo">
         <sd-container>
           <h1 class="sd--text__headline">SDUI - Vite</h1>

@@ -16,19 +16,22 @@ export default defineComponent({
   props: {
     alignment: String,
     title: String,
-    subtitle: String
+    subtitle: String,
   }
 })
 </script>
 
 <style lang="scss">
-  $header-height: 50px;
-  $mast-height: calc(100vh - 140px);
+  
+  :root{
+    --sd-mast-height: calc(100vh - 140px);
+    --sd-mast-bg: linear-gradient(180deg, var(--background-accent), var(--background-highlight));
+  }
 
   .sd--mast{
     margin: 0 0 32px 0;
-    min-height: $mast-height;
-    background: sd-gradient(var(--background), var(--background-accent));
+    min-height: var(--sd-mast-height);
+    background-image: var(--sd-mast-bg);
     position: relative;
     display:flex;
     flex-direction: column;
