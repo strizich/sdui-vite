@@ -146,6 +146,7 @@ export default defineComponent({
     z-index: 10;
     padding: 8px 16px 8px 32px;
     -webkit-user-select: none;
+    user-select: none;
     &.is--focused{
       color: var(--primary-highlight);
     }

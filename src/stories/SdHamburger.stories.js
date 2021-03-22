@@ -1,5 +1,5 @@
 import { SdHamburger } from '../lib'
-
+import { reactive, toRefs } from 'vue'
 export default {
   title: 'Components/SdHamburger',
   component: SdHamburger,
@@ -11,12 +11,16 @@ export default {
 const Template = (args => ({
   components: { SdHamburger },
   setup () {
-    return { args };
+    const state = reactive({
+      args
+    })
+    return { ...toRefs(state) };
   },
-  template: '<sd-hamburger :active="args.active"/>'
+  template: '<sd-hamburger v-model:active="args.active"/>'
 }))
 
 export const Default = Template.bind({});
 Default.args = {
-  label: 'hm'
+  label: 'hm',
+  active: false
 }

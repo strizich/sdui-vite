@@ -102,7 +102,6 @@ export default defineComponent({
     showIndicators: Boolean,
     showTicks: Boolean,
     showTooltip: Boolean,
-    theme: String,
     hint: String
   },
   emits: ['update:value'],

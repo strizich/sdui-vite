@@ -31,7 +31,7 @@ const Template = (args => ({
     return { args, toggled, state  };
   },
   template: `
-  <sd-button @click="toggled">Modal</sd-button> 
+  <sd-button @click="toggled">{{args.title}}</sd-button> 
   <sd-dialog 
     :id="args.id"
     :size="args.size"

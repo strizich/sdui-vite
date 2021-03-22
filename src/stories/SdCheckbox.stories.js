@@ -1,7 +1,7 @@
 import { reactive, toRefs } from 'vue'
 import { SdCheckbox } from '../lib'
 export default {
-  title: 'Components/SdCheckbox',
+  title: 'Form Controls/SdCheckbox',
   component: SdCheckbox,
   argTypes: {
     id: {

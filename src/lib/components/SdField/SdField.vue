@@ -112,7 +112,7 @@ export default defineComponent({
         value = parseInt(value)
       }
       if (!props.modelValue) {
-        emit('input', e)
+        emit('input', value)
       }
       emit('update:modelValue', value)
     }
