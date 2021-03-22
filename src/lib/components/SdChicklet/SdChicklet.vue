@@ -9,8 +9,8 @@
 </template>
 
 <script lang="ts">
-import { SdIcon } from '../..'
 import { computed, defineComponent } from 'vue'
+import { SdIcon } from '../..'
 export default defineComponent({
   name: 'SdChicklet',
   components: { SdIcon },

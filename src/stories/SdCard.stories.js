@@ -27,7 +27,7 @@ export default {
 
 const Template = (args => ({
   components: {
-    SdCard, SdCardBody, SdCardHeader, SdCardFooter, SdCardMedia
+    SdCard, SdCardBody, SdCardHeader, SdCardFooter, SdCardMedia, SdButton
   },
   setup () {
     return {
@@ -50,8 +50,8 @@ const Template = (args => ({
       <sd-card-media :ratio="args.ratio" size="sm">
         <img src="https://place-puppy.com/600x600" alt="placepuppy placeholder"/>
       </sd-card-media>
-      <sd-card-footer>
-        <sd-button>Button</sd-button>
+      <sd-card-footer align="flex-end">
+        <sd-button flat>Button</sd-button>
       </sd-card-footer>
     </sd-card>
   </div>

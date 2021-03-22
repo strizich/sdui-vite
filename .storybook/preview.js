@@ -8,7 +8,7 @@ export const globalTypes = {
   theme: {
     name: 'Theme',
     description: 'Global theme for components',
-    defaultValue: 'light',
+    defaultValue: 'dark',
     toolbar: {
       icon: 'circlehollow',
       // array of plain string values or MenuItem shape (see below)
@@ -17,11 +17,11 @@ export const globalTypes = {
   },
 };
 
-// export const parameters = {
-//   docs: {
-//     theme: themes.dark
-//   }
-// }
+export const parameters = {
+  docs: {
+    theme: themes.dark
+  }
+}
 
 const withColorScheme = (args, context) => ({
   setup() {
@@ -33,7 +33,7 @@ const withColorScheme = (args, context) => ({
     return  { args, scheme };
   },
     inheritAttrs: false,
-    template: '<div :class="scheme"><story /></div>'
+    template: '<story />'
 })
 
 export const decorators = [withColorScheme]
