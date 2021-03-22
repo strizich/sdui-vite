@@ -29,7 +29,7 @@ const Template = (args => ({
   },
   inheritAttrs: false,
   template: `
-  <sd-button theme="secondary" outline v-for="theme in themes" :key="theme">
+  <sd-button theme="default" outline v-for="theme in themes" :key="theme">
     <span>Hover Me!</span>
     <sd-tooltip
       portal-to="body"

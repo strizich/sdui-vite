@@ -39,21 +39,41 @@
     }
   } @else {
     @include elevation(0);
-    color: var(--#{$theme}-highlight);
-    background-color: none;
-    svg {
-      fill: var(--#{$theme}-highlight);
-    }
-    &:hover {
-      background-color: var(--#{$theme});
-      color: var(--#{$theme}-text);
+    @include color-scheme(dark) {
+      color: var(--#{$theme}-highlight);
+      background-color: none;
       svg {
-        fill: var(--#{$theme}-text);
+        fill: var(--#{$theme}-highlight);
+      }
+      &:hover {
+        background-color: var(--#{$theme});
+        color: var(--#{$theme}-text);
+        svg {
+          fill: var(--#{$theme}-text);
+        }
+      }
+      &:active, &.is--active, &.is--exact-active {
+        background-color: var(--#{$theme}-accent);
       }
     }
-  
-    &:active, &.is--active, &.is--exact-active {
-      background-color: var(--#{$theme}-accent);
+    @include color-scheme(light) {
+      @include color-scheme(dark) {
+        color: var(--#{$theme}-accent);
+        background-color: none;
+        svg {
+          fill: var(--#{$theme}-accent);
+        }
+        &:hover {
+          background-color: var(--#{$theme});
+          color: var(--#{$theme}-text);
+          svg {
+            fill: var(--#{$theme}-text);
+          }
+        }
+        &:active, &.is--active, &.is--exact-active {
+          background-color: var(--#{$theme}-highlight);
+        }
+      }
     }
   }
 }
