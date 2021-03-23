@@ -45,7 +45,7 @@ export default defineComponent({
     dismissable: Boolean,
     persistant: Boolean
   },
-  emits: ['opened', 'closed', 'update:active'],
+  emits: ['update:opened', 'update:closed', 'update:active'],
 
   setup (props, { emit }) {
     const state = reactive({

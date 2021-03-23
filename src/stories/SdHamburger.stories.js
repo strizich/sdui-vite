@@ -21,6 +21,6 @@ const Template = (args => ({
 
 export const Default = Template.bind({});
 Default.args = {
-  label: 'hm',
-  active: false
+  active: false,
+  id: null
 }

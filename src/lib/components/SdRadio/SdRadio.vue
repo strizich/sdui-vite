@@ -17,23 +17,27 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue'
+import { computed, defineComponent, ref, PropType } from 'vue'
 import sdUuid from '../../core/utilities/SdUuid'
 import useKeyboardFocus from '../../hooks/useKeyboardFocus'
 
 export default defineComponent({
   name: 'SdRadio',
   props: {
-    modelValue: [String, Number, Boolean, Object],
+    modelValue: {
+      type: [String, Number, Boolean, Object] as PropType<string | number | boolean | object>
+    },
     value: {
-      type: [String, Number, Boolean, Object],
+      type: [String, Number, Boolean, Object] as PropType<string | number | boolean | object>,
       default: 'on'
     },
     id: {
-      type: String,
+      type: [String, Function] as PropType<string | Function>,
       default: () => 'sd--radio--' + sdUuid()
     },
-    name: [String, Number],
+    name: {
+      type: [String, Number] as PropType<string | number>
+    },
     required: Boolean,
     disabled: Boolean,
     theme: {

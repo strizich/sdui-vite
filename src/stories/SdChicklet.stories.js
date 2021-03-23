@@ -11,16 +11,19 @@ export default {
       control: 'select',
       options: THEMES
     },
-    casing: {control: 'select', options: [
-      null,
-      'uppercase',
-      'lowercase',
-      'captialize',
-    ]},
+    casing: {
+      control: 'select', 
+      options: [
+        null,
+        'uppercase',
+        'lowercase',
+        'captialize',
+      ]
+    },
     size: { 
-    control: 'select', 
-    options: SIZES
-  }
+      control: 'select', 
+      options: SIZES
+    }
   }
 };
 

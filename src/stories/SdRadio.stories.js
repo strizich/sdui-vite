@@ -3,6 +3,14 @@ import { reactive } from 'vue'
 export default {
   title: 'Form Controls/SdRadio',
   component: SdRadio,
+  argTypes: {
+    value: {
+      control: false
+    }
+  },
+  args: {
+    value: ''
+  }
 };
 
 
@@ -45,7 +53,6 @@ const Template = (args => ({
     >
       Pineapple
     </sd-radio>
-
     <pre><code>selected: {{state.selected}}</code></pre>
   `
 }))

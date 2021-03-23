@@ -19,14 +19,14 @@ export default {
         null,
         'uppercase',
         'lowercase',
-        'captialize',
+        'captialize'
       ]
     },
     type: { 
       control: 'select',
       options: [
         'button',
-        'link',
+        'link'
       ]
     },
     align: { 
@@ -34,7 +34,7 @@ export default {
       options: ALIGNMENT
     },
     size: { 
-      control: 'select' ,
+      control: 'select',
       options: SIZES
     }
   },

@@ -4,7 +4,10 @@ export default {
   component: SdField,
   argTypes: {
     id: {
-      control: 'text'
+      control: false
+    },
+    modelModifiers: {
+      control: false
     },
     modelValue: {
       control: 'text'
@@ -34,5 +37,5 @@ export const Default = Template.bind({});
 Default.args = {
   label: 'Label',
   message: 'error',
-  pristineError: 'false'
+  pristineError: false
 }

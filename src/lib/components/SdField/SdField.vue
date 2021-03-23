@@ -35,7 +35,7 @@ import SdIcon from '../SdIcon'
 
 
 interface ModelModifiers {
-  number: boolean;
+  number: boolean | Function;
 }
 
 export default defineComponent({
@@ -47,11 +47,11 @@ export default defineComponent({
     modelValue: [String, Number],
     value: [String, Number],
     id: {
-      type: String,
+      type: [String, Function] as PropType<string | Function>,
       default: () => 'sd--field--' + SdUuid()
     },
     modelModifiers: {
-      type: Object as PropType<ModelModifiers>,
+      type: [Object, Function] as PropType<ModelModifiers>,
       default: () => ({})
     },
     icon: String,

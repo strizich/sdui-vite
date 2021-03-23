@@ -1,27 +1,16 @@
 import { SdProgress } from '../lib'
+import { THEMES, ALIGNMENT, SIZES } from './constants'
 
-const themes = [
-  'primary',
-  'secondary',
-  'default',
-  'warning',
-  'success',
-  'danger'
-]
 export default {
   title: 'Components/SdProgress',
   component: SdProgress,
   argTypes: {
     theme: {
-      control: {
-        type: 'select',
-        options: themes
-      }
+      control: 'select',
+      options: THEMES
     },
     animated: {
-      control: {
-        type: 'boolean'
-      }
+      control: 'boolean'
     },
     hint: {
       control: 'text'
@@ -36,6 +25,8 @@ export default {
     }
   }
 };
+
+const themes = THEMES
 
 const Template = (args => ({
   components: { SdProgress },

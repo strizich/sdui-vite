@@ -1,20 +1,13 @@
 import { SdChip } from '../lib'
 import { reactive, toRefs } from 'vue'
+import { THEMES, ALIGNMENT, SIZES } from './constants'
 export default {
   title: 'Form Controls/SdChips',
   component: SdChip,
   argTypes: {
     theme: {
       control: 'select',
-      options: [
-        'primary',
-        'secondary',
-        'default',
-        'success',
-        'warning',
-        'danger',
-        'dark'
-      ]
+      options: THEMES
     }
   }
 }

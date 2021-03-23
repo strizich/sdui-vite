@@ -1,5 +1,3 @@
-import { left } from '@popperjs/core'
-
 const THEMES = [
   'primary',
   'secondary',
