@@ -7,7 +7,7 @@ export default {
   component: SdButton,
   argTypes: {
     id: {
-      control: 'text'
+      control: false
     },
     theme: { 
       control: 'select',
@@ -38,7 +38,10 @@ export default {
       options: SIZES
     }
   },
-    onClick: {action: 'clicked'},
+  args: {
+    id: ''
+  },
+  onClick: {action: 'clicked'},
 }
 
 const themes = THEMES
@@ -75,9 +78,7 @@ const Template = (args) => ({
 });
 
 export const Default = Template.bind({});
-Default.args = {
-  label: '',
-};
+Default.args = {};
 
 export const Outline = Template.bind({});
 Outline.args = {
