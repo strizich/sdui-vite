@@ -1,8 +1,10 @@
 <template>
-  <teleport to="#app">
+  <teleport :to="portalTo" :disabled="portalDisabled">
     <transition name="toast">
       <div ref="currentToast" :class="['sd--toast', classes, 'sd--elevation--12']" v-if="active">
-        <button class="sd--toast__close" @click="() => handleClose()" v-if="dismissable"><sd-icon name="close"/></button>
+        <button class="sd--toast__close" @click="() => handleClose()" v-if="dismissable">
+          <sd-icon name="close"/>
+        </button>
         <div class="sd--toast__content">
           <slot/>
         </div>
@@ -12,11 +14,21 @@
 </template>
 
 <script lang="ts">
-import { computed, watch, reactive, defineComponent} from 'vue'
-
+import { ref, computed, watchEffect, reactive, defineComponent} from 'vue'
+import { SdIcon } from '../..'
+import { useToaster } from './useToaster'
 export default defineComponent({
   name: 'SdToast',
+  components: { SdIcon },
   props: {
+    portalDisabled: {
+      type: Boolean,
+      default: false
+    },
+    portalTo: {
+      type: String,
+      default: '#app'
+    },
     active: Boolean,
     theme: {
       type: String,
@@ -37,11 +49,11 @@ export default defineComponent({
 
   setup (props, { emit }) {
     const state = reactive({
-      active: false
+      active: false,
+      hover: false
     })
-
-    let currentToast = null
-    let timeout = null
+    const currentToast = ref(null)
+    const { makeToast, destroyToast} = useToaster(currentToast, emit)
 
     const classes = computed(() => {
       const placementModifier = `sd--toast--${props.placement}`
@@ -57,60 +69,15 @@ export default defineComponent({
       emit('update:active', false)
     }
 
-    const promiseToast = (duration, persist) => {
-      return new Promise<void>(resolve => {
-        currentToast = {
-          destroy: () => {
-            currentToast = null
-            resolve()
-          }
-        }
-        if (duration !== Infinity) {
-          timeout = window.setTimeout(() => {
-            destroyToast()
-            if (!persist) {
-              emit('update:active', false)
-            }
-          }, duration)
-        }
-      })
-    }
-
-    const destroyToast = () => {
-      return new Promise<void>(resolve => {
-        if (currentToast.value) {
-          window.clearTimeout(timeout)
-          window.setTimeout(resolve, 400)
-          emit('update:active', false)
-        } else {
-          resolve()
-        }
-      })
-    }
-
-    const makeToast = (duration, persist) => {
-      if (currentToast) {
-        return destroyToast().then(() => {
-          return promiseToast(duration, persist)
-        })
-      }
-
-      return promiseToast(duration, persist)
-    }
-
-    watch(() => props.active, () => {
+    watchEffect(() => {
       if (props.active) {
-        makeToast(props.duration, props.persistant).then(() => {
-          emit('opened')
-          emit('update:active', false)
-        })
+        makeToast(props.duration, props.persistant)
       } else {
         destroyToast()
-        emit('closed')
       }
     })
 
-    return { classes, currentToast, state, destroyToast, handleClose }
+    return { state, classes, currentToast, handleClose }
   }
 })
 </script>
