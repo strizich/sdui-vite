@@ -204,14 +204,16 @@ export default defineComponent({
   align-items: center;
   padding: 0;
   vertical-align: middle;
+
   & + & {
     margin-left: 8px;
   }
+
   &.is--block {
     display: flex;
     width: 100%;
     & + & {
-        margin: 0;
+      margin: 0;
     }
   }
 
@@ -264,8 +266,9 @@ export default defineComponent({
       background-color: var(--#{$state});
       transition: all .13s ease-out;
       border-radius: 3px;
+
       svg{
-          fill: var(--#{$state}-text)
+        fill: var(--#{$state}-text)
       }
 
       &:hover {
@@ -302,6 +305,7 @@ export default defineComponent({
         background: none;
         border: 1px solid var(--#{$state});
         @include flatten-theme($state);
+
         &.is--disabled {
           border: 1px solid var(--disabled);
           @include flatten-theme(disabled);
@@ -313,6 +317,7 @@ export default defineComponent({
         border: none;
         outline: none;
         @include flatten-theme($state);
+
         &.is--disabled {
           @include flatten-theme(disabled);
         }
@@ -330,9 +335,11 @@ export default defineComponent({
 
     &.is--pill {
       border-radius: 60px;
+
       .sd--icon + .sd--button__content{
         padding-left: 8px;
       }
+
       .sd--button__content {
         padding-left: 20px;
         padding-right: 20px;
@@ -356,6 +363,7 @@ export default defineComponent({
     & + .sd--button__content{
       padding-left:0px;
     }
+  
     &.is{
       &--xs {
         width: 20px;

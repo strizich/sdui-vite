@@ -1,5 +1,13 @@
 import { SdProgress } from '../lib'
 
+const themes = [
+  'primary',
+  'secondary',
+  'default',
+  'warning',
+  'success',
+  'danger'
+]
 export default {
   title: 'Components/SdProgress',
   component: SdProgress,
@@ -7,21 +15,16 @@ export default {
     theme: {
       control: {
         type: 'select',
-        options: [
-          'primary',
-          'secondary',
-          'default',
-          'warning',
-          'success',
-          'danger',
-          'dark'
-        ]
+        options: themes
       }
     },
     animated: {
       control: {
         type: 'boolean'
       }
+    },
+    hint: {
+      control: 'text'
     },
     progress: {
       control: {
@@ -37,16 +40,26 @@ export default {
 const Template = (args => ({
   components: { SdProgress },
   setup () {
-    return { args };
+    return { args, themes };
   },
   template: `
-    <sd-progress v-bind="args"/>
+    <sd-progress
+      v-for="theme in themes"
+      :key="theme"
+      :theme="theme"
+      :label="args.label ? args.label : theme"
+      :hint="args.hint"
+      :progress="args.progress"
+      :total="args.total"
+      :current="args.current"
+      :decimal-places="args.decimalPlaces"
+    />
   `
 }))
 
 export const Progress = Template.bind({});
 Progress.args = {
-  label: 'hm',
+  label: '',
   progress: 0.25,
   total: 0,
   current: 0
