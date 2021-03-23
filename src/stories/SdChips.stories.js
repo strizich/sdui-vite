@@ -1,7 +1,7 @@
 import { SdChip } from '../lib'
 import { reactive, toRefs } from 'vue'
 export default {
-  title: 'Components/SdChips',
+  title: 'Form Controls/SdChips',
   component: SdChip
 }
 
