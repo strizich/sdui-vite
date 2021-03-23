@@ -1,41 +1,30 @@
 import SdChicklet from '../lib/components/SdChicklet/SdChicklet.vue';
-
+import { THEMES , SIZES } from './constants'
 export default {
   title: 'Components/SdChicklet',
   component: SdChicklet,
   argTypes: {
     id: {
-      control: {
-        type: 'text'
-      }
+      control: 'text'
     },
-    theme: { control: { type: 'select', options: [
-      'primary',
-      'secondary',
-      'default',
-      'warning',
-      'success',
-      'danger',
-      'dark'
-    ] }},
-    casing: {control: {type: 'select', options: [
+    theme: { 
+      control: 'select',
+      options: THEMES
+    },
+    casing: {control: 'select', options: [
       null,
       'uppercase',
       'lowercase',
       'captialize',
-    ]}},
-    size: { control: { type: 'select', options: ['xs', 'sm', 'md', 'lg', 'xl'] } }
+    ]},
+    size: { 
+    control: 'select', 
+    options: SIZES
+  }
   }
 };
 
-const themes = [
-  'primary',
-  'secondary',
-  'success',
-  'warning',
-  'danger',
-  'dark'
-]
+const themes = THEMES
 
 const Template = (args) => ({
   components: { SdChicklet },

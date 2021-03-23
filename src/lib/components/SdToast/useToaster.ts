@@ -26,6 +26,7 @@ export const useToaster = (currentToast, emit) => {
         currentToast.destroy()
         window.setTimeout(resolve, 400)
         emit('update:active', false)
+        emit('closed')
       } else {
         resolve()
       }
@@ -38,7 +39,7 @@ export const useToaster = (currentToast, emit) => {
         return promiseToast(duration, persist)
       })
     }
-  
+    emit('update:opened')
     return promiseToast(duration, persist)
   }
 

@@ -3,6 +3,9 @@ export default {
   title: 'Form Controls/SdField',
   component: SdField,
   argTypes: {
+    id: {
+      control: 'text'
+    },
     modelValue: {
       control: 'text'
     },
