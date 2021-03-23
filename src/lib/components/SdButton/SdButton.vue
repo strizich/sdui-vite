@@ -207,6 +207,13 @@ export default defineComponent({
   & + & {
     margin-left: 8px;
   }
+  &.is--block {
+    display: flex;
+    width: 100%;
+    & + & {
+        margin: 0;
+    }
+  }
 
   &:focus{
     outline: none;
@@ -276,15 +283,6 @@ export default defineComponent({
         color: var(--#{$state}-highlight-text);
         background-color: var(--#{$state}-highlight);
         transition: all .13s ease-out;
-      }
-
-      &.is--block {
-        display: flex;
-        width: 100%;
-
-        & + & {
-           margin-left: 0px;
-        }
       }
 
       &.is--active, &.is--exact-active{
