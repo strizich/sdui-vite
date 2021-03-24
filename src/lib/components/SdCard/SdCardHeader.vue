@@ -1,47 +1,68 @@
 <template>
   <div class="sd--card__header">
-    <h3 class="sd--card__title" v-if="title">{{title}}</h3>
+    <div :class="['sd--card__header-group', classes]">
+      <h3 class="sd--text__header" v-if="title">{{ title }}</h3>
+      <p class="sd--text__caption" v-if="subtitle">{{ subtitle }}</p>
+    </div>
     <slot/>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, computed} from 'vue'
 
 export default defineComponent({
   name: 'SdCardHeader',
   props: {
-    title: {
-      type: String
+    title: String,
+    subtitle: String,
+    inline: Boolean
+  },
+  setup (props) {
+    const classes = computed(() => {
+      return {
+        'is--inline': props.inline
+      }
+    })
+    return {
+     classes
     }
   }
 })
 </script>
 
 <style lang="scss">
+@import '../../scss/functions';
+@import '../../scss/breakpoints';
+
 .sd--card{
   &__header{
     display: flex;
-    padding: 8px 16px;
     justify-content: space-between;
     align-items: center;
-    font-weight: 400;
     position:relative;
-    color: var(--text-accent);
     border-radius: 3px 3px 0 0;
-    // &:after{
-    //   content: '';
-    //   position: absolute;
-    //   left: spacing(inset);
-    //   right: 0;
-    //   bottom: 0;
-    //   height: 1px;
-    //   background-color: var(--divider);
-    // }
+    padding: 8px 16px;
   }
-  &__title{
-    font-size: rem(18);
-    margin: 0;
+  &__header-group {
+    display:block;
+    &:first-child{
+      margin-right: 16px;
+    }
+    &:only-child{
+      margin-right: 0;
+    }
+    .sd--text__header{
+      flex-grow: 2;
+    }
+    @include breakpoint-up(sm) {
+      &.is--inline {
+          display:flex;
+          width:100%;
+          align-items: center;
+          justify-content: space-between;
+        }
+      }
+    }
   }
-}
 </style>
