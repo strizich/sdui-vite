@@ -54,9 +54,9 @@ p{
     }
   }
   &__header{
-    font-weight: 300;
-    letter-spacing: rem(1.2);
+    font-weight: 500;
     color: var(--text);
+    font-size: rem(24);
     margin: 0;
     &--light{
       color:var(--text-light);
@@ -65,21 +65,9 @@ p{
       color: var(--text-dark);
     }
   }
-  &__headline{
-    font-size: rem(40);
-    line-height: rem(42);
-    font-weight: 300;
-    letter-spacing: rem(1.2);
-    color: var(--text);
-    &--light{
-      color:var(--text-light);
-    }
-    &--dark{
-      color: var(--text-dark);
-    }
-  }
+
   &__caption{
-    color: var(--text-hint);
+    color: var(--text-accent);
     font-size: rem(16);
     font-weight: 500;
     line-height: rem(16);
@@ -96,6 +84,25 @@ p{
       color: var(--text-accent-dark);
     }
   }
+
+  &__header + &__caption{
+    margin-top: 8px;
+  }
+
+  &__headline{
+    font-size: rem(40);
+    line-height: rem(42);
+    font-weight: 300;
+    letter-spacing: rem(1.2);
+    color: var(--text);
+    &--light{
+      color:var(--text-light);
+    }
+    &--dark{
+      color: var(--text-dark);
+    }
+  }
+
   &__footnote{
     color: var(--text-accent);
     font-size: rem(12);
