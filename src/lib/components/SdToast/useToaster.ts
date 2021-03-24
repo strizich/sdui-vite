@@ -39,7 +39,7 @@ export const useToaster = (currentToast, emit) => {
         return promiseToast(duration, persist)
       })
     }
-    emit('update:opened')
+    emit('opened')
     return promiseToast(duration, persist)
   }
 

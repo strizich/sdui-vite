@@ -45,7 +45,7 @@ export default defineComponent({
     dismissable: Boolean,
     persistant: Boolean
   },
-  emits: ['update:opened', 'update:closed', 'update:active'],
+  emits: ['opened', 'closed', 'update:active'],
 
   setup (props, { emit }) {
     const state = reactive({
@@ -67,6 +67,7 @@ export default defineComponent({
 
     const handleClose = () => {
       emit('update:active', false)
+      emit('closed')
     }
 
     watchEffect(() => {
