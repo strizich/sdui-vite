@@ -37,5 +37,6 @@ export default defineComponent({
   align-items: center;
   border-top: 1px solid var(--divider);
   flex-grow: 0;
+  min-height: 32px;
 }
 </style>

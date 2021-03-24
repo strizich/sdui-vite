@@ -4,14 +4,20 @@ import {
   SdCardHeader,
   SdCardFooter,
   SdCardMedia,
-  SdButton
+  SdButton,
+  SdIcon
 } from '../lib'
 
 export default {
   title: 'Components/SdCard',
   component: SdCard,
   subcomponents: {
-    SdCardBody, SdCardHeader, SdCardFooter, SdCardMedia, SdButton
+    SdCardBody,
+    SdCardHeader,
+    SdCardFooter,
+    SdCardMedia,
+    SdButton,
+    SdIcon
   },
   argTypes: {
     baseClass: {
@@ -38,7 +44,13 @@ export default {
 
 const Template = (args => ({
   components: {
-    SdCard, SdCardBody, SdCardHeader, SdCardFooter, SdCardMedia, SdButton
+    SdCard,
+    SdCardBody,
+    SdCardHeader,
+    SdCardFooter,
+    SdCardMedia,
+    SdButton,
+    SdIcon
   },
   setup () {
     return {
@@ -52,16 +64,14 @@ const Template = (args => ({
       <sd-card-body>
         Body content goes here
       </sd-card-body>
-      <sd-card-footer>
-        huh
-      </sd-card-footer>
     </sd-card>
     <sd-card v-bind="args" style="width:50%; margin: 0 8px;">
       <sd-card-header :title="args.title"/>
       <sd-card-media :ratio="args.ratio" size="sm">
         <img src="https://place-puppy.com/600x600" alt="placepuppy placeholder"/>
       </sd-card-media>
-      <sd-card-footer align="flex-end">
+      <sd-card-footer align="space-between">
+        <sd-icon style="margin-left: 16px" name="image" color="var(--text-accent)"/>
         <sd-button flat>Button</sd-button>
       </sd-card-footer>
     </sd-card>
