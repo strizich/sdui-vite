@@ -204,9 +204,10 @@ export default defineComponent({
   align-items: center;
   padding: 0;
   vertical-align: middle;
+  margin-right: 8px;
 
-  & + & {
-    margin-left: 8px;
+  &:last-child {
+    margin-right: 0;
   }
 
   &.is--block {
