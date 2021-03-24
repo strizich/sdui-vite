@@ -29,18 +29,23 @@ export default defineComponent({
       if (props.xs) {
         classes.push(breakpointXs)
       }
+
       if (props.sm) {
         classes.push(breakpointSm)
       }
+
       if (props.md) {
         classes.push(breakpointMd)
       }
+
       if (props.lg) {
         classes.push(breakpointLg)
       }
+
       if (props.xl) {
         classes.push(breakpointXl)
       }
+
       if (!props.xs && !props.md && !props.lg && !props.xs && !props.sm) {
         classes.push(breakpointAuto)
       }
