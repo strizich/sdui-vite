@@ -58,21 +58,23 @@ const Template = (args => ({
     }
   },
   template: `
-  <div style="display:flex;">
-    <sd-card v-bind="args" style="width:50%; margin: 0 8px;">
-      <sd-card-header :title="args.title"/>
+  <div style="max-width: 600px; margin: 0 auto">
+    <sd-card v-bind="args">
+      <sd-card-header :title="args.title" :subtitle="args.subtitle" :inline="args.inline"/>
       <sd-card-body>
         Body content goes here
       </sd-card-body>
     </sd-card>
-    <sd-card v-bind="args" style="width:50%; margin: 0 8px;">
-      <sd-card-header :title="args.title"/>
-      <sd-card-media :ratio="args.ratio" size="sm">
+    <sd-card v-bind="args">
+      <sd-card-header :title="args.title" :subtitle="args.subtitle" :inline="args.inline">
+        <sd-button theme="primary" icon="more_vert" icon-only outline size="sm"/>
+      </sd-card-header>
+      <sd-card-media :ratio="args.ratio">
         <img src="https://place-puppy.com/600x600" alt="placepuppy placeholder"/>
       </sd-card-media>
       <sd-card-footer align="space-between">
-        <sd-icon style="margin-left: 16px" name="image" color="var(--text-accent)"/>
-        <sd-button flat>Button</sd-button>
+        <sd-icon name="image" color="var(--text-accent)"/>
+        <sd-button flat size="xs">Button</sd-button>
       </sd-card-footer>
     </sd-card>
   </div>
@@ -82,5 +84,7 @@ const Template = (args => ({
 export const Default = Template.bind({});
 Default.args = {
   title: 'Cards',
+  subtitle: 'Subtitle goes here',
   ratio: '16x9',
+  inline: true
 };
