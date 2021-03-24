@@ -14,6 +14,17 @@ export default {
     SdCardBody, SdCardHeader, SdCardFooter, SdCardMedia, SdButton
   },
   argTypes: {
+    baseClass: {
+      control: 'false'
+    },
+    elevation: {
+      control:{
+        type: 'range',
+        max: 24,
+        min: 1,
+        step: 1
+      }
+    },
     ratio: {
       control: 'select',
       options: [

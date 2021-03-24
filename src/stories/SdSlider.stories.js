@@ -42,7 +42,6 @@ export const Default = Template.bind({});
 Default.args = {
   label: 'label',
   hint: 'hint',
-  active: false,
   showTooltip: true,
   showIndicators: true
 }

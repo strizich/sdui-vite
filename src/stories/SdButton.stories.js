@@ -1,51 +1,50 @@
 import SdButton from '../lib/components/SdButton/SdButton.vue';
+import { THEMES, ALIGNMENT, SIZES } from './constants'
+
 
 export default {
   title: 'Components/SdButton',
   component: SdButton,
   argTypes: {
     id: {
-      control: {
-        type: 'text'
-      }
+      control: false
     },
-    theme: { control: { type: 'select', options: [
-      'primary',
-      'secondary',
-      'default',
-      'warning',
-      'success',
-      'danger',
-      'dark'
-    ] }},
-    casing: {control: {type: 'select', options: [
-      null,
-      'uppercase',
-      'lowercase',
-      'captialize',
-    ]}},
-    type: { control: { type: 'select', options: [
-      'button',
-      'link',
-    ] }},
-    align: { control: { type: 'select', options: [
-      'start',
-      'end',
-      'center'
-    ] }},
-    size: { control: { type: 'select', options: ['xs', 'sm', 'md', 'lg', 'xl'] } },
-    onClick: {action : 'clicked'},
-  }
-};
+    theme: { 
+      control: 'select',
+      options: THEMES
+    },
+    casing: {
+      control: 'select',
+      options: [
+        null,
+        'uppercase',
+        'lowercase',
+        'captialize'
+      ]
+    },
+    type: { 
+      control: 'select',
+      options: [
+        'button',
+        'link'
+      ]
+    },
+    align: { 
+      control: 'select',
+      options: ALIGNMENT
+    },
+    size: { 
+      control: 'select',
+      options: SIZES
+    }
+  },
+  args: {
+    id: ''
+  },
+  onClick: {action: 'clicked'},
+}
 
-const themes = [
-  'primary',
-  'secondary',
-  'success',
-  'warning',
-  'danger',
-  'dark'
-]
+const themes = THEMES
 
 const Template = (args) => ({
   components: { SdButton },
@@ -79,9 +78,7 @@ const Template = (args) => ({
 });
 
 export const Default = Template.bind({});
-Default.args = {
-  label: '',
-};
+Default.args = {};
 
 export const Outline = Template.bind({});
 Outline.args = {

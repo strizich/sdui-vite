@@ -1,5 +1,5 @@
 import { SdButton, SdTooltip} from '../lib'
-
+import { THEMES } from './constants'
 export default {
   title: 'Components/SdTooltip',
   component: SdTooltip,
@@ -7,19 +7,21 @@ export default {
     template: '<div style="text-align:center; padding: 40px 0;"><story /></div>'
   })],
   argTypes: {
-    placement: { control: { type: 'select', options: ['right', 'left'] } },
-    handles: ['mouseenter', 'huh']
+    placement: {
+      control:'select', 
+      options: [
+        'right',
+        'left',
+        'top',
+        'bottom'
+      ]
+    }
   }
 };
 
 const themes = [
   null,
-  'primary',
-  'secondary',
-  'success',
-  'warning',
-  'danger',
-  'dark'
+  ...THEMES
 ]
 
 const Template = (args => ({

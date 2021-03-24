@@ -31,24 +31,27 @@ import { defineComponent, reactive, computed, toRefs, watch, PropType, ref } fro
 import SdUuid from '../../core/utilities/SdUuid'
 import SdLabel from './SdLabel.vue'
 import SdError from './SdError.vue'
+import SdIcon from '../SdIcon'
+
 
 interface ModelModifiers {
-  number: boolean;
+  number: boolean | Function;
 }
 
 export default defineComponent({
   name: 'SdField',
+  components: { SdLabel, SdError, SdIcon },
   emits: ['update:modelValue', 'focus', 'blur', 'change', 'input'],
   props: {
     // TODO: Add prop validaton to disallow having both value and modelValue
     modelValue: [String, Number],
     value: [String, Number],
     id: {
-      type: String,
+      type: [String, Function] as PropType<string | Function>,
       default: () => 'sd--field--' + SdUuid()
     },
     modelModifiers: {
-      type: Object as PropType<ModelModifiers>,
+      type: [Object, Function] as PropType<ModelModifiers>,
       default: () => ({})
     },
     icon: String,
@@ -71,7 +74,6 @@ export default defineComponent({
     // need a better name for this...
     pristineError: Boolean
   },
-
   setup (props, { emit }) {
     const inputRef = ref(null)
 
@@ -163,10 +165,6 @@ export default defineComponent({
       handleValidation,
       inputRef
     }
-  },
-  components: {
-    SdLabel,
-    SdError
   }
 })
 </script>

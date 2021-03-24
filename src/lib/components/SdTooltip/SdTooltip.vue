@@ -1,7 +1,7 @@
 <template>
   <teleport 
     ref="tooltipPortal"
-    :to="portalTo"
+    :to="portalDisabled ? null : portalTo"
     :disabled="portalDisabled"
   >
     <transition name="tooltip">
@@ -29,7 +29,6 @@ import {
   onUnmounted,
   PropType,
   defineComponent,
-  Prop
 } from 'vue'
 import { createPopper, Placement } from '@popperjs/core'
 

@@ -1,8 +1,15 @@
 import { SdChip } from '../lib'
 import { reactive, toRefs } from 'vue'
+import { THEMES, ALIGNMENT, SIZES } from './constants'
 export default {
-  title: 'Components/SdChips',
-  component: SdChip
+  title: 'Form Controls/SdChips',
+  component: SdChip,
+  argTypes: {
+    theme: {
+      control: 'select',
+      options: THEMES
+    }
+  }
 }
 
 const Template = (args => ({
