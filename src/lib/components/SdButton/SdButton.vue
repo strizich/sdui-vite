@@ -82,6 +82,7 @@ export default defineComponent({
      * Show an icon in the button
     */
     icon: String,
+    iconEnd: String,
     /**
      * Use when there is no other content in the button other than an icon.
     */
@@ -173,12 +174,16 @@ export default defineComponent({
             name: props.icon,
             size: props.size
           }),
-          h('div',
+          !props.iconOnly && h('div',
             {
               class: ['sd--button__content', sizeClass.value]
             },
             slots
-          )
+          ),
+          props.iconEnd && h(SdIcon, {
+            name: props.iconEnd,
+            size: props.size
+          })
         ]
       )
   }
@@ -204,9 +209,10 @@ export default defineComponent({
   align-items: center;
   padding: 0;
   vertical-align: middle;
+  margin-right: 8px;
 
-  & + & {
-    margin-left: 8px;
+  &:last-child {
+    margin-right: 0;
   }
 
   &.is--block {
@@ -266,7 +272,6 @@ export default defineComponent({
       background-color: var(--#{$state});
       transition: all .13s ease-out;
       border-radius: 3px;
-
       svg{
         fill: var(--#{$state}-text)
       }
@@ -335,11 +340,12 @@ export default defineComponent({
 
     &.is--pill {
       border-radius: 60px;
-
       .sd--icon + .sd--button__content{
         padding-left: 8px;
       }
-
+      .sd--button__content + .sd--icon{
+        padding-right: 8px;
+      }
       .sd--button__content {
         padding-left: 20px;
         padding-right: 20px;
@@ -347,11 +353,6 @@ export default defineComponent({
     }
   }
   // Handle Icons
-  &.is--icon-only{
-    .sd--button__content{
-      padding:0;
-    }
-  }
 
   .sd--icon{
     line-height: 1px;
@@ -359,31 +360,47 @@ export default defineComponent({
     height:32px;
     height: auto;
     position: relative;
-
     & + .sd--button__content{
       padding-left:0px;
     }
-  
+    &:only-child{
+      margin-left:0!important;
+    }
     &.is{
       &--xs {
         width: 20px;
         height: 20px;
+        &:last-child {
+          margin-left: spacing(inset, xs) * -1
+        }
       }
       &--sm{
         width: 30px;
         height:30px;
+        &:last-child {
+          margin-left: spacing(inset, sm) * -1
+        }
       }
       &--md{
         width: 32px;
         height:32px;
+        &:last-child {
+          margin-left: spacing(inset, md) * -1
+        }
       }
       &--lg{
         min-width: 42px;
         min-height:42px;
+        &:last-child {
+          margin-left: spacing(inset, lg) * -1
+        }
       }
       &--xl{
         min-width: 56px;
         min-height:56px;
+        &:last-child {
+          margin-left: spacing(inset, lg) * -1
+        }
       }
     }
   }

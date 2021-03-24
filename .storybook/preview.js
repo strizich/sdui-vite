@@ -1,3 +1,4 @@
+import './preview.scss'
 import { themes } from '@storybook/theming'
 import { computed } from 'vue'
 import { useScheme } from '../src/lib'

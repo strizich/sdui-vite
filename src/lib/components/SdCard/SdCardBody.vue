@@ -13,10 +13,12 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+@import '../../scss/spacing';
 .sd--card {
-  &__body{
+  &__body {
     padding: 16px;
     flex-grow: 2;
+    position: relative;
   }
 }
 </style>

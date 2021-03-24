@@ -1,6 +1,6 @@
 <template>
     <div :class="[rootClasses]">
-      <sd-label>{{label}}</sd-label>
+      <sd-label :required="required">{{label}}</sd-label>
       <slot name="header"/>
       <div :class="[inputClasses]">
         <sd-icon v-if="icon" :color="iconColor" :name="icon"/>
@@ -97,7 +97,10 @@ export default defineComponent({
         return false
       }
       // handled error === null and required
-      if (props.required) {
+      if (
+          (props.required && !props.modelValue) &&
+          (props.required && !props.value)
+        ) {
         return props.error || 'Required'
       }
       return state.touched && props.error

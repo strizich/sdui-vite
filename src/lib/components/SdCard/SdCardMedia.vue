@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, reactive } from 'vue'
 
 export default defineComponent({
   name: 'SdCardMedia',
@@ -42,12 +42,16 @@ export default defineComponent({
     }
   },
   setup (props) {
+    const state = reactive({
+      color: 'red'
+    })
+
     const getRatioFormat = (divider) => {
       return props.ratio.indexOf(divider) !== -1
     }
 
     const getAspectRatio = computed(() => {
-      let ratio = []
+      let ratio: string[] = []
       if (getRatioFormat(':')) {
         ratio = props.ratio.split(':')
       } else if (getRatioFormat('/')) {
@@ -109,6 +113,7 @@ $ratioSizes: (
     img {
       width: 100%;
     }
+ 
     &:first-child{
       border-radius: 3px 3px 0 0;
     }

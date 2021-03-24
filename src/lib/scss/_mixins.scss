@@ -105,7 +105,12 @@
 @mixin aspect-ratio($width, $height) {
   overflow: hidden;
   &:before {
-    padding-top: ($height / $width) * 100%;
+    @supports (aspect-ratio: 1 / 1) {
+      aspect-ratio: $width / $height;
+    }
+    @supports not (aspect-ratio: 1 / 1) {
+      padding-top: ($height / $width) * 100%;
+    }
     display: block;
     content: '';
   }

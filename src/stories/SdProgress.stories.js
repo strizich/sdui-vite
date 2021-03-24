@@ -43,6 +43,7 @@ const Template = (args => ({
       :progress="args.progress"
       :total="args.total"
       :current="args.current"
+      :animated="args.animated"
       :decimal-places="args.decimalPlaces"
     />
   `

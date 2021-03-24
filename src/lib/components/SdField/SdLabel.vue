@@ -1,6 +1,7 @@
 <template>
   <label :class="[computedClasses]">
     <slot />
+    <span class="sd--label--required" v-if="required">*</span>
   </label>
 </template>
 
@@ -9,7 +10,8 @@ import { computed, defineComponent } from 'vue'
 export default defineComponent({
   name: 'SdLabel',
   props: {
-    inline: Boolean
+    inline: Boolean,
+    required: Boolean
   },
   setup (props) {
     const computedClasses = computed(() => {
@@ -31,10 +33,24 @@ export default defineComponent({
   display:flex;
   align-items: center;
   color: var(--text-accent);
-  & > span{
+  position: relative;
+  justify-content: space-between;
+
+  & > span {
     margin-right:4px;
   }
-  &--inline{
+
+  &--required {
+    font-size: 20px;
+    margin-left: 8px;
+    line-height: 1;
+    height: 12px;
+    margin-right: 0;
+    color: var(--danger);
+    align-self: center;
+  }
+
+  &--inline {
     margin-bottom:0;
   }
 }

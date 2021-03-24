@@ -34,7 +34,11 @@ import { createPopper, Placement } from '@popperjs/core'
 
 export default defineComponent({
   name: 'SdTooltip',
-  emits: ['update:active', 'open', 'close'],
+  emits: [
+    'update:active',
+    'opened',
+    'closed'
+  ],
   props: {
     teleport: {
       type: String,
@@ -147,12 +151,12 @@ export default defineComponent({
 
     const show = () => {
       state.shouldRender = true
-      emit('open')
+      emit('opened')
     }
 
     const hide = () => {
       state.shouldRender = false
-      emit('close')
+      emit('closed')
     }
 
     const touched = () => {
