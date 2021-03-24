@@ -66,6 +66,7 @@ const Template = (args) => ({
       :outline="args.outline"
       :block="args.block"
       :icon="args.icon"
+      :icon-end="args.iconEnd"
       :icon-only="args.iconOnly"
       :disabled="args.disabled"
       :casing="args.casing"
@@ -108,6 +109,11 @@ export const WithIcon = Template.bind({});
 WithIcon.args = {
   label: '',
   icon: 'bluetooth'
+};
+export const WithIconEnd = Template.bind({});
+WithIconEnd.args = {
+  label: '',
+  iconEnd: 'bluetooth'
 };
 
 export const WithIconOnly = Template.bind({});
