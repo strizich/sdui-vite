@@ -156,7 +156,6 @@ export default defineComponent({
       if (props.href || props.type === 'link') return 'a'
       return 'button'
     })
-    console.log(slots)
 
     return () =>
       h(
