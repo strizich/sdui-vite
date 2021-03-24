@@ -39,12 +39,13 @@ sdInstall(app)
 app.mount('#app')
 ```
 
-Now that the components are mounted we need to pull down the styles. At this time `scss` is required.
+Now that the components are mounted we need to pull down the styles. At this time `sass` is required.
 
 ``` vue
 // App.vue
 <style lang="scss">
-  @use '../node_modules/@strizich/sdui/dist/scss/engine';
+  @use '../node_modules/@strizich/sdui/dist/scss/engine'; // dart-sass
+  @import '../node_modules/@strizich/sdui/dist/scss/engine'; // node-sass
   @import url('../node_modules/@strizich/sdui/dist/style.css');
 </style>
 ```
