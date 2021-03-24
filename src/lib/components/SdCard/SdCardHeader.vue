@@ -1,6 +1,6 @@
 <template>
   <div class="sd--card__header">
-    <div :class="['sd--card__header-group', classes]">
+    <div :class="['sd--card__header-group', classes]" v-if="title || subtitle">
       <h3 class="sd--text__header" v-if="title">{{ title }}</h3>
       <p class="sd--text__caption" v-if="subtitle">{{ subtitle }}</p>
     </div>
