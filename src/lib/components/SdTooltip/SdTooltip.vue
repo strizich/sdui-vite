@@ -34,7 +34,11 @@ import { createPopper, Placement } from '@popperjs/core'
 
 export default defineComponent({
   name: 'SdTooltip',
-  emits: ['update:active', 'opened', 'closed'],
+  emits: [
+    'update:active',
+    'opened',
+    'closed'
+  ],
   props: {
     teleport: {
       type: String,
