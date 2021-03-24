@@ -57,12 +57,12 @@ export default defineComponent({
     }
     @include breakpoint-up(sm) {
       &.is--inline {
-          display:flex;
-          width:100%;
-          align-items: center;
-          justify-content: space-between;
-        }
+        display:flex;
+        width:100%;
+        align-items: center;
+        justify-content: space-between;
       }
     }
   }
+}
 </style>

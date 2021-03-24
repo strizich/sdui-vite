@@ -67,10 +67,7 @@ export default defineComponent({
      * Only works with `block`. Aligns the button content.
      * @values start, end, center
     */
-    align: {
-      type: String,
-      default: 'center'
-    },
+    align:  String,
     /**
      * Disables the button
     */
