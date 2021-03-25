@@ -127,8 +127,7 @@ export default defineComponent({
     const rootClasses = computed(() => {
       return {
         'is--disabled': props.disabled,
-        'is--rounded': props.rounded,
-        'is--pill': props.pill,
+        'is--pill': props.pill || props.rounded,
         'is--flat': props.flat,
         'is--outline': props.outline,
         'is--icon-only': props.iconOnly,
@@ -149,7 +148,7 @@ export default defineComponent({
     })
 
     const sizeClass = computed(() => {
-      return `is--${props.size}`
+      return `sd--button--${props.size}`
     })
 
     const themeClass = computed(() => {
@@ -242,78 +241,75 @@ export default defineComponent({
   &:last-child {
     margin-right: 0;
   }
+  &--xs {
+    .sd--button__content{
+      @extend %button-content;
+      padding: spacing(offset, xs);
 
-   &.is {
-    &--xs {
-      .sd--button__content{
-        @extend %button-content;
-        padding: spacing(offset, xs);
+    }
+    .sd--icon{
+      @extend %icons;
+      line-height: 20px;
 
-      }
+    }
+    font-size: rem(11);
+    min-height: 20px;
+  }
+
+  &--sm {
+    font-size: rem(14);
+    min-height: 26px;
+    .sd--button__content{
+      line-height: spacing(inset, sm) * 2;
+      @extend %button-content;
+      padding: spacing(offset, sm);
+    }
+    &.is--icon-only{
       .sd--icon{
-        @extend %icons;
-        line-height: 20px;
-
-      }
-      font-size: rem(11);
-      min-height: 20px;
-    }
-
-    &--sm {
-      font-size: rem(14);
-      min-height: 32px;
-      .sd--button__content{
+        width: 26px;
         line-height: spacing(inset, sm) * 2;
-        @extend %button-content;
-        padding: spacing(inset, sm);
-      }
-      &.is--icon-only{
-        .sd--icon{
-          width: spacing(inset, sm) * 2;
-          line-height: spacing(inset, sm) * 2;
-        }
       }
     }
+  }
 
-    &--md {
-      font-size: rem(16);
-      min-height: spacing(inset, md);
-      .sd--button__content {
-        @extend %button-content;
-        padding: spacing(offset, md);
-      }
-      &.is--icon-only{
-        .sd--icon {
-          width: spacing(inset, md) * 2;
-        }
+  &--md {
+    font-size: rem(16);
+    min-height: 32px;
+    .sd--button__content {
+      @extend %button-content;
+      padding: spacing(offset, md);
+    }
+    &.is--icon-only{
+      .sd--icon {
+        width: 32px;
       }
     }
+  }
 
-    &--lg {
-      font-size: rem(18);
-      min-height: spacing(inset, lg) * 2;
-      .sd--button__content {
-        @extend %button-content;
-        padding: spacing(offset, lg);
-      }
-      &.is--icon-only {
-        .sd--icon {
-          width: spacing(inset, lg) * 2;
-        }
+  &--lg {
+    font-size: rem(18);
+    min-height: 50px;
+    .sd--button__content {
+      @extend %button-content;
+      padding: spacing(offset, lg);
+    }
+    &.is--icon-only {
+      .sd--icon {
+        width: 50px;
       }
     }
+  }
 
-    &--xl {
-      font-size: rem(24);
-      min-height: spacing(inset, lg) * 2;
-      .sd--button__content {
-        @extend %button-content;
-        padding: spacing(offset, xl);
-      }
-      &.is--icon-only {
-        .sd--icon {
-          width: spacing(inset, lg) * 2;
-        }
+  &--xl {
+    font-size: rem(24);
+    min-height: 64px;
+    .sd--button__content {
+      @extend %button-content;
+      padding: spacing(offset, xl);
+    }
+    &.is--icon-only {
+      .sd--icon {
+        width: 64px;
       }
     }
   }
@@ -402,10 +398,6 @@ export default defineComponent({
         box-shadow: 0 0 0 5px var(--#{$state}-highlight);
         transition: box-shadow .2s ease-out;
       }
-    }
-
-    &.is--rounded {
-      border-radius: 30px;
     }
 
     &.is--pill {
