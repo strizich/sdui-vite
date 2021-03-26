@@ -25,11 +25,9 @@ export default defineComponent({
   setup (props) {
     const iconClasses = computed(() =>{
       const iconSize = `is--${props.size}`
-      const iconFamily = !props.family ? 'material-icons' : `material-icons-${props.family}`
-    return {
-      [iconFamily]: true,
-      [iconSize]: !!props.size
-    }
+      return {
+        [iconSize]: !!props.size
+      }
     })
     return { iconClasses }
   }

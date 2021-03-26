@@ -7,16 +7,6 @@ export default {
     size: { 
       control: 'select', 
       options: SIZES
-    },
-    family: {
-      control: 'select',
-      options: [
-        null, 
-        'round',
-        'outlined',
-        'sharp',
-        'two-tone'
-      ]
     }
   }
 };
