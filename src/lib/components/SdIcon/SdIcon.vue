@@ -14,9 +14,6 @@ export default defineComponent({
       type: String,
       default: 'face'
     },
-    family: {
-      type: String,
-    },
     size: {
       type: String,
       default: 'md'
@@ -28,11 +25,9 @@ export default defineComponent({
   setup (props) {
     const iconClasses = computed(() =>{
       const iconSize = `is--${props.size}`
-      const iconFamily = !props.family ? 'material-icons' : `material-icons-${props.family}`
-    return {
-      [iconFamily]: true,
-      [iconSize]: !!props.size
-    }
+      return {
+        [iconSize]: !!props.size
+      }
     })
     return { iconClasses }
   }
@@ -40,9 +35,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-$material-icons-font-path: '~/material-icons/iconfont/';
-@import '~/material-icons/iconfont/material-icons.scss';
-
 $icon-sizes: (
   xs: 16px,
   sm: 18px,
@@ -51,15 +43,37 @@ $icon-sizes: (
   xl: 32px
 );
 
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/materialicons/v48/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2) format('woff2');
+}
+
 .sd--icon {
-  color: var(--text);
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: map-get($icon-sizes, md);
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-feature-settings: 'liga';
+  font-smooth: antialiased;
+}
+
+.sd--icon {
+  display:block;
   &.is{
     @each $size, $value in $icon-sizes{
       &--#{$size}{
         font-size: $value;
-        width: $value;
-        height: $value;
-        min-width: $value;
         line-height: 1;
       }
     }
