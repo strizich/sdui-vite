@@ -1,10 +1,10 @@
-@import './variables';
-@import './reset';
 @import './functions';
+@import './get-contrast';
+@import './variables';
+@import './breakpoints';
 @import './mixins';
 @import './spacing';
-@import './get-contrast';
 @import './colors';
+@import './reset';
 @import './typography';
-@import './breakpoints';
 @import './scrollbar';

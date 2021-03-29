@@ -1,6 +1,7 @@
 <template>
-  <i :class="['sd--icon', iconSize]" :style="{'color': color}">
+  <i :class="['sd--icon', iconClasses]" :style="{'color': color}">
     {{name}}
+    <slot/>
   </i>
 </template>
 
@@ -22,10 +23,13 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const iconSize = computed(() => {
-      return `is--${props.size}`
+    const iconClasses = computed(() =>{
+      const iconSize = `is--${props.size}`
+      return {
+        [iconSize]: !!props.size
+      }
     })
-    return { iconSize }
+    return { iconClasses }
   }
 })
 </script>
@@ -62,17 +66,17 @@ $icon-sizes: (
   direction: ltr;
   font-feature-settings: 'liga';
   font-smooth: antialiased;
+}
+
+.sd--icon {
+  display:block;
   &.is{
     @each $size, $value in $icon-sizes{
       &--#{$size}{
         font-size: $value;
-        width: $value;
-        height: $value;
-        min-width: $value;
         line-height: 1;
       }
     }
   }
 }
-
 </style>

@@ -76,9 +76,17 @@ export default defineComponent({
       default: false
     },
     /**
-     * Show an icon in the button
+     * Sets an icon in the button
     */
     icon: String,
+    /**
+     * Changes the icon type family between Material icons types.
+     * @values round, sharp, two-tone
+    */
+    iconFamily: String,
+    /**
+     * Sets the icon at the end of the button.
+    */
     iconEnd: String,
     /**
      * Use when there is no other content in the button other than an icon.
@@ -119,8 +127,7 @@ export default defineComponent({
     const rootClasses = computed(() => {
       return {
         'is--disabled': props.disabled,
-        'is--rounded': props.rounded,
-        'is--pill': props.pill,
+        'is--pill': props.pill || props.rounded,
         'is--flat': props.flat,
         'is--outline': props.outline,
         'is--icon-only': props.iconOnly,
@@ -141,7 +148,7 @@ export default defineComponent({
     })
 
     const sizeClass = computed(() => {
-      return `is--${props.size}`
+      return `sd--button--${props.size}`
     })
 
     const themeClass = computed(() => {
@@ -161,7 +168,7 @@ export default defineComponent({
           ref: root,
           id: props.id,
           type: !props.href && (props.type || 'button'),
-          class: ['sd--button', themeClass.value, rootClasses.value],
+          class: ['sd--button', themeClass.value, rootClasses.value, sizeClass.value],
           href: props.href,
           disabled: props.disabled,
           style: alignmentStyle.value
@@ -169,16 +176,18 @@ export default defineComponent({
         [
           props.icon && h(SdIcon, {
             name: props.icon,
+            family: props.iconFamily,
             size: props.size
           }),
           !props.iconOnly && h('div',
             {
-              class: ['sd--button__content', sizeClass.value]
+              class: 'sd--button__content'
             },
             slots
           ),
           props.iconEnd && h(SdIcon, {
             name: props.iconEnd,
+            family: props.iconFamily,
             size: props.size
           })
         ]
@@ -192,6 +201,27 @@ export default defineComponent({
 @import '../../scss/mixins';
 @import '../../scss/functions';
 @import '../SdElevation/mixins';
+
+%button-content{
+  position: relative;
+  z-index: 10;
+  line-height: 1;
+  transition: font-size .23s;
+  padding-top:8px;
+  padding-bottom:8px;
+  display:flex;
+  align-items: center;;
+}
+%icons{
+  width: 32px;
+  position: relative;
+  & + .sd--button__content {
+    padding-left: 0px;
+  }
+  &:only-child {
+    margin-left:0!important;
+  }
+}
 
 .sd--button {
   touch-action: manipulation;
@@ -211,55 +241,94 @@ export default defineComponent({
   &:last-child {
     margin-right: 0;
   }
+  &--xs {
+    .sd--button__content{
+      @extend %button-content;
+      padding: spacing(offset, xs);
+
+    }
+    .sd--icon{
+      @extend %icons;
+      line-height: 20px;
+
+    }
+    font-size: rem(11);
+    min-height: 20px;
+  }
+
+  &--sm {
+    font-size: rem(14);
+    min-height: 26px;
+    .sd--button__content{
+      line-height: spacing(inset, sm) * 2;
+      @extend %button-content;
+      padding: spacing(offset, sm);
+    }
+    &.is--icon-only{
+      .sd--icon{
+        width: 26px;
+        line-height: spacing(inset, sm) * 2;
+      }
+    }
+  }
+
+  &--md {
+    font-size: rem(16);
+    min-height: 32px;
+    .sd--button__content {
+      @extend %button-content;
+      padding: spacing(offset, md);
+    }
+    &.is--icon-only{
+      .sd--icon {
+        width: 32px;
+      }
+    }
+  }
+
+  &--lg {
+    font-size: rem(18);
+    min-height: 50px;
+    .sd--button__content {
+      @extend %button-content;
+      padding: spacing(offset, lg);
+    }
+    &.is--icon-only {
+      .sd--icon {
+        width: 50px;
+      }
+    }
+  }
+
+  &--xl {
+    font-size: rem(24);
+    min-height: 64px;
+    .sd--button__content {
+      @extend %button-content;
+      padding: spacing(offset, xl);
+    }
+    &.is--icon-only {
+      .sd--icon {
+        width: 64px;
+      }
+    }
+  }
 
   &.is--block {
     display: flex;
     width: 100%;
+    justify-content: center;
     & + & {
       margin: 0;
     }
   }
 
-  &:focus{
+  &:focus {
     outline: none;
   }
 
   &__content {
-    position: relative;
-    z-index: 10;
-    transition: font-size .23s;
-    padding-top:8px;
-    padding-bottom:8px;
-
-    &.is {
-      &--xs {
-        font-size: rem(12);
-        padding: spacing(inset, xs);
-      }
-      &--sm {
-        font-size: rem(14);
-        line-height: 1;
-        padding: spacing(inset, sm);
-      }
-
-      &--md {
-        font-size: rem(16);
-        line-height: 1;
-        padding: spacing(offset, md);
-      }
-
-      &--lg {
-        font-size: rem(18);
-        line-height: 1;
-        padding: spacing(offset, lg);
-      }
-
-      &--xl {
-        font-size: rem(24);
-        line-height: 1;
-        padding: spacing(offset, xl);
-      }
-    }
+    @extend %button-content;
   }
 
   @each $state, $color in $sd-color-global {
@@ -290,14 +359,14 @@ export default defineComponent({
         transition: all .13s ease-out;
       }
 
-      &.is--active, &.is--exact-active{
+      &.is--active, &.is--exact-active {
         @include elevation(6);
         color: var(--#{$state}-highlight-text);
         background-color: var(--#{$state}-highlight);
         transition: all .13s ease-out;
       }
 
-      &.is--disabled{
+      &.is--disabled {
         background-color: var(--disabled-background);
         color: var(--disabled);
         @include elevation(0);
@@ -331,76 +400,57 @@ export default defineComponent({
       }
     }
 
-    &.is--rounded {
-      border-radius: 30px;
-    }
-
     &.is--pill {
-      border-radius: 60px;
-      .sd--icon + .sd--button__content{
-        padding-left: 8px;
-      }
-      .sd--button__content + .sd--icon{
-        padding-right: 8px;
-      }
-      .sd--button__content {
+      border-radius: 30px;
+      .sd--button__content:only-child{
         padding-left: 20px;
         padding-right: 20px;
       }
     }
   }
-  // Handle Icons
 
-  .sd--icon{
-    line-height: 1px;
-    width:32px;
-    height:32px;
-    height: auto;
+  // Handle Icons
+  .sd--icon {
+    width: 32px;
     position: relative;
-    & + .sd--button__content{
-      padding-left:0px;
+    & + .sd--button__content {
+      padding-left: 0px;
     }
-    &:only-child{
+    &:only-child {
       margin-left:0!important;
     }
-    &.is{
+    &.is {
       &--xs {
         width: 20px;
-        height: 20px;
         &:last-child {
-          margin-left: spacing(inset, xs) * -1
+          margin-left: spacing(inset, xs) * -1;
         }
       }
-      &--sm{
+      &--sm {
         width: 30px;
-        height:30px;
         &:last-child {
-          margin-left: spacing(inset, sm) * -1
+          margin-left: spacing(inset, sm) * -1;
         }
       }
-      &--md{
+      &--md {
         width: 32px;
-        height:32px;
         &:last-child {
-          margin-left: spacing(inset, md) * -1
+          margin-left: spacing(inset, md) * -1;
         }
       }
-      &--lg{
+      &--lg {
         min-width: 42px;
-        min-height:42px;
         &:last-child {
-          margin-left: spacing(inset, lg) * -1
+          margin-left: spacing(inset, md) * -1;
         }
       }
-      &--xl{
+      &--xl {
         min-width: 56px;
-        min-height:56px;
-        &:last-child {
-          margin-left: spacing(inset, lg) * -1
+         &:last-child {
+          margin-left: spacing(inset, lg) * -1;
         }
       }
     }
   }
 }
-
 </style>

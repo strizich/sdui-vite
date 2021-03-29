@@ -3,6 +3,7 @@
     @content;
   }
 }
+
 @mixin root-color-scheme($scheme) {
   @media(prefers-color-scheme: $scheme){
     :root{
@@ -57,22 +58,20 @@
       }
     }
     @include color-scheme(light) {
-      @include color-scheme(dark) {
-        color: var(--#{$theme}-accent);
-        background-color: none;
+      color: var(--#{$theme}-accent);
+      background-color: none;
+      svg {
+        fill: var(--#{$theme}-accent);
+      }
+      &:hover {
+        background-color: var(--#{$theme});
+        color: var(--#{$theme}-text);
         svg {
-          fill: var(--#{$theme}-accent);
+          fill: var(--#{$theme}-text);
         }
-        &:hover {
-          background-color: var(--#{$theme});
-          color: var(--#{$theme}-text);
-          svg {
-            fill: var(--#{$theme}-text);
-          }
-        }
-        &:active, &.is--active, &.is--exact-active {
-          background-color: var(--#{$theme}-highlight);
-        }
+      }
+      &:active, &.is--active, &.is--exact-active {
+        background-color: var(--#{$theme}-highlight);
       }
     }
   }
@@ -126,9 +125,7 @@
 @mixin ios-safe-area {
   @supports (padding: max(32px, 32px)) {
     padding:
-    0
-    m#{a}x(16px, env(safe-area-inset-left))
-    0
-    m#{a}x(16px, env(safe-area-inset-right));
+    0 max(16px, env(safe-area-inset-left))
+    0 max(16px, env(safe-area-inset-right));
   }
 }
