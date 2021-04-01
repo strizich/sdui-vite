@@ -44,17 +44,18 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.6.0",
+    "@types/vue": "^2.0.0",
     "animejs": "^3.2.1",
     "vue": "^3.0.7",
     "vue-router": "^4.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.13.10",
-    "@storybook/addon-actions": "^6.2.0-rc.0",
-    "@storybook/addon-essentials": "^6.2.0-rc.0",
-    "@storybook/addon-links": "^6.2.0-rc.0",
+    "@storybook/addon-actions": "^6.2.0",
+    "@storybook/addon-essentials": "^6.2.0",
+    "@storybook/addon-links": "^6.2.0",
     "@storybook/preset-scss": "^1.0.3",
-    "@storybook/vue3": "^6.2.0-rc.0",
+    "@storybook/vue3": "^6.2.0",
     "@types/jest": "^26.0.20",
     "@vitejs/plugin-vue": "^1.1.4",
     "@vue/compiler-sfc": "^3.0.5",
