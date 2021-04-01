@@ -71,6 +71,11 @@ declare module '@strizich/sdui' {
     }>;
 }
 
+  const useToaster: (currentToast: any, emit: any) => {
+    makeToast: (duration: any, persist: any) => Promise<void>;
+    promiseToast: (duration: any, persist: any) => Promise<void>;
+    destroyToast: () => Promise<any>
+  }
   const sdInstall: (app: any) => void
 
   export {
@@ -140,6 +145,7 @@ declare module '@strizich/sdui' {
     // Utility Hooks
     useKeyboardFocus,
     useWindowWidth,
-    useAlignment
+    useAlignment,
+    useToaster
   }
 }

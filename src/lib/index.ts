@@ -48,6 +48,8 @@ import SdSheet from './components/SdSheet/SdSheet.vue'
 import SdToast from './components/SdToast/SdToast.vue'
 import SdList from './components/SdList/SdList.vue'
 import SdListItem from './components/SdList/SdListItem.vue'
+import useSlider from './components/SdSlider/useSlider'
+import useToaster from './components/SdToast/useToaster'
 import useAlignment from './hooks/useAlignment'
 import useKeyboardFocus from './hooks/useKeyboardFocus'
 import useWindowWidth from './hooks/useWindowWidth'
@@ -207,5 +209,7 @@ export {
   useKeyboardFocus,
   useAlignment,
   useWindowWidth,
-  useScheme
+  useScheme,
+  useSlider,
+  useToaster
 }
