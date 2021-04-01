@@ -29,13 +29,14 @@
       </sd-dialog>
       <sd-progress :total="100" :current="90" animated/>
       <sd-progress :progress="0.96"/>
+      <sd-field v-model.number="state.sliderything"/>
       <sd-slider
         :min="0"
         :max="100"
         v-model="state.sliderything"
         show-tooltip
         show-indicators
-        show-ticks
+        use-wheel
       />
       <sd-radio v-model="state.scheme" value="auto">Scheme</sd-radio>
       <sd-radio v-model="state.scheme" value="dark">Scheme</sd-radio>
