@@ -1,6 +1,5 @@
 <template>
   <div class="sd--slider">
-     {{isHover}}
     <sd-label v-if="label">{{label}}</sd-label>
     <slot name="label"/>
     <div class="sd--slider__container">
