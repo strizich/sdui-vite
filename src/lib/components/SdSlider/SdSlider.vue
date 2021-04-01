@@ -1,5 +1,8 @@
 <template>
-  <div class="sd--slider">
+  <div class="sd--slider"
+    @mouseenter="(e) => handleHover(e)"
+    @mouseleave="(e) => handleHover(e)"
+  >
     <sd-label v-if="label">{{label}}</sd-label>
     <slot name="label"/>
     <div class="sd--slider__container">
@@ -8,9 +11,9 @@
       </div>
       <div class="sd--slider__content" ref="slider">
         <div class="sd--slider__track-container">
-          <!-- <div class="sd--slider__ticks" v-if="showTicks">
+          <div class="sd--slider__ticks" v-if="showTicks">
             <div class="sd--slider__tick" v-for="n in tickCount" :key="n"/>
-          </div> -->
+          </div>
           <div
             class="sd--slider__track"
             :style="thumbTrackStyle"
@@ -63,7 +66,8 @@ import {
   onMounted,
   onUnmounted,
   watch,
-  nextTick
+  nextTick,
+  Ref
 } from 'vue'
 
 import {
@@ -85,8 +89,13 @@ export default defineComponent({
     SdLabel
   },
   props: {
-    label: String,
-    value: Number,
+    label: {
+      type: String
+    },
+    modelValue: {
+      type: Number,
+      required: true
+    },
     min: {
       type: Number,
       default: 1
@@ -99,35 +108,49 @@ export default defineComponent({
       type: Number,
       default: 1
     },
-    showIndicators: Boolean,
-    showTicks: Boolean,
-    showTooltip: Boolean,
-    hint: String
+    showIndicators: {
+      type: Boolean
+    },
+    showTicks: {
+      type: Boolean
+    },
+    showTooltip: {
+      type: Boolean
+    },
+    useWheel: {
+      type: Boolean
+    },
+    hint: {
+      type: String
+    }
   },
-  emits: ['update:value'],
+  emits: ['update:modelValue'],
   setup (props, { emit }) {
-    const slider = ref(null)
-    const handle = ref(null)
+    const slider: Ref<null | HTMLElement> = ref(null)
+    const handle: Ref<null | HTMLElement> = ref(null)
     const hasFocus = useKeyboardFocus(handle)
+
     const state = reactive({
       init: false,
       computedX: 0,
       x: 0,
       minX: 0,
       maxX: 0,
-      dragStartX: null,
+      dragStartX: 0,
       isDragging: false,
       handleWidth: 0,
       handleHeight: 0,
-      offset: null,
+      offset: 0,
       unit: 0,
-      pctComplete: 0
+      pctComplete: 0,
+      hover: false
     })
 
     // Gets the number of ticks
-    // const tickCount = computed(() => {
-    //   return (props.max - props.min) / props.step
-    // })
+    const tickCount = computed(() => {
+      const ticks = (props.max - props.min) / props.step
+      return minMax(2, ticks, 100)
+    })
 
     // Computed Styles
     const thumbTrackStyle = computed(() => {
@@ -154,6 +177,14 @@ export default defineComponent({
       }
     })
 
+    const handleHover = e => {
+      if (e.type === 'mouseenter') {
+        state.hover = true
+      }
+      if (e.type === 'mouseleave') {
+        state.hover = false
+      }
+    }
     // --- Keyboard Handlers --- //
     // Increases the value by a unit which is `step / (max - min) * width`
     const handleIncrementUp = () => {
@@ -209,28 +240,43 @@ export default defineComponent({
       }
     }
 
+    const handleMouseWheel = e => {
+      e.preventDefault()
+      if(e.wheelDelta > 0) {
+        handleIncrementUp()
+      } else{
+        handleIncrementDown()
+      }
+    }
+
     // --- Mouse / Touch Handlers --- //
-    const handleMove = (e) => {
+    const handleMove = (e: DragEvent): void => {
       const { clientX } = e
       state.x = Math.max(0, Math.min(clientX - state.dragStartX, state.maxX))
       state.pctComplete = pctComplete(state.x, state.maxX)
     }
 
-    const handleStart = (e) => {
+    const handleStart = (e: DragEvent): void => {
       const { clientX } = e
       const clickX = Math.round((clientX - state.offset))
-      state.isDragging = true
       state.x = Math.max(0, Math.min(clickX, state.maxX))
       state.dragStartX = clientX - state.x
       state.pctComplete = pctComplete(state.x, state.maxX)
+      state.isDragging = true
     }
 
-    const handleEnd = (e) => {
+    const handleEnd = e => {
       state.isDragging = false
-      state.dragStartX = null
+      state.dragStartX = 0
     }
 
     // --- Mouse Events --- //
+    const onMouseWheel = e => {
+      if (state.hover) {
+        handleMouseWheel(e)
+      }
+    }
+
     const onMouseMove = e => {
       e.preventDefault()
       handleMove(e)
@@ -303,7 +349,7 @@ export default defineComponent({
         state.maxX = Math.round(slider.value.clientWidth)
 
         // Core calculation to convert an arbitrary value into pixels
-        state.computedX = convertValueToPx(props.value, props.min, props.max, state.maxX)
+        state.computedX = convertValueToPx(props.modelValue, props.min, props.max, state.maxX)
 
         // The value of a single unit of X converted to pixels.
         state.unit = singleUnitValue(props.step, props.min, props.max, state.maxX)
@@ -317,6 +363,9 @@ export default defineComponent({
 
         slider.value.addEventListener('touchstart', onTouchStart, { passive: true })
         slider.value.addEventListener('mousedown', onMouseDown)
+        if (props.useWheel) {
+          slider.value.addEventListener('wheel', onMouseWheel, { passive: false })
+        }
       }
     }, { flush: 'post' })
 
@@ -332,7 +381,7 @@ export default defineComponent({
 
     // Emits the result on change
     watch(() => result.value, (newValue) => {
-      emit('update:value', newValue)
+      emit('update:modelValue', newValue)
     })
 
     onMounted(() => {
@@ -352,7 +401,9 @@ export default defineComponent({
       thumbClass,
       thumbTrackStyle,
       result,
-      hasFocus
+      hasFocus,
+      tickCount,
+      handleHover
     }
   }
 })
