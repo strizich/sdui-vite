@@ -261,7 +261,6 @@ const useSlider = (props, emit) => {
     slider,
     handle,
     result,
-    handleHover,
     isFocused
   }
 }
