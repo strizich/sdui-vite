@@ -88,7 +88,6 @@ const useSlider = (props, emit) => {
   }
 
   const handleMouseWheel = (e) => {
-    console.log(e)
     if(e.wheelDelta > 0) {
       handleIncrementUp()
     } else{
