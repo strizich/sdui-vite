@@ -10,8 +10,8 @@ const path = require('path')
 module.exports = {
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src'),
-      '@lib/': path.resolve(__dirname, 'src/lib')
+      '~': path.resolve(__dirname, 'node_modules'),
+      '@': path.resolve(__dirname, 'src')
     }
   },
   plugins: [
