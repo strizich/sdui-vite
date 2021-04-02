@@ -1,5 +1,5 @@
 <template>
-  <sd-layout :scheme="scheme">
+  <sd-layout :scheme="state.scheme">
     <template v-slot:content>
       <sd-mast>Things here</sd-mast>
       <div class="demo">
@@ -15,10 +15,10 @@
           <sd-button @click="handleToast">Make Toast</sd-button>
           </div>
         </sd-container>
-        <sd-checkbox v-model="toast">Toast</sd-checkbox>
+        <sd-checkbox v-model="state.toast">Toast</sd-checkbox>
       </div>
-      <sd-toast v-model:active="toast" dismissable>Okay</sd-toast>
-      <sd-dialog aside v-model:active="modal">
+      <sd-toast v-model:active="state.toast" dismissable>Okay</sd-toast>
+      <sd-dialog aside v-model:active="state.modal">
         <sd-dialog-header title="Title" subtitle="Subtitle"/>
         <sd-dialog-content>
           <p>Content goes here</p>
@@ -29,50 +29,46 @@
       </sd-dialog>
       <sd-progress :total="100" :current="90" animated/>
       <sd-progress :progress="0.96"/>
-      <sd-slider v-model:value="sliderything"/>
-      <sd-radio v-model="scheme" value="auto">Scheme</sd-radio>
-      <sd-radio v-model="scheme" value="dark">Scheme</sd-radio>
-      <sd-radio v-model="scheme" value="light">Scheme</sd-radio>
+      <sd-field v-model.number="state.sliderything"/>
+      <sd-slider
+        :min="0"
+        :max="100"
+        v-model="state.sliderything"
+        show-tooltip
+        show-indicators
+        use-wheel
+      />
+      <sd-radio v-model="state.scheme" value="auto">Scheme</sd-radio>
+      <sd-radio v-model="state.scheme" value="dark">Scheme</sd-radio>
+      <sd-radio v-model="state.scheme" value="light">Scheme</sd-radio>
       <sd-icon name="home" family="round"/>
-      {{scheme}}
+      {{state.scheme}}
     </template>
   </sd-layout>
 </template>
 
-<script>
-import { reactive, toRefs } from 'vue'
-const staticyThing = ['one', 'two', 'three']
+<script lang="ts" setup>
+  import { reactive, toRefs } from 'vue'
+  const staticyThing = ['one', 'two', 'three']
 
-export default {
-  setup() {
-    const state = reactive({
-      modal: false,
-      toast: false,
-      sliderything: 10,
-      scheme: 'auto'
-    })
+  const state = reactive({
+    sliderything: 0,
+    modal: false,
+    toast: false,
+    scheme: 'auto'
+  })
 
-    const handleDialogOpen = () => {
-      state.modal = true
-    }
-
-    const handleDialogClose = () => {
-      state.modal = false
-    }
-
-    const handleToast = () => {
-      state.toast = true
-    }
-
-    return {
-      ...toRefs(state),
-      handleDialogOpen, 
-      handleDialogClose,
-      handleToast,
-      staticyThing
-    }
+  const handleDialogOpen = () => {
+    state.modal = true
   }
-}
+
+  const handleDialogClose = () => {
+    state.modal = false
+  }
+
+  const handleToast = () => {
+    state.toast = true
+  }
 </script>
 
 <style lang="scss">

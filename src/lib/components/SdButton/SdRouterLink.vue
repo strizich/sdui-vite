@@ -21,10 +21,11 @@
   </router-link>
 </template>
 
-<script>
+<script lang="ts">
 import SdButton from './SdButton.vue'
+import { defineComponent } from 'vue'
 
-export default {
+export default defineComponent({
   name: 'SdRouterLink',
   components: {
     SdButton
@@ -38,7 +39,7 @@ export default {
     theme: String,
     hash: Boolean
   }
-}
+})
 </script>
 
 <style lang="scss">

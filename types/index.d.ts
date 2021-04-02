@@ -71,6 +71,34 @@ declare module '@strizich/sdui' {
     }>;
 }
 
+  const useSlider: (props: any, emit: any) => {
+   state: ComputedRef<{
+     init: boolean;
+     computedX: 0;
+     x: number;
+     minX: number;
+     maxX: number;
+     dragStartX: number;
+     handleWidth: number;
+     handleHeight: number;
+     handleOffset: number;
+     unit: number;
+     pctComplete: number;
+     isHover: boolean;
+     isDragging: boolean;
+   }>;
+   slider: Ref<HTMLElement>;
+   handle: Ref<HTMLElement>;
+   result: ComputedRef<number>;
+   isFocused: ComputedRef<boolean>;
+  }
+
+  const useToaster: (currentToast: any, emit: any) => {
+    makeToast: (duration: any, persist: any) => Promise<void>;
+    promiseToast: (duration: any, persist: any) => Promise<void>;
+    destroyToast: () => Promise<any>
+  }
+
   const sdInstall: (app: any) => void
 
   export {
@@ -140,6 +168,8 @@ declare module '@strizich/sdui' {
     // Utility Hooks
     useKeyboardFocus,
     useWindowWidth,
-    useAlignment
+    useAlignment,
+    useToaster,
+    useSlider
   }
 }

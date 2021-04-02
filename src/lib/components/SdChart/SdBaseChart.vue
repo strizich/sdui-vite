@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { ref, onMounted } from 'vue'
 import SdUuid from '../../core/utilities/SdUuid'
 import Chart from 'chart.js'

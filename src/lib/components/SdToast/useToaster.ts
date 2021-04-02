@@ -1,4 +1,4 @@
-export const useToaster = (currentToast, emit) => {
+const useToaster = (currentToast, emit) => {
   let timeout = null
   const promiseToast = (duration, persist) => {
     return new Promise<void>(resolve => {
@@ -45,3 +45,5 @@ export const useToaster = (currentToast, emit) => {
 
   return { makeToast, promiseToast, destroyToast}
 }
+
+export default useToaster

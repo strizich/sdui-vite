@@ -16,7 +16,7 @@
 <script lang="ts">
 import { ref, computed, watchEffect, reactive, defineComponent} from 'vue'
 import { SdIcon } from '../..'
-import { useToaster } from './useToaster'
+import useToaster from './useToaster'
 export default defineComponent({
   name: 'SdToast',
   components: { SdIcon },
