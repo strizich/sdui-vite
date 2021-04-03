@@ -2,7 +2,7 @@
   <div class="sd--progress">
     <sd-label>{{label}}</sd-label>
     <div class="sd--progress__track">
-      <div :class="[computedClasses]" :style="[computedStyles]">
+      <div :class="['sd--progress__rail', computedClasses]" :style="[computedStyles]">
         <span>
           {{progressDisplay}}
         </span>
@@ -66,7 +66,6 @@ export default defineComponent({
       const theme = `sd--progress__rail--${props.theme}`
       return {
         [theme]: true,
-        'sd--progress__rail': true,
         'is--animated': props.animated
       }
     })
