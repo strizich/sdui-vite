@@ -5,12 +5,20 @@
     :disabled="portalDisabled"
   >
     <transition name="tooltip">
-      <div ref="tooltipRef" class="sd--tooltip" v-if="state.shouldRender">
+      <div
+        ref="tooltipRef"
+        class="sd--tooltip"
+        v-if="state.shouldRender"
+      >
         <div :class="['sd--tooltip__content', themeClass]">
           <div>
             <slot />
           </div>
-          <div v-if="showArrow" :class="['sd--tooltip__arrow', themeClass]" data-popper-arrow/>
+          <div
+            v-if="showArrow"
+            :class="['sd--tooltip__arrow', themeClass]"
+            data-popper-arrow
+          />
         </div>
       </div>
     </transition>
@@ -45,7 +53,10 @@ export default defineComponent({
       default: '#app'
     },
     active: Boolean,
-    theme: String,
+    theme: {
+      type: String,
+      default: ''
+    },
     // FUTURE: Update options obj with editable settings.
     delay: {
       type: [String, Number],

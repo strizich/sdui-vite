@@ -1,6 +1,9 @@
 <template>
-  <div class="sd--card__footer" :style="alignmentStyle">
-    <slot/>
+  <div
+    class="sd--card__footer"
+    :style="alignmentStyle"
+  >
+    <slot />
   </div>
 </template>
 

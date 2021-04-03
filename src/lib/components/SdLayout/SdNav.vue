@@ -1,6 +1,8 @@
 <template>
   <div class="sd--nav">
-    <sd-nav-heading v-if="title">{{title}}</sd-nav-heading>
+    <sd-nav-heading v-if="title">
+      {{ title }}
+    </sd-nav-heading>
     <slot />
   </div>
 </template>
@@ -12,7 +14,10 @@ import SdNavHeading from './SdNavHeading.vue'
 export default defineComponent({
   name: 'SdNav',
   props: {
-    title: String
+    title: {
+      type: String,
+      default: ''
+    }
   },
   components: { SdNavHeading }
 })

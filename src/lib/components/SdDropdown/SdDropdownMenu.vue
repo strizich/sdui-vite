@@ -1,7 +1,9 @@
 <template>
   <div class="sd--dropdown__menu">
-    <sd-dropdown-header v-if="title">{{title}}</sd-dropdown-header>
-    <slot/>
+    <sd-dropdown-header v-if="title">
+      {{ title }}
+    </sd-dropdown-header>
+    <slot />
   </div>
 </template>
 <script>
@@ -9,7 +11,10 @@ import SdDropdownHeader from './SdDropdownHeader.vue'
 export default {
   name: 'SdDropdownMenu',
   props: {
-    title: String
+    title: {
+      type: String,
+      default: ''
+    }
   },
   components: { SdDropdownHeader }
 }

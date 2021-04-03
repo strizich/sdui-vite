@@ -1,6 +1,9 @@
 <template>
   <transition name="sd-overlay">
-    <div :class="['sd--overlay', overlayClasses]" v-if="active" />
+    <div
+      :class="['sd--overlay', overlayClasses]"
+      v-if="active"
+    />
   </transition>
 </template>
 
@@ -10,7 +13,6 @@ import { computed, defineComponent } from 'vue'
 export default defineComponent({
   name: 'SdOverlay',
   props: {
-    parent: String,
     active: Boolean,
     fixed: Boolean,
     blur: Boolean,

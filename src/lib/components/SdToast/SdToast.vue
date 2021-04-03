@@ -1,12 +1,23 @@
 <template>
-  <teleport :to="portalTo" :disabled="portalDisabled">
+  <teleport
+    :to="portalTo"
+    :disabled="portalDisabled"
+  >
     <transition name="toast">
-      <div ref="currentToast" :class="['sd--toast', classes, 'sd--elevation--12']" v-if="active">
-        <button class="sd--toast__close" @click="() => handleClose()" v-if="dismissable">
-          <sd-icon name="close"/>
+      <div
+        ref="currentToast"
+        :class="['sd--toast', classes, 'sd--elevation--12']"
+        v-if="active"
+      >
+        <button
+          class="sd--toast__close"
+          @click="() => handleClose()"
+          v-if="dismissable"
+        >
+          <sd-icon name="close" />
         </button>
         <div class="sd--toast__content">
-          <slot/>
+          <slot />
         </div>
       </div>
     </transition>

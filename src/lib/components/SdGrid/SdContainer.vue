@@ -3,7 +3,10 @@ import { defineComponent, computed, h } from 'vue'
 export default defineComponent({
   name: 'SdContainer',
   props: {
-    break: String,
+    break: {
+      type: String,
+      default: undefined
+    },
     full: Boolean,
     article: Boolean
   },

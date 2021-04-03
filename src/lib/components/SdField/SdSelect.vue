@@ -1,6 +1,8 @@
 <template>
   <div :class="['sd--select', baseClasses]">
-    <sd-label v-if="label">{{label}}</sd-label>
+    <sd-label v-if="label">
+      {{ label }}
+    </sd-label>
     <div class="sd--select__content">
       <select
         :class="['sd--select__control', classes]"
@@ -12,7 +14,10 @@
       >
         <slot />
       </select>
-      <sd-icon name="arrow_drop_down" :class="['sd--select__indicator', classes]"/>
+      <sd-icon
+        name="arrow_drop_down"
+        :class="['sd--select__indicator', classes]"
+      />
     </div>
   </div>
 </template>
@@ -26,10 +31,19 @@ export default defineComponent({
   emits: ['update:modelValue', 'focus', 'blur', 'click', 'change'],
   components: { SdIcon, SdLabel },
   props: {
-    modelValue: [String, Object, Number],
-    label: String,
+    modelValue: {
+      type: [String, Object, Number],
+      default: ''
+    },
+    label: {
+      type: String,
+      default: ''
+    },
     block: Boolean,
-    value: String
+    value: {
+      type: String,
+      default: ''
+    }
   },
   setup (props, { emit }) {
     const state = reactive({

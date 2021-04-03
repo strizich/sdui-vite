@@ -67,7 +67,10 @@ export default defineComponent({
      * Only works with `block`. Aligns the button content.
      * @values start, end, center
     */
-    align:  String,
+    align:  {
+      type: String,
+      default: undefined
+    },
     /**
      * Disables the button
     */
@@ -78,16 +81,17 @@ export default defineComponent({
     /**
      * Sets an icon in the button
     */
-    icon: String,
-    /**
-     * Changes the icon type family between Material icons types.
-     * @values round, sharp, two-tone
-    */
-    iconFamily: String,
+    icon: {
+      type: String,
+      default: undefined
+    },
     /**
      * Sets the icon at the end of the button.
     */
-    iconEnd: String,
+    iconEnd:  {
+      type: String,
+      default: undefined
+    },
     /**
      * Use when there is no other content in the button other than an icon.
     */
@@ -96,7 +100,10 @@ export default defineComponent({
      *  Allows the button to link to external urls. Changes the root node to `a`
      * @values uppercase, captialize, lowercase
     */
-    casing: String,
+    casing: {
+      type: String,
+      default: undefined
+    },
     /**
      * Type of button. Changes the root elements to a `button` or `a` depending on context.
      * @values button, link
@@ -108,7 +115,10 @@ export default defineComponent({
     /**
      *  Allows the button to link to external urls. Changes the root node to `a`
     */
-    href: String,
+    href: {
+      type: String,
+      default: undefined
+    },
     /**
      *  Use by the SdRouterLink component
      * @ignore

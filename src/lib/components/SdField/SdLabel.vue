@@ -1,7 +1,10 @@
 <template>
   <label :class="[computedClasses]">
     <slot />
-    <span class="sd--label--required" v-if="required">*</span>
+    <span
+      class="sd--label--required"
+      v-if="required"
+    >*</span>
   </label>
 </template>
 

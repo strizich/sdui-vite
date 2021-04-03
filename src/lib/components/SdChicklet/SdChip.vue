@@ -8,40 +8,50 @@
       @keyup.enter="handleEnter"
       @keydown.delete="handleBackspace"
       @blur="handleBlur"
-      v-model="state.inputVal"
+      v-model="state.value"
     >
-    <template #addon>
-      <transition-group name="fade">
-        <sd-chicklet
-          :theme="state.duplicatedChip === chip ? 'danger' : theme"
-          @click="removeChip(chip)"
-          dismissable
-           v-for="(chip, index) in state.chipList"
-          :key="index"
-        >
-          {{chip}}
-        </sd-chicklet>
-      </transition-group>
-    </template>
+      <template #addon>
+        <transition-group name="fade">
+          <sd-chicklet
+            :theme="state.duplicatedChip === chip ? 'danger' : theme"
+            @click="removeChip(chip)"
+            dismissable
+            v-for="(chip, index) in state.chipList"
+            :key="index"
+          >
+            {{ chip }}
+          </sd-chicklet>
+        </transition-group>
+      </template>
     </sd-field>
   </div>
 </template>
 
-<script>
-import { defineComponent, reactive, computed, watch, ref, nextTick, watchEffect } from 'vue'
+<script lang="ts">
+import { defineComponent, reactive, computed, watch, ref, nextTick, watchEffect, PropType } from 'vue'
 import { SdChicklet, SdField } from '../..'
+import deepIndexOf from '../../core/utilities/DeepIndexOf'
 
 export default defineComponent({
   name: 'SdChip',
   components: { SdChicklet, SdField },
   props: {
-    label: String,
-    placeholder: String,
+    label: {
+      type: String,
+      default: ''
+    },
+    placeholder: {
+      type: String,
+      default: ''
+    },
     theme: {
       type: String,
       default: 'primary'
     },
-    error: [Boolean, String],
+    error: {
+      type: String,
+      default: ''
+    },
     uppercase: Boolean,
     lowercase: Boolean,
     captialize: Boolean,
@@ -49,30 +59,41 @@ export default defineComponent({
       type: Boolean,
       default: true
     },
-    modelValue: Array
+    modelValue: {
+      type: Array as PropType<string[] | number[]>,
+      default: () => []
+    }
   },
   emits: ['update:modelValue', 'delete', 'inset'],
   setup (props, { emit }) {
     const inputRef = ref(null)
 
-    const state = reactive({
-      inputVal: '',
+    const state = reactive<{
+      value: string;
+      chipList: unknown[];
+      duplicatedChip: string | null,
+      focusInput: boolean | null
+    }>({
+      value: '',
       chipList: [],
       duplicatedChip: null,
       focusInput: null
     })
 
-    const handleEnter = (e) => {
-      if (!state.duplicatedChip && state.inputVal) {
-        state.chipList.push(formattedInputVal.value)
-        state.inputVal = ''
+    const handleEnter = () => {
+      if (!state.duplicatedChip && state.value) {
+        state.chipList = [
+          ...state.chipList,
+          formattedInputVal.value
+        ]
+        state.value = ''
         emit('update:modelValue', state.chipList)
         emit('inset', state.chipList)
       }
     }
 
     const removeChip = (chip) => {
-      const index = props.modelValue.indexOf(chip)
+      const index = deepIndexOf(props.modelValue, chip)
       state.chipList.splice(index, 1)
       emit('update:modelValue', state.chipList)
       emit('delete', chip, index)
@@ -89,15 +110,15 @@ export default defineComponent({
 
     const formattedInputVal = computed(() => {
       if (props.captialize) {
-        return state.inputVal.charAt(0).toUpperCase() + state.inputVal.slice(1)
+        return state.value.charAt(0).toUpperCase() + state.value.slice(1)
       }
       if (props.uppercase) {
-        return state.inputVal.toUpperCase()
+        return state.value.toUpperCase()
       }
       if (props.lowercase) {
-        return state.inputVal.toLowerCase()
+        return state.value.toLowerCase()
       }
-      return state.inputVal
+      return state.value
     })
 
     const checkDuplicate = () => {
@@ -112,12 +133,12 @@ export default defineComponent({
     }
 
     const handleBackspace = () => {
-      if (!state.inputVal) {
+      if (!state.value) {
         removeChip(state.chipList[props.modelValue.length - 1])
       }
     }
 
-    watch(() => state.inputVal, () => {
+    watch(() => state.value, () => {
       checkDuplicate()
     })
 
