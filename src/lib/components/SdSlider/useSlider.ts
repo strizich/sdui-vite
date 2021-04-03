@@ -39,26 +39,23 @@ const useSlider = (props, emit) => {
     state.pctComplete = pctComplete(state.x, state.maxX)
   }
 
-  // Decrease the value by a unit
   const handleIncrementDown = () => {
     state.x = state.computedX - state.unit
     state.pctComplete = pctComplete(state.x, state.maxX)
   }
 
-  // Increase the value to the upper boundry (clientWith / maxX)
   const handleIncrementMax = () => {
     state.x = state.maxX
     state.pctComplete = 1
   }
 
-  // Decrease the value to the lower boundry (0)
   const handleIncrementMin = () => {
     state.x = 0
     state.pctComplete = 0
   }
 
   // --- Keyboard Events --- //
-  const onKeydown = e => {
+  const onKeydown = (e: KeyboardEvent) => {
     // `e.preventDefault()` is called in each case so that it does not block other keys. Eg. `Tab`
     switch (e.key) {
       case 'ArrowLeft':
@@ -96,13 +93,7 @@ const useSlider = (props, emit) => {
   }
 
   // --- Mouse / Touch Handlers --- //
-  const handleMove = e => {
-    const { clientX } = e
-    state.x = Math.max(0, Math.min(clientX - state.dragStartX, state.maxX))
-    state.pctComplete = pctComplete(state.x, state.maxX)
-  }
-
-  const handleStart = e => {
+  const handleStart = (e) => {
     const { clientX } = e
     const clickX = Math.round((clientX - state.handleOffset))
     state.x = Math.max(0, Math.min(clickX, state.maxX))
@@ -111,26 +102,27 @@ const useSlider = (props, emit) => {
     state.isDragging = true
   }
 
+  const handleMove = (e) => {
+    const { clientX } = e
+    state.x = Math.max(0, Math.min(clientX - state.dragStartX, state.maxX))
+    state.pctComplete = pctComplete(state.x, state.maxX)
+  }
+
   const handleEnd = e => {
     state.isDragging = false
     state.dragStartX = 0
   }
 
   // --- Mouse Events --- //
-  const onMouseWheel = e => {
-    e.preventDefault()
-    handleMouseWheel(e)
+  const onMouseDown = e => {
+    handleStart(e)
+    document.addEventListener('mouseup', onMouseUp, { passive: true })
+    document.addEventListener('mousemove', onMouseMove, { passive: false })
   }
 
   const onMouseMove = e => {
     e.preventDefault()
     handleMove(e)
-  }
-
-  const onMouseDown = e => {
-    handleStart(e)
-    document.addEventListener('mouseup', onMouseUp, { passive: true })
-    document.addEventListener('mousemove', onMouseMove, { passive: false })
   }
 
   const onMouseUp = e => {
@@ -140,7 +132,12 @@ const useSlider = (props, emit) => {
     document.removeEventListener('mousedown', onMouseDown)
   }
 
-  // --- Touch Events---
+  const onMouseWheel = e => {
+    e.preventDefault()
+    handleMouseWheel(e)
+  }
+
+  // --- Touch Events--- //
   const onTouchMove = e => {
     e.preventDefault()
     handleMove(e.touches[0])
@@ -203,7 +200,6 @@ const useSlider = (props, emit) => {
 
       slider.value.addEventListener('touchstart', onTouchStart, { passive: true })
       slider.value.addEventListener('mousedown', onMouseDown)
-
       slider.value.addEventListener('mouseenter', handleHover, { passive: true })
       slider.value.addEventListener('mouseleave', handleHover, { passive: true })
 

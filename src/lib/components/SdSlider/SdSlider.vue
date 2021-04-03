@@ -30,7 +30,6 @@
             portal-disabled
             :active="isDragging || isFocused"
             :autoOpen="false"
-            :show-arrow="false"
             :offset="[0, 8]"
             v-if="showTooltip"
           >
@@ -54,14 +53,8 @@
 
 <script lang="ts">
 // Math to calculate required values
-import {
-  defineComponent,
-  computed,
-} from 'vue'
-
-import {
-  minMax,
-} from './SdSliderFoundation'
+import { defineComponent, computed } from 'vue'
+import { minMax } from './SdSliderFoundation'
 import useSlider from './useSlider'
 import SdLabel from '../SdField/SdLabel.vue'
 import SdTooltip from '../SdTooltip/SdTooltip.vue'

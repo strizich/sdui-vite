@@ -41,21 +41,24 @@ export default defineComponent({
       type: Number,
       default: 0
     },
+    showSteps: Boolean,
     animated: Boolean
   },
   setup (props) {
     const progressDisplay = computed(() => {
-      if (props.progress) {
-        return roundTo(props.progress * 100, props.decimalPlaces) + '%'
+      if (props.current && props.total && props.showSteps) {
+        return `${props.current} / ${props.total}`
+      } else {
+        return barWidth.value
       }
+    })
+
+    const barWidth = computed(() => {
       if (props.current && props.total) {
-        return roundTo(props.current / props.total * 100, props.decimalPlaces) + '%'
+        return roundTo(props.current / props.total * 100, props.decimalPlaces)
       }
-      if (props.current && !props.total) {
-        return 'Total is required with value'
-      }
-      if (props.total && props.current && props.progress) {
-        return 'Cannot do both. Pick Progress or Total/Current'
+      if (props.progress) {
+        return roundTo(props.progress * 100, props.decimalPlaces)
       }
     })
 
@@ -70,9 +73,10 @@ export default defineComponent({
 
     const computedStyles = computed(() => {
       return {
-        width: progressDisplay.value,
+        width: barWidth.value > 0 ? barWidth.value + '%' : '0%',
+        minWidth: '1%',
         maxWidth: '100%',
-        transition: props.animated ? 'width .23s ease-in-out' : 'unset'
+        transition: props.animated ? 'width .5s ease-in-out' : 'unset'
       }
     })
 
@@ -117,7 +121,7 @@ export default defineComponent({
           color: sd-color($contrast, text);
           &.is--animated{
             &:after{
-              animation: shimmer 10s infinite;
+              animation: shimmer 4s infinite;
               animation-timing-function: ease-out;
             }
           }

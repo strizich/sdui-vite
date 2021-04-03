@@ -27,14 +27,16 @@
           <sd-button theme="dark" @click="handleDialogClose()">Close</sd-button>
         </sd-dialog-footer>
       </sd-dialog>
-      <sd-progress :total="100" :current="90" animated/>
+      <sd-progress :total="4" :current="state.sliderything" show-steps animated/>
       <sd-progress :progress="0.96"/>
       <sd-field v-model.number="state.sliderything"/>
       <sd-slider
         :min="0"
-        :max="100"
+        :max="4"
+        :step="1"
         v-model="state.sliderything"
         show-tooltip
+        show-ticks
         show-indicators
         use-wheel
       />
@@ -48,8 +50,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { reactive, toRefs } from 'vue'
-  const staticyThing = ['one', 'two', 'three']
+  import { reactive } from 'vue'
 
   const state = reactive({
     sliderything: 0,
