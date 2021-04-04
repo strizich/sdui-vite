@@ -48,13 +48,13 @@ export default defineComponent({
       margin: 0 auto;
       padding: 0 32px;
     }
-    &--#{$size}{
-      max-width: $value;
-      margin: 0 auto;
-    }
   }
   &--full {
     max-width: 100%;
+    padding: 0 32px;
+    @include breakpoint-down('sm') {
+      padding: 0 24px;
+    }
   }
   @include breakpoint-down('sm') {
     padding: 0 24px;

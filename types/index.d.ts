@@ -50,11 +50,14 @@ declare module '@strizich/sdui' {
   // UI
   const SdSheet: ReturnType<typeof defineComponent>
   const SdMast: ReturnType<typeof defineComponent>
+  const SdActionBar: ReturnType<typeof defineComponent>
+
   // Toaster
   const SdToast: ReturnType<typeof defineComponent>
   // WIP
   const SdList: ReturnType<typeof defineComponent>
   const SdListItem: ReturnType<typeof defineComponent>
+
 
   // Installation
   const useKeyboardFocus: ($el: any) => ComputedRef<boolean>
@@ -156,6 +159,7 @@ declare module '@strizich/sdui' {
     // UI
     SdSheet,
     SdMast,
+    SdActionBar,
     // Toaster
     SdToast,
     // WIP
