@@ -186,7 +186,6 @@ export default defineComponent({
         [
           props.icon && h(SdIcon, {
             name: props.icon,
-            family: props.iconFamily,
             size: props.size
           }),
           !props.iconOnly && h('div',
@@ -197,7 +196,6 @@ export default defineComponent({
           ),
           props.iconEnd && h(SdIcon, {
             name: props.iconEnd,
-            family: props.iconFamily,
             size: props.size
           })
         ]
