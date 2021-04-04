@@ -31,12 +31,18 @@ export default defineComponent({
     SdButton
   },
   props: {
-    to: String,
+    to: {
+      type: String,
+      default: undefined
+    },
     flat: Boolean,
     outline: Boolean,
     pill: Boolean,
     disabled: Boolean,
-    theme: String,
+    theme: {
+      type: String,
+      default: undefined
+    },
     hash: Boolean
   }
 })

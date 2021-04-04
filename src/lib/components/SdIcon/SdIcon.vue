@@ -1,7 +1,10 @@
 <template>
-  <i :class="['sd--icon', iconClasses]" :style="{'color': color}">
-    {{name}}
-    <slot/>
+  <i
+    :class="['sd--icon', iconClasses]"
+    :style="{'color': color}"
+  >
+    {{ name }}
+    <slot />
   </i>
 </template>
 
@@ -19,7 +22,8 @@ export default defineComponent({
       default: 'md'
     },
     color: {
-      type: String
+      type: String,
+      default: ''
     }
   },
   setup (props) {

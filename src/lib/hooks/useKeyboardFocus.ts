@@ -14,7 +14,9 @@ const useKeyboardFocus = ($el) => {
         }
       })
       window.addEventListener('ghost', opts)
-    } catch (e) {}
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   const setKeyboardInteraction = ({ target }): void => {
@@ -69,6 +71,8 @@ const useKeyboardFocus = ($el) => {
     // For some reason this resolves to true while the app is mounting. Checking if all of the values are available appears to fix this.
     if ($el.value && currentElement.value) {
       return $el.value === currentElement.value
+    } else {
+      return false
     }
   })
 

@@ -1,6 +1,6 @@
 <template>
   <div class="sd--dropdown__header">
-      <slot/>
+    <slot />
   </div>
 </template>
 <script>

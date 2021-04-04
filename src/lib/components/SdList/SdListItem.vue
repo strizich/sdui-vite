@@ -1,7 +1,7 @@
 <template>
   <li :class="['sd--list__item', classes]">
-    <slot name="default"/>
-    <slot name="expandable"/>
+    <slot name="default" />
+    <slot name="expandable" />
   </li>
 </template>
 

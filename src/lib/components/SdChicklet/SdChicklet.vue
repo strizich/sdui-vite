@@ -1,10 +1,18 @@
 <template>
   <div :class="['sd--chicklet', classes]">
-    <sd-icon v-if="icon" :name="icon" size="sm"/>
+    <sd-icon
+      v-if="icon"
+      :name="icon"
+      size="sm"
+    />
     <span class="sd--chicklet__content">
-      <slot/>
+      <slot />
     </span>
-    <sd-icon v-if="dismissable" name="close" size="sm"/>
+    <sd-icon
+      v-if="dismissable"
+      name="close"
+      size="sm"
+    />
   </div>
 </template>
 
@@ -15,7 +23,10 @@ export default defineComponent({
   name: 'SdChicklet',
   components: { SdIcon },
   props: {
-    icon: String,
+    icon: {
+      type: String,
+      default: ''
+    },
     theme: {
       type: String,
       default: 'primary'

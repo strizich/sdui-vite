@@ -1,20 +1,26 @@
 <template>
   <div class="sd--layout">
     <div class="sd--layout__header">
-      <slot name="header"/>
+      <slot name="header" />
     </div>
     <div :class="['sd--layout__body', layoutClasses]">
       <!-- FUTURE: Disable transition on mobile and set body to fixed when floating-->
-        <transition name="sidebar" @leave="afterLeave">
-          <div :class="['sd--layout__sidebar', sidebarClasses]" :style="handleTabIndex">
-            <slot name="sidebar"/>
-          </div>
-        </transition>
-        <div class="sd--layout__content">
-          <slot name="subheader" />
-          <slot name="content" />
-          <slot name="footer" />
+      <transition
+        name="sidebar"
+        @leave="afterLeave"
+      >
+        <div
+          :class="['sd--layout__sidebar', sidebarClasses]"
+          :style="handleTabIndex"
+        >
+          <slot name="sidebar" />
         </div>
+      </transition>
+      <div class="sd--layout__content">
+        <slot name="subheader" />
+        <slot name="content" />
+        <slot name="footer" />
+      </div>
     </div>
     <transition name="overlay-fade">
       <sd-overlay
@@ -27,7 +33,7 @@
 </template>
 
 <script lang="ts">
-import { reactive, toRef, toRefs, computed, watch, nextTick, onMounted, defineComponent } from 'vue'
+import { reactive, toRef, toRefs, computed, watch, nextTick, defineComponent } from 'vue'
 import SdOverlay from '../SdDialog/SdOverlay.vue'
 import useScheme from '../../hooks/useScheme'
 
@@ -35,7 +41,10 @@ export default defineComponent({
   name: 'SdLayout',
   // may be able to use provide/inject to handing the excessive prop casting.
   props: {
-    scheme: String,
+    scheme: {
+      type: String,
+      default: 'auto'
+    },
     sidebar: Boolean,
     floating: Boolean,
     overlay: Boolean,
@@ -80,7 +89,7 @@ export default defineComponent({
       return state.shouldSkip ? { visibility: 'hidden' } : null
     }
 
-    watch(() => [props.sidebar, props.floating], ([sidebarVal, floatVal]) => {
+    watch(() => [props.sidebar, props.floating], () => {
       const animationTiming = 200 // ms
       setTimeout(() => {
         nextTick().then(() => {

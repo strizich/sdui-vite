@@ -1,6 +1,9 @@
 <template>
-  <div :class="[breakpointClasses]" :style="{order}">
-    <slot/>
+  <div
+    :class="[breakpointClasses]"
+    :style="{order}"
+  >
+    <slot />
   </div>
 </template>
 
@@ -9,12 +12,30 @@ import { computed, defineComponent } from 'vue'
 export default defineComponent({
   name: 'SdCol',
   props: {
-    xs: [Number, String],
-    sm: [Number, String],
-    md: [Number, String],
-    lg: [Number, String],
-    xl: [Number, String],
-    order: Number
+    xs: {
+      type: [Number, String],
+      default: undefined
+    },
+    sm: {
+      type: [Number, String],
+      default: undefined
+    },
+    md: {
+      type: [Number, String],
+      default: undefined
+    },
+    lg: {
+      type: [Number, String],
+      default: undefined
+    },
+    xl: {
+      type: [Number, String],
+      default: undefined
+    },
+    order: {
+      type: [Number, String],
+      default: undefined
+    }
   },
   setup (props) {
     const breakpointClasses = computed(() => {

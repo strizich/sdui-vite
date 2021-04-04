@@ -1,8 +1,12 @@
 <template>
   <div class="sd--mast">
     <div class="sd--mast__content">
-      <p class="sd--text__caption">{{subtitle}}</p>
-      <h1 class="sd--text__headline">{{title}}</h1>
+      <p class="sd--text__caption">
+        {{ subtitle }}
+      </p>
+      <h1 class="sd--text__headline">
+        {{ title }}
+      </h1>
       <slot />
     </div>
   </div>
@@ -14,9 +18,18 @@ import { defineComponent } from "@vue/runtime-core"
 export default defineComponent({
   name: 'SdMast',
   props: {
-    alignment: String,
-    title: String,
-    subtitle: String,
+    alignment: {
+      type: String,
+      default: ''
+    },
+    title: {
+      type: String,
+      default: ''
+    },
+    subtitle: {
+      type: String,
+      default: ''
+    },
   }
 })
 </script>

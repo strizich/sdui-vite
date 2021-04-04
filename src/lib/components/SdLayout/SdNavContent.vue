@@ -1,6 +1,12 @@
 <template>
-  <a :href="href" :class="[linkClasses]" >
-    <sd-icon :name="icon" v-if="icon"/>
+  <a
+    :href="href"
+    :class="[linkClasses]"
+  >
+    <sd-icon
+      :name="icon"
+      v-if="icon"
+    />
     <span class="sd--nav__content">
       <slot />
     </span>
@@ -14,11 +20,17 @@ export default defineComponent({
   name: 'SdNavContent',
   components: { SdIcon },
   props: {
-    href: String,
+    href: {
+      type: String,
+      default: ''
+    },
     active: Boolean,
     exactActive: Boolean,
     secondary: Boolean,
-    icon: String
+    icon: {
+      type: String,
+      default: ''
+    }
   },
   setup (props) {
     const linkClasses = computed(() => {

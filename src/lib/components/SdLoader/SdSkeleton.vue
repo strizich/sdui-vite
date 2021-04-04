@@ -1,8 +1,8 @@
 <template>
   <span
     class="sd--text__skeleton"
-    :style="[computedStyles]">
-  </span>
+    :style="[computedStyles]"
+  />
 </template>
 
 <script lang="ts">

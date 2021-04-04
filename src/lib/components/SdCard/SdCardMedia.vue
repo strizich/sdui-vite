@@ -1,17 +1,18 @@
 <template>
   <div :class="['sd--card__media', mediaClasses, mediaSize]">
-    <slot/>
+    <slot />
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive } from 'vue'
+import { computed, defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'SdCardMedia',
   props: {
     ratio: {
       type: String,
+      default: '1x1',
       validator: (value: string) => {
         return [
           '16-9',
@@ -42,10 +43,6 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const state = reactive({
-      color: 'red'
-    })
-
     const getRatioFormat = (divider) => {
       return props.ratio.indexOf(divider) !== -1
     }

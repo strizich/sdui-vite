@@ -1,6 +1,9 @@
 <template>
-  <div :class="['sd--row', classes]" :style="{alignItems, justifyContent}">
-    <slot/>
+  <div
+    :class="['sd--row', classes]"
+    :style="{alignItems, justifyContent}"
+  >
+    <slot />
   </div>
 </template>
 
@@ -11,8 +14,14 @@ export default defineComponent({
   props: {
     dense: Boolean,
     gutterless: Boolean,
-    alignItems: String,
-    justifyContent: String
+    alignItems: {
+      type: String,
+      default: undefined
+    },
+    justifyContent: {
+      type: String,
+      default: undefined
+    }
   },
   setup (props) {
     const classes = computed(() => {

@@ -1,5 +1,8 @@
 <template>
-  <teleport :to="portalTo" :disabled="portalDisabled">
+  <teleport
+    :to="portalTo"
+    :disabled="portalDisabled"
+  >
     <transition name="dialog">
       <div
         class="sd--dialog"
@@ -9,21 +12,21 @@
           :class="['sd--dialog__wrapper','elevation--6', classes ]"
           @keydown.esc="onEsc"
           ref="modalContainer"
-          >
+        >
           <div class="sd--dialog__container">
             <slot />
           </div>
         </div>
-      <sd-overlay
-        fixed
-        :parent="`#${id}`"
-        :class="backdropClass"
-        :active="active"
-        :blur="backdropBlur"
-        @click="onOutsideClick"
-        v-if="backdrop && active"
-      />
-    </div>
+        <sd-overlay
+          fixed
+          :parent="`#${id}`"
+          :class="backdropClass"
+          :active="active"
+          :blur="backdropBlur"
+          @click="onOutsideClick"
+          v-if="backdrop && active"
+        />
+      </div>
     </transition>
   </teleport>
 </template>

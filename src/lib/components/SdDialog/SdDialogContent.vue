@@ -1,6 +1,6 @@
 <template>
   <div class="sd--dialog__content">
-    <slot/>
+    <slot />
   </div>
 </template>
 

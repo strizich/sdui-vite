@@ -1,12 +1,18 @@
 <template>
   <!-- Should maybe rename this component... -->
   <div :class="['sd--fieldset', classes]">
-    <div class="sd--fieldset__header" v-if="title">
+    <div
+      class="sd--fieldset__header"
+      v-if="title"
+    >
       <sd-label :inline="inlineLabel">
-        <span>{{title}}</span>
+        <span>{{ title }}</span>
         <span v-if="tip">
-          <sd-icon name="info" size="xs"/>
-          <sd-tooltip :placement="tipPlacement">{{tip}}</sd-tooltip>
+          <sd-icon
+            name="info"
+            size="xs"
+          />
+          <sd-tooltip :placement="tipPlacement">{{ tip }}</sd-tooltip>
         </span>
       </sd-label>
     </div>
@@ -25,11 +31,17 @@ export default defineComponent({
   name: 'SdFieldset',
   components: { SdTooltip, SdIcon, SdLabel },
   props: {
-    title: String,
+    title: {
+      type: String,
+      default: ''
+    },
     stack: Boolean,
     inlineLabel: Boolean,
     inline: Boolean,
-    tip: String,
+    tip: {
+      type: String,
+      default: ''
+    },
     tipPlacement: {
       type: String,
       default: 'top'

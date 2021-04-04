@@ -1,10 +1,23 @@
 <template>
   <div class="sd--card__header">
-    <div :class="['sd--card__header-group', classes]" v-if="title || subtitle">
-      <h3 class="sd--text__header" v-if="title">{{ title }}</h3>
-      <p class="sd--text__caption" v-if="subtitle">{{ subtitle }}</p>
+    <div
+      :class="['sd--card__header-group', classes]"
+      v-if="title || subtitle"
+    >
+      <h3
+        class="sd--text__header"
+        v-if="title"
+      >
+        {{ title }}
+      </h3>
+      <p
+        class="sd--text__caption"
+        v-if="subtitle"
+      >
+        {{ subtitle }}
+      </p>
     </div>
-    <slot/>
+    <slot />
   </div>
 </template>
 
@@ -14,8 +27,14 @@ import { defineComponent, computed} from 'vue'
 export default defineComponent({
   name: 'SdCardHeader',
   props: {
-    title: String,
-    subtitle: String,
+    title: {
+      type: String,
+      default: undefined
+    },
+    subtitle: {
+      type: String,
+      default: undefined
+    },
     inline: Boolean
   },
   setup (props) {

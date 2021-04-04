@@ -1,15 +1,30 @@
 <template>
   <div class="sd--slider">
-    <sd-label v-if="label">{{label}}</sd-label>
-    <slot name="label"/>
+    <sd-label v-if="label">
+      {{ label }}
+    </sd-label>
+    <slot name="label" />
     <div class="sd--slider__container">
-      <div class="sd--slider__min" v-if="showIndicators">
-        {{min}}
+      <div
+        class="sd--slider__min"
+        v-if="showIndicators"
+      >
+        {{ min }}
       </div>
-      <div class="sd--slider__content" ref="slider">
+      <div
+        class="sd--slider__content"
+        ref="slider"
+      >
         <div class="sd--slider__track-container">
-          <div class="sd--slider__ticks" v-if="showTicks">
-            <div class="sd--slider__tick" v-for="n in tickCount" :key="n"/>
+          <div
+            class="sd--slider__ticks"
+            v-if="showTicks"
+          >
+            <div
+              class="sd--slider__tick"
+              v-for="n in tickCount"
+              :key="n"
+            />
           </div>
           <div
             class="sd--slider__track"
@@ -22,33 +37,50 @@
           tabindex="0"
           :style="thumbStyle"
         >
-          <svg class="sd--slider__thumb" width="24" height="24">
-            <circle cx="12" cy="12" r="12"/>
+          <svg
+            class="sd--slider__thumb"
+            width="24"
+            height="24"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="12"
+            />
           </svg>
           <sd-tooltip
             ref="ttip"
             portal-disabled
             :active="isDragging || isFocused"
-            :autoOpen="false"
+            :auto-open="false"
             :show-arrow="false"
             :offset="[0, 8]"
             v-if="showTooltip"
           >
             <div class="sd--center sd--big">
-              {{result}}
+              {{ result }}
             </div>
           </sd-tooltip>
           <transition name="dragging">
-            <div class="sd--slider__pulse" v-if="isDragging || isFocused"></div>
+            <div
+              class="sd--slider__pulse"
+              v-if="isDragging || isFocused"
+            />
           </transition>
         </div>
       </div>
-      <div class="sd--slider__max" v-if="showIndicators">
-        {{max}}
+      <div
+        class="sd--slider__max"
+        v-if="showIndicators"
+      >
+        {{ max }}
       </div>
     </div>
-    <small v-if="hint" class="sd--text__footnote">{{hint}}</small>
-    <slot name="hint"/>
+    <small
+      v-if="hint"
+      class="sd--text__footnote"
+    >{{ hint }}</small>
+    <slot name="hint" />
   </div>
 </template>
 
@@ -74,7 +106,8 @@ export default defineComponent({
   },
   props: {
     label: {
-      type: String
+      type: String,
+      default: ''
     },
     modelValue: {
       type: Number,
@@ -105,7 +138,8 @@ export default defineComponent({
       type: Boolean
     },
     hint: {
-      type: String
+      type: String,
+      default: ''
     }
   },
   emits: ['update:modelValue'],

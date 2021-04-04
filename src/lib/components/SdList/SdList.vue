@@ -1,16 +1,14 @@
 <template>
   <ul class="sd--list">
-    <slot/>
+    <slot />
   </ul>
 </template>
 
-<script>
-export default {
-  name: 'SdList',
-  setup (props) {
-
-  }
-}
+<script lang="ts">
+import { defineComponent } from 'vue'
+export default defineComponent({
+  name: 'SdList'
+})
 </script>
 
 <style lang="scss">
