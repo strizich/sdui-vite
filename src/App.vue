@@ -47,6 +47,78 @@
               </sd-fieldset>
             </template>
           </sd-action-bar>
+          <sd-row dense>
+            <sd-col
+              :sm="6"
+              :md="4" 
+              :lg="3"
+              :xl="2"
+            >
+              <sd-widget
+                caption="Widget caption"
+                footnote="Widget footnote"
+                theme="primary"
+              />
+            </sd-col>
+            <sd-col
+              :sm="6"
+              :md="4" 
+              :lg="3"
+              :xl="2"
+            >
+              <sd-widget
+                caption="Widget caption"
+                footnote="Widget footnote"
+                theme="danger"
+              />
+            </sd-col>
+            <sd-col
+              :sm="6"
+              :md="4" 
+              :lg="3"
+              :xl="2"
+            >
+              <sd-widget
+                caption="Widget caption"
+                theme="warning"
+              />
+            </sd-col>
+            <sd-col
+              :sm="6"
+              :md="4" 
+              :lg="3"
+              :xl="2"
+            >
+              <sd-widget
+                caption="Widget caption"
+                footnote="Widget footnote"
+                theme="success"
+              />
+            </sd-col>
+            <sd-col
+              :sm="6"
+              :md="4" 
+              :lg="3"
+              :xl="2"
+            >
+              <sd-widget
+                caption="Widget caption"
+                footnote="Widget footnote"
+                theme="dark"
+              />
+            </sd-col>
+            <sd-col
+              :sm="6"
+              :md="4" 
+              :lg="3"
+              :xl="2"
+            >
+              <sd-widget
+                caption="Widget caption"
+                theme="secondary"
+              />
+            </sd-col>
+          </sd-row>
         </sd-container>
         <sd-checkbox v-model="state.toast">
           Toast
@@ -86,9 +158,11 @@
   import { reactive, defineComponent } from 'vue'
 import SdActionBar from './lib/components/SdActionBar/SdActionBar.vue'
 import SdFieldset from './lib/components/SdField/SdFieldset.vue'
+import SdRow from './lib/components/SdGrid/SdRow.vue'
+import SdWidget from './lib/components/SdWidget/SdWidget.vue'
   
   export default defineComponent({
-  components: { SdActionBar, SdFieldset },
+  components: { SdActionBar, SdFieldset, SdWidget, SdRow },
   name: 'App',
   setup () {
     const state = reactive({
