@@ -75,7 +75,10 @@
                 theme="primary"
                 clickable
               >
-                <sd-widget-metric value="51" />
+                <sd-widget-metric
+                  value="51"
+                  note="components"
+                />
                 <sd-widget-footer
                   caption="Widget caption"
                   footnote="Widget footnote"

@@ -1,6 +1,18 @@
 <template>
   <div class="sd--widget-metric">
-    {{ value }}
+    <span
+      class="sd--widget-metric__value" 
+      v-if="value"
+    >
+      {{ value }}
+    </span>
+    <span 
+      class="sd--widget-metric__note"
+      v-if="note"  
+    >
+      {{ note }}
+    </span>
+    <slot />
   </div>
 </template>
 
@@ -12,19 +24,28 @@ export default defineComponent({
   props: {
     value: {
       type: [String, Number],
-      default: '0'
+      default: undefined
+    },
+    note: {
+    type: String,
+      default: undefined
     }
-  },
-  setup () {
-    return {}
   }
 })
 </script>
 
 <style lang="scss">
   .sd--widget-metric {
-    font-size: 50px;
     flex-grow: 1;
     margin: 16px;
+    &__value{
+      font-size: 50px;
+
+    }
+    &__note{
+      margin-left: 8px;
+      font-size: 16px;
+      opacity: .86;
+    }
   }
 </style>
