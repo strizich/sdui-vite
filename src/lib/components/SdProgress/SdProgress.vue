@@ -33,11 +33,11 @@ export default defineComponent({
   props: {
     label: {
       type: String,
-      default: ''
+      default: undefined
     },
     hint: {
       type: String,
-      default: ''
+      default: undefined
     },
     total: {
       type: Number,
