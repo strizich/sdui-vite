@@ -3,18 +3,7 @@
 <template>
   <div class="sd--widget">
     <div :class="['sd--widget__content', classes]">
-      <slot name="default" />
-      <div class="sd--widget__metric">
-        <span>500</span>
-      </div>
-      <div class="sd--widget__footer">
-        <div class="sd--text__caption">
-          {{ caption }}
-        </div>
-        <div class="sd--text__footnote">
-          {{ footnote }}
-        </div>
-      </div>
+      <slot />
     </div>
   </div>
 </template>
@@ -23,12 +12,17 @@
 import { computed, defineComponent } from 'vue'
 
 export default defineComponent({
+  name:'SdWidget',
   props: {
     metric: {
       type: String,
       default: undefined
     },
-    caption: {
+    theme: {
+      type: String,
+      default: undefined
+    },
+      caption: {
       type: String,
       default: undefined
     },
@@ -36,16 +30,17 @@ export default defineComponent({
       type: String,
       default: undefined
     },
-    theme: {
-      type: String,
-      default: undefined
+    clickable: {
+      type: Boolean,
+      default: true
     }
   },
   setup (props) {
     const classes = computed(() => {
       const themeClass = `sd--widget__content--${props.theme}`
       return {
-        [themeClass]: !!props.theme
+        [themeClass]: !!props.theme,
+        'is--clickable': props.clickable
       }
     })
     return {
@@ -63,10 +58,12 @@ export default defineComponent({
   height: 100%;
   display:flex;
   flex-direction: column;
+
   &__content{
-    padding: 16px;
     margin-bottom: 16px;
     flex-grow: 2;
+    display: flex;
+    flex-direction: column;
     background-color: var(--background-accent);
     @each $state, $color in colors.$sd-color-global {
       &--#{$state} {
@@ -75,13 +72,25 @@ export default defineComponent({
         .sd--text__footnote, .sd--text__caption{
           color: var(--#{$state}-text);
         }
+        &.is {
+          &--clickable {
+            transition: background-color .23s ease-in-out;
+            &:hover {
+              cursor: pointer;
+              background-color: var(--#{$state}-accent);
+            }
+          }
+        }
       }
     }
-  }
-  &__metric{
-    font-size: 50px;
-    flex-grow: 2;
-    margin: 16px 0;
+    .is{
+      &--clickable{
+        &:hover{
+          cursor: pointer;
+          background-color: var(--background);
+        }
+      }
+    }
   }
 }
 </style>
