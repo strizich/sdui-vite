@@ -40,7 +40,7 @@ $sd-color-schemes: (
     highlight: rgba(0,0,0,.12),
     icon: rgba(0,0,0,.54),
     icon-disabled: rgba(0,0,0,.38),
-    divider: lighten(#161616, 68%),
+    divider: rgba(#161616, 36%),
     scrollbar: #434444,
     tooltip: #2E2F2F,
     skeleton:#{90deg, rgba(#434444, 0) 0, rgba(#434444, 0.1) 20%, rgba(#434444, 0.15) 60%, rgba(#434444, 0)}
@@ -66,7 +66,7 @@ $sd-color-schemes: (
     highlight: rgba(255,255,255,.12),
     icon: rgba(255,255,255,.54),
     icon-disabled: rgba(255,255,255,.38),
-    divider: lighten(#161616, 12%),
+    divider: rgba(#ffffff, 36%),
     scrollbar: #434444,
     tooltip: #000,
     skeleton: #{90deg, rgba(#f9f9f9, 0) 0, rgba(#f9f9f9, 0.1) 20%, rgba(#f9f9f9, 0.15) 60%, rgba(#f9f9f9, 0)}
