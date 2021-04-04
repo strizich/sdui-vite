@@ -55,10 +55,15 @@
               :xl="2"
             >
               <sd-widget
-                caption="Widget caption"
-                footnote="Widget footnote"
                 theme="primary"
-              />
+                clickable
+              >
+                <sd-widget-metric value="51" />
+                <sd-widget-footer
+                  caption="Widget caption"
+                  footnote="Widget footnote"
+                />
+              </sd-widget>
             </sd-col>
             <sd-col
               :sm="6"
@@ -67,10 +72,15 @@
               :xl="2"
             >
               <sd-widget
-                caption="Widget caption"
-                footnote="Widget footnote"
-                theme="danger"
-              />
+                theme="primary"
+                clickable
+              >
+                <sd-widget-metric value="51" />
+                <sd-widget-footer
+                  caption="Widget caption"
+                  footnote="Widget footnote"
+                />
+              </sd-widget>
             </sd-col>
             <sd-col
               :sm="6"
@@ -79,9 +89,15 @@
               :xl="2"
             >
               <sd-widget
-                caption="Widget caption"
-                theme="warning"
-              />
+                theme="primary"
+                clickable
+              >
+                <sd-widget-metric value="51" />
+                <sd-widget-footer
+                  caption="Widget caption"
+                  footnote="Widget footnote"
+                />
+              </sd-widget>
             </sd-col>
             <sd-col
               :sm="6"
@@ -90,10 +106,15 @@
               :xl="2"
             >
               <sd-widget
-                caption="Widget caption"
-                footnote="Widget footnote"
-                theme="success"
-              />
+                theme="primary"
+                clickable
+              >
+                <sd-widget-metric value="51" />
+                <sd-widget-footer
+                  caption="Widget caption"
+                  footnote="Widget footnote"
+                />
+              </sd-widget>
             </sd-col>
             <sd-col
               :sm="6"
@@ -102,21 +123,14 @@
               :xl="2"
             >
               <sd-widget
-                caption="Widget caption"
-                footnote="Widget footnote"
-                theme="dark"
-              />
-            </sd-col>
-            <sd-col
-              :sm="6"
-              :md="4" 
-              :lg="3"
-              :xl="2"
-            >
-              <sd-widget
-                caption="Widget caption"
-                theme="secondary"
-              />
+                clickable
+              >
+                <sd-widget-metric value="51" />
+                <sd-widget-footer
+                  caption="Widget caption"
+                  footnote="Widget footnote"
+                />
+              </sd-widget>
             </sd-col>
           </sd-row>
         </sd-container>
@@ -156,13 +170,12 @@
 
 <script lang="ts">
   import { reactive, defineComponent } from 'vue'
-import SdActionBar from './lib/components/SdActionBar/SdActionBar.vue'
-import SdFieldset from './lib/components/SdField/SdFieldset.vue'
-import SdRow from './lib/components/SdGrid/SdRow.vue'
-import SdWidget from './lib/components/SdWidget/SdWidget.vue'
-  
+  import SdWidget from './lib/components/SdWidget/SdWidget.vue'
+  import SdWidgetMetric from './lib/components/SdWidget/SdWidgetMetric.vue'
+  import SdWidgetFooter from './lib/components/SdWidget/SdWidgetFooter.vue'
+
   export default defineComponent({
-  components: { SdActionBar, SdFieldset, SdWidget, SdRow },
+  components: { SdWidget, SdWidgetMetric, SdWidgetFooter },
   name: 'App',
   setup () {
     const state = reactive({
