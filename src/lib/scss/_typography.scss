@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500;700&display=swap');
 
+%schemes {
+  &--light{
+    color:var(--text-light);
+  }
+  &--dark{
+    color: var(--text-dark);
+  }
+}
+
 h1, h2, h3, h4, h5{
   line-height: 1;
   margin-bottom: 16px;
@@ -29,14 +38,8 @@ p{
   font-size: 16px;
 }
 
-
 .sd--text{
-  &--light{
-    color:var(--text-light);
-  }
-  &--dark{
-    color: var(--text-dark);
-  }
+ @extend %schemes;
   &__lead {
     font-size: rem(18);
     text-transform: uppercase;
@@ -46,24 +49,16 @@ p{
     font-weight: 700;
     color: var(--text-accent);
     letter-spacing: .25px;
-    &--light{
-      color:var(--text-accent-light);
-    }
-    &--dark{
-      color: var(--text-accent-dark);
-    }
+    @extend %schemes;
+
   }
   &__header{
     font-weight: 500;
     color: var(--text);
     font-size: rem(24);
     margin: 0;
-    &--light{
-      color:var(--text-light);
-    }
-    &--dark{
-      color: var(--text-dark);
-    }
+    @extend %schemes;
+
   }
 
   &__caption{
@@ -77,12 +72,7 @@ p{
     &--uppercase {
       text-transform: uppercase;
     }
-    &--light{
-      color:var(--text-accent-light);
-    }
-    &--dark{
-      color: var(--text-accent-dark);
-    }
+    @extend %schemes;
   }
 
   &__header + &__caption{
@@ -95,12 +85,8 @@ p{
     font-weight: 300;
     letter-spacing: rem(1.2);
     color: var(--text);
-    &--light{
-      color:var(--text-light);
-    }
-    &--dark{
-      color: var(--text-dark);
-    }
+    @extend %schemes;
+
   }
 
   &__footnote{
@@ -108,12 +94,7 @@ p{
     font-size: rem(12);
     line-height: rem(14);
     margin-bottom: 0;
-    &--light{
-      color:var(--text-accent-light);
-    }
-    &--dark{
-      color: var(--text-accent-dark);
-    }
+    @extend %schemes;
   }
   &--underline{
     text-decoration: underline;
