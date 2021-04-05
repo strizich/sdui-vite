@@ -73,7 +73,6 @@ $icon-sizes: (
 }
 
 .sd--icon {
-  display:block;
   &.is{
     @each $size, $value in $icon-sizes{
       &--#{$size}{

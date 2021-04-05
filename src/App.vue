@@ -54,10 +54,7 @@
               :lg="3"
               :xl="2"
             >
-              <sd-widget
-                theme="primary"
-                clickable
-              >
+              <sd-widget>
                 <sd-widget-metric value="51" />
                 <sd-widget-footer
                   caption="Widget caption"
@@ -73,7 +70,6 @@
             >
               <sd-widget
                 theme="primary"
-                clickable
               >
                 <sd-widget-metric
                   value="51"
@@ -93,7 +89,6 @@
             >
               <sd-widget
                 theme="primary"
-                clickable
               >
                 <sd-widget-metric value="51" />
                 <sd-widget-footer
@@ -125,10 +120,29 @@
               :lg="3"
               :xl="2"
             >
-              <sd-widget
-                clickable
-              >
+              <sd-widget>
                 <sd-widget-metric value="51" />
+                <sd-widget-footer
+                  caption="Widget caption"
+                  footnote="Widget footnote"
+                />
+              </sd-widget>
+            </sd-col>
+            <sd-col
+              :sm="6"
+              :md="4" 
+              :lg="3"
+              :xl="2"
+            >
+              <sd-widget>
+                <sd-widget-metric value="51">
+                  <div class="something">
+                    <sd-icon
+                      name="arrow_downward"
+                      size="sm"
+                    /> 12%
+                  </div>
+                </sd-widget-metric>
                 <sd-widget-footer
                   caption="Widget caption"
                   footnote="Widget footnote"
@@ -137,16 +151,15 @@
             </sd-col>
           </sd-row>
         </sd-container>
-        <sd-checkbox v-model="state.toast">
-          Toast
-        </sd-checkbox>
       </div>
+
       <sd-toast
         v-model:active="state.toast"
         dismissable
       >
         Okay
       </sd-toast>
+
       <sd-dialog
         aside
         v-model:active="state.modal"
@@ -176,7 +189,6 @@
   import SdWidget from './lib/components/SdWidget/SdWidget.vue'
   import SdWidgetMetric from './lib/components/SdWidget/SdWidgetMetric.vue'
   import SdWidgetFooter from './lib/components/SdWidget/SdWidgetFooter.vue'
-
   export default defineComponent({
   components: { SdWidget, SdWidgetMetric, SdWidgetFooter },
   name: 'App',
@@ -214,5 +226,11 @@
 
   .demo{
     padding: 40px 0;
+  }
+  .something{
+    color: var(--danger);
+    display:flex;
+    align-items: center;
+    font-size: 12px;;
   }
 </style>

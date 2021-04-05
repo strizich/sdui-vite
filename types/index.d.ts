@@ -57,6 +57,9 @@ declare module '@strizich/sdui' {
   // WIP
   const SdList: ReturnType<typeof defineComponent>
   const SdListItem: ReturnType<typeof defineComponent>
+  const SdWidget: ReturnType<typeof defineComponent>
+  const SdWidgetFooter: ReturnType<typeof defineComponent>
+  const SdWidgetMetric: ReturnType<typeof defineComponent>
 
 
   // Installation
@@ -106,6 +109,9 @@ declare module '@strizich/sdui' {
 
   export {
     sdInstall,
+    SdWidget,
+    SdWidgetFooter,
+    SdWidgetMetric,
     SdSkeleton,
     // Button
     SdButton,

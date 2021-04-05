@@ -49,6 +49,9 @@ import SdToast from './components/SdToast/SdToast.vue'
 import SdList from './components/SdList/SdList.vue'
 import SdListItem from './components/SdList/SdListItem.vue'
 import SdActionBar from './components/SdActionBar/SdActionBar.vue'
+import SdWidget from './components/SdWidget/SdWidget.vue'
+import SdWidgetFooter from './components/SdWidget/SdWidgetFooter.vue'
+import SdWidgetMetric from './components/SdWidget/SdWidgetMetric.vue'
 import useSlider from './components/SdSlider/useSlider'
 import useToaster from './components/SdToast/useToaster'
 import useAlignment from './hooks/useAlignment'
@@ -57,6 +60,9 @@ import useWindowWidth from './hooks/useWindowWidth'
 import useScheme from './hooks/useScheme'
 
 const components = {
+  SdWidget,
+  SdWidgetFooter,
+  SdWidgetMetric,
   SdSkeleton,
   // Button
   SdButton,
@@ -153,6 +159,9 @@ export {
   sdComponents,
   sdInstall,
   version,
+  SdWidget,
+  SdWidgetFooter,
+  SdWidgetMetric,
   SdSkeleton,
   // Button
   SdButton,
