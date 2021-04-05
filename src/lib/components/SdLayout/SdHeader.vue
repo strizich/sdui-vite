@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="sd--header__subheader">
-      <slot name="subheader"/>
+      <slot name="subheader" />
     </div>
   </header>
 </template>

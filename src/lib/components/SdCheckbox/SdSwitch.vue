@@ -5,22 +5,22 @@
     @click.prevent="handleChecked"
     tabindex="-1"
   >
-      <span class="sd--switch__label">
-        <slot/>
-      </span>
+    <span class="sd--switch__label">
+      <slot />
+    </span>
 
-      <div
-        :class="[inputClasses, themeClass]"
+    <div
+      :class="[inputClasses, themeClass]"
+    >
+      <input
+        ref="switchRef"
+        class="sd--switch__field"
+        type="checkbox"
+        v-bind="attributes"
+        :id="id"
+        :checked="isSelected"
       >
-        <input
-          ref="switchRef"
-          class="sd--switch__field"
-          type="checkbox"
-          v-bind="attributes"
-          :id="id"
-          :checked="isSelected"
-        />
-      </div>
+    </div>
   </label>
 </template>
 
@@ -42,7 +42,10 @@ export default defineComponent({
       type: [String, Boolean, Object, Number] as PropType<string | boolean | object | number>,
       default: null
     },
-    name: [String, Number],
+    name: { 
+      type: String,
+      default: undefined
+    },
     required: Boolean,
     disabled: Boolean,
     trueValue: {
@@ -62,6 +65,7 @@ export default defineComponent({
       default: () => 'sd-switch--' + sdUuid()
     }
   },
+  emits: ['update:modelValue'],
   setup (props, { emit }) {
     const switchRef = ref(false)
     const isFocused = useKeyboardFocus(switchRef)

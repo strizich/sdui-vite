@@ -1,12 +1,15 @@
 <template>
-  <div class="sd--card__footer" :style="alignmentStyle">
-    <slot/>
+  <div
+    class="sd--card__footer"
+    :style="alignmentStyle"
+  >
+    <slot />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import useAlignment from '../../hooks/useAlignment'
+import { defineComponent, computed } from 'vue'
+// import useAlignment from '../../hooks/useAlignment'
 
 export default defineComponent({
   name: 'SdCardFooter',
@@ -21,8 +24,12 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const { alignmentStyle } = useAlignment(props.align, props.direction)
-
+    // const { alignmentStyle } = useAlignment(props.align, props.direction)
+    const alignmentStyle = computed(() => {
+      return {
+        'justify-content': props.align
+      }
+    })
     return { alignmentStyle }
   }
 })

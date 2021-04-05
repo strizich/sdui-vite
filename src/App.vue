@@ -1,54 +1,202 @@
 <template>
-  <sd-layout :scheme="scheme">
-    <template v-slot:content>
+  <sd-layout :scheme="state.scheme">
+    <template #content>
       <sd-mast>Things here</sd-mast>
       <div class="demo">
-        <sd-container>
-          <h1 class="sd--text__headline">SDUI - Vite</h1>
-          <div>
-          <sd-button 
-            @click="handleDialogOpen"
-          >
-            Open Modal
-            <sd-tooltip>huh</sd-tooltip>
-          </sd-button>
-          <sd-button @click="handleToast">Make Toast</sd-button>
-          </div>
+        <sd-container full>
+          <h1 class="sd--text__headline">
+            SDUI - Vite
+          </h1>
+          <sd-action-bar title="hmm">
+            <template #start>
+              <sd-fieldset title="okay">
+                <sd-button 
+                  @click="handleDialogOpen"
+                >
+                  Open Modal
+                  <sd-tooltip>huh</sd-tooltip>
+                </sd-button>
+                <sd-button @click="handleToast">
+                  Make Toast
+                </sd-button>
+              </sd-fieldset>
+            </template>
+            <template #end>
+              <sd-fieldset 
+                title="Color Scheme"
+                inline
+              >
+                <sd-radio
+                  v-model="state.scheme"
+                  value="auto"
+                >
+                  Auto
+                </sd-radio>
+                <sd-radio
+                  v-model="state.scheme"
+                  value="dark"
+                >
+                  Dark
+                </sd-radio>
+                <sd-radio
+                  v-model="state.scheme"
+                  value="light"
+                >
+                  Light
+                </sd-radio>
+              </sd-fieldset>
+            </template>
+          </sd-action-bar>
+          <sd-row dense>
+            <sd-col
+              :sm="6"
+              :md="4" 
+              :lg="3"
+              :xl="2"
+            >
+              <sd-widget>
+                <sd-widget-metric value="51" />
+                <sd-widget-footer
+                  caption="Widget caption"
+                  footnote="Widget footnote"
+                />
+              </sd-widget>
+            </sd-col>
+            <sd-col
+              :sm="6"
+              :md="4" 
+              :lg="3"
+              :xl="2"
+            >
+              <sd-widget
+                theme="primary"
+              >
+                <sd-widget-metric
+                  value="51"
+                  note="components"
+                />
+                <sd-widget-footer
+                  caption="Widget caption"
+                  footnote="Widget footnote"
+                />
+              </sd-widget>
+            </sd-col>
+            <sd-col
+              :sm="6"
+              :md="4" 
+              :lg="3"
+              :xl="2"
+            >
+              <sd-widget
+                theme="primary"
+              >
+                <sd-widget-metric value="51" />
+                <sd-widget-footer
+                  caption="Widget caption"
+                  footnote="Widget footnote"
+                />
+              </sd-widget>
+            </sd-col>
+            <sd-col
+              :sm="6"
+              :md="4" 
+              :lg="3"
+              :xl="2"
+            >
+              <sd-widget
+                theme="primary"
+                clickable
+              >
+                <sd-widget-metric value="51" />
+                <sd-widget-footer
+                  caption="Widget caption"
+                  footnote="Widget footnote"
+                />
+              </sd-widget>
+            </sd-col>
+            <sd-col
+              :sm="6"
+              :md="4" 
+              :lg="3"
+              :xl="2"
+            >
+              <sd-widget>
+                <sd-widget-metric value="51" />
+                <sd-widget-footer
+                  caption="Widget caption"
+                  footnote="Widget footnote"
+                />
+              </sd-widget>
+            </sd-col>
+            <sd-col
+              :sm="6"
+              :md="4" 
+              :lg="3"
+              :xl="2"
+            >
+              <sd-widget>
+                <sd-widget-metric value="51">
+                  <div class="something">
+                    <sd-icon
+                      name="arrow_downward"
+                      size="sm"
+                    /> 12%
+                  </div>
+                </sd-widget-metric>
+                <sd-widget-footer
+                  caption="Widget caption"
+                  footnote="Widget footnote"
+                />
+              </sd-widget>
+            </sd-col>
+          </sd-row>
         </sd-container>
-        <sd-checkbox v-model="toast">Toast</sd-checkbox>
       </div>
-      <sd-toast v-model:active="toast" dismissable>Okay</sd-toast>
-      <sd-dialog aside v-model:active="modal">
-        <sd-dialog-header title="Title" subtitle="Subtitle"/>
+
+      <sd-toast
+        v-model:active="state.toast"
+        dismissable
+      >
+        Okay
+      </sd-toast>
+
+      <sd-dialog
+        aside
+        v-model:active="state.modal"
+      >
+        <sd-dialog-header
+          title="Title"
+          subtitle="Subtitle"
+        />
         <sd-dialog-content>
           <p>Content goes here</p>
         </sd-dialog-content>
         <sd-dialog-footer>
-          <sd-button theme="dark" @click="handleDialogClose()">Close</sd-button>
+          <sd-button
+            theme="dark"
+            @click="handleDialogClose()"
+          >
+            Close
+          </sd-button>
         </sd-dialog-footer>
       </sd-dialog>
-      <sd-progress :total="100" :current="90" animated/>
-      <sd-progress :progress="0.96"/>
-      <sd-slider v-model:value="sliderything"/>
-      <sd-radio v-model="scheme" value="auto">Scheme</sd-radio>
-      <sd-radio v-model="scheme" value="dark">Scheme</sd-radio>
-      <sd-radio v-model="scheme" value="light">Scheme</sd-radio>
-      <sd-icon name="home" family="round"/>
-      {{scheme}}
     </template>
   </sd-layout>
 </template>
 
-<script>
-import { reactive, toRefs } from 'vue'
-const staticyThing = ['one', 'two', 'three']
-
-export default {
-  setup() {
+<script lang="ts">
+  import { reactive, defineComponent } from 'vue'
+  import SdWidget from './lib/components/SdWidget/SdWidget.vue'
+  import SdWidgetMetric from './lib/components/SdWidget/SdWidgetMetric.vue'
+  import SdWidgetFooter from './lib/components/SdWidget/SdWidgetFooter.vue'
+  export default defineComponent({
+  components: { SdWidget, SdWidgetMetric, SdWidgetFooter },
+  name: 'App',
+  setup () {
     const state = reactive({
+      sliderything: 0,
       modal: false,
       toast: false,
-      sliderything: 10,
       scheme: 'auto'
     })
 
@@ -63,16 +211,14 @@ export default {
     const handleToast = () => {
       state.toast = true
     }
-
     return {
-      ...toRefs(state),
-      handleDialogOpen, 
-      handleDialogClose,
       handleToast,
-      staticyThing
+      handleDialogClose,
+      handleDialogOpen,
+      state
     }
   }
-}
+})
 </script>
 
 <style lang="scss">
@@ -80,5 +226,11 @@ export default {
 
   .demo{
     padding: 40px 0;
+  }
+  .something{
+    color: var(--danger);
+    display:flex;
+    align-items: center;
+    font-size: 12px;;
   }
 </style>

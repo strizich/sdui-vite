@@ -3,7 +3,10 @@ import { defineComponent, computed, h } from 'vue'
 export default defineComponent({
   name: 'SdContainer',
   props: {
-    break: String,
+    break: {
+      type: String,
+      default: undefined
+    },
     full: Boolean,
     article: Boolean
   },
@@ -45,13 +48,13 @@ export default defineComponent({
       margin: 0 auto;
       padding: 0 32px;
     }
-    &--#{$size}{
-      max-width: $value;
-      margin: 0 auto;
-    }
   }
   &--full {
     max-width: 100%;
+    padding: 0 32px;
+    @include breakpoint-down('sm') {
+      padding: 0 24px;
+    }
   }
   @include breakpoint-down('sm') {
     padding: 0 24px;

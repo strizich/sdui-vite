@@ -1,29 +1,39 @@
 <template>
-    <div :class="[rootClasses]">
-      <sd-label :required="required">{{label}}</sd-label>
-      <slot name="header"/>
-      <div :class="[inputClasses]">
-        <sd-icon v-if="icon" :color="iconColor" :name="icon"/>
-        <slot name="addon"/>
-        <input
-          ref="inputRef"
-          :id="id"
-          :type="type"
-          :name="name"
-          :placeholder="placeholder"
-          :disabled="disabled"
-          :required="required"
-          @animationstart="(e) => log(e)"
-          @blur="(e) => handleTouched(e)"
-          @focus="(e) => handleFocused(e)"
-          @input="(e) => handleInput(e)"
-          :value="modelValue ? modelValue : value"
-        />
-        <sd-icon v-if="iconEnd" :color="iconEndColor" :name="iconEnd"/>
-      </div>
-      <slot name="footer"/>
-      <sd-error :message="handleValidation"/>
+  <div :class="[rootClasses]">
+    <sd-label :required="required">
+      {{ label }}
+    </sd-label>
+    <slot name="header" />
+    <div :class="[inputClasses]">
+      <sd-icon
+        v-if="icon"
+        :color="iconColor"
+        :name="icon"
+      />
+      <slot name="addon" />
+      <input
+        ref="inputRef"
+        :id="id"
+        :type="type"
+        :name="name"
+        :placeholder="placeholder"
+        :disabled="disabled"
+        :required="required"
+        @animationstart="(e) => log(e)"
+        @blur="(e) => handleTouched(e)"
+        @focus="(e) => handleFocused(e)"
+        @input="(e) => handleInput(e)"
+        :value="modelValue ? modelValue : value"
+      >
+      <sd-icon
+        v-if="iconEnd"
+        :color="iconEndColor"
+        :name="iconEnd"
+      />
     </div>
+    <slot name="footer" />
+    <sd-error :message="handleValidation" />
+  </div>
 </template>
 
 <script lang="ts">
@@ -43,9 +53,14 @@ export default defineComponent({
   components: { SdLabel, SdError, SdIcon },
   emits: ['update:modelValue', 'focus', 'blur', 'change', 'input'],
   props: {
-    // TODO: Add prop validaton to disallow having both value and modelValue
-    modelValue: [String, Number],
-    value: [String, Number],
+    modelValue: {
+      type: [String, Number],
+      default: undefined
+    },
+    value: {
+      type: [String, Number],
+      default: undefined
+    },
     id: {
       type: [String, Function] as PropType<string | Function>,
       default: () => 'sd--field--' + SdUuid()
@@ -54,24 +69,45 @@ export default defineComponent({
       type: [Object, Function] as PropType<ModelModifiers>,
       default: () => ({})
     },
-    icon: String,
-    iconColor: String,
-    iconEnd: String,
-    iconEndColor: String,
-    label: String,
-    name: String,
-    setFocus: Boolean,
-    placeholder: String,
-    disabled: Boolean,
-    required: Boolean,
+    icon: {
+      type: String,
+      default: ''
+    },
+    iconColor: {
+      type: String,
+      default: ''
+    },
+    iconEnd: {
+      type: String,
+      default: ''
+    },
+    iconEndColor: {
+      type: String,
+      default: ''
+    },
+    label: {
+      type: String,
+      default: undefined
+    },
+    name:{ 
+      type: String,
+      default: ''
+    },
     type: {
       type: String,
       default: 'text'
     },
     error: {
-      type: [Boolean, String]
+      type: [Boolean, String],
+      default: false
     },
-    // need a better name for this...
+    placeholder: {
+      type: String,
+      default: ''
+    },
+    setFocus: Boolean,
+    disabled: Boolean,
+    required: Boolean,
     pristineError: Boolean
   },
   setup (props, { emit }) {

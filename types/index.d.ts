@@ -50,11 +50,17 @@ declare module '@strizich/sdui' {
   // UI
   const SdSheet: ReturnType<typeof defineComponent>
   const SdMast: ReturnType<typeof defineComponent>
+  const SdActionBar: ReturnType<typeof defineComponent>
+
   // Toaster
   const SdToast: ReturnType<typeof defineComponent>
   // WIP
   const SdList: ReturnType<typeof defineComponent>
   const SdListItem: ReturnType<typeof defineComponent>
+  const SdWidget: ReturnType<typeof defineComponent>
+  const SdWidgetFooter: ReturnType<typeof defineComponent>
+  const SdWidgetMetric: ReturnType<typeof defineComponent>
+
 
   // Installation
   const useKeyboardFocus: ($el: any) => ComputedRef<boolean>
@@ -71,10 +77,41 @@ declare module '@strizich/sdui' {
     }>;
 }
 
+  const useSlider: (props: any, emit: any) => {
+   state: ComputedRef<{
+     init: boolean;
+     computedX: 0;
+     x: number;
+     minX: number;
+     maxX: number;
+     dragStartX: number;
+     handleWidth: number;
+     handleHeight: number;
+     handleOffset: number;
+     unit: number;
+     pctComplete: number;
+     isHover: boolean;
+     isDragging: boolean;
+   }>;
+   slider: Ref<HTMLElement>;
+   handle: Ref<HTMLElement>;
+   result: ComputedRef<number>;
+   isFocused: ComputedRef<boolean>;
+  }
+
+  const useToaster: (currentToast: any, emit: any) => {
+    makeToast: (duration: any, persist: any) => Promise<void>;
+    promiseToast: (duration: any, persist: any) => Promise<void>;
+    destroyToast: () => Promise<any>
+  }
+
   const sdInstall: (app: any) => void
 
   export {
     sdInstall,
+    SdWidget,
+    SdWidgetFooter,
+    SdWidgetMetric,
     SdSkeleton,
     // Button
     SdButton,
@@ -128,6 +165,7 @@ declare module '@strizich/sdui' {
     // UI
     SdSheet,
     SdMast,
+    SdActionBar,
     // Toaster
     SdToast,
     // WIP
@@ -140,6 +178,8 @@ declare module '@strizich/sdui' {
     // Utility Hooks
     useKeyboardFocus,
     useWindowWidth,
-    useAlignment
+    useAlignment,
+    useToaster,
+    useSlider
   }
 }

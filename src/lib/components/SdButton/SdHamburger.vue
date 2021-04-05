@@ -1,9 +1,22 @@
 <template>
-   <button ref="hamburgerRef" :id="id" :class="classes" @click="(e) => handleToggle(e)">
-      <span class="sd--hamburger" :class="activeClass">
-        <i class="sd--hamburger__bar" :class="`bar--${n}`" v-for="n in 3" :key="n"/>
-      </span>
-    </button>
+  <button
+    ref="hamburgerRef"
+    :id="id"
+    :class="classes"
+    @click="(e) => handleToggle(e)"
+  >
+    <span
+      class="sd--hamburger"
+      :class="activeClass"
+    >
+      <i
+        class="sd--hamburger__bar"
+        :class="`bar--${n}`"
+        v-for="n in 3"
+        :key="n"
+      />
+    </span>
+  </button>
 </template>
 
 <script lang="ts">
@@ -100,7 +113,7 @@ export default defineComponent({
       }
     }
 
-    const handleToggle = (e) => {
+    const handleToggle = () => {
       state.active = !props.active
       emit('update:active', state.active)
     }

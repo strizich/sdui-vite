@@ -1,8 +1,11 @@
 <template>
   <transition name="error">
-    <div class="sd--error" v-if="message">
+    <div
+      class="sd--error"
+      v-if="message"
+    >
       <span class="sd--text__error">
-        {{message}}
+        {{ message }}
       </span>
     </div>
   </transition>
@@ -14,7 +17,10 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'SdError',
   props: {
-    message: [String, Boolean]
+    message: {
+      type: [String, Boolean],
+      default: ''
+    }
   }
 })
 </script>

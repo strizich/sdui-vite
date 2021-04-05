@@ -1,6 +1,6 @@
 <template>
   <div class="sd--card__body">
-    <slot/>
+    <slot />
   </div>
 </template>
 

@@ -24,8 +24,14 @@ import SdNavContent from './SdNavContent.vue'
 export default defineComponent({
   name: 'SdNavLink',
   props: {
-    icon: String,
-    to: String,
+    icon: {
+      type: String,
+      default: undefined
+    },
+    to: {
+      type: String,
+      default: undefined
+    },
     secondary: Boolean
   },
   components: { SdNavContent }

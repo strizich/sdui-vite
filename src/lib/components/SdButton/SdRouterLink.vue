@@ -21,24 +21,31 @@
   </router-link>
 </template>
 
-<script>
+<script lang="ts">
 import SdButton from './SdButton.vue'
+import { defineComponent } from 'vue'
 
-export default {
+export default defineComponent({
   name: 'SdRouterLink',
   components: {
     SdButton
   },
   props: {
-    to: String,
+    to: {
+      type: String,
+      default: undefined
+    },
     flat: Boolean,
     outline: Boolean,
     pill: Boolean,
     disabled: Boolean,
-    theme: String,
+    theme: {
+      type: String,
+      default: undefined
+    },
     hash: Boolean
   }
-}
+})
 </script>
 
 <style lang="scss">

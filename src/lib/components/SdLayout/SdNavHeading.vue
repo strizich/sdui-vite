@@ -1,7 +1,9 @@
 <template>
-<div class="sd--nav__heading">
-  <h4 class="sd--text__footnote"><slot/></h4>
-</div>
+  <div class="sd--nav__heading">
+    <h4 class="sd--text__footnote">
+      <slot />
+    </h4>
+  </div>
 </template>
 <script lang="ts">
 import { defineComponent } from "@vue/runtime-core"

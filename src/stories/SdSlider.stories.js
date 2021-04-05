@@ -28,12 +28,13 @@ const Template = (args => ({
   <sd-slider
     :label="args.label"
     :hint="args.hint"
-    v-model:value="args.value"
+    v-model="args.value"
     :min="args.min"
     :max="args.max"
     :step="args.step"
     :show-tooltip="args.showTooltip"
     :show-indicators="args.showIndicators"
+    :use-wheel="args.useWheel"
   />
   `
 }))

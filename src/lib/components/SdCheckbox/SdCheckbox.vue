@@ -1,15 +1,19 @@
 <template>
-  <label :class="[containerClasses]" @click.prevent="handleChecked" tabindex="-1">
-      <input
-        ref="checkbox"
-        type="checkbox"
-        :id="id"
-        :class="[inputClasses]"
-        :checked="isSelected"
-        :indeterminate="indeterminate"
-        v-bind="attributes"
-      />
-      <span class="sd--checkbox__label"><slot/></span>
+  <label
+    :class="[containerClasses]"
+    @click.prevent="handleChecked"
+    tabindex="-1"
+  >
+    <input
+      ref="checkbox"
+      type="checkbox"
+      :id="id"
+      :class="[inputClasses]"
+      :checked="isSelected"
+      :indeterminate="indeterminate"
+      v-bind="attributes"
+    >
+    <span class="sd--checkbox__label"><slot /></span>
   </label>
 </template>
 
@@ -40,7 +44,10 @@ export default defineComponent({
       ] as PropType<string | boolean | number | object>,
       default: null
     },
-    name: String,
+    name: {
+      type: String,
+      default: ''
+    },
     required: Boolean,
     disabled: Boolean,
     indeterminate: Boolean,
@@ -61,6 +68,7 @@ export default defineComponent({
       default: true
     }
   },
+  emits: ['update:modelValue'],
   setup (props, { emit }) {
     const checkbox = ref(null)
     const isFocused = useKeyboardFocus(checkbox)

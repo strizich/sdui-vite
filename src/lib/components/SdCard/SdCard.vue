@@ -1,6 +1,6 @@
 <template>
   <div :class="['sd--card', classes]">
-    <slot/>
+    <slot />
   </div>
 </template>
 
@@ -9,7 +9,10 @@ import { computed, defineComponent } from 'vue'
 export default defineComponent({
   name: 'SdCard',
   props: {
-    title: String,
+    title: {
+      type: String,
+      default: ''
+    },
     baseClass: {
       type: String,
       default: 'sd--card'

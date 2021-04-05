@@ -1,16 +1,22 @@
 <template>
   <div class="sd--progress">
-    <sd-label>{{label}}</sd-label>
+    <sd-label>{{ label }}</sd-label>
     <div class="sd--progress__track">
-      <div :class="[computedClasses]" :style="[computedStyles]">
+      <div
+        :class="[computedClasses]"
+        :style="[computedStyles]"
+      >
         <span>
-          {{progressDisplay}}
+          {{ progressDisplay }}
         </span>
       </div>
     </div>
-    <div class="sd--progress__footer" >
+    <div class="sd--progress__footer">
       <slot name="hint">
-        <span v-if="hint" class="sd--text__footnote">{{hint}}</span>
+        <span
+          v-if="hint"
+          class="sd--text__footnote"
+        >{{ hint }}</span>
       </slot>
     </div>
   </div>
@@ -25,17 +31,29 @@ export default defineComponent({
   name: 'SdProgress',
   components: { SdLabel },
   props: {
-    label: String,
-    hint: String,
-    total: Number,
-    current: Number,
+    label: {
+      type: String,
+      default: undefined
+    },
+    hint: {
+      type: String,
+      default: undefined
+    },
+    total: {
+      type: Number,
+      default: undefined
+    },
+    current: {
+      type: Number,
+      default: undefined
+    },
     theme: {
       type: String,
       default: 'primary'
     },
     progress: {
       type: Number,
-      default: 0
+      default: undefined
     },
     decimalPlaces: {
       type: Number,
@@ -50,12 +68,8 @@ export default defineComponent({
       }
       if (props.current && props.total) {
         return roundTo(props.current / props.total * 100, props.decimalPlaces) + '%'
-      }
-      if (props.current && !props.total) {
-        return 'Total is required with value'
-      }
-      if (props.total && props.current && props.progress) {
-        return 'Cannot do both. Pick Progress or Total/Current'
+      } else {
+        return ''
       }
     })
 

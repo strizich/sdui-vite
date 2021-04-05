@@ -9,7 +9,7 @@ export const roundTo = (n: any, digits: number): number => {
     negative = true
     n = n * -1
   }
-  var multiplicator = Math.pow(10, digits)
+  const multiplicator = Math.pow(10, digits)
   n = parseFloat((n * multiplicator).toFixed(11))
   n = (Math.round(n) / multiplicator).toFixed(digits)
   if (negative) {

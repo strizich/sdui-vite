@@ -9,9 +9,10 @@
       ref="radio"
       class="sd--radio__input"
       v-bind="{ name, disabled, required, value, checked: isSelected }"
-      type="radio"/>
+      type="radio"
+    >
     <span class="sd--radio__content">
-      <span><slot/></span>
+      <span><slot /></span>
     </span>
   </label>
 </template>
@@ -25,7 +26,8 @@ export default defineComponent({
   name: 'SdRadio',
   props: {
     modelValue: {
-      type: [String, Number, Boolean, Object] as PropType<string | number | boolean | object>
+      type: [String, Number, Boolean, Object] as PropType<string | number | boolean | object>,
+      default: ''
     },
     value: {
       type: [String, Number, Boolean, Object] as PropType<string | number | boolean | object>,
@@ -36,7 +38,8 @@ export default defineComponent({
       default: () => 'sd--radio--' + sdUuid()
     },
     name: {
-      type: [String, Number] as PropType<string | number>
+      type: String,
+      default: ''
     },
     required: Boolean,
     disabled: Boolean,
@@ -45,6 +48,7 @@ export default defineComponent({
       default: 'primary'
     }
   },
+  emits: ['update:modelValue'],
   setup (props, { emit }) {
     const radio = ref(null)
     const isFocused = useKeyboardFocus(radio)

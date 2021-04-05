@@ -1,7 +1,15 @@
 <template>
-  <teleport ref="dropdownPortal" to="#app" :disabled="attachToParent">
+  <teleport
+    ref="dropdownPortal"
+    to="#app"
+    :disabled="attachToParent"
+  >
     <transition name="dropdown">
-      <div ref="dropdownRef" class="sd--dropdown" v-if="state.shouldRender">
+      <div
+        ref="dropdownRef"
+        class="sd--dropdown"
+        v-if="state.shouldRender"
+      >
         <div :class="['sd--dropdown__content', themeClass]">
           <slot />
         </div>
