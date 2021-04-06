@@ -18,6 +18,7 @@
 </template>
 
 <script lang="ts">
+// TODO: Add properties to manage auto height.
 import { defineComponent } from 'vue'
 import SdIcon from '../SdIcon/SdIcon.vue'
 export default defineComponent({
