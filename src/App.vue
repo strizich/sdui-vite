@@ -6,6 +6,7 @@
         <sd-container full>
           <h1 class="sd--text__headline">
             SDUI - Vite
+            {{ sluggify }}
           </h1>
           <sd-action-bar title="hmm">
             <template #start>
@@ -93,7 +94,7 @@
                 <sd-widget-metric value="51" />
                 <sd-widget-footer
                   caption="Widget caption"
-                  footnote="Widget footnote"
+                  footnote="ok"
                 />
               </sd-widget>
             </sd-col>
@@ -159,7 +160,7 @@
       >
         Okay
       </sd-toast>
-
+      <sd-field v-model="state.name" />
       <sd-dialog
         aside
         v-model:active="state.modal"
@@ -169,7 +170,12 @@
           subtitle="Subtitle"
         />
         <sd-dialog-content>
-          <p>Content goes here</p>
+          <sd-slider
+            :min="0"
+            :max="12"
+            :step="2"
+            v-model="state.sliderything"
+          />
         </sd-dialog-content>
         <sd-dialog-footer>
           <sd-button
@@ -185,19 +191,28 @@
 </template>
 
 <script lang="ts">
-  import { reactive, defineComponent } from 'vue'
-  import SdWidget from './lib/components/SdWidget/SdWidget.vue'
-  import SdWidgetMetric from './lib/components/SdWidget/SdWidgetMetric.vue'
-  import SdWidgetFooter from './lib/components/SdWidget/SdWidgetFooter.vue'
+  import { reactive, defineComponent, computed } from 'vue'
+  import { compose, join, map, toLowerCase, split } from './lib/core/utilities/ComposableUtil'
   export default defineComponent({
-  components: { SdWidget, SdWidgetMetric, SdWidgetFooter },
   name: 'App',
   setup () {
     const state = reactive({
-      sliderything: 0,
+      sliderything: 4,
       modal: false,
       toast: false,
-      scheme: 'auto'
+      scheme: 'auto',
+      name: 'hello ladies'
+    })
+    
+    const toSlug = compose(
+      encodeURIComponent,
+      join('-'),
+      map(toLowerCase),
+      split(' ')
+    )
+
+    const sluggify = computed(() => {
+     return toSlug(state.name)
     })
 
     const handleDialogOpen = () => {
@@ -215,7 +230,8 @@
       handleToast,
       handleDialogClose,
       handleDialogOpen,
-      state
+      state,
+      sluggify
     }
   }
 })
