@@ -6,8 +6,8 @@
   >
     <transition
       name="dialog"
-      @after-enter="dispatchResize"
-      @after-leave="dispatchResize"
+      @after-enter="dispatchEvents('enter')"
+      @after-leave="dispatchEvents('leave')"
     >
       <div
         class="sd--dialog"
@@ -135,13 +135,11 @@ export default defineComponent({
           document.body.style.left = '0'
           document.body.style.right = '0'
           setFocus()
-          emit('opened')
         } else {
           const scrollY = document.body.style.top
           document.body.classList.remove('sd--dialog--open')
           document.body.removeAttribute('style')
           window.scrollTo(0, parseInt(scrollY || '0') * -1)
-          emit('closed')
         }
       })
     })
@@ -166,9 +164,15 @@ export default defineComponent({
     // Dispatch a resize event for children component
     // that need to update their boundingRect after the
     // animation has completed
-    const dispatchResize = () => {
+    const dispatchEvents = (state: string) => {
       nextTick().then(() => {
         window.dispatchEvent(new Event('resize'))
+        if(state === 'enter'){
+          emit('opened')
+        }
+        if(state === 'leave') {
+          emit('closed')
+        }
       })
     }
 
@@ -182,7 +186,7 @@ export default defineComponent({
       closeModal,
       classes,
       modalContainer,
-      dispatchResize
+      dispatchEvents
     }
   }
 })

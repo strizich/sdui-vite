@@ -191,8 +191,7 @@
 </template>
 
 <script lang="ts">
-  import { reactive, defineComponent, computed } from 'vue'
-  import { compose, join, map, toLowerCase, split } from './lib/core/utilities/ComposableUtil'
+  import { reactive, defineComponent } from 'vue'
   export default defineComponent({
   name: 'App',
   setup () {
@@ -202,17 +201,6 @@
       toast: false,
       scheme: 'auto',
       name: 'hello ladies'
-    })
-    
-    const toSlug = compose(
-      encodeURIComponent,
-      join('-'),
-      map(toLowerCase),
-      split(' ')
-    )
-
-    const sluggify = computed(() => {
-     return toSlug(state.name)
     })
 
     const handleDialogOpen = () => {
@@ -230,8 +218,7 @@
       handleToast,
       handleDialogClose,
       handleDialogOpen,
-      state,
-      sluggify
+      state
     }
   }
 })
