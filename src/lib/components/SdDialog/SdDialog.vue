@@ -1,9 +1,14 @@
 <template>
+  <!-- TODO: Add aria tags -->
   <teleport
     :to="portalTo"
     :disabled="portalDisabled"
   >
-    <transition name="dialog">
+    <transition
+      name="dialog"
+      @after-enter="dispatchResize"
+      @after-leave="dispatchResize"
+    >
       <div
         class="sd--dialog"
         v-if="active"
@@ -110,7 +115,7 @@ export default defineComponent({
           modalContainer.value.setAttribute('tabindex', '-1')
           modalContainer.value.focus()
         }
-      }, 20)
+      }, 0)
     }
 
     // When the modal is active we set the body of the document to fixed and position
@@ -158,6 +163,15 @@ export default defineComponent({
       }
     }
 
+    // Dispatch a resize event for children component
+    // that need to update their boundingRect after the
+    // animation has completed
+    const dispatchResize = () => {
+      nextTick().then(() => {
+        window.dispatchEvent(new Event('resize'))
+      })
+    }
+
     onMounted(() => {
       setFocus()
     })
@@ -167,7 +181,8 @@ export default defineComponent({
       onOutsideClick,
       closeModal,
       classes,
-      modalContainer
+      modalContainer,
+      dispatchResize
     }
   }
 })
