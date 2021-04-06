@@ -50,7 +50,7 @@ export default defineComponent({
     align-items: center;
     position: relative;
     padding: 8px 16px;
-    flex-grow: 2;
+    flex-grow: 0;
     
     &:not(:only-child):before{
       content: '';
