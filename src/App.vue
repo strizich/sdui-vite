@@ -160,7 +160,6 @@
       >
         Okay
       </sd-toast>
-      <sd-field v-model="state.name" />
       <sd-dialog
         aside
         v-model:active="state.modal"

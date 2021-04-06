@@ -1,6 +1,6 @@
 import { SdChip } from '../lib'
 import { reactive, toRefs } from 'vue'
-import { THEMES, ALIGNMENT, SIZES } from './constants'
+import { THEMES } from './constants'
 export default {
   title: 'Form Controls/SdChips',
   component: SdChip,

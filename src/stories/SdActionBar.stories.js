@@ -2,7 +2,7 @@
 import { SdActionBar } from '../lib'
 
 export default {
-  title: 'Components/SdActionBar',
+  title: 'Layout/SdActionBar',
   component: SdActionBar
 }
 
@@ -17,7 +17,8 @@ const Template = (args => ({
     }
   },
   template: `
-    <div style="width: 300px">
+    <div>
+      <p>WIP</p>
       <sd-action-bar v-bind="args"/>
     </div>
   `}))
