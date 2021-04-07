@@ -1,9 +1,14 @@
 <template>
+  <!-- TODO: Add aria tags -->
   <teleport
     :to="portalTo"
     :disabled="portalDisabled"
   >
-    <transition name="dialog">
+    <transition
+      name="dialog"
+      @after-enter="dispatchEvents('enter')"
+      @after-leave="dispatchEvents('leave')"
+    >
       <div
         class="sd--dialog"
         v-if="active"
@@ -110,7 +115,7 @@ export default defineComponent({
           modalContainer.value.setAttribute('tabindex', '-1')
           modalContainer.value.focus()
         }
-      }, 20)
+      }, 0)
     }
 
     // When the modal is active we set the body of the document to fixed and position
@@ -130,13 +135,11 @@ export default defineComponent({
           document.body.style.left = '0'
           document.body.style.right = '0'
           setFocus()
-          emit('opened')
         } else {
           const scrollY = document.body.style.top
           document.body.classList.remove('sd--dialog--open')
           document.body.removeAttribute('style')
           window.scrollTo(0, parseInt(scrollY || '0') * -1)
-          emit('closed')
         }
       })
     })
@@ -158,6 +161,21 @@ export default defineComponent({
       }
     }
 
+    // Dispatch a resize event for children component
+    // that need to update their boundingRect after the
+    // animation has completed
+    const dispatchEvents = (state: string) => {
+      nextTick().then(() => {
+        window.dispatchEvent(new Event('resize'))
+        if(state === 'enter'){
+          emit('opened')
+        }
+        if(state === 'leave') {
+          emit('closed')
+        }
+      })
+    }
+
     onMounted(() => {
       setFocus()
     })
@@ -167,7 +185,8 @@ export default defineComponent({
       onOutsideClick,
       closeModal,
       classes,
-      modalContainer
+      modalContainer,
+      dispatchEvents
     }
   }
 })

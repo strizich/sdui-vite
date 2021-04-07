@@ -18,6 +18,7 @@
 </template>
 
 <script lang="ts">
+// TODO: Add properties to manage auto height.
 import { defineComponent } from 'vue'
 import SdIcon from '../SdIcon/SdIcon.vue'
 export default defineComponent({
@@ -50,7 +51,7 @@ export default defineComponent({
     align-items: center;
     position: relative;
     padding: 8px 16px;
-    flex-grow: 2;
+    flex-grow: 0;
     
     &:not(:only-child):before{
       content: '';

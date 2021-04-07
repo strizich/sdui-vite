@@ -96,13 +96,13 @@ const useSlider = (props, emit) => {
   }
 
   // --- Mouse / Touch Handlers --- //
-  const handleMove = e => {
+  const handleMove = (e: MouseEvent | TouchInit) => {
     const { clientX } = e
     state.x = Math.max(0, Math.min(clientX - state.dragStartX, state.maxX))
     state.pctComplete = pctComplete(state.x, state.maxX)
   }
 
-  const handleStart = e => {
+  const handleStart = (e: MouseEvent | TouchInit) => {
     const { clientX } = e
     const clickX = Math.round((clientX - state.handleOffset))
     state.x = Math.max(0, Math.min(clickX, state.maxX))
@@ -111,49 +111,51 @@ const useSlider = (props, emit) => {
     state.isDragging = true
   }
 
-  const handleEnd = e => {
+  const handleEnd = () => {
     state.isDragging = false
     state.dragStartX = 0
   }
 
   // --- Mouse Events --- //
-  const onMouseWheel = e => {
+  const onMouseWheel = (e: MouseEvent)=> {
     e.preventDefault()
     handleMouseWheel(e)
   }
 
-  const onMouseMove = e => {
+  const onMouseMove = (e: MouseEvent) => {
     e.preventDefault()
     handleMove(e)
   }
 
-  const onMouseDown = e => {
+  const onMouseDown = (e: MouseEvent) => {
     handleStart(e)
     document.addEventListener('mouseup', onMouseUp, { passive: true })
     document.addEventListener('mousemove', onMouseMove, { passive: false })
   }
 
-  const onMouseUp = e => {
-    handleEnd(e)
+  const onMouseUp = (e: MouseEvent) => {
+    handleEnd()
     document.removeEventListener('mouseup', onMouseUp)
     document.removeEventListener('mousemove', onMouseMove)
     document.removeEventListener('mousedown', onMouseDown)
   }
 
   // --- Touch Events---
-  const onTouchMove = e => {
+  const onTouchMove = (e: TouchEvent) => {
+    const { touches } = e
     e.preventDefault()
-    handleMove(e.touches[0])
+    handleMove(touches[0])
   }
 
-  const onTouchStart = e => {
-    handleStart(e.touches[0])
+  const onTouchStart = (e: TouchEvent): void => {
+    const { touches } = e
+    handleStart(touches[0])
     document.addEventListener('touchend', onTouchEnd, { passive: true })
     document.addEventListener('touchmove', onTouchMove, { passive: false })
   }
 
-  const onTouchEnd = e => {
-    handleEnd(e.touches[0])
+  const onTouchEnd = (): void => {
+    handleEnd()
     document.removeEventListener('touchstart', onTouchStart)
     document.removeEventListener('touchend', onTouchEnd)
     document.removeEventListener('touchmove', onTouchMove)
