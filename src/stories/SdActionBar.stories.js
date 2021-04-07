@@ -25,7 +25,6 @@ const Template = (args => ({
   },
   template: `
     <div>
-      <p>WIP</p>
       <sd-action-bar v-bind="args">
         <template #start>
           <sd-fieldset title="Left Slot">
