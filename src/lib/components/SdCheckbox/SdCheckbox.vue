@@ -265,6 +265,9 @@ export default defineComponent({
     margin: 0 8px 8px 0;
     display: inline-flex;
     align-items: center;
+    &:only-child, &:last-child {
+      margin-bottom: 0px;
+    }
     &:focus{
       border:none;
       outline:none;
