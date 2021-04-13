@@ -55,6 +55,7 @@ export default defineComponent({
   flex-grow: 2;
   display:flex;
   flex-direction: column;
+  height:100%;
   &__content{
     margin-bottom: 16px;
     flex-grow: 2;
