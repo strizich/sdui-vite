@@ -150,7 +150,7 @@ export default defineComponent({
       let value = e.target.value
       // Parse value as a number if v-model.number modifier is used.
       if (props.modelModifiers.number || props.type === 'number') {
-        value = parseInt(value)
+        value = parseFloat(value)
       }
       if (!props.modelValue) {
         emit('input', value)
