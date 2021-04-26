@@ -1,42 +1,33 @@
 <template>
   <div
     class="sd--draggable"
-    ref="draggableRef"
+    ref="draggable"
     @dragover="(e) => onDragover(e)"
   >
+    <sd-drag
+      ref="drag"
+      style="grid-column: 2/4"
+      draggable="true"
+      :style="[testing]"
+      @drag="(e) => onDrag(e)"
+    />
     <div style="grid-column: 1/6;">
       {{ canvas }}
+      x: {{ pos.x }}
+      y: {{ pos.y }}
+      {{ item }}
     </div>
-    <sd-widget
-      id="okay"
-      theme="primary"
-      draggable="true"
-    >
-      <sd-widget-footer
-        ref="dragRef"
-        caption="drag me"
-        footnote="i can drag"
-        @drag="(e) => onDrag(e)"
-      />
-    </sd-widget>
-
-    <sd-sheet
-      ref="target"
-      @dragend="(e) => onDrop(e)"
-    >
-      hmm
-    </sd-sheet>
   </div>
 </template>
 
 <script lang="ts">
-import { onMounted, reactive, ref } from 'vue'
-import SdWidget from '@/lib/components/SdWidget/SdWidget.vue'
-import SdWidgetFooter from '@/lib/components/SdWidget/SdWidgetFooter.vue'
-import SdThrottle from '../lib/core/utilities/SdThrottle'
+import { computed, onMounted, reactive, ref, watchEffect } from 'vue'
+// import SdThrottle from '../lib/core/utilities/SdThrottle'
+import SdDrag from './SdDrag.vue'
 
 export default {
-  components: { SdWidget, SdWidgetFooter },
+  name: 'SdDraggable',
+  components: { SdDrag },
   props: {
     columns: {
       type: Number,
@@ -48,51 +39,86 @@ export default {
     }
   },
   setup(props) {
-    const draggableRef = ref(null)
-    const dragRef = ref(null)
-    const target = ref(null)
-    let canvas = reactive({
+    const draggable = ref(null)
+    const drag = ref(null)
+
+    const canvas = reactive({
       width: 0,
       height: 0,
       column: 0,
       row: 0
     })
 
+    const item = reactive({
+      width: 0,
+      height: 0
+    })
+
+    const pos = reactive({
+      x: 0,
+      y: 0
+    })
+
     const onDragover = (e) => {
       e.preventDefault()
-      const { clientX } = e
-      console.log('dragover', clientX)
-      let data = e.dataTransfer.getData('text')
-      console.log(data)
+      const { x, y} = e
+      // let data = e.dataTransfer.getData('text')
+      pos.x = x
+      pos.y = y
     }
-
+    const testing = computed(() => {
+      return {
+        position: 'absolute',
+        left: pos.x + 'px',
+        top: pos.y + 'px',
+        // transform: 'translateY(-50%) translateX(-50%)'
+      }
+    })
     const onDrag = (e) => {
-      SdThrottle(600, ()=> {
-        const { dataTransfer, clientX, x } = e
-        console.log('drag', x, clientX)
-        dataTransfer.setData('text', e.target.id)
-      })
+      console.log(e)
     }
-    const 
+    
     const setCanvas = () => {
-      const canvasRect = draggableRef.value.getBoundingClientRect()
-      canvas.width = canvasRect.width
-      canvas.height = canvasRect.height
-      canvas.column = canvasRect.width / props.columns
-      canvas.row = canvasRect.height / props.rows
+        console.log(draggable.value.getBoundingClientRect())
+      if(drag.value instanceof HTMLElement && draggable.value instanceof HTMLElement){
+        const canvasRect = draggable.value.getBoundingClientRect()
+        const dragRect = drag.value.getBoundingClientRect()
+        canvas.width = canvasRect.width
+        canvas.height = canvasRect.height
+        canvas.column = canvasRect.width / props.columns
+        canvas.row = canvasRect.height / props.rows
+        
+        item.width = dragRect.width
+        item.height = dragRect.height
+      }
     }
-
     onMounted(() => {
       setCanvas()
-      console.log(draggableRef)
     })
+    // watchEffect(() => {
+    //  setCanvas()
+    //   const canvasRect = draggable.value.getBoundingClientRect()
+    //   const dragRect = drag.value.getBoundingClientRect()
+    //   if(drag.value instanceof HTMLElement && draggable.value instanceof HTMLElement){
+    //     canvas.width = canvasRect.width
+    //     canvas.height = canvasRect.height
+    //     canvas.column = canvasRect.width / props.columns
+    //     canvas.row = canvasRect.height / props.rows
+        
+    //     item.width = dragRect.width
+    //     item.height = dragRect.height
+    //   }    
+    // }, {flush: 'post'})
+
     return {
-      draggableRef,
-      dragRef,
-      target,
+      draggable,
+      drag,
       onDrag,
       onDragover,
-      canvas
+      canvas,
+      pos,
+      testing,
+      item
     }
   }
 }

@@ -4,6 +4,12 @@
       <sd-draggable>
         okay
       </sd-draggable>
+
+      <sd-field
+        type="number"
+        v-model.number="state.sliderything"
+      />
+      {{ state.sliderything }}
     </template>
   </sd-layout>
 </template>
@@ -16,7 +22,7 @@
   name: 'App',
   setup () {
     const state = reactive({
-      sliderything: 0,
+      sliderything: 0.33,
       modal: false,
       toast: false,
       scheme: 'auto'
