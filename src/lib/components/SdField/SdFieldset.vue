@@ -94,9 +94,6 @@ export default defineComponent({
   &__header{
     display:flex;
     align-items: center;
-    .sd--label{
-      margin-bottom:0;
-    }
   }
   &__legend{
     align-items: center;
@@ -142,6 +139,9 @@ export default defineComponent({
         }
         .sd--fieldset__header{
           padding-right: 16px;
+        }
+        .sd--label{
+          margin-bottom:0;
         }
       }
     }
