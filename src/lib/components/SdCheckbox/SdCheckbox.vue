@@ -189,7 +189,7 @@ export default defineComponent({
       width: 20px;
       height: 20px;
       position: absolute;
-      left:0;
+      left: 4px;
       top: 50%;
       margin-top: -10px;
       background-color: var(--background);
@@ -261,10 +261,12 @@ export default defineComponent({
   .sd--checkbox {
     min-height: 34px;
     position:relative;
-    padding: 8px 16px 8px 28px ;
-    margin: 0 8px 8px 0;
+    padding: 8px 8px 8px 32px ;
+    margin: 0 0 8px;
     display: inline-flex;
     align-items: center;
+    user-select: none;
+    -webkit-user-select: none;
     &:only-child, &:last-child {
       margin-bottom: 0px;
     }
@@ -272,8 +274,6 @@ export default defineComponent({
       border:none;
       outline:none;
     }
-    user-select: none;
-    -webkit-user-select: none;
     &:hover{
       cursor: pointer;
       &:after{
@@ -281,7 +281,7 @@ export default defineComponent({
         content: '';
         position: absolute;
         top: 0;
-        left: -8px;
+        left: 0;
         right: 0;
         bottom: 0;
         display:block;

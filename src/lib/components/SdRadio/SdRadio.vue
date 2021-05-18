@@ -135,24 +135,11 @@ export default defineComponent({
                   inset 0 0 0 10px var(--background);
     }
   }
-  &:hover{
-    outline:none;
-    &:checked{
-      &:before{
-        box-shadow: inset 0 0 0 2px var(--primary-accent),
-                    inset 0 0 0 4px var(--background);
-      }
-    }
-    &:before{
-      box-shadow: inset 0 0 0 2px var(--primary-accent),
-                  inset 0 0 0 10px var(--background);
-    }
-  }
 }
   .sd--radio{
     position: relative;
     z-index: 10;
-    padding: 8px 16px 8px 32px;
+    padding: 8px 8px 8px 32px;
     -webkit-user-select: none;
     user-select: none;
     &.is--focused{
@@ -165,6 +152,19 @@ export default defineComponent({
       transition: background-color .15s ease-in-out;
       background-color: var(--background-highlight);
       cursor:pointer;
+      outline:none;
+      .sd--radio__input{
+        &:checked{
+          &:before{
+            box-shadow: inset 0 0 0 2px var(--primary-accent),
+                        inset 0 0 0 4px var(--background);
+          }
+        }
+        &:before{
+          box-shadow: inset 0 0 0 2px var(--primary-accent),
+                      inset 0 0 0 10px var(--background);
+        }
+      }
     }
     &__input{
       @extend %radio;
