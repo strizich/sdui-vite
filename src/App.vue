@@ -6,7 +6,6 @@
         <sd-container full>
           <h1 class="sd--text__headline">
             SDUI - Vite
-            {{ sluggify }}
           </h1>
           <sd-action-bar title="hmm">
             <template #start>
@@ -152,6 +151,25 @@
             </sd-col>
           </sd-row>
         </sd-container>
+        <sd-grid columns="12" :gutter="8">
+          <sd-cell :span="6">
+            <sd-sheet padded>
+              col1
+              {{breakpoint}}
+            </sd-sheet>
+          </sd-cell>
+          <sd-cell :span="6">
+          <sd-sheet padded>
+            col1
+          </sd-sheet>
+           </sd-cell>
+          <sd-sheet padded>
+            col1
+          </sd-sheet>
+          <sd-sheet padded>
+            col1
+          </sd-sheet>
+        </sd-grid>
       </div>
 
       <sd-toast
@@ -185,15 +203,24 @@
           </sd-button>
         </sd-dialog-footer>
       </sd-dialog>
+
     </template>
   </sd-layout>
 </template>
 
 <script lang="ts">
   import { reactive, defineComponent } from 'vue'
+  import SdGrid from './lib/components/SdGrid/SdGrid.vue'
+  import SdCell from './lib/components/SdGrid/SdCell.vue'
+
+  import useWindowWidth from './lib/hooks/useWindowWidth'
   export default defineComponent({
   name: 'App',
+  components: { SdGrid, SdCell },
   setup () {
+
+    const { breakpoint } = useWindowWidth()
+
     const state = reactive({
       sliderything: 4,
       modal: false,
@@ -217,7 +244,8 @@
       handleToast,
       handleDialogClose,
       handleDialogOpen,
-      state
+      state,
+      breakpoint
     }
   }
 })
@@ -233,6 +261,11 @@
     color: var(--danger);
     display:flex;
     align-items: center;
-    font-size: 12px;;
+    font-size: 12px;
+  }
+
+  .sd--col-o-2{
+    grid-column-start: 6;
+    grid-column-end: span 8;
   }
 </style>
