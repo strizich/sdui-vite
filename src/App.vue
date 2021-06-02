@@ -47,26 +47,13 @@
               </sd-fieldset>
             </template>
           </sd-action-bar>
-          <sd-row dense>
-            <sd-col
+          {{breakpoint}}
+          <sd-grid columns="12" :gutter="[0, 16]">
+            <sd-cell
+              :o-sm="3"
+              :xs="12"
               :sm="6"
-              :md="4" 
-              :lg="3"
-              :xl="2"
-            >
-              <sd-widget>
-                <sd-widget-metric value="51" />
-                <sd-widget-footer
-                  caption="Widget caption"
-                  footnote="Widget footnote"
-                />
-              </sd-widget>
-            </sd-col>
-            <sd-col
-              :sm="6"
-              :md="4" 
-              :lg="3"
-              :xl="2"
+              :md="4"
             >
               <sd-widget
                 theme="primary"
@@ -80,96 +67,40 @@
                   footnote="Widget footnote"
                 />
               </sd-widget>
-            </sd-col>
-            <sd-col
-              :sm="6"
-              :md="4" 
-              :lg="3"
-              :xl="2"
-            >
+            </sd-cell>
+             <sd-cell
+              :sm="12"
+              :md="6"
+             >
               <sd-widget
                 theme="primary"
               >
-                <sd-widget-metric value="51" />
+                <sd-widget-metric
+                  value="51"
+                  note="components"
+                />
                 <sd-widget-footer
                   caption="Widget caption"
-                  footnote="ok"
+                  footnote="Widget footnote"
                 />
               </sd-widget>
-            </sd-col>
-            <sd-col
-              :sm="6"
-              :md="4" 
-              :lg="3"
-              :xl="2"
-            >
+            </sd-cell>
+            <sd-cell :md="8" :lg="3">
               <sd-widget
                 theme="primary"
-                clickable
               >
-                <sd-widget-metric value="51" />
+                <sd-widget-metric
+                  value="51"
+                  note="components"
+                />
                 <sd-widget-footer
                   caption="Widget caption"
                   footnote="Widget footnote"
                 />
               </sd-widget>
-            </sd-col>
-            <sd-col
-              :sm="6"
-              :md="4" 
-              :lg="3"
-              :xl="2"
-            >
-              <sd-widget>
-                <sd-widget-metric value="51" />
-                <sd-widget-footer
-                  caption="Widget caption"
-                  footnote="Widget footnote"
-                />
-              </sd-widget>
-            </sd-col>
-            <sd-col
-              :sm="6"
-              :md="4" 
-              :lg="3"
-              :xl="2"
-            >
-              <sd-widget>
-                <sd-widget-metric value="51">
-                  <div class="something">
-                    <sd-icon
-                      name="arrow_downward"
-                      size="sm"
-                    /> 12%
-                  </div>
-                </sd-widget-metric>
-                <sd-widget-footer
-                  caption="Widget caption"
-                  footnote="Widget footnote"
-                />
-              </sd-widget>
-            </sd-col>
-          </sd-row>
+            </sd-cell>
+          </sd-grid>
         </sd-container>
-        <sd-grid columns="12" :gutter="8">
-          <sd-cell :span="6">
-            <sd-sheet padded>
-              col1
-              {{breakpoint}}
-            </sd-sheet>
-          </sd-cell>
-          <sd-cell :span="6">
-          <sd-sheet padded>
-            col1
-          </sd-sheet>
-           </sd-cell>
-          <sd-sheet padded>
-            col1
-          </sd-sheet>
-          <sd-sheet padded>
-            col1
-          </sd-sheet>
-        </sd-grid>
       </div>
 
       <sd-toast
@@ -203,7 +134,6 @@
           </sd-button>
         </sd-dialog-footer>
       </sd-dialog>
-
     </template>
   </sd-layout>
 </template>

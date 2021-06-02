@@ -1,8 +1,6 @@
 <template>
-  <div class="sd--grid" :style="gridStyles">
+  <div class="sd--grid" :class="[gridClasses]" :style="gridStyles">
     <slot />
-    {{gridStyles}}
-    {{handleGap}}
   </div>
 </template>
 <script>
@@ -16,7 +14,7 @@ export default {
     },
     gutter: {
       type: [Number, String, Array],
-      default: 16
+      default: null
     }
   },
   setup(props) {
@@ -26,23 +24,26 @@ export default {
 
     const handleGap = computed(() => {
       if(isArray.value) {
-        return `${props.gutter[1]}px ${props.gutter[0]}px`
+        return `${props.gutter[0]}px ${props.gutter[1]}px`
       } else {
         return props.gutter + 'px'
       }
     })
-
-    const gridStyles = computed(() => {
-      const column = '1fr '
+    const gridClasses = computed(() => {
       return {
-        'grid-template-columns': column.repeat(props.columns),
+        [`sd--grid--${props.columns}`]: true
+      }
+    })
+    const gridStyles = computed(() => {
+      return {
         'gap': handleGap.value
       }
     })
 
     return {
       gridStyles,
-      handleGap
+      handleGap,
+      gridClasses
     }
   }
 }
@@ -51,6 +52,19 @@ export default {
 <style lang="scss">
   .sd--grid{
     display: grid;
+    gap: 16px;
 
+    &--12{
+      grid-template-columns: repeat(12, 1fr),
+    }
+    &--6{
+      grid-template-columns: repeat(6, 1fr),
+    }
+    &--4{
+      grid-template-columns: repeat(4, 1fr),
+    }
+    &--1{
+      grid-template-columns: repeat(1, 1fr),
+    }
   }
 </style>
