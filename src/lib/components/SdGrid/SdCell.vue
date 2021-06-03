@@ -11,6 +11,7 @@ export default {
   name: 'SdCell',
   props: {
     span: Number,
+    // TODO: figure out a better way to handle this for xs breakpoints.
     xs: {
       type: Number,
       default: 12

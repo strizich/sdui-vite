@@ -71,7 +71,6 @@
              <sd-cell
               :xs="6"
               :md="6"
-
               align="stretch"
              >
               <sd-widget
