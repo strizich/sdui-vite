@@ -3,9 +3,9 @@
     <slot />
   </div>
 </template>
-<script>
-import { computed } from 'vue'
-export default {
+<script lang="ts">
+import { computed, defineComponent, PropType } from 'vue'
+export default defineComponent({
   name: 'SdGrid',
   props: {
     columns: {
@@ -13,7 +13,7 @@ export default {
       default: 12
     },
     gutter: {
-      type: [Number, String, Array],
+      type: [Number, String, Array] as PropType<number[] | number | string >,
       default: null
     }
   },
@@ -46,7 +46,7 @@ export default {
       gridClasses
     }
   }
-}
+})
 </script>
 
 <style lang="scss">

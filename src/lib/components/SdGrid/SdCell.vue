@@ -4,10 +4,10 @@
   </div>
 </template>
 
-<script>
-import { computed } from 'vue'
+<script lang="ts">
+import { computed, defineComponent } from 'vue'
 
-export default {
+export default defineComponent({
   name: 'SdCell',
   props: {
     span: Number,
@@ -90,7 +90,7 @@ export default {
       cellClasses
     }
   }
-}
+})
 </script>
 
 <style lang="scss">
