@@ -51,7 +51,7 @@
             :columns="12"
             :gutter="[0, 16]">
             <sd-cell
-              :sm="6"
+              :sm="7"
               :md="6"
             >
               <sd-widget
