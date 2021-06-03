@@ -47,17 +47,16 @@
               </sd-fieldset>
             </template>
           </sd-action-bar>
-          {{breakpoint}}
           <sd-grid
             :columns="12"
             :gutter="[0, 16]">
             <sd-cell
               :sm="6"
               :md="6"
-              :o-md="2"
             >
               <sd-widget
                 theme="primary"
+                class="widget--tall"
               >
                 <sd-widget-metric
                   value="1"
@@ -72,7 +71,8 @@
              <sd-cell
               :xs="6"
               :md="6"
-              :o-md="3"
+
+              align="stretch"
              >
               <sd-widget
                 theme="primary"
@@ -89,7 +89,39 @@
             </sd-cell>
             <sd-cell
               :xs="6"
-              :md="4" 
+              :md="3" 
+            >
+              <sd-widget
+                theme="primary"
+              >
+                <sd-widget-metric
+                  value="51"
+                  note="components"
+                />
+                <sd-widget-footer
+                  caption="Widget caption"
+                  footnote="Widget footnote"
+                />
+              </sd-widget>
+            </sd-cell>
+            <sd-cell
+              :md="3"
+            >
+              <sd-widget
+                theme="primary"
+              >
+                <sd-widget-metric
+                  value="51"
+                  note="components"
+                />
+                <sd-widget-footer
+                  caption="Widget caption"
+                  footnote="Widget footnote"
+                />
+              </sd-widget>
+            </sd-cell>
+             <sd-cell
+              :md="3"
               >
               <sd-widget
                 theme="primary"
@@ -104,35 +136,9 @@
                 />
               </sd-widget>
             </sd-cell>
-            <sd-cell>
-              <sd-widget
-                theme="primary"
-              >
-                <sd-widget-metric
-                  value="51"
-                  note="components"
-                />
-                <sd-widget-footer
-                  caption="Widget caption"
-                  footnote="Widget footnote"
-                />
-              </sd-widget>
-            </sd-cell>
-             <sd-cell>
-              <sd-widget
-                theme="primary"
-              >
-                <sd-widget-metric
-                  value="51"
-                  note="components"
-                />
-                <sd-widget-footer
-                  caption="Widget caption"
-                  footnote="Widget footnote"
-                />
-              </sd-widget>
-            </sd-cell>
-             <sd-cell>
+             <sd-cell 
+              :md="3"
+             >
               <sd-widget
                 theme="primary"
               >
@@ -234,5 +240,8 @@
     display:flex;
     align-items: center;
     font-size: 12px;
+  }
+  .widget--tall{
+    min-height: 400px;
   }
 </style>

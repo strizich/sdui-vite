@@ -11,44 +11,63 @@ export default {
   name: 'SdCell',
   props: {
     span: Number,
-    start: {
-      type: Number,
-      default: 0
-    },
-    end: Number,
     xs: {
       type: Number,
       default: 12
     },
-    sm: Number,
-    md: Number,
-    lg: Number,
-    xl: Number,
+    sm: {
+      type: Number,
+      default: undefined
+    },
+    md: {
+      type: Number,
+      default: undefined
+    },
+    lg: {
+      type: Number,
+      default: undefined
+    },
+    xl: {
+      type: Number,
+      default: undefined
+    },
     oXs: {
       type: Number,
-      default: 0
+      default: undefined
     },
     oSm: {
       type: Number,
-      default: 0
+      default: undefined
+
     },
     oMd: {
       type: Number,
-      default: 0
+      default: undefined
+
     },
     oLg: {
       type: Number,
-      default: 0
+      default: undefined
+
     },
     oXl: {
       type: Number,
-      default: 0
+      default: undefined
+    },
+    align: {
+      type: String,
+      default: undefined
+    },
+    justify: {
+      type: String,
+      default: undefined
     }
   },
   setup (props) {
     const cellStyles = computed(() => {
       return {
-        'grid-column-start': props.start
+        'align-self': props.align,
+        'justify-self': props.justify
       }
     })
     const cellClasses = computed(() => {
