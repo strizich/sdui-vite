@@ -49,7 +49,7 @@
           </sd-action-bar>
           {{breakpoint}}
           <sd-grid
-            :columns="6"
+            :columns="12"
             :gutter="[0, 16]">
             <sd-cell
               :sm="6"
@@ -69,7 +69,7 @@
               </sd-widget>
             </sd-cell>
              <sd-cell
-              :sm="6"
+              :xs="6"
               :md="4"
              >
               <sd-widget
@@ -85,7 +85,10 @@
                 />
               </sd-widget>
             </sd-cell>
-            <sd-cell :md="4" :sm="6">
+            <sd-cell
+              :xs="6"
+              :md="4" 
+              >
               <sd-widget
                 theme="primary"
               >

@@ -48,8 +48,7 @@ export default {
   setup (props) {
     const cellStyles = computed(() => {
       return {
-        'grid-column-start': props.start,
-        'grid-column-end': props.span ? `span ${props.span}` : props.end,
+        'grid-column-start': props.start
       }
     })
     const cellClasses = computed(() => {
