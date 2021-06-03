@@ -53,13 +53,14 @@
             :gutter="[0, 16]">
             <sd-cell
               :sm="6"
-              :md="4"
+              :md="6"
+              :o-md="2"
             >
               <sd-widget
                 theme="primary"
               >
                 <sd-widget-metric
-                  value="51"
+                  value="1"
                   note="components"
                 />
                 <sd-widget-footer
@@ -70,13 +71,14 @@
             </sd-cell>
              <sd-cell
               :xs="6"
-              :md="4"
+              :md="6"
+              :o-md="3"
              >
               <sd-widget
                 theme="primary"
               >
                 <sd-widget-metric
-                  value="51"
+                  value="2"
                   note="components"
                 />
                 <sd-widget-footer
@@ -89,6 +91,48 @@
               :xs="6"
               :md="4" 
               >
+              <sd-widget
+                theme="primary"
+              >
+                <sd-widget-metric
+                  value="51"
+                  note="components"
+                />
+                <sd-widget-footer
+                  caption="Widget caption"
+                  footnote="Widget footnote"
+                />
+              </sd-widget>
+            </sd-cell>
+            <sd-cell>
+              <sd-widget
+                theme="primary"
+              >
+                <sd-widget-metric
+                  value="51"
+                  note="components"
+                />
+                <sd-widget-footer
+                  caption="Widget caption"
+                  footnote="Widget footnote"
+                />
+              </sd-widget>
+            </sd-cell>
+             <sd-cell>
+              <sd-widget
+                theme="primary"
+              >
+                <sd-widget-metric
+                  value="51"
+                  note="components"
+                />
+                <sd-widget-footer
+                  caption="Widget caption"
+                  footnote="Widget footnote"
+                />
+              </sd-widget>
+            </sd-cell>
+             <sd-cell>
               <sd-widget
                 theme="primary"
               >
@@ -190,10 +234,5 @@
     display:flex;
     align-items: center;
     font-size: 12px;
-  }
-
-  .sd--col-o-2{
-    grid-column-start: 6;
-    grid-column-end: span 8;
   }
 </style>
