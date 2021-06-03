@@ -6,7 +6,6 @@
         <sd-container full>
           <h1 class="sd--text__headline">
             SDUI - Vite
-            {{ sluggify }}
           </h1>
           <sd-action-bar title="hmm">
             <template #start>
@@ -48,26 +47,48 @@
               </sd-fieldset>
             </template>
           </sd-action-bar>
-          <sd-row dense>
-            <sd-col
-              :sm="6"
-              :md="4" 
-              :lg="3"
-              :xl="2"
+          <sd-grid
+            :columns="12"
+            :gutter="[0, 16]">
+            <sd-cell
+              :sm="7"
+              :md="6"
             >
-              <sd-widget>
-                <sd-widget-metric value="51" />
+              <sd-widget
+                theme="primary"
+                class="widget--tall"
+              >
+                <sd-widget-metric
+                  value="1"
+                  note="components"
+                />
                 <sd-widget-footer
                   caption="Widget caption"
                   footnote="Widget footnote"
                 />
               </sd-widget>
-            </sd-col>
-            <sd-col
-              :sm="6"
-              :md="4" 
-              :lg="3"
-              :xl="2"
+            </sd-cell>
+             <sd-cell
+              :xs="6"
+              :md="6"
+              align="stretch"
+             >
+              <sd-widget
+                theme="primary"
+              >
+                <sd-widget-metric
+                  value="2"
+                  note="components"
+                />
+                <sd-widget-footer
+                  caption="Widget caption"
+                  footnote="Widget footnote"
+                />
+              </sd-widget>
+            </sd-cell>
+            <sd-cell
+              :xs="6"
+              :md="3" 
             >
               <sd-widget
                 theme="primary"
@@ -81,76 +102,56 @@
                   footnote="Widget footnote"
                 />
               </sd-widget>
-            </sd-col>
-            <sd-col
-              :sm="6"
-              :md="4" 
-              :lg="3"
-              :xl="2"
+            </sd-cell>
+            <sd-cell
+              :md="3"
             >
               <sd-widget
                 theme="primary"
               >
-                <sd-widget-metric value="51" />
+                <sd-widget-metric
+                  value="51"
+                  note="components"
+                />
                 <sd-widget-footer
                   caption="Widget caption"
-                  footnote="ok"
+                  footnote="Widget footnote"
                 />
               </sd-widget>
-            </sd-col>
-            <sd-col
-              :sm="6"
-              :md="4" 
-              :lg="3"
-              :xl="2"
-            >
+            </sd-cell>
+             <sd-cell
+              :md="3"
+              >
               <sd-widget
                 theme="primary"
-                clickable
               >
-                <sd-widget-metric value="51" />
+                <sd-widget-metric
+                  value="51"
+                  note="components"
+                />
                 <sd-widget-footer
                   caption="Widget caption"
                   footnote="Widget footnote"
                 />
               </sd-widget>
-            </sd-col>
-            <sd-col
-              :sm="6"
-              :md="4" 
-              :lg="3"
-              :xl="2"
-            >
-              <sd-widget>
-                <sd-widget-metric value="51" />
+            </sd-cell>
+             <sd-cell 
+              :md="3"
+             >
+              <sd-widget
+                theme="primary"
+              >
+                <sd-widget-metric
+                  value="51"
+                  note="components"
+                />
                 <sd-widget-footer
                   caption="Widget caption"
                   footnote="Widget footnote"
                 />
               </sd-widget>
-            </sd-col>
-            <sd-col
-              :sm="6"
-              :md="4" 
-              :lg="3"
-              :xl="2"
-            >
-              <sd-widget>
-                <sd-widget-metric value="51">
-                  <div class="something">
-                    <sd-icon
-                      name="arrow_downward"
-                      size="sm"
-                    /> 12%
-                  </div>
-                </sd-widget-metric>
-                <sd-widget-footer
-                  caption="Widget caption"
-                  footnote="Widget footnote"
-                />
-              </sd-widget>
-            </sd-col>
-          </sd-row>
+            </sd-cell>
+          </sd-grid>
         </sd-container>
       </div>
 
@@ -191,8 +192,12 @@
 
 <script lang="ts">
   import { reactive, defineComponent } from 'vue'
+  import SdGrid from './lib/components/SdGrid/SdGrid.vue'
+  import SdCell from './lib/components/SdGrid/SdCell.vue'
+
   export default defineComponent({
   name: 'App',
+  components: { SdGrid, SdCell },
   setup () {
     const state = reactive({
       sliderything: 4,
@@ -233,6 +238,9 @@
     color: var(--danger);
     display:flex;
     align-items: center;
-    font-size: 12px;;
+    font-size: 12px;
+  }
+  .widget--tall{
+    min-height: 400px;
   }
 </style>
