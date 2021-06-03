@@ -18,42 +18,42 @@ export default {
     },
     sm: {
       type: Number,
-      default: undefined
+      default: 0
     },
     md: {
       type: Number,
-      default: undefined
+      default: 0
     },
     lg: {
       type: Number,
-      default: undefined
+      default: 0
     },
     xl: {
       type: Number,
-      default: undefined
+      default: 0
     },
     oXs: {
       type: Number,
-      default: undefined
+      default: 0
     },
     oSm: {
       type: Number,
-      default: undefined
+      default: 0
 
     },
     oMd: {
       type: Number,
-      default: undefined
+      default: 0
 
     },
     oLg: {
       type: Number,
-      default: undefined
+      default: 0
 
     },
     oXl: {
       type: Number,
-      default: undefined
+      default: 0
     },
     align: {
       type: String,
