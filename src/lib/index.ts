@@ -36,6 +36,8 @@ import SdMast from './components/SdMast/SdMast.vue'
 import SdRow from './components/SdGrid/SdRow.vue'
 import SdCol from './components/SdGrid/SdCol.vue'
 import SdContainer from './components/SdGrid/SdContainer.vue'
+import SdGrid from './components/SdGrid/SdGrid.vue'
+import SdCell from './components/SdGrid/SdCell.vue'
 import SdSlider from './components/SdSlider/SdSlider.vue'
 import SdProgress from './components/SdProgress/SdProgress.vue'
 import SdDropdown from './components/SdDropdown/SdDropdown.vue'
@@ -107,6 +109,8 @@ const components = {
   SdRow,
   SdCol,
   SdContainer,
+  SdGrid,
+  SdCell,
   // Dropdown
   SdDropdown,
   SdDropdownMenu,
@@ -205,6 +209,8 @@ export {
   SdRow,
   SdCol,
   SdContainer,
+  SdGrid,
+  SdCell,
   SdSlider,
   SdMast,
   SdSwitch,

@@ -13,7 +13,6 @@ export default {
   }
 };
 
-
 const Template = (args => ({
   components: { SdRadio },
   setup () {

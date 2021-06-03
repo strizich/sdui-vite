@@ -1,5 +1,5 @@
 import { SdProgress } from '../lib'
-import { THEMES, ALIGNMENT, SIZES } from './constants'
+import { THEMES } from './constants'
 
 export default {
   title: 'Components/SdProgress',

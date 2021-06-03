@@ -48,11 +48,11 @@
             </template>
           </sd-action-bar>
           {{breakpoint}}
-          <sd-grid columns="12" :gutter="[0, 16]">
+          <sd-grid
+            :columns="6"
+            :gutter="[0, 16]">
             <sd-cell
-              :xs="12"
-              :o-sm="2"
-              :sm="4"
+              :sm="6"
               :md="4"
             >
               <sd-widget
@@ -69,9 +69,8 @@
               </sd-widget>
             </sd-cell>
              <sd-cell
-              :o-sm="8"
-              :sm="4"
-              :md="6"
+              :sm="6"
+              :md="4"
              >
               <sd-widget
                 theme="primary"
@@ -86,7 +85,7 @@
                 />
               </sd-widget>
             </sd-cell>
-            <sd-cell :md="8" :lg="3" :xs="6">
+            <sd-cell :md="4" :sm="6">
               <sd-widget
                 theme="primary"
               >
@@ -144,14 +143,10 @@
   import SdGrid from './lib/components/SdGrid/SdGrid.vue'
   import SdCell from './lib/components/SdGrid/SdCell.vue'
 
-  import useWindowWidth from './lib/hooks/useWindowWidth'
   export default defineComponent({
   name: 'App',
   components: { SdGrid, SdCell },
   setup () {
-
-    const { breakpoint } = useWindowWidth()
-
     const state = reactive({
       sliderything: 4,
       modal: false,
@@ -175,8 +170,7 @@
       handleToast,
       handleDialogClose,
       handleDialogOpen,
-      state,
-      breakpoint
+      state
     }
   }
 })
