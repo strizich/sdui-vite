@@ -50,9 +50,9 @@
           {{breakpoint}}
           <sd-grid columns="12" :gutter="[0, 16]">
             <sd-cell
-              :o-sm="3"
               :xs="12"
-              :sm="6"
+              :o-sm="2"
+              :sm="4"
               :md="4"
             >
               <sd-widget
@@ -69,7 +69,8 @@
               </sd-widget>
             </sd-cell>
              <sd-cell
-              :sm="12"
+              :o-sm="8"
+              :sm="4"
               :md="6"
              >
               <sd-widget
@@ -85,7 +86,7 @@
                 />
               </sd-widget>
             </sd-cell>
-            <sd-cell :md="8" :lg="3">
+            <sd-cell :md="8" :lg="3" :xs="6">
               <sd-widget
                 theme="primary"
               >

@@ -16,7 +16,10 @@ export default {
       default: 0
     },
     end: Number,
-    xs: Number,
+    xs: {
+      type: Number,
+      default: 12
+    },
     sm: Number,
     md: Number,
     lg: Number,
@@ -46,6 +49,7 @@ export default {
     const cellStyles = computed(() => {
       return {
         'grid-column-start': props.start,
+        'grid-column-end': props.span ? `span ${props.span}` : props.end,
       }
     })
     const cellClasses = computed(() => {

@@ -282,7 +282,7 @@ $grid-breakpoints: (
     
       @for $i from 0 through ($columns - 1) {
         @if not ($infix == "" and $i == 0) {
-          .sd--cell-offset#{$infix}-#{$i} {
+          .sd--cell#{$infix}-offset-#{$i} {
             grid-column-start: #{$i};
           }
         }
