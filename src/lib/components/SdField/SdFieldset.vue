@@ -112,17 +112,12 @@ export default defineComponent({
     align-content: flex-start;
     flex-wrap: wrap;
     width: 100%;
-    .sd--checkbox, .sd--switch{
-      margin-left:0;
-      margin-right: 0;
+    .sd--radio, .sd--checkbox, .sd--switch{
+      margin: 0;
       width:100%;
     }
     .sd--switch:not(:last-child){
       border-bottom: 1px solid var(--divider)
-    }
-    .sd--radio{
-      margin-bottom:0;
-      width:100%;
     }
     .sd--button{
       margin: 0 4px;
@@ -141,6 +136,12 @@ export default defineComponent({
         width: auto;
         .sd--radio, .sd--button, .sd--checkbox{
           width: auto;
+        }
+        .sd--fieldset__header{
+          padding-right: 16px;
+        }
+        .sd--label{
+          margin-bottom:0;
         }
       }
     }

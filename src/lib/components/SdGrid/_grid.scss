@@ -143,6 +143,7 @@ $grid-breakpoints: (
   }
 }
 
+
 @mixin make-grid-columns($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
   %grid-column {
     position: relative;
@@ -192,6 +193,97 @@ $grid-breakpoints: (
         @if not ($infix == "" and $i == 0) {
           .sd--offset#{$infix}-#{$i} {
             @include make-col-offset($i, $columns);
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@mixin make-grid-columns($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
+  %grid-column {
+    position: relative;
+    width: 100%;
+    padding-right: $gutter / 2;
+    padding-left: $gutter / 2;
+  }
+
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $breakpoints);
+
+    @for $i from 1 through $columns {
+      .sd--col#{$infix}-#{$i} {
+        @extend %grid-column;
+      }
+    }
+    .sd--col#{$infix},
+    .sd--col#{$infix}-auto {
+      @extend %grid-column;
+    }
+
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+      .col#{$infix} {
+        flex-basis: 0;
+        flex-grow: 1;
+        min-width: 0; // See https://github.com/twbs/bootstrap/issues/25410
+        max-width: 100%;
+      }
+
+      @for $i from 1 through $grid-row-columns {
+        .sd--row-cols#{$infix}--#{$i} {
+          @include row-cols($i);
+        }
+      }
+
+      .sd--col#{$infix}-auto {
+        @include make-col-auto();
+      }
+
+      @for $i from 1 through $columns {
+        .sd--col#{$infix}-#{$i} {
+          @include make-col($i, $columns);
+        }
+      }
+    
+      @for $i from 0 through ($columns - 1) {
+        @if not ($infix == "" and $i == 0) {
+          .sd--offset#{$infix}-#{$i} {
+            @include make-col-offset($i, $columns);
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin make-grid-cells($columns: $grid-columns, $breakpoints: $grid-breakpoints) {
+  @include media-breakpoint-down('sm') {
+    @for $i from 1 through $columns {
+      .sd--cell-xs-#{$i} {
+        grid-column-end: span #{$i}!important;
+      }
+    }
+  }
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $breakpoints);
+
+    @for $i from 1 through $columns {
+      .sd--cell#{$infix}-#{$i}, .sd--cell--xs-#{$i} {
+        grid-column-end: span #{$i};
+      }
+    } 
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+      @for $i from 1 through $columns {
+        .sd--cell#{$infix}-#{$i} {
+          grid-column-end: span #{$i}!important;
+        }
+      }
+    
+      @for $i from 0 through ($columns - 1) {
+        @if not ($infix == "" and $i == 0) {
+          .sd--cell#{$infix}-offset-#{$i} {
+            grid-column-start: #{$i};
           }
         }
       }

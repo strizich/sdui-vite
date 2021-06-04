@@ -159,7 +159,7 @@ export default defineComponent({
     const mountEventBindings = async () => {
       await nextTick().then(() => {
         // Gets the orignal parent instance of <teleport />
-        state.targetEl = dropdownPortal.value?.parentNode
+        state.targetEl = dropdownPortal.value.parentNode
         if (state.targetEl) {
           // add event listeners for keyboard.
           state.targetEl.addEventListener('click', (e) => show(e), false)

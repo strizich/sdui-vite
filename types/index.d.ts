@@ -41,6 +41,8 @@ declare module '@strizich/sdui' {
   const SdRow: ReturnType<typeof defineComponent>
   const SdCol: ReturnType<typeof defineComponent>
   const SdContainer: ReturnType<typeof defineComponent>
+  const SdGrid: ReturnType<typeof defineComponent>
+  const SdCell: ReturnType<typeof defineComponent>
   // Dropdown
   const SdDropdown: ReturnType<typeof defineComponent>
   const SdDropdownMenu: ReturnType<typeof defineComponent>
@@ -60,6 +62,9 @@ declare module '@strizich/sdui' {
   const SdWidget: ReturnType<typeof defineComponent>
   const SdWidgetFooter: ReturnType<typeof defineComponent>
   const SdWidgetMetric: ReturnType<typeof defineComponent>
+
+
+
 
 
   // Installation
@@ -156,6 +161,8 @@ declare module '@strizich/sdui' {
     SdRow,
     SdCol,
     SdContainer,
+    SdGrid,
+    SdCell,
     // Dropdown
     SdDropdown,
     SdDropdownMenu,

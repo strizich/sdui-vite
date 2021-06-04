@@ -20,14 +20,10 @@ export default defineComponent({
         return 'sd--container'
       }
     })
-    
-    const elementTag = computed(() => {
-      return props.article ? 'article' : 'div'
-    })
 
     return () =>
       h(
-        elementTag.value,
+        props.article ? 'article' : 'div',
         {
           class: classes.value
         },

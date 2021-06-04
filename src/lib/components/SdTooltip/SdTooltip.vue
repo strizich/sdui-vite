@@ -181,7 +181,7 @@ export default defineComponent({
     const mountEventBindings = async () => {
       await nextTick().then(() => {
         // Gets the orignal parent instance of <teleport />
-        state.targetEl = tooltipPortal.value?.parentNode
+        state.targetEl = tooltipPortal.value.parentNode
         if (props.autoOpen && state.targetEl) {
           document.body.addEventListener('touchstart', outsideTouch, { passive: true })
           state.targetEl.addEventListener('touchstart', touched, { passive: true })
