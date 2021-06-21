@@ -54,7 +54,7 @@ const Template = (args) => ({
     return { args, themes };
   },
   template: `
-  <sd-button-group>
+  <sd-button-group :vertical="args.vertical">
     <sd-button
       :outline="args.outline"
       :pill="args.pill"
