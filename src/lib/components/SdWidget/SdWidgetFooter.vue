@@ -35,7 +35,7 @@ export default defineComponent({
     },
     clickable: {
       type: Boolean,
-      default: true
+      default: false
     }
   },
   setup() {

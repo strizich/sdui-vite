@@ -4,6 +4,7 @@ import { toCamelCase, toKebab } from './core/utilities/SdTextTransform'
 // Components
 import './components/SdElevation/elevation.scss'
 import SdButton from './components/SdButton/SdButton.vue'
+import SdButtonGroup from './components/SdButton/SdButtonGroup.vue'
 import SdRouterLink from './components/SdButton/SdRouterLink.vue'
 import SdHamburger from './components/SdButton/SdHamburger.vue'
 import SdCard from './components/SdCard/SdCard.vue'
@@ -68,6 +69,7 @@ const components = {
   SdSkeleton,
   // Button
   SdButton,
+  SdButtonGroup,
   SdRouterLink,
   // Cards
   SdCard,

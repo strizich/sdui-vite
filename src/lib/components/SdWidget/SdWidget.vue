@@ -1,5 +1,3 @@
-// WIP
-
 <template>
   <div class="sd--widget">
     <div :class="['sd--widget__content', classes]">

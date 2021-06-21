@@ -9,17 +9,31 @@
           </h1>
           <sd-action-bar title="hmm">
             <template #start>
-              <sd-fieldset title="okay">
+              <sd-button-group class="demo__button-group" >
                 <sd-button 
                   @click="handleDialogOpen"
                 >
                   Open Modal
                   <sd-tooltip>huh</sd-tooltip>
                 </sd-button>
+              </sd-button-group>
+              <sd-button-group class="demo__button-group">
+                <sd-button 
+                  @click="handleDialogOpen"
+                >
+                  Open Modal
+                  <sd-tooltip>huh</sd-tooltip>
+                </sd-button>
+                <sd-button outline @click="handleToast">
+                  Make Toast
+                </sd-button>
                 <sd-button @click="handleToast">
                   Make Toast
                 </sd-button>
-              </sd-fieldset>
+                <sd-button @click="handleToast">
+                  Make Toast
+                </sd-button>
+              </sd-button-group>
             </template>
             <template #end>
               <sd-fieldset 
@@ -73,9 +87,7 @@
               :md="6"
               align="stretch"
              >
-              <sd-widget
-                theme="primary"
-              >
+              <sd-widget>
                 <sd-widget-metric
                   value="2"
                   note="components"
@@ -192,12 +204,12 @@
 
 <script lang="ts">
   import { reactive, defineComponent } from 'vue'
-  import SdGrid from './lib/components/SdGrid/SdGrid.vue'
-  import SdCell from './lib/components/SdGrid/SdCell.vue'
+  import SdButtonGroup from './lib/components/SdButton/SdButtonGroup.vue'
+  
 
   export default defineComponent({
   name: 'App',
-  components: { SdGrid, SdCell },
+  components: { SdButtonGroup },
   setup () {
     const state = reactive({
       sliderything: 4,
@@ -233,6 +245,9 @@
 
   .demo{
     padding: 40px 0;
+    &__button-group{
+      margin-bottom: 16px;
+    }
   }
   .something{
     color: var(--danger);
