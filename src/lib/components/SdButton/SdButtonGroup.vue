@@ -37,7 +37,7 @@ export default {
 @import '../SdElevation/mixins';
 
 .sd--button-group {
-  display: flex;
+  display: inline-flex;
   border-radius: 3px;
   @include elevation(2);
 
