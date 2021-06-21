@@ -2,6 +2,7 @@ declare module '@strizich/sdui' {
   import { defineComponent, Ref, ComputedRef } from 'vue'
   const SdSkeleton: ReturnType<typeof defineComponent>
   const SdButton: ReturnType<typeof defineComponent>
+  const SdButtonGroup: ReturnType<typeof defineComponent>
   const SdRouterLink: ReturnType<typeof defineComponent>
   const SdCard: ReturnType<typeof defineComponent>
   const SdCardBody: ReturnType<typeof defineComponent>
@@ -120,6 +121,7 @@ declare module '@strizich/sdui' {
     SdSkeleton,
     // Button
     SdButton,
+    SdButtonGroup,
     SdRouterLink,
     // Cards
     SdCard,
