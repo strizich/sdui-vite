@@ -17,7 +17,7 @@
                   <sd-tooltip>huh</sd-tooltip>
                 </sd-button>
               </sd-button-group>
-              <sd-button-group class="demo__button-group" vertical>
+              <sd-button-group class="demo__button-group">
                 <sd-button 
                   @click="handleDialogOpen"
                 >
