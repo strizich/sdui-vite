@@ -218,7 +218,8 @@ export default defineComponent({
   padding-top:8px;
   padding-bottom:8px;
   display:flex;
-  align-items: center;;
+  align-items: center;
+  max-height: 64px;
 }
 %icons{
   width: 32px;
@@ -245,7 +246,6 @@ export default defineComponent({
   padding: 0;
   vertical-align: middle;
   margin-right: 8px;
-
   &:last-child {
     margin-right: 0;
   }
@@ -382,7 +382,17 @@ export default defineComponent({
 
       &.is--outline {
         background: none;
-        border: 1px solid var(--#{$state});
+        position: relative;
+        &:after{
+          content: '';
+          display: block;
+          position: absolute; 
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          border: 1px solid var(--#{$state});
+        }
         @include flatten-theme($state);
 
         &.is--disabled {
