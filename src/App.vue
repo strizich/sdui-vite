@@ -1,5 +1,8 @@
 <template>
   <sd-layout :scheme="state.scheme">
+    <template #header>
+      <sd-header></sd-header>
+    </template>
     <template #content>
       <sd-mast>Things here</sd-mast>
       <div class="demo">
@@ -7,10 +10,17 @@
           <h1 class="sd--text__headline">
             SDUI - Vite
           </h1>
+
+          <!-- <sd-carousel>
+            <sd-sheet padded>Okay</sd-sheet>
+            <sd-sheet padded>Okay</sd-sheet>
+            <sd-sheet padded>Okay</sd-sheet>
+          </sd-carousel> -->
           <sd-action-bar title="hmm">
             <template #start>
               <sd-button-group class="demo__button-group" >
                 <sd-button 
+                  disabled
                   @click="handleDialogOpen"
                 >
                   Open Modal
@@ -64,6 +74,13 @@
           <sd-grid
             :columns="12"
             :gutter="[0, 16]">
+            <sd-cell
+              :sm="7"
+              :md="6"
+            >
+            {{trapRef}}
+            </sd-cell>
+
             <sd-cell
               :sm="7"
               :md="6"
@@ -203,14 +220,19 @@
 </template>
 
 <script lang="ts">
-  import { reactive, defineComponent } from 'vue'
+  import { reactive, defineComponent, ref } from 'vue'
   import SdButtonGroup from './lib/components/SdButton/SdButtonGroup.vue'
-  
+  // import SdCarousel from './lib/components/SdCarousel/SdCarousel.vue'
 
   export default defineComponent({
   name: 'App',
-  components: { SdButtonGroup },
+  components: {
+    SdButtonGroup,
+    // SdCarousel,
+  },
   setup () {
+    const trapRef = ref(null)
+
     const state = reactive({
       sliderything: 4,
       modal: false,
@@ -234,7 +256,8 @@
       handleToast,
       handleDialogClose,
       handleDialogOpen,
-      state
+      state,
+      trapRef
     }
   }
 })

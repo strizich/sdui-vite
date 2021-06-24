@@ -10,13 +10,16 @@
       @after-leave="dispatchEvents('leave')"
     >
       <div
+        role="dialog"
         class="sd--dialog"
         v-if="active"
+        aria-modal="true"
       >
+        <sd-focus-trap :target="modalContainer" :active="trapActive">
         <div
+          ref="modalContainer"
           :class="['sd--dialog__wrapper','elevation--6', classes ]"
           @keydown.esc="onEsc"
-          ref="modalContainer"
         >
           <div class="sd--dialog__container">
             <slot />
@@ -31,6 +34,7 @@
           @click="onOutsideClick"
           v-if="backdrop && active"
         />
+        </sd-focus-trap>
       </div>
     </transition>
   </teleport>
@@ -38,6 +42,7 @@
 
 <script lang="ts">
 import { defineComponent, watch, computed, nextTick, onMounted, ref } from 'vue'
+import SdFocusTrap from '../SdFocusTrap/SdFocusTrap.vue'
 import SdOverlay from './SdOverlay.vue'
 import sdUuid from '../../core/utilities/SdUuid'
 import '../SdElevation'
@@ -85,16 +90,19 @@ export default defineComponent({
     },
     aside: Boolean,
     placement: {
-      type: String,
+      type: String, 
       default: 'right'
     }
   },
   components: {
-    SdOverlay
+    SdOverlay,
+    SdFocusTrap
   },
   emits: ['update:active', 'clicked-outside', 'opened', 'closed'],
   setup (props, { emit }) {
     const modalContainer = ref(null)
+    const trapActive = ref(false)
+
     const classes = computed(() => {
       const sizeClass = `is--${props.size}`
       const asidePlacement = `sd--dialog__aside--${props.placement}`
@@ -146,6 +154,7 @@ export default defineComponent({
 
     const closeModal = () => {
       emit('update:active', false)
+      trapActive.value = false
     }
 
     const onOutsideClick = () => {
@@ -169,6 +178,7 @@ export default defineComponent({
         window.dispatchEvent(new Event('resize'))
         if(state === 'enter'){
           emit('opened')
+          trapActive.value = true
         }
         if(state === 'leave') {
           emit('closed')
@@ -186,7 +196,8 @@ export default defineComponent({
       closeModal,
       classes,
       modalContainer,
-      dispatchEvents
+      dispatchEvents,
+      trapActive
     }
   }
 })

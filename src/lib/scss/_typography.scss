@@ -1,14 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500;700&display=swap');
 
-%schemes {
-  &--light{
-    color:var(--text-light);
-  }
-  &--dark{
-    color: var(--text-dark);
-  }
-}
-
 h1, h2, h3, h4, h5{
   line-height: 1;
   margin-bottom: 16px;
@@ -38,8 +29,18 @@ p{
   font-size: 16px;
 }
 
+
+%schemes {
+  &--light{
+    color:var(--text-light);
+  }
+  &--dark{
+    color: var(--text-dark);
+  }
+}
+
 .sd--text{
- @extend %schemes;
+  @extend %schemes;
   &__lead {
     font-size: rem(18);
     text-transform: uppercase;
@@ -50,7 +51,6 @@ p{
     color: var(--text-accent);
     letter-spacing: .25px;
     @extend %schemes;
-
   }
   &__header{
     font-weight: 500;
@@ -58,7 +58,6 @@ p{
     font-size: rem(24);
     margin: 0;
     @extend %schemes;
-
   }
 
   &__caption{
@@ -86,7 +85,6 @@ p{
     letter-spacing: rem(1.2);
     color: var(--text);
     @extend %schemes;
-
   }
 
   &__footnote{
