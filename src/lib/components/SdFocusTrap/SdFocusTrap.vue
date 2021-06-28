@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { ref, watchEffect, onUnmounted } from 'vue'
+import { watchEffect, onUnmounted } from 'vue'
 import { createFocusTrap } from 'focus-trap'
 
 export default {
@@ -46,7 +46,6 @@ export default {
   },
   setup(props, {emit}) {
     let trap = null
-    const trapRef = ref(null)
 
     watchEffect(() => {
       if (props.target instanceof HTMLElement) {
@@ -66,7 +65,6 @@ export default {
           trap.activate()
         } else {
           trap.deactivate()
-          console.log('deactivated')
         }
       }
     }, {flush: 'pre'})
@@ -77,9 +75,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-  .sd--button{
-    margin-bottom: 16px;
-  }
-</style>

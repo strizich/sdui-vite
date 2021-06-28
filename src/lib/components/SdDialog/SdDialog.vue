@@ -42,7 +42,7 @@
 
 <script lang="ts">
 import { defineComponent, watch, computed, nextTick, onMounted, ref } from 'vue'
-import SdFocusTrap from '../SdFocusTrap/SdFocusTrap.vue'
+import SdFocusTrap from '../SdFocusTrap'
 import SdOverlay from './SdOverlay.vue'
 import sdUuid from '../../core/utilities/SdUuid'
 import '../SdElevation'
