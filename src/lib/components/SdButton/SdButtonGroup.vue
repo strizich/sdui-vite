@@ -40,12 +40,12 @@ export default {
   display: inline-flex;
   border-radius: 3px;
   @include elevation(2);
+  overflow: visible;
 
   .sd--button {
     margin-left: 0;
     margin-right:0;
     border-radius: 0;
-    @include elevation(0);
 
     &:only-child{
       border-radius: 3px;

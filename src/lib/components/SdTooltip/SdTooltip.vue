@@ -36,7 +36,7 @@ import {
   onMounted,
   onUnmounted,
   PropType,
-  defineComponent,
+  defineComponent
 } from 'vue'
 import { createPopper, Placement } from '@popperjs/core'
 

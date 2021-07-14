@@ -2,7 +2,7 @@
   <teleport
     ref="dropdownPortal"
     to="#app"
-    :disabled="attachToParent"
+    :disabled="!portalToBody"
   >
     <transition name="dropdown">
       <div
@@ -10,9 +10,15 @@
         class="sd--dropdown"
         v-if="state.shouldRender"
       >
-        <div :class="['sd--dropdown__content', themeClass]">
+        <sd-focus-trap
+          :target="dropdownContent"
+          v-model="state.shouldRender"
+          :outside-click="true"
+        >
+          <div ref="dropdownContent" :class="['sd--dropdown__content', themeClass]">
           <slot />
-        </div>
+          </div>
+        </sd-focus-trap>
       </div>
     </transition>
   </teleport>
@@ -31,12 +37,15 @@ import {
   onUnmounted
 } from 'vue'
 import { createPopper, Placement } from '@popperjs/core'
+import SdFocusTrap from '../SdFocusTrap/SdFocusTrap.vue'
+import SdThrottle from '../../core/utilities/SdThrottle'
 
 export default defineComponent({
+  components: { SdFocusTrap },
   name: 'SdDropdown',
-  emits: ['update:active', 'open', 'close'],
+  emits: ['update:modelValue', 'open', 'close'],
   props: {
-    active: Boolean,
+    modelValue: Boolean,
     theme: {
       type: [String],
       default: 'default'
@@ -57,12 +66,28 @@ export default defineComponent({
       type: Array,
       default: () => [0, 8]
     },
-    attachToParent: Boolean
+    trigger: {
+      type: String,
+      default: null
+    },
+    portalToBody: {
+      type: Boolean,
+      default: true
+    },
+    lazy: {
+      type: Boolean,
+      default: true
+    },
+    closeOnClick: {
+      type: Boolean,
+      default: false
+    }
   },
   setup (props, { emit }) {
     // Element Bindings
     const dropdownPortal = ref(null)
     const dropdownRef = ref(null)
+    const dropdownContent = ref(null)
 
     // Styling
     const themeClass = computed(() => `is--${props.theme}`)
@@ -71,7 +96,8 @@ export default defineComponent({
     const state = reactive({
       targetEl: null,
       popperInstance: null,
-      shouldRender: false
+      shouldRender: false,
+      trapActive: false
     })
 
     // Popper Options
@@ -100,17 +126,8 @@ export default defineComponent({
     })
 
     // Copy active prop to local state
-    watch(() => props.active, () => {
-      state.shouldRender = props.active
-    })
-
-    // emit when state has been updated...
-    // FUTURE: potentially worth looking into using the new v-model bindings for this.
-    watch(() => state.shouldRender, (shouldRender) => {
-      emit('update:active', shouldRender)
-      if (shouldRender) {
-        bindPopper()
-      }
+    watch(() => props.modelValue, () => {
+      state.shouldRender = props.modelValue
     })
 
     // create popper
@@ -118,11 +135,17 @@ export default defineComponent({
       state.popperInstance = createPopper(state.targetEl, dropdownRef.value, options)
     }
 
-    // kill your creation
     const killPopper = () => {
       if (state.popperInstance) {
         state.popperInstance.destroy()
         state.popperInstance = null
+      }
+    }
+
+    const resetPopper = () => {
+      if (state.popperInstance) {
+        killPopper()
+        makePopper()
       }
     }
 
@@ -135,37 +158,61 @@ export default defineComponent({
       })
     }
 
-    const resetPopper = () => {
-      if (state.popperInstance) {
-        killPopper()
-        makePopper()
+    watch(() => state.shouldRender, (shouldRender) => {
+      console.log(state.shouldRender)
+      if (shouldRender) {
+        bindPopper()
+      } else {
+        hide()
       }
+    })
+  
+ 
+
+    const show = () => {
+      state.shouldRender = true
+      state.trapActive = true
+      document.addEventListener('mouseup', clickOutside, {passive: true})
+      document.addEventListener('touchend', clickOutside, {passive: true})
+      
+      emit('update:modelValue', true)
+      emit('open')
     }
-    const show = (e) => {
-      if (!state.shouldRender) {
-        state.shouldRender = true
-        e.stopPropagation()
-        emit('open')
-      }
-    }
-    const hide = (e) => {
-      if (state.shouldRender) {
+
+    const hide = () => {
         state.shouldRender = false
-        e.stopPropagation()
+        state.trapActive = false  
+        document.removeEventListener('mouseup', clickOutside)
+        document.removeEventListener('touchend', clickOutside)
+
+        emit('update:modelValue', false)
         emit('close')
+    }
+
+    const clickOutside = (e) => {
+      const dropdown = e?.composedPath()[0] || e.target
+      if (dropdown instanceof Node) {
+        if(
+          dropdownRef.value !== null &&
+          !dropdownRef.value.contains(dropdown) ||
+          props.closeOnClick
+        ) {
+          state.shouldRender = false
+        }
       }
     }
 
     const mountEventBindings = async () => {
       await nextTick().then(() => {
-        // Gets the orignal parent instance of <teleport />
-        state.targetEl = dropdownPortal.value.parentNode
-        if (state.targetEl) {
-          // add event listeners for keyboard.
-          state.targetEl.addEventListener('click', (e) => show(e), false)
+        if (props.portalToBody) {
+          // Gets the orignal parent node
+          state.targetEl = dropdownPortal.value.parentNode
         }
-        if (props.autoClose && state.targetEl) {
-          document.body.addEventListener('click', (e) => hide(e), false)
+        if (props.trigger) {
+          state.targetEl = document.querySelector('#' + props.trigger)
+          state.targetEl.addEventListener('click', SdThrottle(600, () => show()), { passive: true })
+          state.targetEl.addEventListener('touch', SdThrottle(600, () => show()), { passive: true })
+
         }
       })
     }
@@ -176,16 +223,16 @@ export default defineComponent({
     })
 
     onUnmounted(() => {
-      document.body.removeEventListener('click', (e) => hide(e))
-      if (props.autoClose && state.targetEl) {
-        state.targetEl.removeEventListener('click', (e) => show(e))
-      }
+      // if (props.autoClose && state.targetEl) {
+      //   state.targetEl.removeEventListener('mouseup', show)
+      // }
     })
 
     return {
       state,
       dropdownPortal,
       dropdownRef,
+      dropdownContent,
       themeClass,
       hide
     }

@@ -177,7 +177,7 @@ export default defineComponent({
         {
           ref: root,
           id: props.id,
-          type: !props.href && (props.type || 'button'),
+          type: !props.href ? props.type : 'button',
           class: ['sd--button', themeClass.value, rootClasses.value, sizeClass.value],
           href: props.href,
           disabled: props.disabled,

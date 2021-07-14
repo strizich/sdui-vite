@@ -5,18 +5,17 @@
     </div>
 
     <!-- Seperate component -->
-    <button class="sd--carousel__next"  @click="next">
-      <sd-icon style="font-size: 90px" name="navigate_next"/>
-    </button>
-    <button class="sd--carousel__prev" @click="prev">
-      <sd-icon style="font-size: 90px" name="navigate_before"/>
-    </button>
-
-    
-
+  <br/>
+  <sd-button-group>
+    <sd-button @click="prev" icon="navigate_before" icon-only/>
+    <sd-button @click="next" icon="navigate_next" icon-only/>
+  </sd-button-group>
+  <p>
+    {{contentState}}
+  </p>
     <!-- Seperate component -->
     <div class="sd--carousel__indicators">
-      <div class="sd--carousel__indicator is--active"></div>
+      <div class="sd--carousel__indicator"></div>
       <div class="sd--carousel__indicator"></div>
       <div class="sd--carousel__indicator"></div>
     </div>
@@ -32,26 +31,32 @@ export default defineComponent ({
     SdIcon
   },
   setup () {
-
     const contentState = reactive({
       currentIndex: 0,
-      currentPosition: 0
+      currentPosition: 0,
+      childrenCount: 0
     })
+
     const carouselRef = ref(null)
     const contentRef = ref(null)
 
     const getContentOffset = (index) => {
       if (contentRef.value instanceof HTMLElement) {
         const children = contentRef.value.children
-        const childrenCount = children.length
-        const result = index >= 0 && childrenCount - 1 >= index ? children[index].offsetWidth : 0
+        contentState.childrenCount = children.length
+        const result = index >= 0 && contentState.childrenCount - 1 >= index 
+          ? children[index].offsetWidth 
+          : 0
         return result
       }
     }
 
     const next = () => {
-      const index = contentState.currentIndex++
-      contentState.currentPosition = getContentOffset(index)
+      if (contentState.childrenCount >=contentState.currentIndex ) {
+        contentState.currentIndex = contentState.currentIndex + 1
+      }
+      
+      contentState.currentPosition = getContentOffset(contentState.currentIndex)
       contentRef.value.scrollLeft = contentState.currentPosition
     }
     const prev = () => {
@@ -62,9 +67,15 @@ export default defineComponent ({
 
     onMounted(() => {
       contentRef.value.scrollLeft = contentState.currentPosition
+      if (contentRef.value instanceof HTMLElement) {
+        contentRef.value.addEventListener('mousedown', (event) => {
+          console.log(event.x)
+        })
+      }
     })
 
     return {
+      contentState,
       contentRef,
       carouselRef,
       next,

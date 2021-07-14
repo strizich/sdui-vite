@@ -8,7 +8,7 @@ import { createFocusTrap } from 'focus-trap'
 
 export default {
   name: 'SdFocusTrap',
-  emits: ['active', 'update:modelValue'],
+  emits: ['activate', 'deactivate', 'update:modelValue'],
   props: {
     target: {
       type: [HTMLElement, String],
@@ -18,7 +18,7 @@ export default {
       type: Boolean,
       default: false
     },
-    allowOutsideClick: {
+    modelValue: {
       type: Boolean,
       default: false
     },
@@ -54,14 +54,16 @@ export default {
           clickOutsideDeactivates: props.outsideClick,
           onActivate: () => {
             emit('update:modelValue', true)
-            emit('active', true)
+            emit('activate', true)
+            console.log('activate')
           },
-          onDeactivate: () => {
+          onDeactivate: (e) => {
             emit('update:modelValue', false)
-            emit('active', false)
+            emit('activate', false)
+            emit('deactivate', true)
           }
         })
-        if(props.active) {
+        if(props.active || props.modelValue) {
           trap.activate()
         } else {
           trap.deactivate()

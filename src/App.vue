@@ -4,13 +4,38 @@
       <sd-header></sd-header>
     </template>
     <template #content>
-      <sd-mast>Things here</sd-mast>
+      <!-- <sd-mast>Things here</sd-mast> -->
       <div class="demo">
         <sd-container full>
           <h1 class="sd--text__headline">
             SDUI - Vite
           </h1>
+          <div id="okay">
+            <sd-button-group>
+              <sd-button
+                type="link"
+                id="trigger1"
+                :href="state.link"
+              >
+                Dropdown 1
+              </sd-button>
+              <sd-dropdown trigger="trigger1" close-on-click>
+                <sd-button flat block>okay</sd-button>
+                <sd-button flat block>okay</sd-button>
+                <sd-button flat block>okay</sd-button>
+              </sd-dropdown>
 
+              <sd-button id="trigger2">
+                Dropdown 2
+              </sd-button>
+              <sd-dropdown trigger="trigger2" :portal-to-body="false">
+                <sd-button flat block>okay</sd-button>
+                <sd-button flat block>okay</sd-button>
+                <sd-button flat block>okay</sd-button>
+              </sd-dropdown>
+            </sd-button-group>
+            
+          </div>
           <!-- <sd-carousel>
             <sd-sheet padded>Okay</sd-sheet>
             <sd-sheet padded>Okay</sd-sheet>
@@ -20,11 +45,10 @@
             <template #start>
               <sd-button-group class="demo__button-group" >
                 <sd-button 
-                  disabled
                   @click="handleDialogOpen"
                 >
                   Open Modal
-                  <sd-tooltip>huh</sd-tooltip>
+       
                 </sd-button>
               </sd-button-group>
               <sd-button-group class="demo__button-group">
@@ -74,12 +98,6 @@
           <sd-grid
             :columns="12"
             :gutter="[0, 16]">
-            <sd-cell
-              :sm="7"
-              :md="6"
-            >
-            {{trapRef}}
-            </sd-cell>
 
             <sd-cell
               :sm="7"
@@ -183,7 +201,6 @@
           </sd-grid>
         </sd-container>
       </div>
-
       <sd-toast
         v-model:active="state.toast"
         dismissable
@@ -220,25 +237,24 @@
 </template>
 
 <script lang="ts">
-  import { reactive, defineComponent, ref } from 'vue'
-  import SdButtonGroup from './lib/components/SdButton/SdButtonGroup.vue'
+  import { reactive, defineComponent, ref, onMounted } from 'vue'
   // import SdCarousel from './lib/components/SdCarousel/SdCarousel.vue'
 
   export default defineComponent({
   name: 'App',
   components: {
-    SdButtonGroup,
     // SdCarousel,
   },
   setup () {
-    const trapRef = ref(null)
-
     const state = reactive({
       sliderything: 4,
       modal: false,
       toast: false,
       scheme: 'auto',
-      name: 'hello ladies'
+      name: 'hello ladies',
+      dropdown: false,
+      link: null,
+      dropdown2: false
     })
 
     const handleDialogOpen = () => {
@@ -252,12 +268,12 @@
     const handleToast = () => {
       state.toast = true
     }
+
     return {
       handleToast,
       handleDialogClose,
       handleDialogOpen,
-      state,
-      trapRef
+      state
     }
   }
 })

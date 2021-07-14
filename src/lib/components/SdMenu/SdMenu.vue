@@ -1,9 +1,7 @@
 <template>
-  <teleport to="#app">
-    <div class="sd--menu">
-      Menu goes here.
-    </div>
-  </teleport>
+  <div class="sd--menu">
+    
+  </div>
 </template>
 
 <script lang="ts">
