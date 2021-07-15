@@ -166,8 +166,6 @@ export default defineComponent({
         hide()
       }
     })
-  
- 
 
     const show = () => {
       state.shouldRender = true

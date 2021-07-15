@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, computed, ref, h } from 'vue'
+import { defineComponent, computed, ref, h, Ref, resolveComponent } from 'vue'
 import useKeyboardFocus from '../../hooks/useKeyboardFocus'
 import sdUuid from '../../core/utilities/SdUuid'
 import SdIcon from '../SdIcon/SdIcon.vue'
@@ -167,9 +167,9 @@ export default defineComponent({
 
     // FUTURE: Add RouterLink variation to button and depricate SdRouterLink
     const elementTag = computed(() => {
-      if (props.href || props.type === 'link') return 'a'
-      return 'button'
-    })
+      const element = props.href || props.type === 'link' ? 'a' : 'button'
+      return element
+    }) as Ref<string>
 
     return () =>
       h(
@@ -188,12 +188,12 @@ export default defineComponent({
             name: props.icon,
             size: props.size
           }),
-          !props.iconOnly && h('div',
+          !props.iconOnly ? h('div',
             {
               class: 'sd--button__content'
             },
             slots
-          ),
+          ) : slots.default(),
           props.iconEnd && h(SdIcon, {
             name: props.iconEnd,
             size: props.size
