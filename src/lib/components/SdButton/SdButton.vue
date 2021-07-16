@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, computed, ref, h, Ref, resolveComponent } from 'vue'
+import { defineComponent, computed, ref, h, Ref } from 'vue'
 import useKeyboardFocus from '../../hooks/useKeyboardFocus'
 import sdUuid from '../../core/utilities/SdUuid'
 import SdIcon from '../SdIcon/SdIcon.vue'

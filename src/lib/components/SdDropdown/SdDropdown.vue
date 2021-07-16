@@ -15,8 +15,11 @@
           v-model="state.shouldRender"
           :outside-click="true"
         >
-          <div ref="dropdownContent" :class="['sd--dropdown__content', themeClass]">
-          <slot />
+          <div 
+            ref="dropdownContent" 
+            :class="['sd--dropdown__content', themeClass]"
+          >
+            <slot />
           </div>
         </sd-focus-trap>
       </div>
@@ -33,8 +36,7 @@ import {
   reactive,
   watch,
   nextTick,
-  onMounted,
-  onUnmounted
+  onMounted
 } from 'vue'
 import { createPopper, Placement } from '@popperjs/core'
 import SdFocusTrap from '../SdFocusTrap/SdFocusTrap.vue'
@@ -209,7 +211,7 @@ export default defineComponent({
         if (props.trigger) {
           state.targetEl = document.querySelector('#' + props.trigger)
           state.targetEl.addEventListener('click', SdThrottle(600, () => show()), { passive: true })
-          state.targetEl.addEventListener('touch', SdThrottle(600, () => show()), { passive: true })
+          state.targetEl.addEventListener('touchend', SdThrottle(600, () => show()), { passive: true })
         }
       })
     }
@@ -219,11 +221,6 @@ export default defineComponent({
       resetPopper()
     })
 
-    onUnmounted(() => {
-      // if (props.autoClose && state.targetEl) {
-      //   state.targetEl.removeEventListener('mouseup', show)
-      // }
-    })
 
     return {
       state,
