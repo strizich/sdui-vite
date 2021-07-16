@@ -16,24 +16,24 @@
         aria-modal="true"
       >
         <sd-focus-trap :target="modalContainer" v-model="trapActive" :outside-click="clickOutsideToClose">
-        <div
-          ref="modalContainer"
-          :class="['sd--dialog__wrapper','elevation--6', classes ]"
-          @keydown.esc="onEsc"
-        >
-          <div class="sd--dialog__container">
-            <slot />
+          <div
+            ref="modalContainer"
+            :class="['sd--dialog__wrapper','elevation--6', classes ]"
+            @keydown.esc="onEsc"
+          >
+            <div class="sd--dialog__container">
+              <slot />
+            </div>
           </div>
-        </div>
-        <sd-overlay
-          fixed
-          :parent="`#${id}`"
-          :class="backdropClass"
-          :active="active"
-          :blur="backdropBlur"
-          @click="onOutsideClick"
-          v-if="backdrop && active"
-        />
+          <sd-overlay
+            fixed
+            :parent="`#${id}`"
+            :class="backdropClass"
+            :active="active"
+            :blur="backdropBlur"
+            @click="onOutsideClick"
+            v-if="backdrop && active"
+          />
         </sd-focus-trap>
       </div>
     </transition>
