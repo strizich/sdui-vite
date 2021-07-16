@@ -11,17 +11,14 @@
             SDUI - Vite
           </h1>
           <div id="okay">
+            <sd-button icon-only>
               <sd-icon name="add"/>
-
+            </sd-button>
             <sd-button icon-only>
               <sd-icon name="add"/>
             </sd-button>
             <sd-button-group>
-              <sd-button
-                type="link"
-                id="trigger1"
-                :href="state.link"
-              >
+              <sd-button id="trigger1">
                 Dropdown 1
               </sd-button>
               <sd-dropdown trigger="trigger1" close-on-click>

@@ -189,11 +189,7 @@ export default defineComponent({
             size: props.size
           }),
           !props.iconOnly 
-            ? h('div', {
-                class: 'sd--button__content'
-              },
-                slots
-              ) 
+            ? h('div', { class: 'sd--button__content' }, slots)
             : slots.default(),
           props.iconEnd && h(SdIcon, {
             name: props.iconEnd,

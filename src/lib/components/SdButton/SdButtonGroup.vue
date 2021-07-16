@@ -37,10 +37,11 @@ export default {
 @import '../SdElevation/mixins';
 
 .sd--button-group {
+  vertical-align: middle;
   display: inline-flex;
   border-radius: 3px;
-  @include elevation(2);
   overflow: visible;
+  @include elevation(2);
 
   .sd--button {
     margin-left: 0;
@@ -62,7 +63,6 @@ export default {
 
   &.is--vertical{
     flex-direction: column;
-
     .sd--button {
       width: 100%;
       margin-left: 0;

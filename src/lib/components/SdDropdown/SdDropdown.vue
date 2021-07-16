@@ -210,7 +210,6 @@ export default defineComponent({
           state.targetEl = document.querySelector('#' + props.trigger)
           state.targetEl.addEventListener('click', SdThrottle(600, () => show()), { passive: true })
           state.targetEl.addEventListener('touch', SdThrottle(600, () => show()), { passive: true })
-
         }
       })
     }
