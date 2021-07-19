@@ -159,7 +159,6 @@ export default defineComponent({
     }
 
     watch(() => state.shouldRender, (shouldRender) => {
-      console.log(state.shouldRender)
       if (shouldRender) {
         bindPopper()
       } else {

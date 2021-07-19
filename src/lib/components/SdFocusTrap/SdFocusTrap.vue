@@ -55,7 +55,6 @@ export default {
           onActivate: () => {
             emit('update:modelValue', true)
             emit('activate', true)
-            console.log('activate')
           },
           onDeactivate: (e) => {
             emit('update:modelValue', false)
