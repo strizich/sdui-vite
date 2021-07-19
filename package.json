@@ -42,7 +42,8 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "lint:script": "eslint --ext .ts,vue --ignore-path .gitignore .",
-    "publish": "npm publish --access=public"
+    "publish": "npm publish --access=public",
+    "build:publish": "vite build && yarn publish"
   },
   "dependencies": {
     "@popperjs/core": "^2.9.2",
