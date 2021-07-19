@@ -14,7 +14,7 @@
             <sd-button icon-only>
               <sd-icon name="add"/>
             </sd-button>
-            <sd-button icon-only>
+            <sd-button icon-only href="#">
               <sd-icon name="add"/>
             </sd-button>
             <sd-button-group>

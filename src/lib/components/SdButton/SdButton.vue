@@ -177,7 +177,7 @@ export default defineComponent({
         {
           ref: root,
           id: props.id,
-          type: !props.href ? props.type : 'button',
+          type: !props.href ? props.type : null,
           class: ['sd--button', themeClass.value, rootClasses.value, sizeClass.value],
           href: props.href,
           disabled: props.disabled,
@@ -231,6 +231,7 @@ export default defineComponent({
 
 .sd--button {
   touch-action: manipulation;
+  --webkit-appearance: none;
   user-select:none;
   -webkit-user-select: none;
   border: none;
