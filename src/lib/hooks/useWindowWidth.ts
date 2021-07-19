@@ -39,7 +39,6 @@ const useWindowWidth = () => {
   })
 
   const getCurrentBreakpoint = (windowWidth) => {
-    console.log(windowWidth)
     if(windowWidth > MIN_WIDTH.XS && windowWidth < MAX_WIDTH.XS) {
       state.breakpoint = 'XS'
     } else if (windowWidth > MIN_WIDTH.SM && windowWidth < MAX_WIDTH.SM) {
@@ -56,7 +55,6 @@ const useWindowWidth = () => {
   const updateWindowWidth = () => {
     const width = window.innerWidth
     getCurrentBreakpoint(width)
-    console.log(state.breakpoint)
     state.windowWidth = width
     state.smallDevice = state.windowWidth <= MIN_WIDTH.SM
   }
