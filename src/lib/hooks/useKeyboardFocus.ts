@@ -6,14 +6,14 @@ const useKeyboardFocus = ($el) => {
   let hasEvents = false
   let supportsPassiveEvent = { passive: false }
 
-  const checkPassiveEventSupport = () => {
+  const checkPassiveEventSupport = (): void => {
     try {
       const opts = Object.defineProperty({}, 'passive', {
         get () {
           supportsPassiveEvent = { passive: true }
         }
       })
-      window.addEventListener('ghost', opts)
+      window.addEventListener('ghost', () => {}, opts)
     } catch (e) {
       console.error(e)
     }
@@ -49,8 +49,6 @@ const useKeyboardFocus = ($el) => {
   const bindEvents = (): void => {
     if (window.PointerEvent) {
       createPointerEvents()
-    } else if (window.MSPointerEvent) {
-      createMSPointerEvents()
     } else {
       createMouseAndTouchEvents()
     }
@@ -58,7 +56,7 @@ const useKeyboardFocus = ($el) => {
     createKeyboardEvents()
   }
 
-  const createEvents = () => {
+  const createEvents = (): void => {
     if (!hasEvents) {
       eventTarget = document.body
       checkPassiveEventSupport()
