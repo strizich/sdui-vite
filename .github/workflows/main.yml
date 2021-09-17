@@ -15,8 +15,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
-      - name: action-yarn
-        uses: comchangs/action-yarn@v0.1-beta
+      - name: Yarn Setup
+        uses: DerYeger/yarn-setup-action@v1.0.1
         with:
           node-version: 14
       - run: yarn
@@ -32,6 +32,6 @@ jobs:
           node-version: 14
           registry-url: https://registry.npmjs.org/
       - run: yarn
-      - run: npm run build:publish
+      - run: yarn build:publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
