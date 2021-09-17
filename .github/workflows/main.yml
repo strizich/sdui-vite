@@ -19,8 +19,8 @@ jobs:
         uses: DerYeger/yarn-setup-action@v1.0.1
         with:
           node-version: 14
+      - run: yarn
+      - run: yarn build
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
-      - run: yarn
-      - run: yarn build:publish
