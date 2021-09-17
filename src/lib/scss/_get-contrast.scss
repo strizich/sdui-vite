@@ -1,4 +1,6 @@
 
+@use "sass:math";
+
 $sd-linear-channel-values:
   0
   .0003035269835488375
@@ -269,7 +271,7 @@ $sd-linear-channel-values:
   $bgLum: sd-check-luminance($bg) + .2;
   $fgLum: sd-check-luminance($fg) + .2;
 
-  @return max($bgLum, $fgLum) / min($bgLum, $fgLum);
+  @return math.div(max($bgLum, $fgLum), min($bgLum, $fgLum));
 }
 
 @function sd-pick-contrast($color) {

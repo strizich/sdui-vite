@@ -7,7 +7,7 @@
 
 <script lang="ts">
   import { reactive, defineComponent, onMounted} from 'vue'
-  import useScheme from './lib/hooks/UseScheme'
+  // import useScheme from './lib/hooks/UseScheme'
   // import SdCarousel from './lib/components/SdCarousel/SdCarousel.vue'
 
   export default defineComponent({

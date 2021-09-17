@@ -1,3 +1,4 @@
+@use "sass:math";
 @mixin use-body-class($bodyClass) {
   #{$bodyClass} &{
     @content;
@@ -105,10 +106,10 @@
   overflow: hidden;
   &:before {
     @supports (aspect-ratio: 1 / 1) {
-      aspect-ratio: $width / $height;
+      aspect-ratio: math.div($width, $height);
     }
     @supports not (aspect-ratio: 1 / 1) {
-      padding-top: ($height / $width) * 100%;
+      padding-top: math.div($height, $width) * 100%;
     }
     display: block;
     content: '';
