@@ -381,6 +381,11 @@ export default defineComponent({
       &.is--outline {
         background: none;
         position: relative;
+        &.is--pill, &.is--rounded {
+          &:after {
+            border-radius: 30px;
+          }
+        }
         &:after{
           content: '';
           display: block;
@@ -390,6 +395,7 @@ export default defineComponent({
           right: 0;
           bottom: 0;
           border: 1px solid var(--#{$state});
+          border-radius: 3px;
         }
         @include flatten-theme($state);
 
