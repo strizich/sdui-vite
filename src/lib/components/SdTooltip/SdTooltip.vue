@@ -29,17 +29,11 @@
 // FUTURE: Split popper.js logic into a composable
 import {
   computed,
-  ref,
-  reactive,
-  watch,
-  nextTick,
-  onMounted,
-  onUnmounted,
   PropType,
   defineComponent,
   watchEffect
 } from 'vue'
-import { createPopper, Placement } from '@popperjs/core'
+import { Placement } from '@popperjs/core'
 import usePopper from '../../hooks/usePopper'
 
 export default defineComponent({
