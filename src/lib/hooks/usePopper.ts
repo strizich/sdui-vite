@@ -12,7 +12,7 @@ const usePopper = (props, emit) => {
   })
 
 // Popper Options
-  const options = reactive({
+  const options ={
     placement: props.placement,
     modifiers: [{
       name: 'offset',
@@ -27,7 +27,7 @@ const usePopper = (props, emit) => {
         rootBoundary: 'document'
       }
     }]
-  })
+  }
     // Copy active prop to local state
   watch(() => props.active, () => {
     shouldRender.value = props.active
