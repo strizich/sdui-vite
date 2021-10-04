@@ -40,7 +40,7 @@ const Template = (args => ({
       :offset="args.offset"
       :auto-open="args.autoOpen"
       :show-arrow="args.showArrow"
-      :active="args.active"
+      v-model="args.active"
       :delay="args.delay"
     >
       {{args.label}} ({{theme !== null ? theme : 'default'}})
