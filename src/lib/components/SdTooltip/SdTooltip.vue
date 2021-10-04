@@ -31,7 +31,7 @@ import {
   computed,
   PropType,
   defineComponent,
-  watchEffect
+  onMounted,
 } from 'vue'
 import { Placement } from '@popperjs/core'
 import usePopper from '../../hooks/usePopper'
@@ -39,7 +39,7 @@ import usePopper from '../../hooks/usePopper'
 export default defineComponent({
   name: 'SdTooltip',
   emits: [
-    'update:active',
+    'update:modelValue',
     'opened',
     'closed'
   ],
@@ -48,7 +48,10 @@ export default defineComponent({
       type: String,
       default: '#app'
     },
-    active: Boolean,
+    modelValue: {
+      type: Boolean,
+      default: false
+    },
     theme: {
       type: String,
       default: ''
@@ -86,11 +89,11 @@ export default defineComponent({
 
     // Popper Options
     const { shouldRender, targetRef, instanceRef } = usePopper(props, emit)
+  
+    onMounted(() => {
+      console.log(props.modelValue)
 
-    watchEffect(() => {
-      console.log(shouldRender.value)
-    }, {flush: 'sync'})
-
+    })
     return {
       targetRef,
       instanceRef,

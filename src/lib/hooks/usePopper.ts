@@ -29,14 +29,14 @@ const usePopper = (props, emit) => {
     }]
   }
     // Copy active prop to local state
-  watch(() => props.active, () => {
-    shouldRender.value = props.active
+  watch(() => props.modelValue, () => {
+    shouldRender.value = props.modelValue
   })
 
   // emit when state has been updated...
   // FUTURE: potentially worth looking into using the new v-model bindings for this.
   watch(() => shouldRender.value, (next) => {
-    emit('update:active', next)
+    emit('update:modelValue', next)
     if (next) {
       bindPopper()
     }
