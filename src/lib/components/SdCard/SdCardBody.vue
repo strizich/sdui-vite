@@ -19,6 +19,10 @@ export default defineComponent({
     padding: 16px;
     flex-grow: 2;
     position: relative;
+    & > p {
+      padding-top: 0;
+      margin-top: 0;
+    }
   }
 }
 </style>

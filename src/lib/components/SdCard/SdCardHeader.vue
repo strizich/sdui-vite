@@ -80,6 +80,11 @@ export default defineComponent({
         width:100%;
         align-items: center;
         justify-content: space-between;
+        .sd--text__caption{
+          align-self: center;
+          margin-top: 0;
+          padding: 0;
+        }
       }
     }
   }

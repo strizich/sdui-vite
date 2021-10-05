@@ -22,7 +22,9 @@ import SdSwitch from './components/SdCheckbox/SdSwitch.vue'
 import SdRadio from './components/SdRadio/SdRadio.vue'
 import SdFieldset from './components/SdField/SdFieldset.vue'
 import SdField from './components/SdField/SdField.vue'
-import SdSelect from './components/SdField/SdSelect.vue'
+import SdSimpleSelect from './components/SdField/SdSimpleSelect.vue'
+
+import SdSelect from './components/SdSelect/SdSelect.vue'
 import SdLabel from './components/SdField/SdLabel.vue'
 import SdError from './components/SdField/SdError.vue'
 import SdIcon from './components/SdIcon/SdIcon.vue'
@@ -61,6 +63,7 @@ import useAlignment from './hooks/useAlignment'
 import useKeyboardFocus from './hooks/useKeyboardFocus'
 import useWindowWidth from './hooks/useWindowWidth'
 import useScheme from './hooks/useScheme'
+import usePopper from './hooks/usePopper'
 
 const components = {
   SdWidget,
@@ -84,6 +87,7 @@ const components = {
   SdRadio,
   SdField,
   SdError,
+  SdSimpleSelect,
   SdSelect,
   SdSlider,
   SdSwitch,
@@ -139,8 +143,6 @@ const sdComponentsDesc = Object.keys(components).map((item) => {
   }
 })
 
-const sdComponents = Object.keys(components).map((item) => item.slice(1))
-
 const sdInstall = (app) => {
   if (!app) {
     return
@@ -162,7 +164,6 @@ const sdInstall = (app) => {
 const version = packageData.version
 
 export {
-  sdComponents,
   sdInstall,
   version,
   SdWidget,
@@ -185,8 +186,9 @@ export {
   SdCheckbox,
   SdRadio,
   SdField,
-  SdError,
+  SdSimpleSelect,
   SdSelect,
+  SdError,
   // Dialog (modal)
   SdDialog,
   SdDialogHeader,
@@ -231,5 +233,6 @@ export {
   useWindowWidth,
   useScheme,
   useSlider,
-  useToaster
+  useToaster,
+  usePopper
 }

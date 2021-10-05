@@ -66,6 +66,7 @@ declare module '@strizich/sdui' {
 
 
 
+  const usePopper: ($el: any) => ComputedRef<boolean>
 
 
   // Installation
@@ -189,6 +190,7 @@ declare module '@strizich/sdui' {
     useWindowWidth,
     useAlignment,
     useToaster,
-    useSlider
+    useSlider,
+    usePopper
   }
 }

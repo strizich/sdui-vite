@@ -1,14 +1,14 @@
 <template>
   <teleport 
-    ref="tooltipPortal"
+    ref="targetRef"
     :to="portalDisabled ? null : portalTo"
     :disabled="portalDisabled"
   >
     <transition name="tooltip">
       <div
-        ref="tooltipRef"
+        ref="instanceRef"
         class="sd--tooltip"
-        v-if="state.shouldRender"
+        v-if="shouldRender"
       >
         <div :class="['sd--tooltip__content', themeClass]">
           <div>
@@ -29,21 +29,17 @@
 // FUTURE: Split popper.js logic into a composable
 import {
   computed,
-  ref,
-  reactive,
-  watch,
-  nextTick,
-  onMounted,
-  onUnmounted,
   PropType,
-  defineComponent
+  defineComponent,
+  onMounted,
 } from 'vue'
-import { createPopper, Placement } from '@popperjs/core'
+import { Placement } from '@popperjs/core'
+import usePopper from '../../hooks/usePopper'
 
 export default defineComponent({
   name: 'SdTooltip',
   emits: [
-    'update:active',
+    'update:modelValue',
     'opened',
     'closed'
   ],
@@ -52,7 +48,10 @@ export default defineComponent({
       type: String,
       default: '#app'
     },
-    active: Boolean,
+    modelValue: {
+      type: Boolean,
+      default: false
+    },
     theme: {
       type: String,
       default: ''
@@ -84,132 +83,22 @@ export default defineComponent({
       default: false
     }
   },
-  setup (props, { emit }) {
-    // Element Bindings
-    const tooltipPortal = ref(null)
-    const tooltipRef = ref(null)
 
-    // Styling
+  setup (props, { emit }) {
     const themeClass = computed(() => `is--${props.theme}`)
 
-    // Element Instances
-    const state = reactive({
-      targetEl: null,
-      popperInstance: null,
-      shouldRender: false
-    })
-
     // Popper Options
-    const options = reactive({
-      placement: props.placement,
-      modifiers: [{
-        name: 'offset',
-        options: {
-          offset: props.offset
-        }
-      },
-      {
-        name: 'preventOverflow',
-        options: {
-          boundary: 'viewport',
-          rootBoundary: 'document'
-        }
-      }]
-    })
-
-    // Copy active prop to local state
-    watch(() => props.active, () => {
-      state.shouldRender = props.active
-    })
-
-    // emit when state has been updated...
-    // FUTURE: potentially worth looking into using the new v-model bindings for this.
-    watch(() => state.shouldRender, (shouldRender) => {
-      emit('update:active', shouldRender)
-      if (shouldRender) {
-        bindPopper()
-      }
-    })
-
-    // create popper
-    const makePopper = () => {
-      state.popperInstance = createPopper(state.targetEl, tooltipRef.value, options)
-    }
-
-    // kill your creation
-    const killPopper = () => {
-      if (state.popperInstance) {
-        state.popperInstance.destroy()
-        state.popperInstance = null
-      }
-    }
-
-    // bind popper instance at the next repaint
-    const bindPopper = () => {
-      nextTick().then(() => {
-        if (state.targetEl) {
-          makePopper()
-        }
-      })
-    }
-
-    const resetPopper = () => {
-      if (state.popperInstance) {
-        killPopper()
-        makePopper()
-      }
-    }
-
-    const show = () => {
-      state.shouldRender = true
-      emit('opened')
-    }
-
-    const hide = () => {
-      state.shouldRender = false
-      emit('closed')
-    }
-
-    const touched = () => {
-      state.shouldRender = !state.shouldRender
-    }
-    const outsideTouch = (e) => {
-      if (state.shouldRender && state.targetEl !== e.target) {
-        state.shouldRender = false
-      }
-    }
-    const mountEventBindings = async () => {
-      await nextTick().then(() => {
-        // Gets the orignal parent instance of <teleport />
-        state.targetEl = tooltipPortal.value.parentNode
-        if (props.autoOpen && state.targetEl) {
-          document.body.addEventListener('touchstart', outsideTouch, { passive: true })
-          state.targetEl.addEventListener('touchstart', touched, { passive: true })
-          state.targetEl.addEventListener('mouseenter', show, { passive: true })
-          state.targetEl.addEventListener('mouseleave', hide, { passive: true })
-        }
-      })
-    }
-
+    const { shouldRender, targetRef, instanceRef } = usePopper(props, emit)
+  
     onMounted(() => {
-      mountEventBindings()
-      resetPopper()
-    })
+      console.log(props.modelValue)
 
-    onUnmounted(() => {
-      if (props.autoOpen) {
-        document.body.removeEventListener('touchstart', outsideTouch)
-        state.targetEl.removeEventListener('touchstart', touched)
-        state.targetEl.removeEventListener('mouseenter', show)
-        state.targetEl.removeEventListener('mouseleave', hide)
-      }
     })
-
     return {
-      state,
-      tooltipPortal,
-      tooltipRef,
-      themeClass
+      targetRef,
+      instanceRef,
+      themeClass,
+      shouldRender
     }
   }
 })
