@@ -22,9 +22,9 @@ import SdSwitch from './components/SdCheckbox/SdSwitch.vue'
 import SdRadio from './components/SdRadio/SdRadio.vue'
 import SdFieldset from './components/SdField/SdFieldset.vue'
 import SdField from './components/SdField/SdField.vue'
-import SdSelect from './components/SdField/SdSelect.vue'
+import SdSimpleSelect from './components/SdField/SdSimpleSelect.vue'
 
-// import SdSelect from './components/SdField/SdSimpleSelect.vue'
+import SdSelect from './components/SdSelect/SdSelect.vue'
 import SdLabel from './components/SdField/SdLabel.vue'
 import SdError from './components/SdField/SdError.vue'
 import SdIcon from './components/SdIcon/SdIcon.vue'
@@ -87,6 +87,7 @@ const components = {
   SdRadio,
   SdField,
   SdError,
+  SdSimpleSelect,
   SdSelect,
   SdSlider,
   SdSwitch,
@@ -185,8 +186,9 @@ export {
   SdCheckbox,
   SdRadio,
   SdField,
-  SdError,
+  SdSimpleSelect,
   SdSelect,
+  SdError,
   // Dialog (modal)
   SdDialog,
   SdDialogHeader,
