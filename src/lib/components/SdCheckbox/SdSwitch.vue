@@ -2,7 +2,7 @@
   <label
     :for="id"
     :class="['sd--switch', containerClasses]"
-    @click.prevent="handleChecked"
+    @click.prevent="onChecked"
     tabindex="-1"
   >
     <span class="sd--switch__label">
@@ -18,7 +18,7 @@
         type="checkbox"
         v-bind="attributes"
         :id="id"
-        :checked="isSelected"
+        :checked="isChecked"
       >
     </div>
   </label>
@@ -70,8 +70,8 @@ export default defineComponent({
   setup (props, { emit }) {
     const {
       checkboxRef,
-      isSelected,
-      handleChecked
+      isChecked,
+      onChecked
     } = useCheckbox(props, emit)
     const isFocused = useKeyboardFocus(checkboxRef)
 
@@ -102,7 +102,7 @@ export default defineComponent({
       return {
         [`sd--switch__${props.theme}`]: !!props.theme,
         'sd--switch__control': true,
-        'is--checked': isSelected.value,
+        'is--checked': isChecked.value,
         'is--disabled': props.disabled,
         'is--required': props.required,
         'is--focused': isFocused.value
@@ -115,8 +115,8 @@ export default defineComponent({
       fieldClasses,
       containerClasses,
       isFocused,
-      isSelected,
-      handleChecked
+      isChecked,
+      onChecked
     }
   }
 })

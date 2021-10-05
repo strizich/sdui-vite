@@ -1,7 +1,7 @@
 <template>
   <label
     :class="[containerClasses]"
-    @click.prevent="handleChecked"
+    @click.prevent="onChecked"
     tabindex="-1"
   >
     <input
@@ -9,7 +9,7 @@
       type="checkbox"
       :id="id"
       :class="[inputClasses]"
-      :checked="isSelected"
+      :checked="isChecked"
       :indeterminate="indeterminate"
       v-bind="attributes"
     >
@@ -73,9 +73,8 @@ export default defineComponent({
   setup (props, { emit }) {
     const {
       checkboxRef,
-      isSelected,
-      isModelArray,
-      handleChecked
+      isChecked,
+      onChecked
     } = useCheckbox(props, emit)
 
     const isFocused = useKeyboardFocus(checkboxRef)
@@ -107,7 +106,7 @@ export default defineComponent({
     const inputClasses = computed(() => {
       return {
         'sd--checkbox__field': true,
-        'is--checked': isSelected.value,
+        'is--checked': isChecked.value,
         'is--disabled': props.disabled,
         'is--required': props.required,
         'is--indeterminate': props.indeterminate,
@@ -122,9 +121,8 @@ export default defineComponent({
       inputClasses,
       containerClasses,
       isFocused,
-      isSelected,
-      isModelArray,
-      handleChecked
+      isChecked,
+      onChecked
     }
   }
 })
