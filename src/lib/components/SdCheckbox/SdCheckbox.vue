@@ -75,7 +75,6 @@ export default defineComponent({
       checkboxRef,
       isSelected,
       isModelArray,
-      hasValue,
       handleChecked
     } = useCheckbox(props, emit)
 
@@ -125,7 +124,6 @@ export default defineComponent({
       isFocused,
       isSelected,
       isModelArray,
-      hasValue,
       handleChecked
     }
   }

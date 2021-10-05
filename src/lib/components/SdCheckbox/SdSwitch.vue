@@ -10,7 +10,7 @@
     </span>
 
     <div
-      :class="[inputClasses, themeClass]"
+      :class="[fieldClasses]"
     >
       <input
         ref="checkboxRef"
@@ -71,8 +71,6 @@ export default defineComponent({
     const {
       checkboxRef,
       isSelected,
-      isModelArray,
-      hasValue,
       handleChecked
     } = useCheckbox(props, emit)
     const isFocused = useKeyboardFocus(checkboxRef)
@@ -100,8 +98,9 @@ export default defineComponent({
       }
     })
 
-    const inputClasses = computed(() => {
+    const fieldClasses = computed(() => {
       return {
+        [`sd--switch__${props.theme}`]: !!props.theme,
         'sd--switch__control': true,
         'is--checked': isSelected.value,
         'is--disabled': props.disabled,
@@ -110,20 +109,13 @@ export default defineComponent({
       }
     })
 
-    const themeClass = computed(() => {
-      return `sd--switch__${props.theme}`
-    })
-
     return {
-      themeClass,
       checkboxRef,
       attributes,
-      inputClasses,
+      fieldClasses,
       containerClasses,
       isFocused,
       isSelected,
-      isModelArray,
-      hasValue,
       handleChecked
     }
   }
@@ -166,7 +158,7 @@ $checkmarkSvgDarkUri: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 }
 
 %rail{
-  border-radius: 30px;
+  border-radius: 3px;
   display:block;
   position:absolute;
   content:'';
