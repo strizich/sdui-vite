@@ -5,7 +5,7 @@
     tabindex="-1"
   >
     <input
-      ref="checkbox"
+      ref="checkboxRef"
       type="checkbox"
       :id="id"
       :class="[inputClasses]"
@@ -21,6 +21,7 @@
 import { defineComponent, ref, computed, PropType, ComputedRef } from 'vue'
 import sdUuid from '../../core/utilities/SdUuid'
 import useKeyboardFocus from '../../hooks/useKeyboardFocus'
+import useCheckbox from '../../hooks/useCheckbox'
 
 export default defineComponent({
   name: 'SdCheckbox',
@@ -52,11 +53,11 @@ export default defineComponent({
     disabled: Boolean,
     indeterminate: Boolean,
     trueValue: {
-      type: [String, Boolean, Number] as PropType<string | boolean | number>,
+      type: [Boolean, String, Number] as PropType<boolean | string | number>,
       default: true
     },
     falseValue: {
-      type: [String, Boolean, Number] as PropType<string | boolean | number>,
+      type: [Boolean, String, Number] as PropType<boolean | string | number>,
       default: false
     },
     id: {
@@ -70,64 +71,15 @@ export default defineComponent({
   },
   emits: ['update:modelValue'],
   setup (props, { emit }) {
-    const checkbox = ref(null)
-    const isFocused = useKeyboardFocus(checkbox)
+    const {
+      checkboxRef,
+      isSelected,
+      isModelArray,
+      hasValue,
+      handleChecked
+    } = useCheckbox(props, emit)
 
-    const hasValue: ComputedRef<boolean> = computed(() => {
-      return props.value !== null
-    })
-
-    const isModelArray: ComputedRef<boolean> = computed(() => {
-      return Array.isArray(props.modelValue)
-    })
-
-    const isSelected: ComputedRef<boolean> = computed(() => {
-      if (isModelArray.value) {
-        return props.modelValue.includes(props.value)
-      }
-      if (hasValue.value) {
-        return props.modelValue === props.value
-      } else {
-        return props.modelValue === props.trueValue
-      }
-    })
-
-    const removeItemFromModel = (newModel) => {
-      const index = newModel.indexOf(props.value)
-      if (index !== -1) {
-        newModel.splice(index, 1)
-      }
-    }
-
-    const handleArrayCheckbox = () => {
-      let newModel = props.modelValue
-      if (!isSelected.value) {
-        newModel.push(props.value)
-      } else {
-        removeItemFromModel(newModel)
-      }
-      emit('update:modelValue', newModel)
-    }
-
-    const handleSingleSelectCheckbox = () => {
-      emit('update:modelValue', isSelected.value ? null : props.value)
-    }
-
-    const handleSimpleCheckbox = () => {
-      emit('update:modelValue', isSelected.value ? props.falseValue : props.trueValue)
-    }
-
-    const handleChecked = () => {
-      if (!props.disabled) {
-        if (isModelArray.value) {
-          handleArrayCheckbox()
-        } else if (hasValue.value) {
-          handleSingleSelectCheckbox()
-        } else {
-          handleSimpleCheckbox()
-        }
-      }
-    }
+    const isFocused = useKeyboardFocus(checkboxRef)
 
     const attributes = computed(() => {
       const attrs = {
@@ -166,7 +118,7 @@ export default defineComponent({
     })
 
     return {
-      checkbox,
+      checkboxRef,
       attributes,
       inputClasses,
       containerClasses,
@@ -285,7 +237,7 @@ export default defineComponent({
         right: 0;
         bottom: 0;
         display:block;
-        z-index: 0;
+        z-index: 1;
       }
     }
     &.is--disabled{
@@ -304,11 +256,12 @@ export default defineComponent({
       z-index: 10;
     }
     &__field {
-       appearance: none;
-       width: 0;
-       height: 0;
-       border: none;
-       @extend %checkbox;
+      display:flex;
+      appearance: none;
+      width: 0;
+      height: 0;
+      border: none;
+      @extend %checkbox;
       z-index: 10;
       &.is{
         &--checked{

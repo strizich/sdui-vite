@@ -13,7 +13,7 @@
       :class="[inputClasses, themeClass]"
     >
       <input
-        ref="switchRef"
+        ref="checkboxRef"
         class="sd--switch__field"
         type="checkbox"
         v-bind="attributes"
@@ -30,6 +30,7 @@
 import { defineComponent, ref, computed, PropType } from 'vue'
 import sdUuid from '../../core/utilities/SdUuid'
 import useKeyboardFocus from '../../hooks/useKeyboardFocus'
+import useCheckbox from '../../hooks/useCheckbox'
 
 export default defineComponent({
   name: 'SdSwitch',
@@ -67,64 +68,14 @@ export default defineComponent({
   },
   emits: ['update:modelValue'],
   setup (props, { emit }) {
-    const switchRef = ref(false)
-    const isFocused = useKeyboardFocus(switchRef)
-
-    const isModelArray = computed(() => {
-      return Array.isArray(props.modelValue)
-    })
-
-    const hasValue = computed(() => {
-      return props.value !== null
-    })
-
-    const isSelected = computed(() => {
-      if (isModelArray.value) {
-        return props.modelValue.includes(props.value)
-      }
-      if (hasValue.value) {
-        return props.modelValue === props.value
-      } else {
-        return props.modelValue === props.trueValue
-      }
-    })
-
-    const removeItemFromModel = (newModel) => {
-      const index = newModel.indexOf(props.value)
-      if (index !== -1) {
-        newModel.splice(index, 1)
-      }
-    }
-
-    const handleArrayCheckbox = () => {
-      const newModel = props.modelValue
-      if (!isSelected.value) {
-        newModel.push(props.value)
-      } else {
-        removeItemFromModel(newModel)
-      }
-      emit('update:modelValue', newModel)
-    }
-
-    const handleSingleSelectCheckbox = () => {
-      emit('update:modelValue', isSelected.value ? null : props.value)
-    }
-
-    const handleSimpleCheckbox = () => {
-      emit('update:modelValue', isSelected.value ? props.falseValue : props.trueValue)
-    }
-
-    const handleChecked = () => {
-      if (!props.disabled) {
-        if (isModelArray.value) {
-          handleArrayCheckbox()
-        } else if (hasValue.value) {
-          handleSingleSelectCheckbox()
-        } else {
-          handleSimpleCheckbox()
-        }
-      }
-    }
+    const {
+      checkboxRef,
+      isSelected,
+      isModelArray,
+      hasValue,
+      handleChecked
+    } = useCheckbox(props, emit)
+    const isFocused = useKeyboardFocus(checkboxRef)
 
     const attributes = computed(() => {
       const attrs = {
@@ -165,7 +116,7 @@ export default defineComponent({
 
     return {
       themeClass,
-      switchRef,
+      checkboxRef,
       attributes,
       inputClasses,
       containerClasses,
