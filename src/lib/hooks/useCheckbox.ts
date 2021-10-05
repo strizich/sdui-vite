@@ -45,7 +45,6 @@ const useCheckbox = (props, emit) => {
 
   const handleSimpleCheckbox = () => {
     emit('update:modelValue', isChecked.value ? props.falseValue : props.trueValue)
-    console.log(props.falseValue, props.trueValue)
   }
 
   const onChecked = () => {
