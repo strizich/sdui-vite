@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, PropType, ComputedRef } from 'vue'
+import { defineComponent, computed, PropType } from 'vue'
 import sdUuid from '../../core/utilities/SdUuid'
 import useKeyboardFocus from '../../hooks/useKeyboardFocus'
 import useCheckbox from '../../hooks/useCheckbox'
