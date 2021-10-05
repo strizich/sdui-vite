@@ -1,6 +1,6 @@
 <template>
   <div :class="['sd--card', classes]">
-    <slot />
+    <slot/>
   </div>
 </template>
 
@@ -21,7 +21,10 @@ export default defineComponent({
       type: [Number, String],
       default: 6
     },
-    clickable: Boolean
+    clickable: {
+      type: Boolean,
+      default: false
+    }
   },
   setup (props) {
     const classes = computed(() => {
@@ -46,19 +49,13 @@ export default defineComponent({
   position: relative;
   z-index: 1;
   transition: box-shadow .23s ease-in-out;
-  margin: 16px 0;
+  margin: 0 0 16px 0;
   &.is--clickable{
     &:hover{
       z-index: 10;
       @include elevation(24);
       cursor:pointer;
     }
-  }
-  &--inset{
-    padding: 0 16px;
-  }
-  &--offset{
-    padding: 0 0 0 16px;
   }
 }
 </style>
