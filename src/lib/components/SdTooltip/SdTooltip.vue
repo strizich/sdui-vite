@@ -90,10 +90,6 @@ export default defineComponent({
     // Popper Options
     const { shouldRender, targetRef, instanceRef } = usePopper(props, emit)
   
-    onMounted(() => {
-      console.log(props.modelValue)
-
-    })
     return {
       targetRef,
       instanceRef,

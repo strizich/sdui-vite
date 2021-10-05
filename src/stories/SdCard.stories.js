@@ -67,14 +67,14 @@ const Template = (args => ({
     </sd-card>
     <sd-card v-bind="args">
       <sd-card-header :title="args.title" :subtitle="args.subtitle" :inline="args.inline">
-        <sd-button theme="primary" icon="more_vert" icon-only outline size="sm"/>
+        <sd-button theme="primary" icon-only flat size="sm"><sd-icon size="sm" name="more_vert"/></sd-button>
       </sd-card-header>
       <sd-card-media :ratio="args.ratio">
         <img src="https://place-puppy.com/600x600" alt="placepuppy placeholder"/>
       </sd-card-media>
       <sd-card-footer align="space-between">
         <sd-icon name="image" color="var(--text-accent)"/>
-        <sd-button flat size="xs">Button</sd-button>
+        <sd-button flat>Button</sd-button>
       </sd-card-footer>
     </sd-card>
   </div>
