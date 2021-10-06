@@ -2,7 +2,7 @@
   <label
     :for="id"
     :class="['sd--switch', containerClasses]"
-    @click.prevent="handleChecked"
+    @click.prevent="onChecked"
     tabindex="-1"
   >
     <span class="sd--switch__label">
@@ -10,7 +10,7 @@
     </span>
 
     <div
-      :class="[inputClasses, themeClass]"
+      :class="[fieldClasses]"
     >
       <input
         ref="checkboxRef"
@@ -18,7 +18,7 @@
         type="checkbox"
         v-bind="attributes"
         :id="id"
-        :checked="isSelected"
+        :checked="isChecked"
       >
     </div>
   </label>
@@ -70,10 +70,8 @@ export default defineComponent({
   setup (props, { emit }) {
     const {
       checkboxRef,
-      isSelected,
-      isModelArray,
-      hasValue,
-      handleChecked
+      isChecked,
+      onChecked
     } = useCheckbox(props, emit)
     const isFocused = useKeyboardFocus(checkboxRef)
 
@@ -100,31 +98,25 @@ export default defineComponent({
       }
     })
 
-    const inputClasses = computed(() => {
+    const fieldClasses = computed(() => {
       return {
+        [`sd--switch__${props.theme}`]: !!props.theme,
         'sd--switch__control': true,
-        'is--checked': isSelected.value,
+        'is--checked': isChecked.value,
         'is--disabled': props.disabled,
         'is--required': props.required,
         'is--focused': isFocused.value
       }
     })
 
-    const themeClass = computed(() => {
-      return `sd--switch__${props.theme}`
-    })
-
     return {
-      themeClass,
       checkboxRef,
       attributes,
-      inputClasses,
+      fieldClasses,
       containerClasses,
       isFocused,
-      isSelected,
-      isModelArray,
-      hasValue,
-      handleChecked
+      isChecked,
+      onChecked
     }
   }
 })
@@ -166,7 +158,7 @@ $checkmarkSvgDarkUri: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 }
 
 %rail{
-  border-radius: 30px;
+  border-radius: 3px;
   display:block;
   position:absolute;
   content:'';

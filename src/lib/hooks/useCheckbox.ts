@@ -11,7 +11,7 @@ const useCheckbox = (props, emit) => {
     return Array.isArray(props.modelValue)
   })
 
-  const isSelected: ComputedRef<boolean> = computed(() => {
+  const isChecked: ComputedRef<boolean> = computed(() => {
     if (isModelArray.value) {
       return props.modelValue.includes(props.value)
     }
@@ -31,7 +31,7 @@ const useCheckbox = (props, emit) => {
 
   const handleArrayCheckbox = () => {
     let newModel = props.modelValue
-    if (!isSelected.value) {
+    if (!isChecked.value) {
       newModel.push(props.value)
     } else {
       removeItemFromModel(newModel)
@@ -40,15 +40,14 @@ const useCheckbox = (props, emit) => {
   }
 
   const handleSingleSelectCheckbox = () => {
-    emit('update:modelValue', isSelected.value ? null : props.value)
+    emit('update:modelValue', isChecked.value ? null : props.value)
   }
 
   const handleSimpleCheckbox = () => {
-    emit('update:modelValue', isSelected.value ? props.falseValue : props.trueValue)
-    console.log(props.falseValue, props.trueValue)
+    emit('update:modelValue', isChecked.value ? props.falseValue : props.trueValue)
   }
 
-  const handleChecked = () => {
+  const onChecked = () => {
     if (!props.disabled) {
       if (isModelArray.value) {
         handleArrayCheckbox()
@@ -61,10 +60,8 @@ const useCheckbox = (props, emit) => {
   }
   return {
     checkboxRef,
-    isSelected,
-    isModelArray,
-    hasValue,
-    handleChecked
+    isChecked,
+    onChecked
   }
 }
 
