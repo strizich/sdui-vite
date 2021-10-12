@@ -16,6 +16,7 @@ declare module '@strizich/sdui' {
   const SdField: ReturnType<typeof defineComponent>
   const SdError: ReturnType<typeof defineComponent>
   const SdSelect: ReturnType<typeof defineComponent>
+  const SdSimpleSelect: ReturnType<typeof defineComponent>
   const SdSlider: ReturnType<typeof defineComponent>
   const SdSwitch: ReturnType<typeof defineComponent>
   const SdChicklet: ReturnType<typeof defineComponent>
@@ -138,6 +139,7 @@ declare module '@strizich/sdui' {
     SdField,
     SdError,
     SdSelect,
+    SdSimpleSelect,
     SdSlider,
     SdSwitch,
     SdChicklet,
@@ -191,6 +193,6 @@ declare module '@strizich/sdui' {
     useAlignment,
     useToaster,
     useSlider,
-    usePopper
+    usePopper,
   }
 }
