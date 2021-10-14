@@ -48,7 +48,7 @@ export default defineComponent({
       default: 'primary'
     }
   },
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'click'],
   setup (props, { emit }) {
     const radio = ref(null)
     const isFocused = useKeyboardFocus(radio)
@@ -56,7 +56,7 @@ export default defineComponent({
     const isSelected = computed(() => {
       return props.modelValue === props.value
     })
-
+    
     const radioClasses = computed(() => {
       return {
         'is--required': props.required,
@@ -68,6 +68,7 @@ export default defineComponent({
     const handleChecked = () => {
       if (!props.disabled) {
         emit('update:modelValue', props.value)
+        emit('click', props.value)
       }
     }
 
