@@ -4,7 +4,7 @@
       okay
       <sd-tooltip>okay</sd-tooltip>
     </sd-button>
-    <sd-menu v-model="state.active">
+    <sd-menu>
       <sd-button trigger>Trigger</sd-button>
       <sd-menu-content>
         {{state.active}}

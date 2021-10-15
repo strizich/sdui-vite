@@ -19,7 +19,7 @@
 <script lang="ts">
 import usePopper from '../../hooks/usePopper'
 import SdContains from '../../core/utilities/SdContains';
-import {ref, inject, PropType, defineComponent, onMounted, computed, reactive, onUnmounted, watchEffect } from 'vue'
+import {ref, inject, PropType, defineComponent, onMounted, computed, reactive, onUnmounted, watchEffect, InjectionKey } from 'vue'
 import { Placement } from '@popperjs/core'
  export default defineComponent({
   name: 'SdMenu',
@@ -68,9 +68,8 @@ import { Placement } from '@popperjs/core'
   emits: ['opened', 'closed'],
   setup(props, { emit }) {
     const activate: any = inject('activate', false)
-
     const { shouldRender, targetRef, instanceRef } = usePopper(props, emit, activate)
-    
+
     const state = reactive({
       parentWidth: null
     })
@@ -82,8 +81,6 @@ import { Placement } from '@popperjs/core'
         }
       }
     })
-  
-
 
     const isMenu = ({target}) => {
       return targetRef.value.parentElement ? SdContains(instanceRef.value, target): false
