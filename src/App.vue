@@ -1,45 +1,32 @@
 <template>
-   <div class="demo">
-     <!-- <sd-select label="Dropdown Select" auto-close>
-       <template v-slot:default="{ onSelected }">
-        <label>
-          <button type="radio" value="okay1" @click="onSelected">Okay 1</button>
-        </label>
-        <label>
-          <button type="radio" value="okay2" @click="onSelected">Okay 2</button>
-        </label>
-       </template>
-     </sd-select> -->
-
-    <sd-button @click="state.okay = 1">
-      Button
-      <sd-tooltip placement="right" v-model="state.active">
-        Tip
-      </sd-tooltip>
+  <div class="demo">
+    <sd-button>
+      okay
+      <sd-tooltip>okay</sd-tooltip>
     </sd-button>
-     <!-- <sd-simple-select>
-       <option value="option-1">Option 1</option>
-    </sd-simple-select> -->
-    <!-- {{state.selectValue}} -->
-    <!-- <select v-model="state.selectValue">
-      <option value="one">one</option>
-      <option value="two">two</option>
-    </select> -->
+    <sd-menu v-model="state.active">
+      <sd-button trigger>Trigger</sd-button>
+      <sd-menu-content>
+        {{state.active}}
+      </sd-menu-content>
+    </sd-menu>
   </div> 
 
 </template>
 
 <script lang="ts">
-  import { reactive, defineComponent, onMounted} from 'vue'
+  import { reactive, defineComponent} from 'vue'
   // import useScheme from './lib/hooks/UseScheme'
-  import SdSelect from './lib/components/SdSelect/SdSelect.vue'
   import SdButton from './lib/components/SdButton/SdButton.vue'
+  import SdMenu from './lib/components/SdMenu/SdMenu.vue'
+  import SdMenuContent from './lib/components/SdMenu/SdMenuContent.vue'
 
   export default defineComponent({
   name: 'App',
   components: {
-    SdSelect,
-    SdButton
+    SdButton,
+    SdMenu,
+    SdMenuContent
   },
   setup () {
     const state = reactive({
@@ -93,7 +80,8 @@
   @use '@/lib/scss/engine';
 
   .demo{
-    padding: 40px 0;
+    width: 100%;
+    padding: 40px;
     &__button-group{
       margin-bottom: 16px;
     }
