@@ -18,7 +18,6 @@ const createSharedComposable = (composable) => {
       state = scope.run(() => composable(...args))
     }
     onScopeDispose(dispose)
-    console.log(subscribers, state, scope)
     return state
   }
 }

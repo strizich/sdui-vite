@@ -6,9 +6,11 @@
   >
     <transition name="dropdown">
       <div
-       ref="instanceRef"
-       class="sd--menu__content"
-       v-if="shouldRender"
+        :id="id"
+        ref="instanceRef"
+        class="sd--menu__content"
+        v-if="shouldRender"
+        :style="computedStyles"
       >
         <slot />
       </div>
@@ -19,14 +21,15 @@
 <script lang="ts">
 import usePopper from '../../hooks/usePopper'
 import SdContains from '../../core/utilities/SdContains';
-import {ref, inject, PropType, defineComponent, onMounted, computed, reactive, onUnmounted, watchEffect, InjectionKey } from 'vue'
+import SdUuid from '../../core/utilities/SdUuid';
+import { watch, inject, PropType, defineComponent, computed, reactive} from 'vue'
 import { Placement } from '@popperjs/core'
  export default defineComponent({
   name: 'SdMenu',
   props: {
-    modelValue: {
-      type: Boolean,
-      default: false
+    id: {
+      type: String,
+      default: () => 'sd-menu-' + SdUuid()
     },
     theme: {
       type: String,
@@ -38,13 +41,13 @@ import { Placement } from '@popperjs/core'
     },
     placement: {
       type: String as PropType<Placement>,
-      default: 'top'
+      default: 'bottom-start'
     },
-    outsideClose: {
+    outsideClick: {
       type: Boolean,
       default: true
     },
-    insideClose: {
+    closeOnClick: {
       type: Boolean,
       default: true
     },  
@@ -54,7 +57,7 @@ import { Placement } from '@popperjs/core'
     },
     portalDisabled: {
       type: Boolean,
-      default: true
+      default: false
     },
     offset: {
       type: Array as PropType<number[]>,
@@ -74,47 +77,74 @@ import { Placement } from '@popperjs/core'
       parentWidth: null
     })
 
+    watch(() => activate.value, (next) => {
+      if (next) {
+        setTimeout(() => {
+          handleWindowResize()
+          createClickObserver()
+          createKeyboardObserver()
+        }, 0)
+      }
+    })
+
     const computedStyles = computed(() => {
       if (props.fullWidth) {
         return {
-          width: `${state.parentWidth}px`
+          minWidth: `${state.parentWidth}px`
         }
       }
     })
 
     const isMenu = ({target}) => {
-      return targetRef.value.parentElement ? SdContains(instanceRef.value, target): false
+      console.log(targetRef.value.parentElement)
+      return targetRef.value.parentElement ? SdContains(targetRef.value.parentElement, target): false
     }
 
     const isMenuContent = ({target}) => {
-      return instanceRef.value ? SdContains(targetRef.value.parentElement, target): false
+      console.log(instanceRef.value)
+      return instanceRef.value ? SdContains(instanceRef.value, target) : false
     }
 
-    const handleOutsideClick = (event) => {
-      if (activate.value ) {
-        if (props.outsideClose && isMenuContent(event) && isMenu(event)) {
+    const handleClickEvents = (event) => {
+      if(document) {
+        const insideClick = !isMenu(event) && (props.closeOnClick || !isMenuContent(event))
+        const outsideClick = isMenu(event) && (props.outsideClick || !isMenuContent(event))
+        if (insideClick || outsideClick) {
           activate.value = false
-        }
-        if(props.insideClose && !isMenuContent(event) && isMenu(event)) {
-          activate.value = false
+          window.removeEventListener('resize', handleWindowResize)
+          document.body.removeEventListener('click', handleClickEvents)
+          document.body.removeEventListener('keydown', onKeydown)
         }
       }
+    }
+
+    const onKeydown = e => {
+      console.log(e.key)
+      switch (e.key) {
+        case 'Escape':
+          e.preventDefault()
+          activate.value = false
+          break
+        case 'ArrowDown':
+          e.preventDefault()
+          if(!activate.value) {
+            activate.value = true
+          }
+          break
+      }
+    }
+
+    const createKeyboardObserver = () => {
+      document.body.addEventListener('keydown', onKeydown, { passive: false })
+    }
+
+    const createClickObserver = () => {
+      document.body.addEventListener('click', handleClickEvents, { passive: true })
     }
 
     const handleWindowResize = () => {
       state.parentWidth = targetRef.value.parentElement.clientWidth
     }
-
-    onMounted(() => {
-      handleWindowResize()
-      window.addEventListener('resize', handleWindowResize, { passive: true })
-      document.body.addEventListener('click', handleOutsideClick, { passive: true })     
-    })
-
-    onUnmounted(() => {
-      window.removeEventListener('resize', handleWindowResize)
-       document.body.addEventListener('click', handleOutsideClick, { passive: true })     
-    })
 
     return {
       shouldRender,
@@ -132,8 +162,20 @@ import { Placement } from '@popperjs/core'
   @import '../../scss/variables';
   .sd--menu{
     &__content{
+      left:0;
+      max-width: 300px;
+      min-height: 24px;
+      padding: 8px;
+      z-index: 111;
+      border-radius: 2px;
+      font-size: 14px;
+      text-transform: none;
+      white-space: wrap;
+      opacity: 1;
       background-color: var(--background-highlight);
-      padding: 15px;
+      color: var(--text);
+      font-weight: 500;
+      min-width: 40px;
       @include elevation(4);
     }
   }

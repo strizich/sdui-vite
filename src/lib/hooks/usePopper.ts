@@ -45,7 +45,9 @@ const usePopper = (props, emit, activate?) => {
   // emit when state has been updated...
   // FUTURE: potentially worth looking into using the new v-model bindings for this.
   watch(() => shouldRender.value, (next) => {
-    emit('update:modelValue', next)
+    if(props.modelValue) {
+      emit('update:modelValue', next)
+    }
     if (next) {
       bindPopper()
     }

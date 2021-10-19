@@ -1,21 +1,26 @@
 <template>
-  <div class="sd--menu" ref="menuRef">
+  <div :id="id" class="sd--menu" ref="menuRef">
     <slot />
   </div>
 </template>
 
 <script>
 import { provide, ref, watch, defineComponent, onMounted, onUnmounted } from 'vue';
+import sdUuid from '../../core/utilities/SdUuid';
 export default defineComponent ({
   name: 'SdMenu',
-  emits: ['update:modelValue'],
   props: {
-    modelValue: {
+    modelValue: { 
       type: Boolean,
       default: false
+    },
+    id: {
+      type: String,
+      default: () => 'sd--menu--' + sdUuid()
     }
   },
-  setup(props) {
+  emits: ['update:modelValue'],
+  setup(props, {emit}) {
     const menuRef = ref(null)
     const triggerEl = ref(null)
     const activate = ref(false)
@@ -24,6 +29,11 @@ export default defineComponent ({
       activate.value = next
     }, {immediate: true})
 
+    watch(() => activate.value, (next) => {
+      if (next) {
+        emit('update:modelValue', activate.value)
+      }
+    })
 
     const toggleMenu = () => {
       activate.value = !activate.value
@@ -51,7 +61,7 @@ export default defineComponent ({
 .sd--menu{
   position: relative;
   transition: opacity .5s;
-  z-index: 500;
-  display:inline-flex;
+  z-index: 110;
+  display:inline-block;
 }
 </style>

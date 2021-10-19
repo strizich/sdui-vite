@@ -1,13 +1,30 @@
 <template>
   <div class="demo">
-    <sd-button>
-      okay
-      <sd-tooltip>okay</sd-tooltip>
-    </sd-button>
     <sd-menu>
       <sd-button trigger>Trigger</sd-button>
-      <sd-menu-content>
+      <sd-menu-content fullWidth>
         {{state.active}}
+      </sd-menu-content>
+    </sd-menu>
+
+    <sd-menu>
+      <sd-field label="popover" v-model="state.selectValue" trigger/>
+      <sd-menu-content full-width>
+        <sd-fieldset>
+          <sd-radio v-model="state.selectValue" value="one">One</sd-radio>
+          <sd-radio v-model="state.selectValue" value="two">Two</sd-radio>
+          <sd-radio v-model="state.selectValue" value="three">Three</sd-radio>
+        </sd-fieldset>
+      </sd-menu-content>
+    </sd-menu>
+    <sd-menu>
+      <sd-field label="popover" v-model="state.selectValue" trigger/>
+      <sd-menu-content full-width>
+        <sd-fieldset>
+          <sd-radio v-model="state.selectValue" value="one">One</sd-radio>
+          <sd-radio v-model="state.selectValue" value="two">Two</sd-radio>
+          <sd-radio v-model="state.selectValue" value="three">Three</sd-radio>
+        </sd-fieldset>
       </sd-menu-content>
     </sd-menu>
   </div> 
