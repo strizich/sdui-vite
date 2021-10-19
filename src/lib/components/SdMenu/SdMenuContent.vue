@@ -96,12 +96,10 @@ import { Placement } from '@popperjs/core'
     })
 
     const isMenu = ({target}) => {
-      console.log(targetRef.value.parentElement)
       return targetRef.value.parentElement ? SdContains(targetRef.value.parentElement, target): false
     }
 
     const isMenuContent = ({target}) => {
-      console.log(instanceRef.value)
       return instanceRef.value ? SdContains(instanceRef.value, target) : false
     }
 
@@ -119,17 +117,11 @@ import { Placement } from '@popperjs/core'
     }
 
     const onKeydown = e => {
-      console.log(e.key)
       switch (e.key) {
         case 'Escape':
           e.preventDefault()
           activate.value = false
-          break
-        case 'ArrowDown':
-          e.preventDefault()
-          if(!activate.value) {
-            activate.value = true
-          }
+          window.removeEventListener('resize', handleWindowResize)
           break
       }
     }
