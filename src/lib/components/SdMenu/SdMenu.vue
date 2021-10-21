@@ -40,12 +40,16 @@ export default defineComponent ({
     }
 
     onMounted(() => {
-      triggerEl.value = menuRef.value.querySelector('[trigger]')
-      triggerEl.value.addEventListener('click', toggleMenu, {passive: true})
+      if (menuRef.value instanceof HTMLElement) {
+        triggerEl.value = menuRef.value.querySelector('[trigger]')
+        triggerEl.value.addEventListener('click', toggleMenu, {passive: true})
+      }
     })
 
     onUnmounted(() => {
-      triggerEl.value.removeEventListener('click', toggleMenu)
+      if(triggerEl.value) {
+        triggerEl.value.removeEventListener('click', toggleMenu)
+      }
     })
 
     provide('activate', activate)
@@ -61,6 +65,7 @@ export default defineComponent ({
 .sd--menu{
   position: relative;
   transition: opacity .5s;
+
   z-index: 110;
   display:inline-block;
 }
