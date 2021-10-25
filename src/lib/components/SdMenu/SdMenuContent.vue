@@ -25,7 +25,7 @@ import SdUuid from '../../core/utilities/SdUuid';
 import { watch, inject, PropType, defineComponent, computed, reactive} from 'vue'
 import { Placement } from '@popperjs/core'
  export default defineComponent({
-  name: 'SdMenu',
+  name: 'SdMenuContent',
   props: {
     id: {
       type: String,

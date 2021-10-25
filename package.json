@@ -1,6 +1,6 @@
 {
   "name": "@strizich/sdui",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "author": "Jason Strizich (https://www.strizichdesign.com)",
   "license": "MIT",
   "homepage": "https://www.strizichdesign.com/",
@@ -47,7 +47,7 @@
     "@popperjs/core": "^2.9.2",
     "animejs": "^3.2.1",
     "focus-trap": "^6.5.1",
-    "vue": "^3.2.12"
+    "vue": "^3.2.20"
   },
   "devDependencies": {
     "@babel/core": "^7.13.10",
