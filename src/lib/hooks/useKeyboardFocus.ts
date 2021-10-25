@@ -1,8 +1,8 @@
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, Ref } from 'vue'
 
-const useKeyboardFocus = ($el) => {
-  const currentElement = ref(null)
-  let eventTarget: HTMLElement
+const useKeyboardFocus = (el: Ref<HTMLElement>) => {
+  const currentElement: Ref<EventTarget | null> = ref(null) 
+  let eventTarget: HTMLElement | null = null
   let hasEvents = false
   let supportsPassiveEvent = { passive: false }
 
@@ -19,8 +19,8 @@ const useKeyboardFocus = ($el) => {
     }
   }
 
-  const setKeyboardInteraction = ({ target }): void => {
-    currentElement.value = target
+  const setKeyboardInteraction = (event: KeyboardEvent): void => {
+    currentElement.value = event.target
   }
 
   const setMouseAndTouchInteraction = (): void => {
@@ -63,8 +63,8 @@ const useKeyboardFocus = ($el) => {
 
   const hasFocus = computed(() => {
     // For some reason this resolves to true while the app is mounting. Checking if all of the values are available appears to fix this.
-    if ($el.value && currentElement.value) {
-      return $el.value === currentElement.value
+    if (el.value && currentElement.value) {
+      return el.value === currentElement.value
     } else {
       return false
     }
