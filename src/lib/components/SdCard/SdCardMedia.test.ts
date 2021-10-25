@@ -41,6 +41,5 @@ describe('SdCardMedia', () => {
     const expected = 'sd--card__media--sm'
 
     expect(wrapper.vm.mediaSize).toEqual(expected)
-    console.log(wrapper)
   })
 })

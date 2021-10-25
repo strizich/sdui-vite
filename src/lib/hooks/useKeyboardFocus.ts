@@ -35,10 +35,6 @@ const useKeyboardFocus = ($el) => {
     eventTarget.addEventListener('pointerup', setMouseAndTouchInteraction)
   }
 
-  const createMSPointerEvents = (): void => {
-    eventTarget.addEventListener('MSPointerUp', setMouseAndTouchInteraction)
-  }
-
   const createMouseAndTouchEvents = (): void => {
     eventTarget.addEventListener('mouseup', setMouseAndTouchInteraction)
     if ('ontouchend' in window) {

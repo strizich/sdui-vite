@@ -49,6 +49,8 @@ declare module '@strizich/sdui' {
   const SdDropdown: ReturnType<typeof defineComponent>
   const SdDropdownMenu: ReturnType<typeof defineComponent>
   const SdDropdownHeader: ReturnType<typeof defineComponent>
+  const SdMenu: ReturnType<typeof defineComponent>
+  const SdMenuContent: ReturnType<typeof defineComponent>
   // Loader
   const SdProgress: ReturnType<typeof defineComponent>
   // UI
@@ -172,6 +174,8 @@ declare module '@strizich/sdui' {
     SdDropdown,
     SdDropdownMenu,
     SdDropdownHeader,
+    SdMenu,
+    SdMenuContent,
     // Loader
     SdProgress,
     // UI

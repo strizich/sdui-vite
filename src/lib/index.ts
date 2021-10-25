@@ -46,6 +46,8 @@ import SdProgress from './components/SdProgress/SdProgress.vue'
 import SdDropdown from './components/SdDropdown/SdDropdown.vue'
 import SdDropdownMenu from './components/SdDropdown/SdDropdownMenu.vue'
 import SdDropdownHeader from './components/SdDropdown/SdDropdownHeader.vue'
+import SdMenu from './components/SdMenu/SdMenu.vue'
+import SdMenuContent from './components/SdMenu/SdMenuContent.vue'
 import SdChicklet from './components/SdChicklet/SdChicklet.vue'
 import SdChip from './components/SdChicklet/SdChip.vue'
 import SdSkeleton from './components/SdLoader/SdSkeleton.vue'
@@ -121,6 +123,9 @@ const components = {
   SdDropdown,
   SdDropdownMenu,
   SdDropdownHeader,
+
+  SdMenu,
+  SdMenuContent,
   // Loader
   SdProgress,
   // UI
@@ -222,6 +227,8 @@ export {
   SdDropdown,
   SdDropdownMenu,
   SdDropdownHeader,
+  SdMenu,
+  SdMenuContent,
   SdChicklet,
   SdChip,
   SdSheet,

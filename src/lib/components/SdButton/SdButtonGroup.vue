@@ -18,12 +18,17 @@ export default {
     vertical: {
       type: Boolean,
       default: false
+    },
+    full: {
+      type: Boolean,
+      default: false
     }
   },
   setup (props) {
     const classes = computed(() => {
       return {
-        'is--vertical': props.vertical
+        'is--vertical': props.vertical,
+        'is--full': props.full
       }
     })
     return {
@@ -60,7 +65,12 @@ export default {
       border-radius: 0 3px 3px 0;
     }
   }
-
+  &.is--full{
+    width: 100%;
+    .sd--button{
+      width: 100%;
+    }
+  }
   &.is--vertical{
     flex-direction: column;
     .sd--button {
@@ -73,7 +83,9 @@ export default {
       &:only-child{
         border-radius: 3px;
       }
-
+      &:not(:last-child){
+        border-bottom: 1px solid var(--divider);
+      }
       &:first-child:not(:only-child){
         border-radius: 3px 3px 0 0;
       }

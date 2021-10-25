@@ -27,7 +27,7 @@ import { defineComponent, reactive, toRefs, computed } from 'vue'
 import SdIcon from '../SdIcon'
 import SdLabel from './SdLabel.vue'
 export default defineComponent({
-  name: 'SdSelect',
+  name: 'SdSimpleSelect',
   emits: ['update:modelValue', 'focus', 'blur', 'click', 'change'],
   components: { SdIcon, SdLabel },
   props: {

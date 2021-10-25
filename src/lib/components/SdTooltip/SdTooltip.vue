@@ -30,8 +30,7 @@
 import {
   computed,
   PropType,
-  defineComponent,
-  onMounted,
+  defineComponent
 } from 'vue'
 import { Placement } from '@popperjs/core'
 import usePopper from '../../hooks/usePopper'
@@ -44,10 +43,6 @@ export default defineComponent({
     'closed'
   ],
   props: {
-    teleport: {
-      type: String,
-      default: '#app'
-    },
     modelValue: {
       type: Boolean,
       default: false

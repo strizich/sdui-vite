@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, computed, ref, h, Ref, resolveComponent } from 'vue'
+import { defineComponent, computed, ref, h, Ref } from 'vue'
 import useKeyboardFocus from '../../hooks/useKeyboardFocus'
 import sdUuid from '../../core/utilities/SdUuid'
 import SdIcon from '../SdIcon/SdIcon.vue'
@@ -15,7 +15,7 @@ export default defineComponent({
       default: () => 'sd--button--' + sdUuid()
     },
     /**
-     * Sets the component to `display:block` and fill its avaiable horizontal space.
+     * Changes the padding and font size of the button.
      * @values xs, sm, md, lg, xl
     */
     size: {
@@ -53,8 +53,10 @@ export default defineComponent({
       default: false
     },
     /**
+     * @deprecated
      * Rounded corners, less padding. Use `rounded` with `iconOnly` to remove excess padding.
     */
+
     rounded: {
       type: Boolean,
       default: false
@@ -62,7 +64,10 @@ export default defineComponent({
     /**
      * Sets the component to `display:block` and fill its avaiable horizontal space.
     */
-    block: Boolean,
+    block: {
+      type: Boolean,
+      default: false
+    },
     /**
      * Only works with `block`. Aligns the button content.
      * @values start, end, center
@@ -93,11 +98,14 @@ export default defineComponent({
       default: undefined
     },
     /**
-     * Use when there is no other content in the button other than an icon.
+     * Hides the content node. Only Use when there is no other content in the button other than an icon.
     */
-    iconOnly: Boolean,
+    iconOnly: {
+      type: Boolean,
+      default: false
+    },
     /**
-     *  Allows the button to link to external urls. Changes the root node to `a`
+     *  Changed the text casing of the button
      * @values uppercase, captialize, lowercase
     */
     casing: {
@@ -190,7 +198,7 @@ export default defineComponent({
           }),
           !props.iconOnly 
             ? h('div', { class: 'sd--button__content' }, slots)
-            : slots.default(),
+            : null,
           props.iconEnd && h(SdIcon, {
             name: props.iconEnd,
             size: props.size

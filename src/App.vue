@@ -1,45 +1,140 @@
 <template>
-   <div class="demo">
-     <!-- <sd-select label="Dropdown Select" auto-close>
-       <template v-slot:default="{ onSelected }">
-        <label>
-          <button type="radio" value="okay1" @click="onSelected">Okay 1</button>
-        </label>
-        <label>
-          <button type="radio" value="okay2" @click="onSelected">Okay 2</button>
-        </label>
-       </template>
-     </sd-select> -->
+  <div class="demo">
 
-    <sd-button @click="state.okay = 1">
-      Button
-      <sd-tooltip placement="right" v-model="state.active">
-        Tip
-      </sd-tooltip>
-    </sd-button>
-     <!-- <sd-simple-select>
-       <option value="option-1">Option 1</option>
-    </sd-simple-select> -->
-    <!-- {{state.selectValue}} -->
-    <!-- <select v-model="state.selectValue">
-      <option value="one">one</option>
-      <option value="two">two</option>
-    </select> -->
+    <sd-grid>
+      <sd-cell 
+        xs="1"
+        o-xs="1"
+        sm="2"
+        o-sm="2"
+        md="3"
+        o-md="3"
+        lg="4"
+        o-lg="4"
+        style="background-color:red">1</sd-cell>
+      <sd-cell 
+        xs="1"
+        o-xs="1"
+        sm="2"
+        o-sm="2"
+        md="3"
+        o-md="1"
+        lg="4"
+        o-lg="1"
+        style="background-color:red">1</sd-cell>
+    </sd-grid>
+    <sd-menu>
+      <sd-button trigger>Trigger</sd-button>
+      <sd-menu-content fullWidth>
+        {{state.active}}
+      </sd-menu-content>
+    </sd-menu>
+
+    <sd-menu>
+      <sd-button icon="more_vert" icon-only trigger/>
+      <sd-menu-content full-width>
+        <sd-button-group vertical full>
+          <sd-button>
+            okay
+          </sd-button>
+          <sd-button>
+            okay
+          </sd-button>
+          <sd-button>
+            okay
+          </sd-button>
+        </sd-button-group>
+      </sd-menu-content>
+    </sd-menu>
+    <sd-menu>
+      <sd-field label="popover" v-model="state.selectValue" trigger/>
+      <sd-menu-content full-width>
+        <sd-fieldset>
+          <sd-radio v-model="state.selectValue" value="one">One</sd-radio>
+          <sd-radio v-model="state.selectValue" value="two">Two</sd-radio>
+          <sd-radio v-model="state.selectValue" value="three">Three</sd-radio>
+        </sd-fieldset>
+      </sd-menu-content>
+    </sd-menu>
+
+    <sd-menu>
+      <sd-button-group>
+        <sd-button>Button</sd-button>
+        <sd-button icon="keyboard_arrow_down" trigger icon-only />
+      </sd-button-group>
+
+      <sd-menu-content placement="bottom-end">
+        <sd-button>uh ok</sd-button>
+      </sd-menu-content>
+    </sd-menu>
+
+  <div>
+    <div class="primary b100">
+      primary 100
+    </div>
+    <div class="primary b200">
+      primary 200
+    </div>
+    <div class="primary b300">
+      primary 300
+    </div>
+    <div class="primary b400">
+      primary 400
+    </div>
+    <div class="primary b500">
+      primary 500
+    </div>
   </div> 
-
+  <div>
+    <div class="secondary b100">
+      secondary 100
+    </div>
+    <div class="secondary b200">
+      primary 200
+    </div>
+    <div class="secondary b300">
+      secondary 300
+    </div>
+    <div class="secondary b400">
+      secondary 400
+    </div>
+    <div class="secondary b500">
+      secondary 500
+    </div>
+  </div> 
+   <div>
+    <div class="danger b100">
+      danger 100
+    </div>
+    <div class="danger b200">
+      danger 200
+    </div>
+    <div class="danger b300">
+      danger 300
+    </div>
+    <div class="danger b400">
+      danger 400
+    </div>
+    <div class="danger b500">
+      danger 500
+    </div>
+  </div> 
+</div>
 </template>
 
 <script lang="ts">
-  import { reactive, defineComponent, onMounted} from 'vue'
+  import { reactive, defineComponent} from 'vue'
   // import useScheme from './lib/hooks/UseScheme'
-  import SdSelect from './lib/components/SdSelect/SdSelect.vue'
   import SdButton from './lib/components/SdButton/SdButton.vue'
+  import SdMenu from './lib/components/SdMenu/SdMenu.vue'
+  import SdMenuContent from './lib/components/SdMenu/SdMenuContent.vue'
 
   export default defineComponent({
   name: 'App',
   components: {
-    SdSelect,
-    SdButton
+    SdButton,
+    SdMenu,
+    SdMenuContent
   },
   setup () {
     const state = reactive({
@@ -53,6 +148,7 @@
       dropdown: false,
       link: null,
       active: true,
+      hoverActive: false,
       dropdown2: false,
       selectValue: 'one',
       items: [
@@ -79,10 +175,17 @@
       state.toast = true
     }
 
+    const handleHover = (event) => {
+      if(event === 'mouseenter') {
+        state.hoverActive = true
+      }
+    }
+
     return {
       handleToast,
       handleDialogClose,
       handleDialogOpen,
+      handleHover,
       state
     }
   }
@@ -93,18 +196,11 @@
   @use '@/lib/scss/engine';
 
   .demo{
-    padding: 40px 0;
+    width: 100%;
+    padding: 40px;
     &__button-group{
       margin-bottom: 16px;
     }
   }
-  .something{
-    color: var(--danger);
-    display:flex;
-    align-items: center;
-    font-size: 12px;
-  }
-  .widget--tall{
-    min-height: 400px;
-  }
+
 </style>
