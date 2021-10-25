@@ -84,7 +84,7 @@ export default {
         border-radius: 3px;
       }
       &:not(:last-child){
-        border-bottom: 1px solid rgba(255,255,255,.1);
+        border-bottom: 1px solid var(--divider);
       }
       &:first-child:not(:only-child){
         border-radius: 3px 3px 0 0;
