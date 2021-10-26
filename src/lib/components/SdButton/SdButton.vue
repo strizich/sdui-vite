@@ -3,6 +3,7 @@ import { defineComponent, computed, ref, h, Ref } from 'vue'
 import useKeyboardFocus from '../../hooks/useKeyboardFocus'
 import sdUuid from '../../core/utilities/SdUuid'
 import SdIcon from '../SdIcon/SdIcon.vue'
+
 export default defineComponent({
   name: 'SdButton',
   components: { SdIcon },
@@ -177,7 +178,7 @@ export default defineComponent({
     const elementTag = computed(() => {
       const element = props.href || props.type === 'link' ? 'a' : 'button'
       return element
-    }) as Ref<string>
+    }) as Ref<any>
 
     return () =>
       h(
@@ -198,7 +199,7 @@ export default defineComponent({
           }),
           !props.iconOnly 
             ? h('div', { class: 'sd--button__content' }, slots)
-            : null,
+            : h( slots.default),
           props.iconEnd && h(SdIcon, {
             name: props.iconEnd,
             size: props.size
