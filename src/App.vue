@@ -60,7 +60,10 @@
     <sd-menu>
       <sd-button-group>
         <sd-button>Button</sd-button>
-        <sd-button icon="keyboard_arrow_down" trigger icon-only />
+        <sd-button trigger icon-only>
+          <sd-icon name="keyboard_arrow_down"/>
+        </sd-button>
+
       </sd-button-group>
 
       <sd-menu-content placement="bottom-end">
@@ -124,18 +127,9 @@
 
 <script lang="ts">
   import { reactive, defineComponent} from 'vue'
-  // import useScheme from './lib/hooks/UseScheme'
-  import SdButton from './lib/components/SdButton/SdButton.vue'
-  import SdMenu from './lib/components/SdMenu/SdMenu.vue'
-  import SdMenuContent from './lib/components/SdMenu/SdMenuContent.vue'
 
   export default defineComponent({
   name: 'App',
-  components: {
-    SdButton,
-    SdMenu,
-    SdMenuContent
-  },
   setup () {
     const state = reactive({
       selected: [],

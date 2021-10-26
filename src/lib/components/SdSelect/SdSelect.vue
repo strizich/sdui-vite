@@ -52,12 +52,10 @@ export default {
     }
 
     const onFocus = (e) => {
-      console.log(e)
       state.active = true
     }
 
     const onBlur = (e) => {
-      console.log(e)
       state.active = false
     }
 
