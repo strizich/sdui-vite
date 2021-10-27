@@ -141,7 +141,6 @@ import { Placement } from '@popperjs/core'
     }
 
     const handleWindowResize = () => {
-      console.log(menuEl.value)
       if(menuEl.value instanceof HTMLElement) {
         state.parentWidth = menuEl.value.getBoundingClientRect().width
       }

@@ -1,5 +1,5 @@
-import { ref, reactive, Ref, watch, nextTick, onMounted, onUnmounted, watchPostEffect } from 'vue'
-import { createPopper, Placement } from '@popperjs/core'
+import { ref, reactive, Ref, watch, nextTick, onMounted, onUnmounted, watchEffect } from 'vue'
+import { createPopper } from '@popperjs/core'
 
 const usePopper = (props, emit, activate?) => {
   const targetRef: Ref<null | HTMLElement> = ref(null)
@@ -32,24 +32,24 @@ const usePopper = (props, emit, activate?) => {
     // Copy active prop to local state
 
 
-  watchPostEffect(() => {
+  watchEffect(() => {
+    if(!props.modelValue && activate) {
+      shouldRender.value = activate.value
+    }
     if(props.modelValue) {
       shouldRender.value = props.modelValue
     }
-    if(activate) {
-      shouldRender.value = activate.value
-    }
-  })
+  }, {flush: 'post'})
 
 
   // emit when state has been updated...
   // FUTURE: potentially worth looking into using the new v-model bindings for this.
   watch(() => shouldRender.value, (next) => {
-    if(props.modelValue) {
-      emit('update:modelValue', next)
-    }
     if (next) {
       bindPopper()
+    }
+    if(props.modelValue) {
+      emit('update:modelValue', next)
     }
   })
 
@@ -85,11 +85,13 @@ const usePopper = (props, emit, activate?) => {
   const show = () => {
     shouldRender.value = true
     emit('opened')
+    emit('update:modelValue', true)
   }
 
   const hide = () => {
     shouldRender.value = false
     emit('closed')
+    emit('update:modelValue', false)
   }
 
   const touched = () => {
