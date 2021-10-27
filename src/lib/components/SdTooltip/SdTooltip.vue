@@ -30,7 +30,8 @@
 import {
   computed,
   PropType,
-  defineComponent
+  defineComponent,
+  ref
 } from 'vue'
 import { Placement } from '@popperjs/core'
 import usePopper from '../../hooks/usePopper'
@@ -81,15 +82,19 @@ export default defineComponent({
 
   setup (props, { emit }) {
     const themeClass = computed(() => `is--${props.theme}`)
+    const activate = ref(props.modelValue)
 
-    // Popper Options
-    const { shouldRender, targetRef, instanceRef } = usePopper(props, emit)
-  
+    const {
+      shouldRender,
+      targetRef,
+      instanceRef
+    } = usePopper(props, emit, activate)
+
     return {
       targetRef,
       instanceRef,
       themeClass,
-      shouldRender
+      shouldRender,
     }
   }
 })

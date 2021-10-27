@@ -51,11 +51,11 @@
           <sd-tooltip
             ref="ttip"
             portal-disabled
-            :active="isDragging || isFocused"
             :auto-open="false"
             :show-arrow="false"
             :offset="[0, 8]"
-            v-if="showTooltip"
+            v-model="hasTooltip"
+            v-if="renderTooltip"
           >
             <div class="sd--center sd--big">
               {{ result }}
@@ -79,16 +79,18 @@
     <small
       v-if="hint"
       class="sd--text__footnote"
-    >{{ hint }}</small>
+    >
+      {{ hint }}
+    </small>
     <slot name="hint" />
   </div>
 </template>
 
 <script lang="ts">
-// Math to calculate required values
 import {
   defineComponent,
   computed,
+  ref
 } from 'vue'
 
 import {
@@ -97,7 +99,6 @@ import {
 import useSlider from './useSlider'
 import SdLabel from '../SdField/SdLabel.vue'
 import SdTooltip from '../SdTooltip/SdTooltip.vue'
-
 export default defineComponent({
   name: 'SdSlider',
   components: {
@@ -132,7 +133,8 @@ export default defineComponent({
       type: Boolean
     },
     showTooltip: {
-      type: Boolean
+      type: Boolean,
+      default: false
     },
     useWheel: {
       type: Boolean
@@ -154,6 +156,9 @@ export default defineComponent({
       isFocused,
       isHover
     } = useSlider(props, emit)
+
+    const renderTooltip = ref(isDragging || isFocused)
+
 
     // Gets the number of ticks
     const tickCount = computed(() => {
@@ -196,7 +201,8 @@ export default defineComponent({
       tickCount,
       isFocused,
       isDragging,
-      isHover
+      isHover,
+      renderTooltip
     }
   }
 })

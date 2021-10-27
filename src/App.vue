@@ -1,6 +1,25 @@
 <template>
   <sd-container full>
-    <sd-button icon="bluetooth">
+    <h1 class="sd--text__headline">
+      Playground
+    </h1>
+    <sd-button @click="state.toast = !state.toast">
+      <sd-tooltip
+        v-model="state.toast"
+        :auto-open="false"
+      >
+        Okay
+      </sd-tooltip>
+    </sd-button>
+    <sd-slider
+      label="okay"
+      v-model="state.sliderything"
+      show-tooltip
+    />
+    <sd-button
+      icon="bluetooth"
+      show-tooltip
+    >
       okay
     </sd-button>
 
