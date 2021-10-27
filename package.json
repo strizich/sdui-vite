@@ -1,6 +1,6 @@
 {
   "name": "@strizich/sdui",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "author": "Jason Strizich (https://www.strizichdesign.com)",
   "license": "MIT",
   "homepage": "https://www.strizichdesign.com/",
@@ -41,7 +41,7 @@
     "docs:serve": "vitepress serve docs",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "lint:script": "eslint --ext .ts,vue --ignore-path .gitignore ."
+    "lint": "eslint --ext .ts,vue --ignore-path .gitignore ."
   },
   "dependencies": {
     "@popperjs/core": "^2.9.2",

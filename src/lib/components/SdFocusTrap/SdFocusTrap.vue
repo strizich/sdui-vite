@@ -56,7 +56,7 @@ export default {
             emit('update:modelValue', true)
             emit('activate', true)
           },
-          onDeactivate: (e) => {
+          onDeactivate: () => {
             emit('update:modelValue', false)
             emit('activate', false)
             emit('deactivate', true)

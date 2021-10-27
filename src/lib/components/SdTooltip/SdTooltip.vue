@@ -66,7 +66,7 @@ export default defineComponent({
     },
     offset: {
       type: Array as PropType<number[]>,
-      default: [0, 8]
+      default: () => [0, 8]
     },
     showArrow: Boolean,
     portalTo: {

@@ -1,11 +1,15 @@
 <template>
-  <div :id="id" class="sd--menu" ref="menuRef">
+  <div
+    :id="id"
+    class="sd--menu"
+    ref="menuRef"
+  >
     <slot />
   </div>
 </template>
 
 <script>
-import { provide, ref, watch, defineComponent, onMounted, onUnmounted } from 'vue';
+import { provide, ref, watch, defineComponent, onUnmounted, watchPostEffect } from 'vue';
 import sdUuid from '../../core/utilities/SdUuid';
 export default defineComponent ({
   name: 'SdMenu',
@@ -39,20 +43,21 @@ export default defineComponent ({
       activate.value = !activate.value
     }
 
-    onMounted(() => {
+    watchPostEffect(() => {
       if (menuRef.value instanceof HTMLElement) {
         triggerEl.value = menuRef.value.querySelector('[trigger]')
-        triggerEl.value.addEventListener('click', toggleMenu, {passive: true})
+        triggerEl.value.addEventListener('mousedown', toggleMenu, {passive: true})
       }
     })
 
     onUnmounted(() => {
       if(triggerEl.value) {
-        triggerEl.value.removeEventListener('click', toggleMenu)
+        triggerEl.value.removeEventListener('mousedown', toggleMenu)
       }
     })
 
     provide('activate', activate)
+    provide('menuEl', menuRef)
 
     return {
       menuRef
@@ -68,5 +73,9 @@ export default defineComponent ({
 
   z-index: 110;
   display:inline-block;
+  margin-right: 8px;
+  &:last-child:not(:only-child){
+    margin-right: 0;
+  }
 }
 </style>

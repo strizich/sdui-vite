@@ -15,7 +15,11 @@
         v-if="active"
         aria-modal="true"
       >
-        <sd-focus-trap :target="modalContainer" v-model="trapActive" :outside-click="clickOutsideToClose">
+        <sd-focus-trap
+          :target="modalContainer"
+          v-model="trapActive"
+          :outside-click="clickOutsideToClose"
+        >
           <div
             ref="modalContainer"
             :class="['sd--dialog__wrapper','elevation--6', classes ]"

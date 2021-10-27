@@ -1,5 +1,8 @@
 <template>
-  <div :class="['sd--cell', cellClasses]" :style="cellStyles">
+  <div
+    :class="['sd--cell', cellClasses]"
+    :style="cellStyles"
+  >
     <slot />
   </div>
 </template>
@@ -10,49 +13,52 @@ import { computed, defineComponent } from 'vue'
 export default defineComponent({
   name: 'SdCell',
   props: {
-    span: Number,
+    span: {
+      type: [Number, String],
+      default: 0
+    },
     // TODO: figure out a better way to handle this for xs breakpoints.
     xs: {
-      type: Number,
+      type: [Number, String],
       default: 12
     },
     sm: {
-      type: Number,
+      type: [Number, String],
       default: 0
     },
     md: {
-      type: Number,
+      type: [Number, String],
       default: 0
     },
     lg: {
-      type: Number,
+      type: [Number, String],
       default: 0
     },
     xl: {
-      type: Number,
+      type: [Number, String],
       default: 0
     },
     oXs: {
-      type: Number,
+      type: [Number, String],
       default: 0
     },
     oSm: {
-      type: Number,
+      type: [Number, String],
       default: 0
 
     },
     oMd: {
-      type: Number,
+      type: [Number, String],
       default: 0
 
     },
     oLg: {
-      type: Number,
+      type: [Number, String],
       default: 0
 
     },
     oXl: {
-      type: Number,
+      type: [Number, String],
       default: 0
     },
     align: {

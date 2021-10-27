@@ -1,6 +1,6 @@
 <template>
   <div :class="['sd--card', classes]">
-    <slot/>
+    <slot />
   </div>
 </template>
 

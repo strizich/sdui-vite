@@ -30,7 +30,7 @@ const useCheckbox = (props, emit) => {
   }
 
   const handleArrayCheckbox = () => {
-    let newModel = props.modelValue
+    const newModel = props.modelValue
     if (!isChecked.value) {
       newModel.push(props.value)
     } else {

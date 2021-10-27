@@ -27,7 +27,7 @@
 <script lang="ts">
 // Research way to properly split this code.
 
-import { defineComponent, ref, computed, PropType } from 'vue'
+import { defineComponent, computed, PropType } from 'vue'
 import sdUuid from '../../core/utilities/SdUuid'
 import useKeyboardFocus from '../../hooks/useKeyboardFocus'
 import useCheckbox from '../../hooks/useCheckbox'

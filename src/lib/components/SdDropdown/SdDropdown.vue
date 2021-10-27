@@ -15,8 +15,11 @@
           v-model="state.shouldRender"
           :outside-click="true"
         >
-          <div ref="dropdownContent" :class="['sd--dropdown__content', themeClass]">
-          <slot />
+          <div
+            ref="dropdownContent"
+            :class="['sd--dropdown__content', themeClass]"
+          >
+            <slot />
           </div>
         </sd-focus-trap>
       </div>
