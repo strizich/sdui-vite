@@ -54,8 +54,8 @@
             :auto-open="false"
             :show-arrow="false"
             :offset="[0, 8]"
-            v-model="hasTooltip"
-            v-if="renderTooltip"
+            v-model="renderTooltip"
+            v-if="showTooltip"
           >
             <div class="sd--center sd--big">
               {{ result }}
@@ -165,6 +165,7 @@ export default defineComponent({
       const ticks = (props.max - props.min) / props.step
       return minMax(2, ticks, 100)
     })
+
 
     // Computed Styles
     const thumbTrackStyle = computed(() => {
