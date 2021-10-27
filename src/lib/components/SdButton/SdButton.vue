@@ -139,8 +139,9 @@ export default defineComponent({
     */
     exactActive: Boolean
   },
-  setup (props, { slots }) {
+  setup (props, { slots, attrs }) {
     const root = ref(null)
+    const hasSlots = name => !!slots[name]
     const hasFocus = useKeyboardFocus(root)
 
     const rootClasses = computed(() => {
@@ -190,16 +191,21 @@ export default defineComponent({
           class: ['sd--button', themeClass.value, rootClasses.value, sizeClass.value],
           href: props.href,
           disabled: props.disabled,
-          style: alignmentStyle.value
+          style: alignmentStyle.value,
+          ...attrs
         },
         [
           props.icon && h(SdIcon, {
             name: props.icon,
             size: props.size
           }),
-          !props.iconOnly 
-            ? h('div', { class: 'sd--button__content' }, slots)
-            : h( slots.default),
+
+          (!props.iconOnly && hasSlots('default')) && h('div', {
+              class: 'sd--button__content'
+            }, slots),
+
+          (props.iconOnly && hasSlots('default')) && h(slots['default']),
+
           props.iconEnd && h(SdIcon, {
             name: props.iconEnd,
             size: props.size
@@ -211,42 +217,32 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import '../../scss/variables';
-@import '../../scss/mixins';
-@import '../../scss/functions';
-@import '../SdElevation/mixins';
+@import "../../scss/variables";
+@import "../../scss/mixins";
+@import "../../scss/functions";
+@import "../SdElevation/mixins";
 
-%button-content{
+%button-content {
   position: relative;
   z-index: 10;
   line-height: 1;
-  transition: font-size .23s;
-  padding-top:8px;
-  padding-bottom:8px;
-  display:flex;
+  transition: font-size 0.23s;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  display: flex;
   align-items: center;
   max-height: 64px;
-}
-%icons{
-  width: 32px;
-  position: relative;
-  & + .sd--button__content {
-    padding-left: 0px;
-  }
-  &:only-child {
-    margin-left:0!important;
-  }
 }
 
 .sd--button {
   touch-action: manipulation;
   --webkit-appearance: none;
-  user-select:none;
+  user-select: none;
   -webkit-user-select: none;
   border: none;
   border-radius: 3px;
   font-weight: 500;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
   display: inline-flex;
   align-self: center;
   align-items: center;
@@ -257,15 +253,9 @@ export default defineComponent({
     margin-right: 0;
   }
   &--xs {
-    .sd--button__content{
+    .sd--button__content {
       @extend %button-content;
       padding: spacing(offset, xs);
-
-    }
-    .sd--icon{
-      @extend %icons;
-      line-height: 20px;
-
     }
     font-size: rem(11);
     min-height: 20px;
@@ -274,16 +264,10 @@ export default defineComponent({
   &--sm {
     font-size: rem(14);
     min-height: 26px;
-    .sd--button__content{
+    .sd--button__content {
       line-height: spacing(inset, sm) * 2;
       @extend %button-content;
       padding: spacing(offset, sm);
-    }
-    &.is--icon-only{
-      .sd--icon{
-        width: 26px;
-        line-height: spacing(inset, sm) * 2;
-      }
     }
   }
 
@@ -294,11 +278,6 @@ export default defineComponent({
       @extend %button-content;
       padding: spacing(offset, md);
     }
-    &.is--icon-only{
-      .sd--icon {
-        width: 32px;
-      }
-    }
   }
 
   &--lg {
@@ -307,11 +286,6 @@ export default defineComponent({
     .sd--button__content {
       @extend %button-content;
       padding: spacing(offset, lg);
-    }
-    &.is--icon-only {
-      .sd--icon {
-        width: 50px;
-      }
     }
   }
 
@@ -351,19 +325,19 @@ export default defineComponent({
       @include elevation(2);
       color: var(--#{$state}-text);
       background-color: var(--#{$state});
-      transition: all .13s ease-out;
+      transition: all 0.13s ease-out;
       border-radius: 3px;
-      svg{
-        fill: var(--#{$state}-text)
+      svg {
+        fill: var(--#{$state}-text);
       }
 
       &:hover {
         @include elevation(4);
         color: var(--#{$state}-accent-text);
         background-color: var(--#{$state}-accent);
-        transition: all .13s ease-out;
+        transition: all 0.13s ease-out;
         svg {
-          fill: var(--#{$state}-accent-text)
+          fill: var(--#{$state}-accent-text);
         }
       }
 
@@ -371,14 +345,15 @@ export default defineComponent({
         @include elevation(6);
         color: var(--#{$state}-highlight-text);
         background-color: var(--#{$state}-highlight);
-        transition: all .13s ease-out;
+        transition: all 0.13s ease-out;
       }
 
-      &.is--active, &.is--exact-active {
+      &.is--active,
+      &.is--exact-active {
         @include elevation(6);
         color: var(--#{$state}-highlight-text);
         background-color: var(--#{$state}-highlight);
-        transition: all .13s ease-out;
+        transition: all 0.13s ease-out;
       }
 
       &.is--disabled {
@@ -390,15 +365,16 @@ export default defineComponent({
       &.is--outline {
         background: none;
         position: relative;
-        &.is--pill, &.is--rounded {
+        &.is--pill,
+        &.is--rounded {
           &:after {
             border-radius: 30px;
           }
         }
-        &:after{
-          content: '';
+        &:after {
+          content: "";
           display: block;
-          position: absolute; 
+          position: absolute;
           top: 0;
           left: 0;
           right: 0;
@@ -426,18 +402,23 @@ export default defineComponent({
       }
 
       &.is--focused {
-        box-shadow: 0 0 0 5px var(--#{$state}-highlight);
-        transition: box-shadow .2s ease-out;
+        box-shadow: 0 0 0 4px var(--#{$state}-highlight);
+        transition: box-shadow 0.1s ease-out;
+        z-index: 11;
       }
     }
 
     &.is--pill {
       border-radius: 30px;
-      .sd--button__content:only-child{
+      .sd--button__content:only-child {
         padding-left: 20px;
         padding-right: 20px;
       }
     }
+  }
+  &__icon-only {
+    display: flex;
+    width: 100%;
   }
 
   // Handle Icons
@@ -448,7 +429,7 @@ export default defineComponent({
       padding-left: 0px;
     }
     &:only-child {
-      margin-left:0!important;
+      margin-left: 0 !important;
     }
     &.is {
       &--xs {
@@ -477,7 +458,7 @@ export default defineComponent({
       }
       &--xl {
         min-width: 56px;
-         &:last-child {
+        &:last-child {
           margin-left: spacing(inset, lg) * -1;
         }
       }

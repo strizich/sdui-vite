@@ -1,5 +1,9 @@
 <template>
-  <div class="sd--grid" :class="[gridClasses]" :style="gridStyles">
+  <div
+    class="sd--grid"
+    :class="[gridClasses]"
+    :style="gridStyles"
+  >
     <slot />
   </div>
 </template>

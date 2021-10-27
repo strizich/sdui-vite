@@ -6,15 +6,26 @@
     </select>
   -->
   <div class="sd--select__group">
-    <sd-field :label="label" @focus="onFocus" v-model="selected" />
-    <sd-dropdown v-model="active" :return-focus="false" :trap-focus="false">
-      <slot ref="slotted" :onSelected="e => handleSelected(e.target.value)"/>
+    <sd-field
+      :label="label"
+      @focus="onFocus"
+      v-model="selected"
+    />
+    <sd-dropdown
+      v-model="active"
+      :return-focus="false"
+      :trap-focus="false"
+    >
+      <slot
+        ref="slotted"
+        :onSelected="e => handleSelected(e.target.value)"
+      />
     </sd-dropdown>
   </div>
 </template>
 
 <script>
-import { toRefs, reactive, watch, ref, onMounted } from 'vue'
+import { toRefs, reactive, ref, onMounted } from 'vue'
 
 export default {
   name: 'SdSelect',
@@ -32,7 +43,7 @@ export default {
       default: () => ([])
     },
   },
-  setup (props, {slots}) {
+  setup (props) {
     const slotted = ref(null)
     const state = reactive({ 
       active: false,
@@ -51,11 +62,11 @@ export default {
       }
     }
 
-    const onFocus = (e) => {
+    const onFocus = () => {
       state.active = true
     }
 
-    const onBlur = (e) => {
+    const onBlur = () => {
       state.active = false
     }
 

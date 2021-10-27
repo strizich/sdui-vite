@@ -1,6 +1,6 @@
 <template>
   <div :class="['sd--button-group', classes]">
-    <label v-if="label">{{label}}</label>
+    <label v-if="label">{{ label }}</label>
     <slot />
   </div>
 </template>
@@ -22,13 +22,18 @@ export default {
     full: {
       type: Boolean,
       default: false
+    },
+    elevation: {
+      type: Number,
+      default: 0
     }
   },
   setup (props) {
     const classes = computed(() => {
       return {
         'is--vertical': props.vertical,
-        'is--full': props.full
+        'is--full': props.full,
+        [`elevation--${props.elevation}`]: props.elevation
       }
     })
     return {
@@ -41,17 +46,22 @@ export default {
 <style lang="scss">
 @import '../SdElevation/mixins';
 
+.sd--button-group + .sd--button{
+  margin-right: 8px;
+}
+
 .sd--button-group {
   vertical-align: middle;
   display: inline-flex;
   border-radius: 3px;
   overflow: visible;
-  @include elevation(2);
-
+  &:not(:only-child){
+    margin-right: 8px;
+  }
   .sd--button {
     margin-left: 0;
-    margin-right:0;
     border-radius: 0;
+    margin-right:0;
 
     &:only-child{
       border-radius: 3px;

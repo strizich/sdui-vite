@@ -61,9 +61,9 @@ import { Placement } from '@popperjs/core'
     },
     offset: {
       type: Array as PropType<number[]>,
-      default: [0, 0]
+      default: () => [0, 0]
     },
-    fullWidth: {
+    full: {
       type: Boolean,
       default: false
     }
@@ -71,10 +71,11 @@ import { Placement } from '@popperjs/core'
   emits: ['opened', 'closed'],
   setup(props, { emit }) {
     const activate: any = inject('activate', false)
+    const menuEl: any = inject('menuEl')
     const { shouldRender, targetRef, instanceRef } = usePopper(props, emit, activate)
 
     const state = reactive({
-      parentWidth: null
+      parentWidth: ''
     })
 
     watch(() => activate.value, (next) => {
@@ -83,16 +84,18 @@ import { Placement } from '@popperjs/core'
           handleWindowResize()
           createClickObserver()
           createKeyboardObserver()
+          createResizeObserver()
         }, 0)
       }
     })
 
     const computedStyles = computed(() => {
-      if (props.fullWidth) {
+      if (props.full) {
         return {
           minWidth: `${state.parentWidth}px`
         }
       }
+      return false
     })
 
     const isMenu = ({target}) => {
@@ -104,25 +107,24 @@ import { Placement } from '@popperjs/core'
     }
 
     const handleClickEvents = (event) => {
-      if(document) {
+      if(document && event.type !== 'keyup') {
         const insideClick = !isMenu(event) && (props.closeOnClick || !isMenuContent(event))
         const outsideClick = isMenu(event) && (props.outsideClick || !isMenuContent(event))
         if (insideClick || outsideClick) {
           activate.value = false
           window.removeEventListener('resize', handleWindowResize)
-          document.body.removeEventListener('click', handleClickEvents)
-          document.body.removeEventListener('keydown', onKeydown)
+          document.body.removeEventListener('mousedown', handleClickEvents)
+          document.body.removeEventListener('keyup', onKeydown)
         }
       }
     }
 
-    const onKeydown = e => {
+    const onKeydown = (e: KeyboardEvent) => {
       switch (e.key) {
         case 'Escape':
-          e.preventDefault()
+          e.stopPropagation()
           activate.value = false
-          window.removeEventListener('resize', handleWindowResize)
-          break
+          break;
       }
     }
 
@@ -131,11 +133,18 @@ import { Placement } from '@popperjs/core'
     }
 
     const createClickObserver = () => {
-      document.body.addEventListener('click', handleClickEvents, { passive: true })
+      document.body.addEventListener('mousedown', handleClickEvents, { passive: true })
+    }
+
+    const createResizeObserver = () => {
+      window.addEventListener('resize', handleWindowResize, { passive: true })
     }
 
     const handleWindowResize = () => {
-      state.parentWidth = targetRef.value.parentElement.clientWidth
+      console.log(menuEl.value)
+      if(menuEl.value instanceof HTMLElement) {
+        state.parentWidth = menuEl.value.getBoundingClientRect().width
+      }
     }
 
     return {
@@ -155,7 +164,6 @@ import { Placement } from '@popperjs/core'
   .sd--menu{
     &__content{
       left:0;
-      max-width: 300px;
       min-height: 24px;
       padding: 8px;
       z-index: 111;
