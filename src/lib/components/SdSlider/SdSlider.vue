@@ -55,7 +55,7 @@
             :show-arrow="false"
             :offset="[0, 8]"
             v-model="hasTooltip"
-            v-if="showTooltip"
+            v-if="renderTooltip"
           >
             <div class="sd--center sd--big">
               {{ result }}
@@ -157,7 +157,7 @@ export default defineComponent({
       isHover
     } = useSlider(props, emit)
 
-    const hasTooltip = ref(isDragging ||isFocused)
+    const renderTooltip = ref(isDragging || isFocused)
 
 
     // Gets the number of ticks
@@ -203,7 +203,7 @@ export default defineComponent({
       isFocused,
       isDragging,
       isHover,
-      hasTooltip
+      renderTooltip
     }
   }
 })
