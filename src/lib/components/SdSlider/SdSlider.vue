@@ -166,7 +166,6 @@ export default defineComponent({
       return minMax(2, ticks, 100)
     })
 
-
     // Computed Styles
     const thumbTrackStyle = computed(() => {
       return {
