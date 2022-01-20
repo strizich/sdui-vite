@@ -1,9 +1,9 @@
-import {computed, onMounted, nextTick, watch, Ref} from 'vue'
+import {computed, onMounted, nextTick, watch, Ref, isRef} from 'vue'
 
-const useScheme = (mode: any | Ref<string> ) => {
+const useScheme = (mode: string | Ref<string> ) => {
 
   const scheme = computed(() => {
-    return `sd--scheme--${mode.value ? mode.value : mode}`
+    return `sd--scheme--${isRef(mode) ? mode.value : mode}`
   })
   
   watch(() => scheme.value, (newValue, oldValue) => {

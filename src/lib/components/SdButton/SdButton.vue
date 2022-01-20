@@ -320,7 +320,7 @@ export default defineComponent({
     @extend %button-content;
   }
 
-  @each $state, $color in $sd-color-global {
+  @each $state in $sd-color-themes {
     &__#{$state} {
       @include elevation(2);
       color: var(--#{$state}-text);

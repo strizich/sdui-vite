@@ -50,6 +50,7 @@ export default defineComponent({
     flex-direction: column;
     justify-content: center;
     padding: 0 env(safe-area-inset-left) 0 env(safe-area-inset-right);
+    color: var(--text);
     &__content{
       width: 100%;
       margin: 0 auto;

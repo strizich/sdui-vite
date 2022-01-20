@@ -1,5 +1,5 @@
 <template>
-  <teleport 
+  <teleport
     ref="targetRef"
     :to="portalDisabled ? null : portalTo"
     :disabled="portalDisabled"
@@ -27,22 +27,13 @@
 
 <script lang="ts">
 // FUTURE: Split popper.js logic into a composable
-import {
-  computed,
-  PropType,
-  defineComponent,
-  ref
-} from 'vue'
-import { Placement } from '@popperjs/core'
-import usePopper from '../../hooks/usePopper'
+import { computed, PropType, defineComponent, ref } from 'vue';
+import { Placement } from '@popperjs/core';
+import usePopper from '../../hooks/usePopper';
 
 export default defineComponent({
   name: 'SdTooltip',
-  emits: [
-    'update:modelValue',
-    'opened',
-    'closed'
-  ],
+  emits: ['update:modelValue', 'opened', 'closed'],
   props: {
     modelValue: {
       type: Boolean,
@@ -80,35 +71,35 @@ export default defineComponent({
     }
   },
 
-  setup (props, { emit }) {
-    const themeClass = computed(() => `is--${props.theme}`)
-    const activate = ref(props.modelValue)
+  setup(props, { emit }) {
+    const themeClass = computed(() => `is--${props.theme}`);
+    const activate = ref(props.modelValue);
 
-    const {
-      shouldRender,
-      targetRef,
-      instanceRef
-    } = usePopper(props, emit, activate)
+    const { shouldRender, targetRef, instanceRef } = usePopper(
+      props,
+      emit,
+      activate
+    );
 
     return {
       targetRef,
       instanceRef,
       themeClass,
-      shouldRender,
-    }
+      shouldRender
+    };
   }
-})
+});
 </script>
 
 <style lang="scss">
 @import '../SdElevation/mixins';
 @import '../../scss/variables';
 
-.sd--tooltip{
+.sd--tooltip {
   // position:fixed;
-  position:relative;
+  position: relative;
   min-height: 32px;
-  transition: opacity .5s;
+  transition: opacity 0.5s;
   z-index: 500;
   user-select: none;
   pointer-events: none;
@@ -128,71 +119,73 @@ export default defineComponent({
     font-weight: 500;
     min-width: 40px;
     @include elevation(4);
-    @each $key, $color in $sd-color-global {
-         &.is--#{$key} {
+    @each $key in $sd-color-themes {
+      &.is--#{$key} {
+        background-color: var(--#{$key}-highlight);
+        color: var(--#{$key}-highlight-text);
+      }
+    }
+  }
+  &__arrow {
+    &:before {
+      background-color: var(--background-highlight);
+    }
+    @each $key in $sd-color-themes {
+      &.is--#{$key} {
+        &:before {
           background-color: var(--#{$key}-highlight);
-          color: var(--#{$key}-highlight-text);
         }
       }
     }
-    &__arrow{
-      &:before{
-        background-color: var(--background-highlight);
-      }
-      @each $key, $color in $sd-color-global {
-        &.is--#{$key} {
-          &:before{
-            background-color: var(--#{$key}-highlight);
-          }
-        }
-      }
-      &, &:before{
-        position: absolute;
-        width: 8px;
-        height: 8px;
-        z-index: 1;
-      }
-      &:before{
-        content: '';
-        transform: rotate(45deg);
-      }
+    &,
+    &:before {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      z-index: 1;
     }
-    // FUTURE: Make this into a mixin for reuse
-    &[data-popper-placement^='top'] .sd--tooltip__arrow {
-      bottom: -4px;
-    }
-    &[data-popper-placement^='bottom'] .sd--tooltip__arrow {
-      top: -4px;
-    }
-    &[data-popper-placement^='left'] .sd--tooltip__arrow {
-      right: -4px;
-    }
-    &[data-popper-placement^='right'] .sd--tooltip__arrow {
-      left: -4px;
+    &:before {
+      content: '';
+      transform: rotate(45deg);
     }
   }
   // FUTURE: Make this into a mixin for reuse
-  .tooltip-enter-active, .tooltip-leave-active{
-    .sd--tooltip__content {
-      transition: opacity .2s .1s, transform .3s ease-in-out;
-    }
+  &[data-popper-placement^='top'] .sd--tooltip__arrow {
+    bottom: -4px;
   }
-  .tooltip-enter-to{
-    .sd--tooltip__content {
-      opacity: 1;
-      transform: translate3d(0, 0, 0)
-    }
+  &[data-popper-placement^='bottom'] .sd--tooltip__arrow {
+    top: -4px;
   }
-  .tooltip-enter-from{
-    .sd--tooltip__content {
-      opacity: 0;
-      transform: translate3d(0, 4px, 0);
-    }
+  &[data-popper-placement^='left'] .sd--tooltip__arrow {
+    right: -4px;
   }
-  .tooltip-leave-to{
-    .sd--tooltip__content {
-      opacity: 0;
-      transform: translate3d(0, -4px, 0);
-    }
+  &[data-popper-placement^='right'] .sd--tooltip__arrow {
+    left: -4px;
   }
+}
+// FUTURE: Make this into a mixin for reuse
+.tooltip-enter-active,
+.tooltip-leave-active {
+  .sd--tooltip__content {
+    transition: opacity 0.2s 0.1s, transform 0.3s ease-in-out;
+  }
+}
+.tooltip-enter-to {
+  .sd--tooltip__content {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+.tooltip-enter-from {
+  .sd--tooltip__content {
+    opacity: 0;
+    transform: translate3d(0, 4px, 0);
+  }
+}
+.tooltip-leave-to {
+  .sd--tooltip__content {
+    opacity: 0;
+    transform: translate3d(0, -4px, 0);
+  }
+}
 </style>

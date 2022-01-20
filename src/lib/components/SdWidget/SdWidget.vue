@@ -7,54 +7,54 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue';
 
 export default defineComponent({
-  name:'SdWidget',
+  name: 'SdWidget',
   props: {
     metric: {
       type: String,
-      default: undefined
+      default: undefined,
     },
     theme: {
       type: String,
-      default: undefined
+      default: undefined,
     },
-      caption: {
+    caption: {
       type: String,
-      default: undefined
+      default: undefined,
     },
     footnote: {
       type: String,
-      default: undefined
+      default: undefined,
     },
-    clickable: Boolean
+    clickable: Boolean,
   },
-  setup (props) {
+  setup(props) {
     const classes = computed(() => {
-      const themeClass = `sd--widget__content--${props.theme}`
+      const themeClass = `sd--widget__content--${props.theme}`;
       return {
         [themeClass]: !!props.theme,
-        'is--clickable': props.clickable
-      }
-    })
+        'is--clickable': props.clickable,
+      };
+    });
     return {
-      classes
-    }
-  }
-})
+      classes,
+    };
+  },
+});
 </script>
 
 <style lang="scss">
 @use '../../scss/variables' as colors;
 @use '../SdElevation/mixins' as *;
 
-.sd--widget{
+.sd--widget {
   flex-grow: 2;
-  display:flex;
+  display: flex;
   flex-direction: column;
-  height:100%;
-  &__content{
+  height: 100%;
+  &__content {
     margin-bottom: 16px;
     flex-grow: 2;
     display: flex;
@@ -62,48 +62,45 @@ export default defineComponent({
     background-color: var(--background-accent);
     border: 1px solid var(--background-accent);
     border-radius: 6px;
-    &.is{
+    &.is {
       &--clickable {
         @include elevation(6);
-        transition: 
-          border .23s ease-in-out,
-          background-color .23s ease-in-out,
-          box-shadow .23s ease-in-out;
+        transition: border 0.23s ease-in-out, background-color 0.23s ease-in-out,
+          box-shadow 0.23s ease-in-out;
         &:hover {
           cursor: pointer;
-          border:1px solid var(--primary);
+          border: 1px solid var(--primary);
           background-color: var(--background);
           @include elevation(1);
-          .sd--widget-footer{
-            &:before{
-              transition: background-color .23s ease-in-out;
+          .sd--widget-footer {
+            &:before {
+              transition: background-color 0.23s ease-in-out;
               background-color: var(--primary);
             }
           }
         }
       }
     }
-    @each $state, $color in colors.$sd-color-global {
+    @each $state, $color in colors.$sd-color-themes {
       &--#{$state} {
         background-color: var(--#{$state});
         border: 1px solid var(--#{$state});
         color: var(--#{$state}-text);
 
-        .sd--text__footnote, .sd--text__caption{
+        .sd--text__footnote,
+        .sd--text__caption {
           color: var(--#{$state}-text);
         }
 
         &.is {
           &--clickable {
-            transition: 
-              border .23s ease-in-out,
-              background-color .23s ease-in-out,
-              box-shadow .23s ease-in-out;
+            transition: border 0.23s ease-in-out,
+              background-color 0.23s ease-in-out, box-shadow 0.23s ease-in-out;
             &:hover {
               cursor: pointer;
               background-color: var(--#{$state}-accent);
-              .sd--widget-footer{
-                &:before{
+              .sd--widget-footer {
+                &:before {
                   background-color: var(--#{$state});
                 }
               }

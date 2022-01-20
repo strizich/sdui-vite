@@ -1,22 +1,5 @@
+@use 'sass:map';
 @import './functions';
-
-$primary: #8F00F8 !default;
-$secondary: #f8c200 !default;
-$default: #a776c0 !default;
-$danger: #AE1A2C !default;
-$success: #83CF2A !default;
-$warning: #f57b23 !default;
-$dark: #2f2b31 !default;
-
-$sd-color-global: (
-  primary: color-map($primary, 25%, 25%),
-  secondary: color-map($secondary, 25%, 50%),
-  default: color-map($default, 25%, 50%),
-  success: color-map($success, 25%, 15%),
-  danger: color-map($danger, 25%, 25%),
-  warning: color-map($warning, 25%, 15%),
-  dark: color-map($dark, 25%, 15%)
-);
 
 $sd-color-schemes: (
   light: (
@@ -25,23 +8,23 @@ $sd-color-schemes: (
     background-highlight: #ffffff,
     background-inverse: #161616,
     background-opaque: #efefefef,
-    text: rgba(0,0,0, .87),
-    text-light: rgba(255,255,255, .87),
-    text-dark: rgba(0,0,0,.87),
-    text-accent: rgba(0,0,0, .65),
-    text-accent-light: rgba(255,255,255,.54),
-    text-accent-dark: rgba(0,0,0,.65),
-    text-hint: rgba(0,0,0, .54),
-    text-hint-light: rgba(255,255,255,.38),
-    text-hint-dark: rgba(0,0,0,.38),
-    text-placeholder: rgba(0,0,0, .38),
     disabled: rgba(0,0,0, .26),
     disabled-background: rgba(0,0,0,.12),
+    divider: rgba(#161616, 16%),
     highlight: rgba(0,0,0,.12),
     icon: rgba(0,0,0,.54),
     icon-disabled: rgba(0,0,0,.38),
-    divider: rgba(#161616, 16%),
     scrollbar: #434444,
+    text: rgba(0,0,0, .87),
+    text-accent: rgba(0,0,0, .65),
+    text-accent-dark: rgba(0,0,0,.65),
+    text-accent-light: rgba(255,255,255,.54),
+    text-dark: rgba(0,0,0,.87),
+    text-hint: rgba(0,0,0, .54),
+    text-hint-dark: rgba(0,0,0,.38),
+    text-hint-light: rgba(255,255,255,.38),
+    text-light: rgba(255,255,255, .87),
+    text-placeholder: rgba(0,0,0, .38),
     tooltip: #2E2F2F,
     skeleton:#{90deg, rgba(#434444, 0) 0, rgba(#434444, 0.1) 20%, rgba(#434444, 0.15) 60%, rgba(#434444, 0)}
   ),
@@ -72,3 +55,43 @@ $sd-color-schemes: (
     skeleton: #{90deg, rgba(#f9f9f9, 0) 0, rgba(#f9f9f9, 0.1) 20%, rgba(#f9f9f9, 0.15) 60%, rgba(#f9f9f9, 0)}
   )
 );
+
+$sd-color-themes: (primary, secondary, default, success, warning, danger, info, light, dark);
+
+$primary: #8F00F8 !default;
+$secondary: #f8c200 !default;
+$default: green;
+$danger: #AE1A2C !default;
+$success: #83CF2A !default;
+$warning: #f57b23 !default;
+$dark: #2f2b31 !default;
+
+$primary-light: #8F00F8 !default;
+$secondary-light: #f8c200 !default;
+$default-light: pink;
+$danger-light: #AE1A2C !default;
+$success-light: #83CF2A !default;
+$warning-light: #f57b23 !default;
+$dark-light: #2f2b31 !default;
+
+$sd-theme-map: (
+  light: (
+    default: color-map($default-light, 25%, 25%),
+    primary: color-map($primary-light, 25%, 25%),
+    secondary: color-map($secondary-light, 25%, 50%),
+    success: color-map($success-light, 25%, 15%),
+    danger: color-map($danger-light, 25%, 25%),
+    warning: color-map($warning-light, 25%, 15%),
+    dark: color-map($dark-light, 25%, 15%)
+  ),
+  dark: (
+    default: color-map($default, 25%, 25%),
+    primary: color-map($primary, 25%, 25%),
+    secondary: color-map($secondary, 25%, 50%),
+    success: color-map($success, 25%, 15%),
+    danger: color-map($danger, 25%, 25%),
+    warning: color-map($warning, 25%, 15%),
+    dark: color-map($dark, 25%, 15%)
+  )
+);
+

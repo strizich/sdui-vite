@@ -133,6 +133,7 @@ export default defineComponent({
     border: none;
     height: 50px;
     width: 50px;
+    margin-right: 0;
     // &.is--active{
     //   background-color: var(--background-accent);
     // }
