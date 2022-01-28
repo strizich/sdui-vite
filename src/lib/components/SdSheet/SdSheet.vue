@@ -49,7 +49,7 @@ export default defineComponent({
   &.is--full-height {
     height: 100%;
   }
-  @each $key in $sd-color-themes {
+  @each $key, $color in $sd-color-global {
     $state: $key;
     &__#{$state} {
       background-color: var(--#{$state});

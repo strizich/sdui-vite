@@ -137,7 +137,11 @@ export default defineComponent({
      * Used by the SdRouterLink component
      * @ignore
     */
-    exactActive: Boolean
+    exactActive: Boolean,
+    class: {
+      type: [String, Array],
+      default: ''
+    }
   },
   setup (props, { slots, attrs }) {
     const root = ref(null)
@@ -188,7 +192,7 @@ export default defineComponent({
           ref: root,
           id: props.id,
           type: !props.href ? props.type : null,
-          class: ['sd--button', themeClass.value, rootClasses.value, sizeClass.value],
+          class: ['sd--button', themeClass.value, rootClasses.value, sizeClass.value, props.class],
           href: props.href,
           disabled: props.disabled,
           style: alignmentStyle.value,
@@ -221,6 +225,9 @@ export default defineComponent({
 @import "../../scss/mixins";
 @import "../../scss/functions";
 @import "../SdElevation/mixins";
+
+
+$states: ('primary', 'secondary', 'default', 'warning', 'danger', 'success', 'light', 'dark');
 
 %button-content {
   position: relative;
@@ -320,7 +327,7 @@ export default defineComponent({
     @extend %button-content;
   }
 
-  @each $state in $sd-color-themes {
+   @each $state in $states{
     &__#{$state} {
       @include elevation(2);
       color: var(--#{$state}-text);

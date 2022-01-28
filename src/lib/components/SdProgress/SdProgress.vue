@@ -123,7 +123,7 @@ export default defineComponent({
       justify-content: flex-end;
       align-items: center;
       overflow: hidden;
-      @each $state, $color in map.get($sd-theme-map, light) {
+      @each $state, $color in $sd-color-global {
         $base: map.get($color, base);
         $contrast: sd-pick-contrast($base);
         &--#{$state} {

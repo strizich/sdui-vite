@@ -89,8 +89,7 @@ export default defineComponent({
       font-size: 16px;
     }
   }
-  @each $key in $sd-color-themes {
-    $state: $key;
+  @each $state, $color in $sd-color-global {
     &__#{$state} {
       @include elevation(2);
       color: var(--#{$state}-text);

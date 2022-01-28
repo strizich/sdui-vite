@@ -92,7 +92,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import '../../scss/variables';
+@use '../../scss/variables' as colors;
 @import '../../scss/mixins';
 @import '../../scss/breakpoints';
 @import '../SdElevation/elevation.scss';
@@ -123,7 +123,7 @@ export default defineComponent({
     border-radius: 3px;
   }
 
-  @each $state in $sd-color-themes {
+  @each $state, $color in colors.$sd-color-global {
     &__#{$state} {
       .sd--toast__content {
         background-color: var(--#{$state});

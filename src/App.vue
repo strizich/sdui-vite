@@ -1,78 +1,32 @@
 <template>
   <div class="playground">
-    <sd-container class="thing" full>
-      <div class="scroller" ref="parentEl">
-        <div class="scroller__sidebar">
-          <div class="scroller__nav">
-            <a 
-              href="#one" 
-              :class="{active: activeSection === 'one'}"
-            >
-              One
-            </a>
-            <a
-              href="#two"
-              :class="{active: activeSection === 'two'}"
-            >
-              Two
-            </a>
-            <a
-              href="#three"
-              :class="{active: activeSection === 'three'}"
-            >
-              Three
-            </a>
-            <a
-              href="#four"
-              :class="{active: activeSection === 'four'}"
-            >
-              Four
-            </a>
-          </div>
-        </div>
-        <div class="scroller__body" ref="bodyEl">
-          <section 
-            id="one"
-            style="height: 1000px; background-color:green;"
-          >
-            one
-          </section>
-          <section
-            id="two"
-            style="height: 1000px; background-color:red;"
-          >
-            two
-          </section>
-          <section
-            id="three"
-            style="height: 1000px; background-color:blue;"
-          >
-            three
-          </section>
-          <section
-            id="four"
-            style="height: 1000px; background-color:orange;"
-          >
-            four
-          </section>
-        </div>
-      </div>
+    <sd-container full>
+      <sd-button class="thing">okay</sd-button>
+      <sd-button flat>
+        okay
+      </sd-button>
+      <sd-button theme="light">
+        okay
+      </sd-button>
+      <sd-button theme="dark">
+        okay
+      </sd-button>
     </sd-container>
   </div>
 </template>
 
 <script lang="ts">
-import {defineComponent, ref } from 'vue';
-import useScrollSpy from './lib/hooks/useScrollSpy'
+import { defineComponent, ref } from 'vue';
+import useScrollSpy from './lib/hooks/useScrollSpy';
 export default defineComponent({
   name: 'App',
   setup() {
-    const parentEl = ref(null)
-    const bodyEl = ref(null)
-    const { activeSection } = useScrollSpy(parentEl, bodyEl)
+    const parentEl = ref(null);
+    const bodyEl = ref(null);
+    const { activeSection } = useScrollSpy(parentEl, bodyEl);
 
-    return {parentEl, bodyEl, activeSection}
-  },
+    return { parentEl, bodyEl, activeSection };
+  }
 });
 </script>
 
@@ -83,9 +37,9 @@ export default defineComponent({
   padding: 0px;
 }
 .scroller {
-  position:relative;
-  display:flex;
-  &:after{
+  position: relative;
+  display: flex;
+  &:after {
     content: '';
     position: absolute;
     top: 2483px;
@@ -93,10 +47,10 @@ export default defineComponent({
     height: 30px;
     background-color: #fff;
   }
-  &__nav{
-    position:sticky;
+  &__nav {
+    position: sticky;
     width: 300px;
-    top:0;
+    top: 0;
     padding: 16px 0;
     display: flex;
     flex-direction: column;
@@ -104,7 +58,7 @@ export default defineComponent({
       padding: 8px;
     }
   }
-  &__body{
+  &__body {
     width: 100%;
   }
 }

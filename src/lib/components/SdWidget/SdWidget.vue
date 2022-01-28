@@ -81,7 +81,7 @@ export default defineComponent({
         }
       }
     }
-    @each $state, $color in colors.$sd-color-themes {
+    @each $state, $color in colors.$sd-color-global {
       &--#{$state} {
         background-color: var(--#{$state});
         border: 1px solid var(--#{$state});

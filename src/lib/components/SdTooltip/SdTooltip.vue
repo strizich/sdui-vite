@@ -94,7 +94,6 @@ export default defineComponent({
 <style lang="scss">
 @import '../SdElevation/mixins';
 @import '../../scss/variables';
-
 .sd--tooltip {
   // position:fixed;
   position: relative;
@@ -119,7 +118,7 @@ export default defineComponent({
     font-weight: 500;
     min-width: 40px;
     @include elevation(4);
-    @each $key in $sd-color-themes {
+    @each $key, $color in $sd-color-global {
       &.is--#{$key} {
         background-color: var(--#{$key}-highlight);
         color: var(--#{$key}-highlight-text);
@@ -130,7 +129,7 @@ export default defineComponent({
     &:before {
       background-color: var(--background-highlight);
     }
-    @each $key in $sd-color-themes {
+    @each $key, $color in $sd-color-global {
       &.is--#{$key} {
         &:before {
           background-color: var(--#{$key}-highlight);

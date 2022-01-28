@@ -5,55 +5,34 @@
 @import 'functions';
 @import 'mixins';
 
-
-@mixin sd-color-gen ($map) {
-  @each $key, $map in $sd-theme-map {
-    @each $name, $theme in $map {
-      $label: $key; 
-      $base: map.get($theme, 'base');
-      $contrast: sd-pick-contrast($base);
-      $text: sd-color($contrast, text);
-      --#{$name}: #{$base};
-      --#{$name}-text: #{$text};
-
-    }
-    // $highlight: map.get($color, highlight);
-    // $accent: map.get($color, accent);
-    // $contrast: sd-pick-contrast($base);
-    // $contrast-highlight: sd-pick-contrast($highlight);
-    // $contrast-accent: sd-pick-contrast($accent);
-    // $text: sd-color($contrast, text);
-    // $text-highlight: sd-color($contrast-highlight, text);
-    // $text-accent: sd-color($contrast-accent, text);
-  // @each $key, $color in $scheme {
-  //   @debug $key $color;
-  //   $key: $key;
-  //   $theme: map.get($scheme, $color);
-  //   $base: map.get($color, base);
-  //   $highlight: map.get($color, highlight);
-  //   $accent: map.get($color, accent);
-  //   $contrast: sd-pick-contrast($base);
-  //   $contrast-highlight: sd-pick-contrast($highlight);
-  //   $contrast-accent: sd-pick-contrast($accent);
-  //   $text: sd-color($contrast, text);
-  //   $text-highlight: sd-color($contrast-highlight, text);
-  //   $text-accent: sd-color($contrast-accent, text);
-  //   --#{$key}-text: #{$text};
-  //   --#{$key}-highlight: #{$highlight};
-  //   --#{$key}-highlight-text: #{$text-highlight};
-  //   --#{$key}-accent: #{$accent};
-  //   --#{$key}-accent-text: #{$text-accent};
-  // };
-  }
-}
-
 // FUTURE: Map the color schemes of the text color based on the contrast value
 @each $scheme, $map in $sd-color-schemes {
   @include root-color-scheme($scheme){
     @each $key, $color in $map {
       $color: sd-color($scheme, $key);
       --#{$key}: #{$color};
-      @include sd-color-gen ($scheme);
     }
   }
 }
+
+:root {
+  @each $key, $color in $sd-color-global {
+      $key: $key;
+      $base: map.get($sd-color-global, $key, base);
+      $highlight: map.get($sd-color-global, $key, highlight);
+      $accent: map.get($sd-color-global, $key, accent);
+      $contrast: sd-pick-contrast($base);
+      $contrast-highlight: sd-pick-contrast($highlight);
+      $contrast-accent: sd-pick-contrast($accent);
+      $text: sd-color($contrast, text);
+      $text-highlight: sd-color($contrast-highlight, text);
+      $text-accent: sd-color($contrast-accent, text);
+    --#{$key}: #{$base};
+    --#{$key}-text: #{$text};
+    --#{$key}-highlight: #{$highlight};
+    --#{$key}-highlight-text: #{$text-highlight};
+    --#{$key}-accent: #{$accent};
+    --#{$key}-accent-text: #{$text-accent};
+  };
+}
+
