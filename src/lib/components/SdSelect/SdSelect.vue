@@ -24,10 +24,10 @@
   </div>
 </template>
 
-<script>
-import { toRefs, reactive, ref, onMounted } from 'vue'
+<script lang="ts">
+import { toRefs, reactive, ref, onMounted, defineComponent } from 'vue'
 
-export default {
+export default defineComponent({
   name: 'SdSelect',
   props: {
     label: {
@@ -76,7 +76,7 @@ export default {
 
     return { ...toRefs(state), slotted, onFocus, onBlur, selected, handleSelected}
   }
-}
+})
 </script>
 
 <style lang="scss">

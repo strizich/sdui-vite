@@ -48,6 +48,7 @@
     "animejs": "^3.2.1",
     "caniuse-lite": "^1.0.30001271",
     "focus-trap": "^6.5.1",
+    "postcss": "^8.4.6",
     "vue": "^3.2.20"
   },
   "devDependencies": {

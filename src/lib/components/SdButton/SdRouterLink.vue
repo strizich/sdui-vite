@@ -6,13 +6,16 @@
     custom
   >
     <sd-button
-      @href="href"
       @click="navigate"
+      :tabindex="tabindex"
+      :href="href"
       :active="!hash && isActive"
       :theme="theme"
       :exact-active="!hash && isExactActive"
       :outline="outline"
       :disabled="disabled"
+      :icon="icon"
+      :icon-only="iconOnly"
       :flat="flat"
       :pill="pill"
     >
@@ -34,6 +37,15 @@ export default defineComponent({
     to: {
       type: String,
       default: undefined
+    },
+    icon: {
+      type: String,
+      default: ''
+    },
+    iconOnly: Boolean,
+    tabindex: {
+      type: [String, Number],
+      default: 0
     },
     flat: Boolean,
     outline: Boolean,

@@ -141,6 +141,14 @@ export default defineComponent({
     class: {
       type: [String, Array],
       default: ''
+    },
+    tabindex: {
+      type: [String, Number],
+      default: 0
+    },
+    focusable: {
+      type: Boolean,
+      default: true
     }
   },
   setup (props, { slots, attrs }) {
@@ -157,7 +165,7 @@ export default defineComponent({
         'is--icon-only': props.iconOnly,
         'is--block': props.block,
         // useKeyboardEvent Hook
-        'is--focused': hasFocus.value,
+        'is--focused': hasFocus.value && props.focusable,
         // Props related to RouterLink
         'is--active': props.active,
         'is--exact-active': props.exactActive
@@ -191,6 +199,7 @@ export default defineComponent({
         {
           ref: root,
           id: props.id,
+          tabindex: props.tabindex,
           type: !props.href ? props.type : null,
           class: ['sd--button', themeClass.value, rootClasses.value, sizeClass.value, props.class],
           href: props.href,

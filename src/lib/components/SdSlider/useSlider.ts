@@ -1,7 +1,7 @@
 import { computed, reactive, ref, Ref, watch, nextTick, watchEffect, onMounted, onUnmounted, toRefs } from 'vue'
 import { minMax, quantizeValue, pctComplete, convertToValue, convertValueToPx, singleUnitValue } from './SdSliderFoundation'
+import { roundTo } from '../../core/utilities/roundTo'
 import useKeyboardFocus from '../../hooks/useKeyboardFocus'
-
 const useSlider = (props, emit) => {
   const slider: Ref<null | HTMLElement> = ref(null)
   const handle: Ref<null | HTMLElement> = ref(null)
@@ -235,7 +235,8 @@ const useSlider = (props, emit) => {
     if (currentValue !== props.max && currentValue !== props.min) {
       return minMax(props.min, quantize, props.max)
     }
-    return minMax(props.min, currentValue, props.max)
+    console.log(roundTo(.0002, 3))
+    return roundTo(minMax(props.min, currentValue, props.max), 2)
   })
 
   // Emits the result on change

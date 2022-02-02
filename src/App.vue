@@ -1,7 +1,9 @@
 <template>
   <div class="playground">
     <sd-container full>
-      <sd-button class="thing">okay</sd-button>
+      <sd-button class="thing">
+        okay
+      </sd-button>
       <sd-button flat>
         okay
       </sd-button>
