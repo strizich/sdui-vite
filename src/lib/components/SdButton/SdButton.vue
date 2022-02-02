@@ -142,10 +142,6 @@ export default defineComponent({
       type: [String, Array],
       default: ''
     },
-    tabindex: {
-      type: [String, Number],
-      default: 0
-    },
     focusable: {
       type: Boolean,
       default: true
@@ -199,7 +195,6 @@ export default defineComponent({
         {
           ref: root,
           id: props.id,
-          tabindex: props.tabindex,
           type: !props.href ? props.type : null,
           class: ['sd--button', themeClass.value, rootClasses.value, sizeClass.value, props.class],
           href: props.href,
