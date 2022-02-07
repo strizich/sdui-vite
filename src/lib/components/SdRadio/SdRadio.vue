@@ -67,6 +67,7 @@ export default defineComponent({
 
     const handleChecked = () => {
       if (!props.disabled) {
+        radio.value.focus()
         emit('update:modelValue', props.value)
       }
     }
@@ -142,7 +143,7 @@ export default defineComponent({
     padding: 8px 8px 8px 32px;
     -webkit-user-select: none;
     user-select: none;
-    &.is--focused{
+    &.is--focused, &:focus{
       color: var(--primary-highlight);
     }
     &.is--disabled{

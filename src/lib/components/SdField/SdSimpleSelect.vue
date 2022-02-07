@@ -134,7 +134,7 @@ export default defineComponent({
     width: 100%;
     padding-right: 24px;
     display:block;
-    @include elevation(3);
+    @include elevation(2);
       &:disabled {
         background-color: var(--background-highlight);
         color: var(--text-highlight);

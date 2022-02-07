@@ -243,7 +243,7 @@ export default defineComponent({
       display:flex;
       flex-wrap: wrap;
       align-items:center;
-      @include elevation(3);
+      @include elevation(2);
       &:disabled, &.is--disabled {
         opacity: .35;
         background-color: var(--background-accent);

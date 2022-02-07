@@ -81,7 +81,7 @@ const useWindowWidth = () => {
     removeResizeListener()
   })
 
-  return { ...toRefs(state) }
+  return { ...toRefs(state), MIN_WIDTH, MAX_WIDTH }
 }
 
 export default useWindowWidth

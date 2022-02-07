@@ -76,8 +76,9 @@ declare module '@strizich/sdui' {
   const useKeyboardFocus: ($el: any) => ComputedRef<boolean>
   const useScheme: (mode: Ref<string>) => void
   const useWindowWidth: () => {
-    windowWidth: any;
-    smallDevice: Ref<boolean>;
+    windowWidth: number,
+    smallDevice: boolean,
+    breakpoint: Ref<string | null>
   }
 
   const useAlignment: (align: string, direction: string) => {

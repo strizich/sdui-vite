@@ -1,4 +1,4 @@
-const SdContains = (child, parent) => {
+const SdContains = (parent, child) => {
   if (typeof Node.prototype.contains === 'function') {
     return Node.prototype.contains.call(parent, child)
   } else {

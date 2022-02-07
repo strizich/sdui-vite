@@ -41,8 +41,7 @@ export default {
     preventScroll: {
       type: Boolean,
       default: false
-    },
-
+    }
   },
   setup(props, {emit}) {
     let trap = null
@@ -52,6 +51,9 @@ export default {
         trap = createFocusTrap(props.target, {
           returnFocusOnDeactivate: props.returnFocus,
           clickOutsideDeactivates: props.outsideClick,
+          setReturnFocus: props.setReturnFocus,
+          escDeactivates: props.escDeactivates,
+          preventScroll: props.preventScroll,
           onActivate: () => {
             emit('update:modelValue', true)
             emit('activate', true)

@@ -4,7 +4,7 @@
     :to="portalDisabled ? null : portalTo"
     :disabled="portalDisabled"
   >
-    <transition name="dropdown">
+    <transition name="menu">
       <div
         :id="id"
         ref="instanceRef"
@@ -12,7 +12,13 @@
         v-if="shouldRender"
         :style="computedStyles"
       >
-        <slot />
+        <sd-focus-trap
+          :target="instanceRef"
+          :set-return-focus="triggerEl"
+          v-model="shouldRender"
+        >
+          <slot />
+        </sd-focus-trap>
       </div>
     </transition>
   </teleport>
@@ -22,9 +28,14 @@
 import usePopper from '../../hooks/usePopper'
 import SdContains from '../../core/utilities/SdContains';
 import SdUuid from '../../core/utilities/SdUuid';
-import { watch, inject, PropType, defineComponent, computed, reactive} from 'vue'
+import { inject, PropType, defineComponent, computed, reactive, watchEffect } from 'vue'
 import { Placement } from '@popperjs/core'
+import SdFocusTrap from '../SdFocusTrap/SdFocusTrap.vue';
+
+// TODO: Add props to control z-index
+
  export default defineComponent({
+  components: { SdFocusTrap },
   name: 'SdMenuContent',
   props: {
     id: {
@@ -71,23 +82,22 @@ import { Placement } from '@popperjs/core'
   emits: ['opened', 'closed'],
   setup(props, { emit }) {
     const activate: any = inject('activate', false)
-    const menuEl: any = inject('menuEl')
+    const menuEl: any = inject('menuEl', null)
+    const triggerEl: any = inject('triggerEl', null)
+
     const { shouldRender, targetRef, instanceRef } = usePopper(props, emit, activate)
 
     const state = reactive({
-      parentWidth: ''
-    })
-
-    watch(() => activate.value, (next) => {
-      if (next) {
-        setTimeout(() => {
-          handleWindowResize()
+      parentWidth: 0,
+    }) 
+    watchEffect(() => {
+      if (activate.value && instanceRef.value instanceof HTMLElement) {
           createClickObserver()
+          handleWindowResize()
           createKeyboardObserver()
           createResizeObserver()
-        }, 0)
       }
-    })
+    }, { flush: 'post' })
 
     const computedStyles = computed(() => {
       if (props.full) {
@@ -97,9 +107,12 @@ import { Placement } from '@popperjs/core'
       }
       return false
     })
+    const isTrigger = ({target}) => {
+      return SdContains(triggerEl.value, target)
+    }
 
     const isMenu = ({target}) => {
-      return targetRef.value.parentElement ? SdContains(targetRef.value.parentElement, target): false
+      return menuEl.value ? SdContains(menuEl.value, target) : false
     }
 
     const isMenuContent = ({target}) => {
@@ -107,13 +120,14 @@ import { Placement } from '@popperjs/core'
     }
 
     const handleClickEvents = (event) => {
-      if(document && event.type !== 'keyup') {
-        const insideClick = !isMenu(event) && (props.closeOnClick || !isMenuContent(event))
-        const outsideClick = isMenu(event) && (props.outsideClick || !isMenuContent(event))
+      if(document && activate.value && !isTrigger(event)) {
+        const insideClick = isMenu(event) && (props.closeOnClick && isMenuContent(event))
+        const outsideClick = !isMenu(event) && (props.outsideClick && !isMenuContent(event))
+
         if (insideClick || outsideClick) {
           activate.value = false
           window.removeEventListener('resize', handleWindowResize)
-          document.body.removeEventListener('mousedown', handleClickEvents)
+          document.body.removeEventListener('mouseup', handleClickEvents)
           document.body.removeEventListener('keyup', onKeydown)
         }
       }
@@ -129,11 +143,11 @@ import { Placement } from '@popperjs/core'
     }
 
     const createKeyboardObserver = () => {
-      document.body.addEventListener('keydown', onKeydown, { passive: false })
+      document.body.addEventListener('keyup', onKeydown, { passive: false })
     }
 
     const createClickObserver = () => {
-      document.body.addEventListener('mousedown', handleClickEvents, { passive: true })
+      document.body.addEventListener('mouseup', handleClickEvents, { passive: true })
     }
 
     const createResizeObserver = () => {
@@ -152,6 +166,7 @@ import { Placement } from '@popperjs/core'
       instanceRef,
       computedStyles,
       state,
+      triggerEl
     }
   }
 })
@@ -165,7 +180,7 @@ import { Placement } from '@popperjs/core'
       left:0;
       min-height: 24px;
       padding: 8px;
-      z-index: 111;
+      z-index: 1100;
       border-radius: 2px;
       font-size: 14px;
       text-transform: none;
@@ -175,31 +190,22 @@ import { Placement } from '@popperjs/core'
       color: var(--text);
       font-weight: 500;
       min-width: 40px;
-      @include elevation(4);
+      @include elevation(6);
     }
   }
+.menu-enter-active,
+.menu-leave-active {
+  transition: top 0.3s, opacity 0.3s 0.1s;
+}
 
-  .dropdown-enter-active, .dropdown-leave-active{
-    .sd--menu__content {
-      transition: opacity .2s .1s, transform .3s ease-in-out;
-    }
-  }
-  .dropdown-enter-to{
-    .sd--menu__content {
-      opacity: 1;
-      transform: translate3d(0, 0, 0)
-    }
-  }
-  .dropdown-enter-from{
-    .sd--menu__content {
-      opacity: 0;
-      transform: translate3d(0, 4px, 0);
-    }
-  }
-  .dropdown-leave-to{
-    .sd--menu__content {
-      opacity: 0;
-      transform: translate3d(0, -4px, 0);
-    }
-  }
+.menu-enter-to, .menu-leave-from {
+  opacity: 1;
+  top: 0;
+}
+
+ .menu-leave-to, .menu-enter-from {
+  top: 16px;
+  opacity: 0;
+  position: absolute;
+}
 </style>
