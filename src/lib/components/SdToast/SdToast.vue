@@ -123,7 +123,7 @@ export default defineComponent({
     border-radius: 3px;
   }
 
-  @each $state, $color in colors.$sd-color-global {
+  @each $state in colors.$sd-themes {
     &__#{$state} {
       .sd--toast__content {
         background-color: var(--#{$state});

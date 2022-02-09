@@ -1,24 +1,97 @@
+@use 'sass:map';
 @import './functions';
+$sd-themes: primary, secondary, tertiary, quanternary, danger, success, warning, dark, light;
 
 $primary: #8F00F8 !default;
+$primary-highlight: mix(#fff, $primary, 25%) !default;
+$primary-accent: mix(#000, $primary, 25%) !default;
+
+$primary-dark: $primary !default;
+$primary-dark-highlight: $primary-highlight !default;
+$primary-dark-accent: $primary-accent !default;
+
 $secondary: #007bff !default;
-$default: #6c757d !default;
+$secondary-highlight: mix(#fff, $secondary, 25%) !default;
+$secondary-accent: mix(#fff, $secondary, 25%) !default;
+
+$secondary-dark: $secondary !default;
+$secondary-dark-highlight: $secondary-highlight !default;
+$secondary-dark-accent: $secondary-accent !default;
+
+$tertiary: #6c757d !default;
+$tertiary-highlight: mix(#fff, $tertiary, 25%) !default;
+$tertiary-accent: mix(#000, $tertiary, 25%) !default;
+
+$tertiary-dark: $tertiary !default;
+$tertiary-dark-highlight: $tertiary-highlight !default;
+$tertiary-dark-accent: $tertiary-accent !default;
+
+$quanternary: #6c757d !default;
+$quanternary-highlight: mix(#fff, $quanternary, 25%) !default;
+$quanternary-accent: mix(#000, $quanternary, 25%) !default;
+
+$quanternary-dark: $quanternary !default;
+$quanternary-dark-highlight: $quanternary-highlight !default;
+$quanternary-dark-accent: $quanternary-accent !default;
+
 $danger: #AE1A2C !default;
+$danger-highlight: mix(#fff, $danger, 25%) !default;
+$danger-accent: mix(#000, $danger, 25%) !default;
+
+$danger-dark: $danger !default;
+$danger-dark-highlight: $danger-highlight !default;
+$danger-dark-accent: $danger-accent !default;
+
 $success: #83CF2A !default;
+$success-highlight: mix(#fff, $success, 25%) !default;
+$success-accent: mix(#000, $success, 25%) !default;
+
+$success-dark: $success !default;
+$success-dark-highlight: $success-highlight !default;
+$success-dark-accent: $success-accent !default;
+
 $warning: #f57b23 !default;
+$warning-highlight: mix(#fff, $warning, 25%) !default;
+$warning-accent: mix(#000, $warning, 25%) !default;
+
+$warning-dark: $warning !default;
+$warning-dark-highlight: $warning-highlight !default;
+$warning-dark-accent: $warning-accent !default;
+
 $dark: #2f2b31 !default;
-$white: #f6f6f6 !default;
+$dark-highlight: mix(#fff, $dark, 25%) !default;
+$dark-accent: mix(#000, $dark, 15%) !default;
+
+$light: #f6f6f6 !default;
+$light-highlight: mix(#fff, $light, 25%) !default;
+$light-accent: mix(#000, $light, 15%) !default;
 
 $sd-color-global: (
-  primary: color-map($primary, 25%, 25%),
-  secondary: color-map($secondary, 25%, 50%),
-  default: color-map($default, 25%, 50%),
-  success: color-map($success, 25%, 15%),
-  danger: color-map($danger, 25%, 25%),
-  warning: color-map($warning, 25%, 15%),
-  dark: color-map($dark, 25%, 15%),
-  light: color-map($white, 25%, 15%),
+  dark: (
+    primary: color-map($primary-dark, $primary-dark-highlight, $primary-dark-accent),
+    secondary: color-map($secondary-dark, $secondary-dark-highlight, $secondary-dark-accent),
+    tertiary: color-map($tertiary-dark, $tertiary-dark-highlight, $tertiary-dark-accent),
+    quanternary: color-map($quanternary-dark, $quanternary-dark-highlight, $quanternary-dark-accent),
+    success: color-map($success-dark, $success-dark-highlight, $success-dark-accent),
+    danger: color-map($danger-dark, $danger-dark-highlight, $danger-dark-accent),
+    warning: color-map($warning-dark, $warning-dark-highlight, $warning-dark-accent),
+    dark: color-map($dark, $dark-highlight, $dark-accent),
+    light: color-map($light, $light-highlight, $light-accent)
+  ),
+  light: (
+    primary: color-map($primary, $primary-highlight, $primary-accent),
+    secondary: color-map($secondary, $secondary-highlight, $secondary-accent),
+    tertiary: color-map($tertiary, $tertiary-highlight, $tertiary-accent),
+    quanternary: color-map($quanternary, $quanternary-highlight, $quanternary-accent),
+    success: color-map($success, $success-highlight, $success-accent),
+    danger: color-map($danger, $danger-highlight, $danger-accent),
+    warning: color-map($warning, $warning-highlight, $warning-accent),
+    dark: color-map($dark, $dark-highlight, $dark-accent),
+    light: color-map($light, $light-highlight, $light-accent)
+  )
 );
+
+// General Color Does not change dynamicly
 
 $sd-color-schemes: (
   light: (

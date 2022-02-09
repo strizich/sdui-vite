@@ -197,7 +197,8 @@ $checkmarkSvgDarkUri: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
   &:hover{
     background-color: var(--background-highlight);
   }
-  @each $state, $color in $sd-color-global {
+
+   @each $state in $sd-themes{
     // FUTURE: Adjust change checkbox (light/dark) based on theme.
     // FUTURE: Normalize unchecked state. Show color for checked state.
     // $contrast: sd-pick-contrast($base);

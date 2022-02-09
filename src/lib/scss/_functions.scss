@@ -29,6 +29,11 @@ $base-font: 16;
   @return $selectedColor;
 };
 
+@function sd-color-global($scheme, $type) {
+  $selectedColor: map.get($sd-color-global, $scheme, $type);
+  @return $selectedColor;
+};
+
 
 // Manages spacing
 @function spacing($type, $size: 'default'){
@@ -39,12 +44,13 @@ $base-font: 16;
 @function color-map($color, $highlight, $accent) {
   $map: (
     'base': $color,
-    'highlight': mix(#fff, $color, $highlight),
-    'accent': mix(#000, $color, $accent)
+    'highlight': $highlight,
+    'accent': $accent
   );
 
   @return $map;
 };
+
 
 @function ios-safe-area($position){
   @return m#{a}x(16px, env(safe-area-inset-#{$position}))

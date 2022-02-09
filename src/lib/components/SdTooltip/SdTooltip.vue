@@ -118,7 +118,7 @@ export default defineComponent({
     font-weight: 500;
     min-width: 40px;
     @include elevation(4);
-    @each $key, $color in $sd-color-global {
+    @each $key in $sd-themes{
       &.is--#{$key} {
         background-color: var(--#{$key}-highlight);
         color: var(--#{$key}-highlight-text);
@@ -129,7 +129,7 @@ export default defineComponent({
     &:before {
       background-color: var(--background-highlight);
     }
-    @each $key, $color in $sd-color-global {
+      @each $key in $sd-themes {
       &.is--#{$key} {
         &:before {
           background-color: var(--#{$key}-highlight);

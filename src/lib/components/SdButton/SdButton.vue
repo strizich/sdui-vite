@@ -331,7 +331,7 @@ $states: ('primary', 'secondary', 'default', 'warning', 'danger', 'success', 'li
     @extend %button-content;
   }
 
-   @each $state in $states{
+   @each $state in $sd-themes{
     &__#{$state} {
       @include elevation(2);
       color: var(--#{$state}-text);

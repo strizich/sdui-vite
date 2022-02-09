@@ -123,19 +123,17 @@ export default defineComponent({
       justify-content: flex-end;
       align-items: center;
       overflow: hidden;
-      @each $state, $color in $sd-color-global {
-        $base: map.get($color, base);
-        $contrast: sd-pick-contrast($base);
+    @each $state in $sd-themes {
         &--#{$state} {
-          background-color: $base;
-          color: sd-color($contrast, text);
-          &.is--animated{
+          background-color: var(--#{$state});
+          color: var(--#{$state}-text);
+          &.is--animated {
             &:after{
               animation: shimmer 10s infinite;
               animation-timing-function: ease-out;
             }
           }
-          &:after{
+          &:after {
             background-repeat: no-repeat;
             background-image: linear-gradient(
               90deg,
@@ -147,7 +145,6 @@ export default defineComponent({
           }
         }
       }
-
        &:after{
         //shimmer
         position:absolute;
