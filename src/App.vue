@@ -2,24 +2,22 @@
   <div class="playground">
     <sd-progress :progress="0.9" />
     <sd-container full>
-      <sd-sheet padded>
-        <sd-button class="thing">
-          <sd-tooltip theme="danger">
-            Danger
-          </sd-tooltip>
-          okay
-        </sd-button>
-        <sd-button flat>
-          okay
-        </sd-button>
-        <sd-button theme="light">
-          okay
-          ok
-        </sd-button>
-        <sd-button theme="dark">
-          okay
-        </sd-button>
-      </sd-sheet>
+      <sd-button>
+        <sd-tooltip theme="danger">
+          Danger
+        </sd-tooltip>
+        okay
+      </sd-button>
+      <sd-button flat>
+        okay
+      </sd-button>
+      <sd-button theme="link">
+        okay
+        ok
+      </sd-button>
+      <sd-button theme="primary">
+        okay
+      </sd-button>
     </sd-container>
   </div>
 </template>
@@ -42,11 +40,12 @@ export default defineComponent({
 
 <style lang="scss">
 @use '@/lib/scss/engine' with (
-  $primary: red,
   $primary-highlight: pink,
-  $primary-dark: orange,
-  $primary-dark-highlight: brown
+  $primary-dark-highlight: brown,
+  $primary-dark-accent: brown
 );
+
+$link: green;
 
 .playground {
   padding: 0px;

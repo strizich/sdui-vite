@@ -1,5 +1,5 @@
 import * as packageData from '../../package.json'
-import { toCamelCase, toKebab } from './core/utilities/SdTextTransform'
+import { toCamelCase, toKebab, captialize } from './core/utilities/SdTextTransform'
 
 // Components
 import './components/SdElevation/elevation.scss'
@@ -148,25 +148,38 @@ const sdComponentsDesc = Object.keys(components).map((item) => {
   }
 })
 
-const sdInstall = (app) => {
+
+const makeCustomPrefix = (prefix = 'Sd', item) => {
+  return captialize(`${prefix}${item.slice(2)}`)
+}
+
+const version = packageData.version
+
+const sdInstall = (app, prefix?) => {
   if (!app) {
     return
   }
+
   sdComponentsDesc.forEach((item) => {
-    const kebabCaseName = toKebab(item.name)
-    const camelCaseName = toCamelCase(`-${kebabCaseName}`)
+    // const kebabCaseName = toKebab(item.name)
+    // const camelCaseName = toCamelCase(`-${kebabCaseName}`)
     const registerComponent = item.component
-    app.component(kebabCaseName, registerComponent)
-    app.component(camelCaseName, registerComponent)
+    const customName = makeCustomPrefix(prefix, item.name)
+    const customKebabName =  toKebab(customName)
+    app.component(customName, registerComponent)
+    app.component(customKebabName, registerComponent)
+    // app.component(kebabCaseName, registerComponent)
+    // app.component(camelCaseName, registerComponent)
   })
-  if (process.env.NODE_ENV !== 'development') {
-    console.info('%cSDUI Component Library', 'color: #8F00F8; font-weight: 700; font-size: 12px;')
-    console.info('%cGithub: https://github.com/strizich/sdui-vite', 'font-size: 8px;')
+
+  if (import.meta.env.NODE_ENV !== 'development') {
+    console.info(`%cSDUI Component Library ${version}`, 'color: #8F00F8; font-weight: 700; font-size: 12px;')
+    console.info(`%cGithub: https://github.com/strizich/sdui-vite`, 'font-size: 8px;')
     console.info('--')
   }
 }
 
-const version = packageData.version
+
 
 export {
   sdInstall,
