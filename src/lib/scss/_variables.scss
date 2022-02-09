@@ -1,6 +1,6 @@
 @use 'sass:map';
 @import './functions';
-$sd-themes: primary, secondary, tertiary, quanternary, danger, success, warning, dark, light;
+$sd-themes: primary, secondary, tertiary, quaternary, danger, success, warning, dark, light;
 
 $primary: #8F00F8 !default;
 $primary-highlight: mix(#fff, $primary, 25%) !default;
@@ -71,7 +71,7 @@ $sd-color-global: (
     primary: color-map($primary-dark, $primary-dark-highlight, $primary-dark-accent),
     secondary: color-map($secondary-dark, $secondary-dark-highlight, $secondary-dark-accent),
     tertiary: color-map($tertiary-dark, $tertiary-dark-highlight, $tertiary-dark-accent),
-    quanternary: color-map($quanternary-dark, $quanternary-dark-highlight, $quanternary-dark-accent),
+    quaternary: color-map($quaternary-dark, $quaternary-dark-highlight, $quaternary-dark-accent),
     success: color-map($success-dark, $success-dark-highlight, $success-dark-accent),
     danger: color-map($danger-dark, $danger-dark-highlight, $danger-dark-accent),
     warning: color-map($warning-dark, $warning-dark-highlight, $warning-dark-accent),
@@ -82,7 +82,7 @@ $sd-color-global: (
     primary: color-map($primary, $primary-highlight, $primary-accent),
     secondary: color-map($secondary, $secondary-highlight, $secondary-accent),
     tertiary: color-map($tertiary, $tertiary-highlight, $tertiary-accent),
-    quanternary: color-map($quanternary, $quanternary-highlight, $quanternary-accent),
+    quaternary: color-map($quaternary, $quaternary-highlight, $quaternary-accent),
     success: color-map($success, $success-highlight, $success-accent),
     danger: color-map($danger, $danger-highlight, $danger-accent),
     warning: color-map($warning, $warning-highlight, $warning-accent),
