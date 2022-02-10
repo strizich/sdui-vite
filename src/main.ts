@@ -4,5 +4,5 @@ import { sdInstall } from './lib'
 
 
 const app = createApp(App)
-sdInstall(app)
+sdInstall(app, { prefix: 'rs' })
 app.mount('#app')

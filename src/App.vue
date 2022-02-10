@@ -1,7 +1,11 @@
 <template>
   <div class="playground">
-    <sd-progress :progress="0.9" />
-    <sd-container full>
+    <rs-progress :progress="0.9" />
+
+
+
+
+    <!-- <sd-container full>
       <sd-button>
         <sd-tooltip theme="danger">
           Danger
@@ -18,7 +22,7 @@
       <sd-button theme="primary">
         okay
       </sd-button>
-    </sd-container>
+    </sd-container> -->
   </div>
 </template>
 

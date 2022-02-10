@@ -140,10 +140,6 @@ const components = {
   // Utilities
 }
 
-interface SdOptions {
-  prefix?: string
-}
-
 const sdComponentsDesc = Object.keys(components).map((item) => {
   const component = components[item]
   return {
@@ -152,7 +148,6 @@ const sdComponentsDesc = Object.keys(components).map((item) => {
   }
 })
 
-
 const makeCustomPrefix = (prefix, item) => {
   const name: string = prefix ? `${prefix}${item.slice(2)}` : `${item}`
   return toKebab(name)
@@ -160,23 +155,18 @@ const makeCustomPrefix = (prefix, item) => {
 
 const version = packageData.version
 
-const sdInstall = (app, options?) => {
-  const { prefix } = options || {}
+const sdInstall = (app, { prefix = 'sd' }) => {
   if (!app) {
     return
   }
 
   sdComponentsDesc.forEach((item) => {
-    // const kebabCaseName = toKebab(item.name)
-    // const camelCaseName = toCamelCase(`-${kebabCaseName}`)
     const registerComponent = item.component
     const kebabName = makeCustomPrefix(prefix, item.name)
-    const camelName =  toCamelCase(kebabName)
+    const camelName = toCamelCase(kebabName)
     console.log(camelName, kebabName)
     app.component(kebabName, registerComponent)
     app.component(camelName, registerComponent)
-    // app.component(kebabCaseName, registerComponent)
-    // app.component(camelCaseName, registerComponent)
   })
 
   if (import.meta.env.NODE_ENV !== 'development') {
