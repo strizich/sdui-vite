@@ -1,3 +1,4 @@
+import { App } from 'vue'
 import * as packageData from '../../package.json'
 import { toCamelCase, toKebab } from './core/utilities/SdTextTransform'
 
@@ -139,6 +140,17 @@ const components = {
   SdListItem
   // Utilities
 }
+interface InstallerSettings {
+  prefix: string,
+  printPackageInfo?: boolean
+}
+
+const DEFAULT_SETTINGS: InstallerSettings = {
+  prefix: 'Sd',
+  printPackageInfo: false
+}
+
+const PACKAGE_VERSION = packageData.version
 
 const sdComponentsDesc = Object.keys(components).map((item) => {
   const component = components[item]
@@ -153,9 +165,12 @@ const makeCustomPrefix = (prefix, item) => {
   return toKebab(name)
 }
 
-const version = packageData.version
-
-const sdInstall = (app, { prefix = 'sd' }) => {
+const sdInstall = (
+  app: App<Element>,
+  settings: InstallerSettings = DEFAULT_SETTINGS
+) => {
+  const { prefix, printPackageInfo } = settings
+  
   if (!app) {
     return
   }
@@ -164,14 +179,15 @@ const sdInstall = (app, { prefix = 'sd' }) => {
     const registerComponent = item.component
     const kebabName = makeCustomPrefix(prefix, item.name)
     const camelName = toCamelCase(kebabName)
-    console.log(camelName, kebabName)
     app.component(kebabName, registerComponent)
     app.component(camelName, registerComponent)
   })
 
-  if (import.meta.env.NODE_ENV !== 'development') {
-    console.info(`%cSDUI Component Library ${version}`, 'color: #8F00F8; font-weight: 700; font-size: 12px;')
-    console.info(`%cGithub: https://github.com/strizich/sdui-vite`, 'font-size: 8px;')
+  if (import.meta.env.NODE_ENV !== 'development' && printPackageInfo) {
+    console.info('--')
+    console.info('%cSDUI Component Library', 'font-weight: 700;')
+    console.info(`%cVersion: ${PACKAGE_VERSION}`, 'font-size: 8px;')
+    console.info(`%cDocs: https://storybook.strizichdesign.com | Repo: https://github.com/strizich/sdui-vite`, 'font-size: 8px;')
     console.info('--')
   }
 }
@@ -179,8 +195,8 @@ const sdInstall = (app, { prefix = 'sd' }) => {
 
 
 export {
+  PACKAGE_VERSION,
   sdInstall,
-  version,
   SdWidget,
   SdWidgetFooter,
   SdWidgetMetric,

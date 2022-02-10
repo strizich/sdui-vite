@@ -1,43 +1,23 @@
 <template>
   <div class="playground">
-    <rs-progress :progress="0.9" />
-
-
-
-
-    <!-- <sd-container full>
-      <sd-button>
-        <sd-tooltip theme="danger">
-          Danger
-        </sd-tooltip>
-        okay
-      </sd-button>
-      <sd-button flat>
-        okay
-      </sd-button>
-      <sd-button theme="link">
-        okay
-        ok
-      </sd-button>
-      <sd-button theme="primary">
-        okay
-      </sd-button>
-    </sd-container> -->
+    <sd-progress :progress="0.9" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
+import { PACKAGE_VERSION } from './lib'
 import useScrollSpy from './lib/hooks/useScrollSpy';
 export default defineComponent({
   name: 'App',
   setup() {
+    const version = PACKAGE_VERSION;
     const parentEl = ref(null);
     const bodyEl = ref(null);
     const checkbox = ref(false)
     const { activeSection } = useScrollSpy(parentEl, bodyEl);
 
-    return { parentEl, bodyEl, activeSection, checkbox };
+    return { parentEl, bodyEl, activeSection, checkbox, version };
   }
 });
 </script>
