@@ -1,5 +1,5 @@
 import * as packageData from '../../package.json'
-import { toCamelCase, toKebab, toPascalCase } from './core/utilities/SdTextTransform'
+import { toCamelCase, toKebab } from './core/utilities/SdTextTransform'
 
 // Components
 import './components/SdElevation/elevation.scss'
