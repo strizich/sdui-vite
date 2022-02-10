@@ -1,5 +1,5 @@
 import * as packageData from '../../package.json'
-import { toCamelCase, toKebab, captialize } from './core/utilities/SdTextTransform'
+import { toCamelCase, toKebab, toPascalCase } from './core/utilities/SdTextTransform'
 
 // Components
 import './components/SdElevation/elevation.scss'
@@ -140,6 +140,10 @@ const components = {
   // Utilities
 }
 
+interface SdOptions {
+  prefix?: string
+}
+
 const sdComponentsDesc = Object.keys(components).map((item) => {
   const component = components[item]
   return {
@@ -149,13 +153,15 @@ const sdComponentsDesc = Object.keys(components).map((item) => {
 })
 
 
-const makeCustomPrefix = (prefix = 'Sd', item) => {
-  return captialize(`${prefix}${item.slice(2)}`)
+const makeCustomPrefix = (prefix, item) => {
+  const name: string = prefix ? `${prefix}${item.slice(2)}` : `${item}`
+  return toKebab(name)
 }
 
 const version = packageData.version
 
-const sdInstall = (app, prefix?) => {
+const sdInstall = (app, options?) => {
+  const { prefix } = options || {}
   if (!app) {
     return
   }
@@ -164,10 +170,11 @@ const sdInstall = (app, prefix?) => {
     // const kebabCaseName = toKebab(item.name)
     // const camelCaseName = toCamelCase(`-${kebabCaseName}`)
     const registerComponent = item.component
-    const customName = makeCustomPrefix(prefix, item.name)
-    const customKebabName =  toKebab(customName)
-    app.component(customName, registerComponent)
-    app.component(customKebabName, registerComponent)
+    const kebabName = makeCustomPrefix(prefix, item.name)
+    const camelName =  toCamelCase(kebabName)
+    console.log(camelName, kebabName)
+    app.component(kebabName, registerComponent)
+    app.component(camelName, registerComponent)
     // app.component(kebabCaseName, registerComponent)
     // app.component(camelCaseName, registerComponent)
   })
