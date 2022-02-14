@@ -97,7 +97,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-  @import '../SdElevation/mixins';
   @import '../../scss/variables';
   .sd--select {
     &.is--block{
@@ -134,7 +133,9 @@ export default defineComponent({
     width: 100%;
     padding-right: 24px;
     display:block;
-    @include elevation(2);
+    @if $use-field-elevation {
+      box-shadow: var(--btn-elevation-2);
+    }
       &:disabled {
         background-color: var(--background-highlight);
         color: var(--text-highlight);

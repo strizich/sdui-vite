@@ -1,6 +1,7 @@
-@import './functions';
+@import './configuration';
 @import './get-contrast';
 @import './variables';
+@import './functions';
 @import './breakpoints';
 @import './mixins';
 @import './spacing';
@@ -8,3 +9,5 @@
 @import './reset';
 @import './typography';
 @import './scrollbar';
+@import './configuration';
+

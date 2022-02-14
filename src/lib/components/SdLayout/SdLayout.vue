@@ -6,11 +6,11 @@
     <div :class="['sd--layout__body', layoutClasses]">
       <!-- FUTURE: Disable transition on mobile and set body to fixed when floating-->
       <transition
-        name="sidebar"
+        :name="`sidebar-${position}`"
         @leave="afterLeave"
       >
         <div
-          :class="['sd--layout__sidebar', sidebarClasses]"
+          :class="['sd--layout__sidebar', 'is--floating', sidebarClasses]"
           :style="handleTabIndex"
         >
           <slot name="sidebar" />
@@ -24,7 +24,7 @@
     </div>
     <transition name="overlay-fade">
       <sd-overlay
-        v-if="sidebar"
+        v-if="sidebar && overlay"
         :active="floating && sidebar"
         @click="handleOutsideClick"
       />
@@ -47,7 +47,14 @@ export default defineComponent({
     },
     sidebar: Boolean,
     floating: Boolean,
-    overlay: Boolean,
+    overlay: {
+      type: Boolean,
+      default: true
+    },
+    position: {
+      type: String,
+      default: 'left'
+    },
   },
   components: {
     SdOverlay
@@ -63,14 +70,15 @@ export default defineComponent({
 
     const layoutClasses = computed(() => {
       return {
-        'sd--layout__body--open': props.sidebar && !props.floating
+        [`sd--layout__body--open-${props.position}`]: props.sidebar && !props.floating
       }
     })
 
     const sidebarClasses = computed(() => {
       return {
-        'sd--layout__sidebar--open': props.sidebar,
-        'sd--layout__sidebar--floating': props.floating
+        [`sd--layout__sidebar--${props.position}`]: !!props.position,
+        'is--open': props.sidebar,
+        'is--floating': props.floating
       }
     })
 
@@ -115,7 +123,7 @@ export default defineComponent({
   html, body{
     transition: background-color .6s 0s ease-in,
                 color .6s 0s ease-in
-                background-color .6s 0s ease-in;
+                background-color .13s 0s ease-in;
     background-color: var(--background);
     color: var(--text);
   }
@@ -133,10 +141,16 @@ export default defineComponent({
       display:flex;
       flex-grow: 2;
       height:100%;
-      &--open {
+      &--open-left {
         .sd--layout__content {
           transition: margin-left .2s ease-in-out;
           margin-left: $sidebar-width;
+        }
+      }
+      &--open-right{
+        .sd--layout__content {
+          transition: margin-right .2s ease-in-out;
+          margin-right: $sidebar-width;
         }
       }
     }
@@ -144,32 +158,43 @@ export default defineComponent({
       flex-grow: 2;
       width: 100%;
       margin-left: 0;
-      transition: margin-left .2s ease-in-out;
+      transition: margin-left .2s ease-in-out, margin-right .2s ease-in-out;
     }
+
     &__sidebar {
-      transition: opacity .2s ease-in-out, left .2s ease-in-out;
+      transition: opacity .2s ease-in-out, left .2s ease-in-out, right .2s ease-in-out;
       max-width: $sidebar-width;
       width: 100%;
       background: var(--background-highlight);
       align-self: stretch;
       position:fixed;
       top: 50px;
-      left: -$sidebar-width;
       bottom: 0;
       opacity: 1;
       z-index:1000;
       will-change: opacity, left;
+      &--left{
+        left: -$sidebar-width;
+        &.is--open {
+          left: 0;
+        }
+      }
+      &--right{
+        right: -$sidebar-width;
+        &.is--open {
+          right: 0;
+        }
+      }
       a {
         visibility: hidden;
       }
-      &--open {
-        left: 0;
+      &.is--open {
         opacity: 1;
         a {
           visibility: inherit;
         }
       }
-      &--floating{
+      &.is--floating{
         z-index: 1002;
       }
     }
@@ -182,17 +207,30 @@ export default defineComponent({
       z-index: 1000;
     }
   }
-  .sidebar-enter-active, .sidebar-leave-active{
+  .sidebar-left-enter-active, .sidebar-left-leave-active{
     transition: opacity .2s ease-in-out;
     overflow-x: hidden;
   }
-  .sidebar-enter-from, .sidebar-leave-to{
+  .sidebar-left-enter-from, .sidebar-left-leave-to{
     opacity: 0;
     left: -200px;
   }
-  .sidebar-enter-to{
+  .sidebar-left-enter-to{
     opacity: 1;
     left: 10px;
+  }
+
+  .sidebar-right-enter-active, .sidebar-right-leave-active{
+    transition: opacity .2s ease-in-out;
+    overflow-x: hidden;
+  }
+  .sidebar-right-enter-from, .sidebar-right-leave-to{
+    opacity: 0;
+    right: -200px;
+  }
+  .sidebar-right-enter-to{
+    opacity: 1;
+    right: 10px;
   }
   .overlay-fade-enter-active, .overlay-fade-leave-active{
     transition: opacity .2s ease-in-out;

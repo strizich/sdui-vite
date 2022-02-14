@@ -2,24 +2,29 @@
   <div class="playground">
     <sd-progress :progress="0.9" />
     <sd-container full>
-      <sd-sheet padded>
-        <sd-button class="thing">
-          <sd-tooltip theme="danger">
-            Danger
-          </sd-tooltip>
-          okay
-        </sd-button>
-        <sd-button flat>
-          okay
-        </sd-button>
-        <sd-button theme="light">
-          okay
-          ok
-        </sd-button>
-        <sd-button theme="dark">
-          okay
-        </sd-button>
-      </sd-sheet>
+      <sd-button class="thing">
+        <sd-tooltip theme="danger">
+          Danger
+        </sd-tooltip>
+        okay
+      </sd-button>
+      <sd-button flat>
+        okay
+      </sd-button>
+      <sd-button theme="light">
+        okayy
+      </sd-button>
+      <sd-button
+        theme="light"
+        icon-only
+        size="sm"
+        icon="bluetooth"
+      />
+      <sd-button 
+        theme="butts"
+      >
+        okay
+      </sd-button>
     </sd-container>
   </div>
 </template>
@@ -41,12 +46,20 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@use '@/lib/scss/engine' with (
-  $primary: red,
-  $primary-highlight: pink,
-  $primary-dark: orange,
-  $primary-dark-highlight: brown
-);
+@use '@/lib/scss/engine';
+@use '@/lib/scss/make-button' as *;
+
+@include makeButton('butts') {
+  --bg: green;
+  --bg-hover: navy;
+  --text: red;
+  --hover: white;
+  --text-hover: orange;
+  --text-focus: 
+  --butts-border-color: #ffffff;
+  --butts-active-color: lime;
+  --btn-font-size-md: 20px;
+};
 
 .playground {
   padding: 0px;

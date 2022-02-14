@@ -65,6 +65,10 @@ export default defineComponent({
       type: String,
       default: '#app'
     },
+    focusable: {
+      type: Boolean,
+      default: true
+    },
     portalDisabled: {
       type: Boolean,
       default: false

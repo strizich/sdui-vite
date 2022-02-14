@@ -9,7 +9,7 @@ export default defineComponent({
   components: { SdIcon },
   props: {
     /**
-     * ID of the button.
+     * ID of the butto  n.
      */
     id: {
       type: String,
@@ -225,11 +225,11 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+@use "sass:math";
 @import "../../scss/variables";
 @import "../../scss/mixins";
 @import "../../scss/functions";
 @import "../SdElevation/mixins";
-
 
 $states: ('primary', 'secondary', 'default', 'warning', 'danger', 'success', 'light', 'dark');
 
@@ -237,7 +237,7 @@ $states: ('primary', 'secondary', 'default', 'warning', 'danger', 'success', 'li
   position: relative;
   z-index: 10;
   line-height: 1;
-  transition: font-size 0.23s;
+  transition: font-size 0.13s;
   padding-top: 8px;
   padding-bottom: 8px;
   display: flex;
@@ -251,7 +251,7 @@ $states: ('primary', 'secondary', 'default', 'warning', 'danger', 'success', 'li
   user-select: none;
   -webkit-user-select: none;
   border: none;
-  border-radius: 3px;
+  border-radius: var(--btn-border-radius);
   font-weight: 500;
   letter-spacing: 0.5px;
   display: inline-flex;
@@ -259,53 +259,61 @@ $states: ('primary', 'secondary', 'default', 'warning', 'danger', 'success', 'li
   align-items: center;
   padding: 0;
   vertical-align: middle;
-  margin-right: 8px;
+  margin: var(--btn-margin);
+  text-transform: var(--btn-casing);
   &:last-child {
     margin-right: 0;
   }
   &--xs {
+    font-size: var(--btn-font-size-xs);
+    min-height: var(--btn-height-xs);
     .sd--button__content {
-      @extend %button-content;
-      padding: spacing(offset, xs);
+      padding: var(--btn-padding-xs);
+      width: var(--btn-height-xs);
     }
-    font-size: rem(11);
-    min-height: 20px;
   }
 
   &--sm {
-    font-size: rem(14);
-    min-height: 26px;
+    font-size: var(--btn-font-size-sm);
+    min-height: var(--btn-height-sm);
     .sd--button__content {
-      line-height: spacing(inset, sm) * 2;
-      @extend %button-content;
-      padding: spacing(offset, sm);
+      line-height: calc(var(--btn-padding-sm) * 2);
+      padding: var(--spacing-2);
     }
   }
 
   &--md {
-    font-size: rem(16);
-    min-height: 32px;
-    .sd--button__content {
-      @extend %button-content;
-      padding: spacing(offset, md);
+    font-size: var(--btn-font-size-md);
+    min-height: var(--btn-height-md);
+      .sd--button__content {
+        padding: var(--btn-padding-md);
+      }
+    &.is--icon-only {
+      min-width: var(--btn-height-md);
     }
   }
 
   &--lg {
-    font-size: rem(18);
-    min-height: 50px;
+    font-size: var(--btn-font-size-lg);
+    min-height: var(--btn-height-lg);
+
     .sd--button__content {
       @extend %button-content;
-      padding: spacing(offset, lg);
+      padding: var(--btn-padding-lg);
+    }
+    &.is--icon-only {
+      .sd--icon {
+        min-width: var(--btn-height-lg);
+      }
     }
   }
 
   &--xl {
-    font-size: rem(24);
-    min-height: 64px;
+    font-size: var(--btn-font-size-xl);
+    padding: var(--btn-padding-xl);
     .sd--button__content {
       @extend %button-content;
-      padding: spacing(offset, xl);
+      padding: var(--btn-padding-xl);
     }
     &.is--icon-only {
       .sd--icon {
@@ -331,40 +339,29 @@ $states: ('primary', 'secondary', 'default', 'warning', 'danger', 'success', 'li
     @extend %button-content;
   }
 
-   @each $state in $sd-themes{
+  @each $state in $sd-themes{
     &__#{$state} {
-      @include elevation(2);
+      @if $use-button-elevation {
+        box-shadow: var(--btn-elevation-2)
+      }
       color: var(--#{$state}-text);
       background-color: var(--#{$state});
       transition: all 0.13s ease-out;
-      border-radius: 3px;
+      border-radius: var(--btn-border-radius);
       svg {
         fill: var(--#{$state}-text);
       }
 
       &:hover {
-        @include elevation(4);
+        @if $use-button-elevation {
+          box-shadow: var(--btn-elevation-4)
+        }
         color: var(--#{$state}-accent-text);
         background-color: var(--#{$state}-accent);
         transition: all 0.13s ease-out;
         svg {
           fill: var(--#{$state}-accent-text);
         }
-      }
-
-      &:active {
-        @include elevation(6);
-        color: var(--#{$state}-highlight-text);
-        background-color: var(--#{$state}-highlight);
-        transition: all 0.13s ease-out;
-      }
-
-      &.is--active,
-      &.is--exact-active {
-        @include elevation(6);
-        color: var(--#{$state}-highlight-text);
-        background-color: var(--#{$state}-highlight);
-        transition: all 0.13s ease-out;
       }
 
       &.is--disabled {
@@ -391,7 +388,7 @@ $states: ('primary', 'secondary', 'default', 'warning', 'danger', 'success', 'li
           right: 0;
           bottom: 0;
           border: 1px solid var(--#{$state});
-          border-radius: 3px;
+          border-radius: var(--btn-border-radius);
         }
         @include flatten-theme($state);
 
@@ -414,19 +411,31 @@ $states: ('primary', 'secondary', 'default', 'warning', 'danger', 'success', 'li
 
       &.is--focused {
         box-shadow: 0 0 0 4px var(--#{$state}-highlight);
-        transition: box-shadow 0.1s ease-out;
+        transition: box-shadow 0.13s ease-out;
         z-index: 11;
       }
-    }
 
-    &.is--pill {
-      border-radius: 30px;
-      .sd--button__content:only-child {
-        padding-left: 20px;
-        padding-right: 20px;
+      &:active,
+      &.is--active,
+      &.is--exact-active {
+        @if $use-button-elevation {
+          box-shadow: var(--btn-elevation-6)
+        }
+        color: var(--#{$state}-highlight-text);
+        background-color: var(--#{$state}-highlight);
+        transition: all 0.13s ease-out;
       }
     }
   }
+
+  &.is--pill {
+    border-radius: 30px;
+    .sd--button__content:only-child {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+
   &__icon-only {
     display: flex;
     width: 100%;
@@ -444,33 +453,38 @@ $states: ('primary', 'secondary', 'default', 'warning', 'danger', 'success', 'li
     }
     &.is {
       &--xs {
-        width: 20px;
+        font-size: var(--btn-font-size-xs);
+        width: var(--btn-height-xs);
         &:last-child {
-          margin-left: spacing(inset, xs) * -1;
+          margin-left: calc(var(--spacing-1) * -1);
         }
       }
       &--sm {
-        width: 30px;
+        width: var(--btn-height-sm);
+        font-size: var(--btn-font-size-sm);
         &:last-child {
-          margin-left: spacing(inset, sm) * -1;
+          margin-left: calc(var(--spacing-2) * -1);
         }
       }
       &--md {
-        width: 32px;
+        font-size: var(--btn-font-size-md);
+        width: var(--btn-height-md);
         &:last-child {
-          margin-left: spacing(inset, md) * -1;
+          margin-left: calc(var(--spacing-3) * -1);
         }
       }
       &--lg {
-        min-width: 42px;
+        font-size: var(--btn-font-size-lg);
+        width: var(--btn-height-lg);
         &:last-child {
-          margin-left: spacing(inset, md) * -1;
+          margin-left: calc(var(--spacing-3) * -1);
         }
       }
       &--xl {
-        min-width: 56px;
+        font-size: var(--btn-font-size-xl);
+        width: var(--btn-height-xl);
         &:last-child {
-          margin-left: spacing(inset, lg) * -1;
+          margin-left: calc(var(--spacing-3) * -1);
         }
       }
     }

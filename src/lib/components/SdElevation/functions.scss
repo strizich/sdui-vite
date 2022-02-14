@@ -1,0 +1,23 @@
+@import './variables';
+
+@function elevation($z-value, $inset:null) {
+  @if type-of($z-value) != number or not unitless($z-value) {
+    @error "$z-value must be a unitless number";
+  }
+
+  @if $z-value < 0 or $z-value > 24 {
+    @error "$z-value must be between 0 and 24";
+  }
+
+  @if $inset{
+    @return
+    inset #{map-get($elevation-umbra, $z-value)} $elevation-umbra-color,
+    inset #{map-get($elevation-penumbra, $z-value)} $elevation-penumbra-color,
+    inset #{map-get($elevation-ambient, $z-value)} $elevation-ambient-color;
+  } @else {
+    @return
+    #{map-get($elevation-umbra, $z-value)} $elevation-umbra-color,
+    #{map-get($elevation-penumbra, $z-value)} $elevation-penumbra-color,
+    #{map-get($elevation-ambient, $z-value)} $elevation-ambient-color;
+  }
+}

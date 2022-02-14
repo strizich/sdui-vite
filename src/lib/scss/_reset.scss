@@ -1,6 +1,6 @@
 // REM conversion handled in ../utilities/_toRem.scss
 @import 'functions';
-
+@import 'variables';
 * {
   box-sizing: border-box;
   scrollbar-color: var(--disabled) var(--background-highlight);

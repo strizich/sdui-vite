@@ -1,11 +1,13 @@
 import { ref, reactive, Ref, watch, nextTick, onMounted, onUnmounted, watchEffect } from 'vue'
 import { createPopper } from '@popperjs/core'
+import { useKeyboardFocus } from '..'
 
 const usePopper = (props, emit, activate?) => {
   const targetRef: Ref<null | HTMLElement> = ref(null)
   const instanceRef: Ref<null | HTMLElement> = ref(null)
+  const parentRef: Ref<null | HTMLElement> = ref(null)
   const shouldRender: Ref<Boolean> = ref(false)
-
+  const hasFocus = useKeyboardFocus(parentRef)
   const popper = reactive({
     instance: null,
     target: null
@@ -38,6 +40,9 @@ const usePopper = (props, emit, activate?) => {
     }
     if(props.modelValue) {
       shouldRender.value = props.modelValue
+    }
+    if(props.focusable && hasFocus.value) {
+      shouldRender.value = hasFocus.value
     }
   }, {flush: 'post'})
 
@@ -108,7 +113,8 @@ const usePopper = (props, emit, activate?) => {
     await nextTick().then(() => {
       if(targetRef.value.parentNode instanceof HTMLElement) {
         // Gets the orignal parent instance of <teleport />
-        popper.target = targetRef.value?.parentNode
+        parentRef.value = targetRef.value?.parentNode
+        popper.target = parentRef.value
         if (props.autoOpen && popper.target) {
           document.body.addEventListener('touchstart', outsideTouch, { passive: true })
           popper.target.addEventListener('touchstart', touched, { passive: true })
@@ -132,7 +138,7 @@ const usePopper = (props, emit, activate?) => {
       popper.target.removeEventListener('mouseleave', hide)
     }
   })
-  return { instanceRef, targetRef, shouldRender }
+  return { instanceRef, targetRef, shouldRender}
 }
 
 export default usePopper

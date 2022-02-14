@@ -1,4 +1,7 @@
 @use "sass:math";
+@use "variables";
+@use "variables-elevation";
+
 @mixin use-body-class($bodyClass) {
   #{$bodyClass} &{
     @content;
@@ -128,5 +131,29 @@
     padding:
     0 max(16px, env(safe-area-inset-left))
     0 max(16px, env(safe-area-inset-right));
+  }
+}
+
+
+
+@mixin elevation($z-value, $inset:null) {
+  @if type-of($z-value) != number or not unitless($z-value) {
+    @error "$z-value must be a unitless number";
+  }
+
+  @if $z-value < 0 or $z-value > 24 {
+    @error "$z-value must be between 0 and 24";
+  }
+
+  @if $inset{
+    box-shadow:
+    inset #{map-get(variables-elevation.$umbra, $z-value)} variables-elevation.$umbra-color,
+    inset #{map-get(variables-elevation.$penumbra, $z-value)} variables-elevation.$penumbra-color,
+    inset #{map-get(variables-elevation.$ambient, $z-value)} variables-elevation.$ambient-color;
+  } @else {
+    box-shadow:
+    #{map-get(variables-elevation.$umbra, $z-value)} variables-elevation.$umbra-color,
+    #{map-get(variables-elevation.$penumbra, $z-value)} variables-elevation.$penumbra-color,
+    #{map-get(variables-elevation.$ambient, $z-value)} variables-elevation.$ambient-color;
   }
 }

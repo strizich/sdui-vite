@@ -1,0 +1,128 @@
+@import '../scss/mixins';
+@import '../scss/functions';
+@import '../scss/variables';
+
+@mixin makeButton($state, $outline: false) {
+  .sd--button {
+    &__#{$state} {
+      // --bg: #cccccc;
+      // --bg-hover: #000000;
+      // --bg-active: var(--#{$state}-highlight);
+      // --bg-focus: transparent;
+      // --bg-focus-ring: #state;
+
+      // --text: var(--text);
+      // --text-hover: var(--text-highlight);
+      // --text-focus: var(--text-highlight);
+      // --text-active: inherit;
+      // --border: none;
+      // --border-focus: none;
+      // --border-radius: var(--btn-border-radius);
+
+      @content;
+
+      box-shadow: var(--btn-elevation-2);
+      color: var(--text);
+      background-color: var(--bg);
+      border-radius: var(--btn-border-radius);
+      transition: all 0.13s ease-out;
+      position: relative;
+
+      &.is--outline {
+        &.is--pill,
+        &.is--rounded {
+          &:after {
+            border-radius: 30px;
+          }
+        }
+        &:after {
+          content: "";
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          border: var(--border);
+          border-radius: var(--btn-border-radius);
+        }
+
+        &.is--disabled {
+          border: 1px solid var(--disabled);
+        }
+      }
+
+      @if $outline {
+        &.is--pill,
+        &.is--rounded {
+          &:after {
+            border-radius: 30px;
+          }
+        }
+        &:after {
+          content: "";
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          border: var(--border);
+          border-radius: var(--border-radius);
+        }
+
+        &.is--disabled {
+          border: 1px solid var(--disabled);
+        }
+      }
+
+      &:hover {
+        @if $use-button-elevation {
+          box-shadow: var(--btn-elevation-4);
+        }
+        color: var(--text-hover);
+        background-color: var(--bg-hover);
+        svg {
+          fill: var(--text-hover);
+        }
+      }
+
+      &.is--disabled {
+        background-color: var(--disabled-background);
+        color: var(--disabled);
+        box-shadow: var(--btn-elevation-0)
+      }
+
+      &.is--flat {
+        background: none;
+        border: none;
+        outline: none;
+        @include flatten-theme($state);
+    
+        &.is--disabled {
+          @include flatten-theme(disabled);
+        }
+      }
+    
+      &.is--focused {
+        border: none;
+        box-shadow: 0 0 0 4px var(--bg-focus-ring);
+        transition: box-shadow 0.13s ease-out;
+        z-index: 11;
+      }
+
+      &:active,
+      &.is--active,
+      &.is--exact-active {
+        box-shadow: var(--btn-elevation-0);
+        color: var(--text-active);
+        background-color: var(--bg-active);
+        transition: all 0.13s ease-out;
+      }
+
+      svg {
+        fill: var(--text);
+      }
+    }
+  }
+}

@@ -18,6 +18,14 @@ $secondary-dark: $secondary !default;
 $secondary-dark-highlight: $secondary-highlight !default;
 $secondary-dark-accent: $secondary-accent !default;
 
+$default: #007bff !default;
+$default-highlight: mix(#fff, $default, 25%) !default;
+$default-accent: mix(#fff, $default, 25%) !default;
+
+$default-dark: $default !default;
+$default-dark-highlight: $default-highlight !default;
+$default-dark-accent: $default-accent !default;
+
 $tertiary: #6c757d !default;
 $tertiary-highlight: mix(#fff, $tertiary, 25%) !default;
 $tertiary-accent: mix(#000, $tertiary, 25%) !default;
@@ -70,6 +78,7 @@ $sd-color-global: (
   dark: (
     primary: color-map($primary-dark, $primary-dark-highlight, $primary-dark-accent),
     secondary: color-map($secondary-dark, $secondary-dark-highlight, $secondary-dark-accent),
+    default: color-map($default-dark, $default-dark-highlight, $default-dark-accent),
     tertiary: color-map($tertiary-dark, $tertiary-dark-highlight, $tertiary-dark-accent),
     quaternary: color-map($quaternary-dark, $quaternary-dark-highlight, $quaternary-dark-accent),
     success: color-map($success-dark, $success-dark-highlight, $success-dark-accent),
@@ -81,6 +90,7 @@ $sd-color-global: (
   light: (
     primary: color-map($primary, $primary-highlight, $primary-accent),
     secondary: color-map($secondary, $secondary-highlight, $secondary-accent),
+    default: color-map($default-dark, $default-dark-highlight, $default-dark-accent),
     tertiary: color-map($tertiary, $tertiary-highlight, $tertiary-accent),
     quaternary: color-map($quaternary, $quaternary-highlight, $quaternary-accent),
     success: color-map($success, $success-highlight, $success-accent),
@@ -147,3 +157,7 @@ $sd-color-schemes: (
     skeleton: #{90deg, rgba(#f9f9f9, 0) 0, rgba(#f9f9f9, 0.1) 20%, rgba(#f9f9f9, 0.15) 60%, rgba(#f9f9f9, 0)}
   )
 );
+
+// Global Options
+$use-button-elevation: true !default;
+$use-field-elevation: true !default;

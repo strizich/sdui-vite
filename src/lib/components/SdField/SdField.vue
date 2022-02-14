@@ -30,6 +30,7 @@
         :color="iconEndColor"
         :name="iconEnd"
       />
+      <slot name="addon-end" />
     </div>
     <slot name="footer" />
     <sd-error :message="handleValidation" />
@@ -209,7 +210,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-  @import "../SdElevation/mixins";
+  @import '../../scss/variables';
   .sd--field{
     padding-bottom: 24px;
     position: relative;
@@ -218,7 +219,9 @@ export default defineComponent({
       &--focused {
         .sd--field__control{
           border-color: var(--primary-highlight);
-          @include elevation(1);
+          @if $use-field-elevation {
+            box-shadow: var(--btn-elevation-1)
+          }
         }
       }
     }
@@ -236,14 +239,16 @@ export default defineComponent({
       border: 1px solid var(--divider);
       background: var(--background-highlight);
       border-radius: 3px;
-      transition: all .3s ease-in-out;
+      transition: background-color .13s ease-in-out,  border .3s ease-in-out,  box-shadow .3s ease-in-out, ;
       font-size: 16px;
       margin-bottom: 4px;
       width: 100%;
       display:flex;
       flex-wrap: wrap;
       align-items:center;
-      @include elevation(2);
+      @if $use-field-elevation {
+        box-shadow: var(--btn-elevation-2);
+      }
       &:disabled, &.is--disabled {
         opacity: .35;
         background-color: var(--background-accent);
