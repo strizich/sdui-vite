@@ -8,8 +8,10 @@
         </sd-tooltip>
         okay
       </sd-button>
-      <sd-button flat>
-        okay
+      <sd-button 
+        theme="default"
+      >
+        okay1
       </sd-button>
       <sd-button theme="light">
         okayy

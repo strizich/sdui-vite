@@ -7,13 +7,6 @@
     >
       <sd-label :inline="inlineLabel">
         <span>{{ title }}</span>
-        <span v-if="tip">
-          <sd-icon
-            name="info"
-            size="xs"
-          />
-          <sd-tooltip :placement="tipPlacement">{{ tip }}</sd-tooltip>
-        </span>
       </sd-label>
     </div>
     <div :class="['sd--fieldset__content', childClasses]">
@@ -24,12 +17,10 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
-import SdTooltip from '../SdTooltip'
-import SdIcon from '../SdIcon'
 import SdLabel from './SdLabel.vue'
 export default defineComponent({
   name: 'SdFieldset',
-  components: { SdTooltip, SdIcon, SdLabel },
+  components: { SdLabel },
   props: {
     title: {
       type: String,

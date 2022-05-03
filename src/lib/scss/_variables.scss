@@ -1,6 +1,14 @@
 @use 'sass:map';
 @import './functions';
-$sd-themes: primary, secondary, tertiary, quaternary, danger, success, warning, dark, light;
+$sd-themes: primary, secondary, default, tertiary, quaternary, danger, success, warning, dark, light;
+
+$dark: #2f2b31 !default;
+$dark-highlight: mix(#fff, $dark, 25%) !default;
+$dark-accent: mix(#000, $dark, 15%) !default;
+
+$light: #f6f6f6 !default;
+$light-highlight: mix(#fff, $light, 25%) !default;
+$light-accent: mix(#000, $light, 15%) !default;
 
 $primary: #8F00F8 !default;
 $primary-highlight: mix(#fff, $primary, 25%) !default;
@@ -12,19 +20,19 @@ $primary-dark-accent: $primary-accent !default;
 
 $secondary: #007bff !default;
 $secondary-highlight: mix(#fff, $secondary, 25%) !default;
-$secondary-accent: mix(#fff, $secondary, 25%) !default;
+$secondary-accent: mix(#000, $secondary, 25%) !default;
 
 $secondary-dark: $secondary !default;
 $secondary-dark-highlight: $secondary-highlight !default;
 $secondary-dark-accent: $secondary-accent !default;
 
-$default: #007bff !default;
-$default-highlight: mix(#fff, $default, 25%) !default;
-$default-accent: mix(#fff, $default, 25%) !default;
+$default: $light !default;
+$default-highlight: $light-highlight!default;
+$default-accent: $light-accent !default;
 
-$default-dark: $default !default;
-$default-dark-highlight: $default-highlight !default;
-$default-dark-accent: $default-accent !default;
+$default-dark: $dark !default;
+$default-dark-highlight: $dark-highlight !default;
+$default-dark-accent: $dark-accent !default;
 
 $tertiary: #6c757d !default;
 $tertiary-highlight: mix(#fff, $tertiary, 25%) !default;
@@ -66,14 +74,6 @@ $warning-dark: $warning !default;
 $warning-dark-highlight: $warning-highlight !default;
 $warning-dark-accent: $warning-accent !default;
 
-$dark: #2f2b31 !default;
-$dark-highlight: mix(#fff, $dark, 25%) !default;
-$dark-accent: mix(#000, $dark, 15%) !default;
-
-$light: #f6f6f6 !default;
-$light-highlight: mix(#fff, $light, 25%) !default;
-$light-accent: mix(#000, $light, 15%) !default;
-
 $sd-color-global: (
   dark: (
     primary: color-map($primary-dark, $primary-dark-highlight, $primary-dark-accent),
@@ -90,7 +90,7 @@ $sd-color-global: (
   light: (
     primary: color-map($primary, $primary-highlight, $primary-accent),
     secondary: color-map($secondary, $secondary-highlight, $secondary-accent),
-    default: color-map($default-dark, $default-dark-highlight, $default-dark-accent),
+    default: color-map($default, $default-highlight, $default-accent),
     tertiary: color-map($tertiary, $tertiary-highlight, $tertiary-accent),
     quaternary: color-map($quaternary, $quaternary-highlight, $quaternary-accent),
     success: color-map($success, $success-highlight, $success-accent),
