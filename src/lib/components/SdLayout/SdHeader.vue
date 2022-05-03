@@ -1,7 +1,9 @@
 <template>
-  <header class="sd--header">
+  <header :class="['sd--header', headerClasses]">
     <div class="sd--header__container">
       <sd-hamburger
+        :theme="theme"
+        :class="[triggerClasses]"
         :active="asideOpen"
         @update:active="handleMenu"
       />
@@ -21,7 +23,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue'
+import { defineComponent, reactive, computed} from 'vue'
 import useWindowWidth from '../../hooks/useWindowWidth'
 import SdHamburger from '../SdButton/SdHamburger.vue'
 
@@ -30,7 +32,18 @@ export default defineComponent({
   emits: ['toggle'],
   components: { SdHamburger },
   props: {
-    asideOpen: Boolean
+    asideOpen: {
+      type: Boolean,
+      default: false
+    },
+    theme: {
+      type: String,
+      default: 'auto'
+    },
+    sidebarPosition: {
+      type: String,
+      default: 'left'
+    }
   },
   setup (props, { emit }) {
     const { smallDevice } = useWindowWidth()
@@ -63,19 +76,42 @@ export default defineComponent({
       emit('toggle', e)
     }
 
+    const triggerClasses = computed(() => {
+      return {
+        'sd--header__trigger': true,
+        [`is--${props.sidebarPosition}`]: !!props.sidebarPosition,
+      }
+    })
+    const headerClasses = computed(() => {
+      return {
+        [`sd--header--${props.theme}`]: !!props.theme,
+      }
+    })
+
     updateWindowWidth()
     getStoredMenuState()
 
-    return { handleMenu }
+    return { handleMenu, triggerClasses, headerClasses }
   }
 })
 </script>
 
 <style lang="scss">
 .sd--header{
+  &--light {
+    background-color: var(--background-light);
+    color: var(--text-dark);
+  }
+  &--dark {
+    background-color: var(--background-dark);
+    color: var(--text-light);
+  }
+  &--auto {
+    background-color: var(--background-highlight);
+    color: var(--text);
+  }
   &__container{
     display: flex;
-    background-color: var(--background-highlight);
   }
   &__content{
     width: 100%;
@@ -98,6 +134,13 @@ export default defineComponent({
   &__subheader{
     width: 100%;
   }
+  &__trigger {
+    &.is--left{
+      order: 0;
+    }
+    &.is--right{
+      order: 4;
+    }
+  }
 }
-
 </style>

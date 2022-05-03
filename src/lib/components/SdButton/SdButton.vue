@@ -253,7 +253,7 @@ $states: ('primary', 'secondary', 'default', 'warning', 'danger', 'success', 'li
   border: none;
   border-radius: var(--btn-border-radius);
   font-weight: 500;
-  letter-spacing: 0.5px;
+  letter-spacing: var(--btn-letter-spacing);
   display: inline-flex;
   align-self: center;
   align-items: center;

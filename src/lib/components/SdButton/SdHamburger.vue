@@ -32,6 +32,10 @@ export default defineComponent({
       default: () => 'sd--hamburger--' + sdUuid()
     },
     active: Boolean,
+    theme: {
+      type: String,
+      default: 'auto'
+    },
     animated: {
       type: Boolean,
       default: true
@@ -62,7 +66,8 @@ export default defineComponent({
     })
     const activeClass = computed(() => {
       return {
-        'is--active': props.active
+        'is--active': props.active,
+        [`is--${props.theme}`]: !!props.theme
       }
     })
 
@@ -156,10 +161,24 @@ export default defineComponent({
   justify-content: space-between;
   flex-direction: column;
   position:relative;
+  &.is--dark {
+    .sd--hamburger__bar {
+      background-color: var(--background-light);
+    }
+  }
+  &.is--light {
+    .sd--hamburger__bar {
+      background-color: var(--background-dark);
+    }
+  }
+  &.is--auto {
+    .sd--hamburger__bar {
+      background-color: var(--background-inverse);
+    }
+  }
   &__bar{
     width: 24px;
     height: 2px;
-    background-color: var(--background-inverse);
     display:block;
     text-align: center;
     font-size: 11px;

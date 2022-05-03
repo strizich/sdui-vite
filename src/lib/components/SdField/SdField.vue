@@ -44,7 +44,6 @@ import SdLabel from './SdLabel.vue'
 import SdError from './SdError.vue'
 import SdIcon from '../SdIcon'
 
-
 interface ModelModifiers {
   number: boolean | Function;
 }
@@ -246,6 +245,9 @@ export default defineComponent({
       display:flex;
       flex-wrap: wrap;
       align-items:center;
+      & > .sd--button {
+        margin-right: 4px;
+      }
       @if $use-field-elevation {
         box-shadow: var(--btn-elevation-2);
       }

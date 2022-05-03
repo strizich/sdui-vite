@@ -43,12 +43,13 @@
       }
     }
   } @else {
-    @include elevation(0);
+    box-shadow: var(--elevation-0);
+
     @include color-scheme(dark) {
-      color: var(--#{$theme}-highlight);
+      color: var(--#{$theme});
       background-color: none;
       svg {
-        fill: var(--#{$theme}-highlight);
+        fill: var(--#{$theme});
       }
       &:hover {
         background-color: var(--#{$theme});

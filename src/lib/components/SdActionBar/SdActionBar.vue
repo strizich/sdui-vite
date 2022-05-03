@@ -41,6 +41,7 @@ export default defineComponent({
   @use '../../scss/breakpoints';
 
   .sd--action-bar {
+    --bg-color: var(--background-highlight);
     margin-bottom:16px;
     &__title {
       margin-bottom: 8px;
@@ -50,7 +51,7 @@ export default defineComponent({
       display: flex;
       justify-content: space-between;
       padding: 16px;
-      background-color: var(--background-accent);
+      background-color: var(--bg-color);
       @include breakpoints.breakpoint-down('sm'){
         flex-direction: column;
       }

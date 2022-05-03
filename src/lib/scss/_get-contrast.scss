@@ -275,9 +275,9 @@ $sd-linear-channel-values:
 
 @function sd-pick-contrast($color) {
   // $lightColor: ;
-  $lightContrast: sd-calculate-contrast($color, sd-color(dark, text));
+  $lightContrast: sd-calculate-contrast($color, #fff);
   // $darkColor: ;
-  $darkContrast: sd-calculate-contrast($color, sd-color(light, text));
+  $darkContrast: sd-calculate-contrast($color, #000);
 
   @if ($lightContrast > $darkContrast) {
     @return "dark";

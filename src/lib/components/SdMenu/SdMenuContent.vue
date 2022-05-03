@@ -8,7 +8,7 @@
       <div
         :id="id"
         ref="instanceRef"
-        class="sd--menu__content"
+        class="sd--menu"
         v-if="shouldRender"
         :style="computedStyles"
       >
@@ -90,14 +90,6 @@ import SdFocusTrap from '../SdFocusTrap/SdFocusTrap.vue';
     const state = reactive({
       parentWidth: 0,
     }) 
-    watchEffect(() => {
-      if (activate.value && instanceRef.value instanceof HTMLElement) {
-          createClickObserver()
-          handleWindowResize()
-          createKeyboardObserver()
-          createResizeObserver()
-      }
-    }, { flush: 'post' })
 
     const computedStyles = computed(() => {
       if (props.full) {
@@ -160,6 +152,15 @@ import SdFocusTrap from '../SdFocusTrap/SdFocusTrap.vue';
       }
     }
 
+    watchEffect(() => {
+      if (activate.value && instanceRef.value instanceof HTMLElement) {
+          createClickObserver()
+          handleWindowResize()
+          createKeyboardObserver()
+          createResizeObserver()
+      }
+    }, { flush: 'post' })
+
     return {
       shouldRender,
       targetRef,
@@ -176,7 +177,6 @@ import SdFocusTrap from '../SdFocusTrap/SdFocusTrap.vue';
   @import '../SdElevation/mixins';
   @import '../../scss/variables';
   .sd--menu{
-    &__content{
       left:0;
       min-height: 24px;
       padding: 8px;
@@ -191,7 +191,6 @@ import SdFocusTrap from '../SdFocusTrap/SdFocusTrap.vue';
       font-weight: 500;
       min-width: 40px;
       @include elevation(6);
-    }
   }
 .menu-enter-active,
 .menu-leave-active {

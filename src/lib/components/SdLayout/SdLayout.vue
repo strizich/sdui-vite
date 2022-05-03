@@ -45,6 +45,10 @@ export default defineComponent({
       type: String,
       default: 'auto'
     },
+    theme: {
+      type: String,
+      default: 'auto'
+    },
     sidebar: Boolean,
     floating: Boolean,
     overlay: {
@@ -77,6 +81,7 @@ export default defineComponent({
     const sidebarClasses = computed(() => {
       return {
         [`sd--layout__sidebar--${props.position}`]: !!props.position,
+        [`sd--layout__sidebar--${props.theme}`]: !!props.theme,
         'is--open': props.sidebar,
         'is--floating': props.floating
       }
@@ -165,7 +170,6 @@ export default defineComponent({
       transition: opacity .2s ease-in-out, left .2s ease-in-out, right .2s ease-in-out;
       max-width: $sidebar-width;
       width: 100%;
-      background: var(--background-highlight);
       align-self: stretch;
       position:fixed;
       top: 50px;
@@ -173,6 +177,18 @@ export default defineComponent({
       opacity: 1;
       z-index:1000;
       will-change: opacity, left;
+      &--dark{
+        background-color: var(--background-dark);
+        color: var(--text-light);
+      }
+      &--light {
+        background: var(--background-light);
+        color: var(--text-dark);
+      }
+      &--auto {
+        background: var(--background-highlight);
+        color: var(--text);
+      }
       &--left{
         left: -$sidebar-width;
         &.is--open {

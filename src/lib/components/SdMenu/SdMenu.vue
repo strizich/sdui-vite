@@ -1,7 +1,7 @@
 <template>
   <div
     :id="id"
-    class="sd--menu"
+    class="sd--menu__wrapper"
     ref="menuRef"
   > 
     <slot />
@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { provide, ref, watch, defineComponent, onUnmounted, watchPostEffect } from 'vue';
+import { provide, computed, ref, watch, defineComponent, onUnmounted, watchPostEffect } from 'vue';
 import sdUuid from '../../core/utilities/SdUuid';
 export default defineComponent ({
   name: 'SdMenu',
@@ -21,6 +21,10 @@ export default defineComponent ({
     keyboard: {
       type: Boolean,
       default: true
+    },
+    theme: {
+      type: String,
+      default: 'dark'
     },
     id: {
       type: String,
@@ -50,6 +54,12 @@ export default defineComponent ({
       activate.value = !activate.value
     }
 
+    const themeClass = computed(() => {
+      return {
+        [`sd-menu__${props.theme}`]: !!props.theme
+      }
+    })
+
     const handleKeypress = (e) => {
       if (props.keyboard && (e.key === 'Enter' || e.code === 'Space')) {
         e.preventDefault()
@@ -76,18 +86,20 @@ export default defineComponent ({
     provide('menuEl', menuRef)
     provide('triggerEl', triggerEl)
     return {
-      menuRef
+      menuRef,
+      themeClass
     }
   }
 });
 </script>
 
 <style lang="scss">
+
 .sd--menu{
-  position: relative; 
   transition: opacity .5s;
   display:inline-block;
   margin-right: 8px;
+
   &:last-child:not(:only-child){
     margin-right: 0;
   }

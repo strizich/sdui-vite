@@ -55,6 +55,7 @@ export default defineComponent({
         'is--focused': state.hasFocus
       }
     })
+
     const baseClasses = computed(() => {
       return {
         'is--block': props.block

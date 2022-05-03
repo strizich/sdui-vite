@@ -30,6 +30,14 @@ export default defineComponent({
     icon: {
       type: String,
       default: ''
+    },
+    dark: {
+      type: Boolean,
+      default: false
+    },
+    light: {
+      type: Boolean,
+      default: false
     }
   },
   setup (props) {
@@ -51,15 +59,34 @@ export default defineComponent({
 <style lang="scss">
   @import '../../scss/mixins';
   @import '../../scss/breakpoints';
-
+  .sd--layout__sidebar {
+    &--dark{
+    .sd--nav__item {
+        --text: var(--text-light);
+        --background: var(--background-dark);
+        --background-highlight: var(--background-dark-highlight);
+        --background-accent: var(--background-dark-accent);
+      }
+    }
+    &--light{
+      .sd--nav__item {
+        --text: var(--text-dark);
+      }
+    }
+    &--auto{
+      .sd--nav__item {
+        color: var(--text);
+      }
+    }
+  }
   .sd--nav{
     &__item {
-    color: var(--text);
     font-weight: 400;
     letter-spacing: 1.5;
     transition: box-shadow .23s ease-in-out, background-color .23s ease-in-out;
     position: relative;
     font-size: 14px;
+    color: var(--text);
     &:focus{
       background-color: var(--background);
       outline:none;
@@ -83,7 +110,7 @@ export default defineComponent({
         opacity: 0;
       }
       &:hover{
-        background-color: rgba(0,0,0, .1);
+        background-color: var(--background-highlight);
       }
       &.is--active, &.is--exact-active {
         color: var(--text);

@@ -18,20 +18,27 @@
 
   --btn-casing: inherit;
   --btn-border-radius: 4px;
+
   --btn-padding-xs: var(--spacing-1);
   --btn-font-size-xs: #{rem(11)};
   --btn-height-xs: 20px;
+
   --btn-padding-sm: var(--spacing-1) var(--spacing-2);
   --btn-font-size-sm: #{rem(14)};
   --btn-height-sm: 26px;
+
   --btn-padding-md: var(--spacing-2) var(--spacing-3);
   --btn-font-size-md: #{rem(16)};
   --btn-height-md: 32px;
+
   --btn-padding-lg: 16px 16px;
   --btn-font-size-lg: #{rem(18)};
   --btn-height-lg: 50px;
+
   --btn-padding-xl: 16px 32px;
   --btn-font-size-xl: #{rem(24)};
   --btn-height-xl: 64px;
+
   --btn-margin: 0 8px 0 0;
+  --btn-letter-spacing: 0.5;
 }
