@@ -67,10 +67,7 @@ declare module '@strizich/sdui' {
   const SdWidgetFooter: ReturnType<typeof defineComponent>
   const SdWidgetMetric: ReturnType<typeof defineComponent>
 
-
-
   const usePopper: ($el: any) => ComputedRef<boolean>
-
 
   // Installation
   const useKeyboardFocus: ($el: any) => ComputedRef<boolean>
