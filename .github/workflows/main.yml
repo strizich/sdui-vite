@@ -13,6 +13,7 @@ jobs:
       - name: Setup PNPM
         uses: pnpm/action-setup@v2.2.1
         with:
+          version: packageManager
           run_install: true
       - run: pnpm run build
       - uses: JS-DevTools/npm-publish@v1
