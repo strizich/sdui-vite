@@ -10,6 +10,7 @@
       </sd-button>
       <sd-button 
         theme="default"
+        flat
       >
         okay1
       </sd-button>

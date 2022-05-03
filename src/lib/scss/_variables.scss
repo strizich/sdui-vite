@@ -26,13 +26,13 @@ $secondary-dark: $secondary !default;
 $secondary-dark-highlight: $secondary-highlight !default;
 $secondary-dark-accent: $secondary-accent !default;
 
-$default: $light !default;
-$default-highlight: $light-highlight!default;
-$default-accent: $light-accent !default;
+$default-dark: $light !default;
+$default-dark-highlight: $light-highlight!default;
+$default-dark-accent: $light-accent !default;
 
-$default-dark: $dark !default;
-$default-dark-highlight: $dark-highlight !default;
-$default-dark-accent: $dark-accent !default;
+$default: $dark !default;
+$default-highlight: $dark-highlight !default;
+$default-accent: $dark-accent !default;
 
 $tertiary: #6c757d !default;
 $tertiary-highlight: mix(#fff, $tertiary, 25%) !default;
