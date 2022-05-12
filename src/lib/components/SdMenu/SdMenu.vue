@@ -3,12 +3,12 @@
     :id="id"
     class="sd--menu__wrapper"
     ref="menuRef"
-  > 
+  >
     <slot />
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { provide, computed, ref, watch, defineComponent, onUnmounted, watchPostEffect } from 'vue';
 import sdUuid from '../../core/utilities/SdUuid';
 export default defineComponent ({
@@ -99,7 +99,9 @@ export default defineComponent ({
   transition: opacity .5s;
   display:inline-block;
   margin-right: 8px;
-
+  &__wrapper {
+    display:inline-flex;
+  }
   &:last-child:not(:only-child){
     margin-right: 0;
   }

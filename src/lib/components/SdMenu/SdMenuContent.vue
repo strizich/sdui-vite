@@ -9,8 +9,8 @@
         :id="id"
         ref="instanceRef"
         class="sd--menu"
-        v-if="shouldRender"
         :style="computedStyles"
+        v-if="shouldRender"
       >
         <sd-focus-trap
           :target="instanceRef"
@@ -94,10 +94,10 @@ import SdFocusTrap from '../SdFocusTrap/SdFocusTrap.vue';
     const computedStyles = computed(() => {
       if (props.full) {
         return {
-          minWidth: `${state.parentWidth}px`
+          'min-width': `${state.parentWidth}px`
         }
       }
-      return false
+      return {}
     })
     const isTrigger = ({target}) => {
       return SdContains(triggerEl.value, target)
