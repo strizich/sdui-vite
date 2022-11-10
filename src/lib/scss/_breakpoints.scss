@@ -26,7 +26,7 @@ $max-width: (
   // Throw error if the value is not mapped.
   @else {
     @warn "`#{$breakpoint-size}` has not been defined."
-    +"Available breakpoints are: #{map-keys($max-width)}.";
+    + "Available breakpoints are: #{map-keys($max-width)}.";
   }
 }
 
@@ -40,7 +40,7 @@ $max-width: (
   // Throw error if the value is not mapped.
   @else {
     @warn "`#{$breakpoint-size}` has not been defined."
-    +"Available breakpoints are: #{map-keys($min-width)}.";
+    + "Available breakpoints are: #{map-keys($min-width)}.";
   }
 }
 
