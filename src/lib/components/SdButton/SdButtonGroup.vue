@@ -94,7 +94,7 @@ export default {
         border-radius: 3px;
       }
       &:not(:last-child){
-        border-bottom: 1px solid var(--divider);
+        border-bottom: 1px solid var(--sd-divider);
       }
       &:first-child:not(:only-child){
         border-radius: 3px 3px 0 0;

@@ -183,19 +183,19 @@ $checkmarkSvgDarkUri: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     outline:none;
   }
   &.is--focused{
-    color: var(--primary-highlight);
+    color: var(--sd-primary-highlight);
     input:before{
-      border-color: var(--primary-highlight);
+      border-color: var(--sd-primary-highlight);
     }
   }
 
   &.is--disabled{
       &:after{
-        background-color: var(--disabled);
+        background-color: var(--sd-disabled);
       }
   }
   &:hover{
-    background-color: var(--background-highlight);
+    background-color: var(--sd-background-highlight);
   }
 
    @each $state in $sd-themes{
@@ -203,14 +203,14 @@ $checkmarkSvgDarkUri: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     // FUTURE: Normalize unchecked state. Show color for checked state.
     // $contrast: sd-pick-contrast($base);
     &__#{$state} {
-      background-color: var(--divider);
-      border-top: 1px solid var(--background-highlight);
+      background-color: var(--sd-divider);
+      border-top: 1px solid var(--sd-background-highlight);
       border-radius: 3px;
       &:after{
-        background-color: var(--#{$state});
+        background-color: var(--sd-#{$state});
       }
       &:before{
-        background-color: var(--#{$state}-accent);
+        background-color: var(--sd-#{$state}-accent);
       }
     }
   }
@@ -219,10 +219,10 @@ $checkmarkSvgDarkUri: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     height: 12px;
     position:relative;
     &.is--disabled{
-        background-color: var(--background-highlight);
+        background-color: var(--sd-background-highlight);
       &:after{
         @extend %knob;
-        background-color:var(--disabled);
+        background-color:var(--sd-disabled);
       }
     }
     &:after{

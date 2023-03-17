@@ -35,7 +35,7 @@ export default defineComponent({
   line-height: 1.2;
   display:flex;
   align-items: center;
-  color: var(--text-accent);
+  color: var(--sd-text-accent);
   position: relative;
   justify-content: space-between;
 
@@ -49,7 +49,7 @@ export default defineComponent({
     line-height: 1;
     height: 12px;
     margin-right: 0;
-    color: var(--danger);
+    color: var(--sd-danger);
     align-self: center;
   }
 

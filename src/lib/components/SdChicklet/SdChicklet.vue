@@ -92,14 +92,14 @@ export default defineComponent({
   @each $state in $sd-themes {
     &__#{$state} {
       @include elevation(2);
-      color: var(--#{$state}-text);
-      background-color: var(--#{$state});
+      color: var(--sd-#{$state}-text);
+      background-color: var(--sd-#{$state});
       transition: all .13s ease-out;
       border-radius: 2px;
       &.is--dismissable{
         &:hover{
-          background-color: var(--#{$state}-accent);
-          color: var(--#{$state}-accent-text);
+          background-color: var(--sd-#{$state}-accent);
+          color: var(--sd-#{$state}-accent-text);
         }
       }
     }

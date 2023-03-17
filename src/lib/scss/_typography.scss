@@ -32,10 +32,10 @@ p{
 
 %schemes {
   &--light{
-    color:var(--text-light);
+    color:var(--sd-text-light);
   }
   &--dark{
-    color: var(--text-dark);
+    color: var(--sd-text-dark);
   }
 }
 
@@ -48,20 +48,20 @@ p{
     margin-top: 16px;
     padding-top: 0;
     font-weight: 700;
-    color: var(--text-accent);
+    color: var(--sd-text-accent);
     letter-spacing: .25px;
     @extend %schemes;
   }
   &__header{
     font-weight: 500;
-    color: var(--text);
+    color: var(--sd-text);
     font-size: rem(24);
     margin: 0;
     @extend %schemes;
   }
 
   &__caption{
-    color: var(--text-accent);
+    color: var(--sd-text-accent);
     font-size: rem(16);
     font-weight: 500;
     line-height: rem(16);
@@ -83,12 +83,12 @@ p{
     line-height: rem(42);
     font-weight: 300;
     letter-spacing: rem(1.2);
-    color: var(--text);
+    color: var(--sd-text);
     @extend %schemes;
   }
 
   &__footnote{
-    color: var(--text-accent);
+    color: var(--sd-text-accent);
     font-size: rem(12);
     line-height: rem(14);
     margin-bottom: 0;
@@ -101,7 +101,7 @@ p{
 
 .sd--divider{
   border:none;
-  box-shadow: 0 0 0 1px var(--divider);
+  box-shadow: 0 0 0 1px var(--sd-divider);
   margin-bottom: 16px;
   margin-top: 16px;
 }

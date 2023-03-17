@@ -251,69 +251,69 @@ $states: ('primary', 'secondary', 'default', 'warning', 'danger', 'success', 'li
   user-select: none;
   -webkit-user-select: none;
   border: none;
-  border-radius: var(--btn-border-radius);
+  border-radius: var(--sd-btn-border-radius);
   font-weight: 500;
-  letter-spacing: var(--btn-letter-spacing);
+  letter-spacing: var(--sd-btn-letter-spacing);
   display: inline-flex;
   align-self: center;
   align-items: center;
   padding: 0;
   vertical-align: middle;
-  margin: var(--btn-margin);
-  text-transform: var(--btn-casing);
+  margin: var(--sd-btn-margin);
+  text-transform: var(--sd-btn-casing);
   &:last-child {
     margin-right: 0;
   }
   &--xs {
-    font-size: var(--btn-font-size-xs);
-    min-height: var(--btn-height-xs);
+    font-size: var(--sd-btn-font-size-xs);
+    min-height: var(--sd-btn-height-xs);
     .sd--button__content {
-      padding: var(--btn-padding-xs);
-      width: var(--btn-height-xs);
+      padding: var(--sd-btn-padding-xs);
+      width: var(--sd-btn-height-xs);
     }
   }
 
   &--sm {
-    font-size: var(--btn-font-size-sm);
-    min-height: var(--btn-height-sm);
+    font-size: var(--sd-btn-font-size-sm);
+    min-height: var(--sd-btn-height-sm);
     .sd--button__content {
-      line-height: calc(var(--btn-padding-sm) * 2);
-      padding: var(--spacing-2);
+      line-height: calc(var(--sd-btn-padding-sm) * 2);
+      padding: var(--sd-spacing-2);
     }
   }
 
   &--md {
-    font-size: var(--btn-font-size-md);
-    min-height: var(--btn-height-md);
+    font-size: var(--sd-btn-font-size-md);
+    min-height: var(--sd-btn-height-md);
       .sd--button__content {
-        padding: var(--btn-padding-md);
+        padding: var(--sd-btn-padding-md);
       }
     &.is--icon-only {
-      min-width: var(--btn-height-md);
+      min-width: var(--sd-btn-height-md);
     }
   }
 
   &--lg {
-    font-size: var(--btn-font-size-lg);
-    min-height: var(--btn-height-lg);
+    font-size: var(--sd-btn-font-size-lg);
+    min-height: var(--sd-btn-height-lg);
 
     .sd--button__content {
       @extend %button-content;
-      padding: var(--btn-padding-lg);
+      padding: var(--sd-btn-padding-lg);
     }
     &.is--icon-only {
       .sd--icon {
-        min-width: var(--btn-height-lg);
+        min-width: var(--sd-btn-height-lg);
       }
     }
   }
 
   &--xl {
-    font-size: var(--btn-font-size-xl);
-    padding: var(--btn-padding-xl);
+    font-size: var(--sd-btn-font-size-xl);
+    padding: var(--sd-btn-padding-xl);
     .sd--button__content {
       @extend %button-content;
-      padding: var(--btn-padding-xl);
+      padding: var(--sd-btn-padding-xl);
     }
     &.is--icon-only {
       .sd--icon {
@@ -342,31 +342,31 @@ $states: ('primary', 'secondary', 'default', 'warning', 'danger', 'success', 'li
   @each $state in $sd-themes{
     &__#{$state} {
       @if $use-button-elevation {
-        box-shadow: var(--btn-elevation-2)
+        box-shadow: var(--sd-btn-elevation-2)
       }
-      color: var(--#{$state}-text);
-      background-color: var(--#{$state});
+      color: var(--sd-#{$state}-text);
+      background-color: var(--sd-#{$state});
       transition: all 0.13s ease-out;
-      border-radius: var(--btn-border-radius);
+      border-radius: var(--sd-btn-border-radius);
       svg {
-        fill: var(--#{$state}-text);
+        fill: var(--sd-#{$state}-text);
       }
 
       &:hover {
         @if $use-button-elevation {
-          box-shadow: var(--btn-elevation-4)
+          box-shadow: var(--sd-btn-elevation-4)
         }
-        color: var(--#{$state}-accent-text);
-        background-color: var(--#{$state}-accent);
+        color: var(--sd-#{$state}-accent-text);
+        background-color: var(--sd-#{$state}-accent);
         transition: all 0.13s ease-out;
         svg {
-          fill: var(--#{$state}-accent-text);
+          fill: var(--sd-#{$state}-accent-text);
         }
       }
 
       &.is--disabled {
-        background-color: var(--disabled-background);
-        color: var(--disabled);
+        background-color: var(--sd-disabled-background);
+        color: var(--sd-disabled);
         @include elevation(0);
       }
 
@@ -387,13 +387,13 @@ $states: ('primary', 'secondary', 'default', 'warning', 'danger', 'success', 'li
           left: 0;
           right: 0;
           bottom: 0;
-          border: 1px solid var(--#{$state});
-          border-radius: var(--btn-border-radius);
+          border: 1px solid var(--sd-#{$state});
+          border-radius: var(--sd-btn-border-radius);
         }
         @include flatten-theme($state);
 
         &.is--disabled {
-          border: 1px solid var(--disabled);
+          border: 1px solid var(--sd-disabled);
           @include flatten-theme(disabled);
         }
       }
@@ -410,7 +410,7 @@ $states: ('primary', 'secondary', 'default', 'warning', 'danger', 'success', 'li
       }
 
       &.is--focused {
-        box-shadow: 0 0 0 4px var(--#{$state}-highlight);
+        box-shadow: 0 0 0 4px var(--sd-#{$state}-highlight);
         transition: box-shadow 0.13s ease-out;
         z-index: 11;
       }
@@ -419,10 +419,10 @@ $states: ('primary', 'secondary', 'default', 'warning', 'danger', 'success', 'li
       &.is--active,
       &.is--exact-active {
         @if $use-button-elevation {
-          box-shadow: var(--btn-elevation-6)
+          box-shadow: var(--sd-btn-elevation-6)
         }
-        color: var(--#{$state}-highlight-text);
-        background-color: var(--#{$state}-highlight);
+        color: var(--sd-#{$state}-highlight-text);
+        background-color: var(--sd-#{$state}-highlight);
         transition: all 0.13s ease-out;
       }
     }
@@ -453,38 +453,38 @@ $states: ('primary', 'secondary', 'default', 'warning', 'danger', 'success', 'li
     }
     &.is {
       &--xs {
-        font-size: var(--btn-font-size-xs);
-        width: var(--btn-height-xs);
+        font-size: var(--sd-btn-font-size-xs);
+        width: var(--sd-btn-height-xs);
         &:last-child {
-          margin-left: calc(var(--spacing-1) * -1);
+          margin-left: calc(var(--sd-spacing-1) * -1);
         }
       }
       &--sm {
-        width: var(--btn-height-sm);
-        font-size: var(--btn-font-size-sm);
+        width: var(--sd-btn-height-sm);
+        font-size: var(--sd-btn-font-size-sm);
         &:last-child {
-          margin-left: calc(var(--spacing-2) * -1);
+          margin-left: calc(var(--sd-spacing-2) * -1);
         }
       }
       &--md {
-        font-size: var(--btn-font-size-md);
-        width: var(--btn-height-md);
+        font-size: var(--sd-btn-font-size-md);
+        width: var(--sd-btn-height-md);
         &:last-child {
-          margin-left: calc(var(--spacing-3) * -1);
+          margin-left: calc(var(--sd-spacing-3) * -1);
         }
       }
       &--lg {
-        font-size: var(--btn-font-size-lg);
-        width: var(--btn-height-lg);
+        font-size: var(--sd-btn-font-size-lg);
+        width: var(--sd-btn-height-lg);
         &:last-child {
-          margin-left: calc(var(--spacing-3) * -1);
+          margin-left: calc(var(--sd-spacing-3) * -1);
         }
       }
       &--xl {
-        font-size: var(--btn-font-size-xl);
-        width: var(--btn-height-xl);
+        font-size: var(--sd-btn-font-size-xl);
+        width: var(--sd-btn-height-xl);
         &:last-child {
-          margin-left: calc(var(--spacing-3) * -1);
+          margin-left: calc(var(--sd-spacing-3) * -1);
         }
       }
     }

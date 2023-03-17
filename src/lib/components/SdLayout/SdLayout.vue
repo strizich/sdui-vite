@@ -129,8 +129,8 @@ export default defineComponent({
     transition: background-color .6s 0s ease-in,
                 color .6s 0s ease-in
                 background-color .13s 0s ease-in;
-    background-color: var(--background);
-    color: var(--text);
+    background-color: var(--sd-background);
+    color: var(--sd-text);
   }
 
   .sd--layout {
@@ -178,16 +178,16 @@ export default defineComponent({
       z-index:1000;
       will-change: opacity, left;
       &--dark{
-        background-color: var(--background-dark);
-        color: var(--text-light);
+        background-color: var(--sd-background-dark);
+        color: var(--sd-text-light);
       }
       &--light {
-        background: var(--background-light);
-        color: var(--text-dark);
+        background: var(--sd-background-light);
+        color: var(--sd-text-dark);
       }
       &--auto {
-        background: var(--background-highlight);
-        color: var(--text);
+        background: var(--sd-background-highlight);
+        color: var(--sd-text);
       }
       &--left{
         left: -$sidebar-width;

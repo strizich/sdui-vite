@@ -36,8 +36,8 @@ export default {
       margin:0;
       // ...
       &.is--active{
-        box-shadow: inset 4px 0 0 var(--primary);
-        background-color: var(--background-highlight);
+        box-shadow: inset 4px 0 0 var(--sd-primary);
+        background-color: var(--sd-background-highlight);
       }
     }
   }

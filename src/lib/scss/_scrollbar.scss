@@ -5,15 +5,15 @@
 }
 
 ::-webkit-scrollbar-track{
-  background-color: var(--background-accent);
+  background-color: var(--sd-background-accent);
 }
 
 ::-webkit-scrollbar-thumb{
   border-radius: 30px;
-  background-color: var(--disabled);
+  background-color: var(--sd-disabled);
   transition: all .6s ease-in-out;
   &:hover{
-    background-color: var(--disabled-background);
+    background-color: var(--sd-disabled-background);
   }
 }
 

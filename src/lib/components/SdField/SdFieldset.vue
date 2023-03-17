@@ -108,7 +108,7 @@ export default defineComponent({
       width:100%;
     }
     .sd--switch:not(:last-child){
-      border-bottom: 1px solid var(--divider)
+      border-bottom: 1px solid var(--sd-divider)
     }
     .sd--button{
       margin: 0 4px;

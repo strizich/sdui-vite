@@ -62,20 +62,20 @@ export default defineComponent({
   .sd--layout__sidebar {
     &--dark{
     .sd--nav__item {
-        --text: var(--text-light);
-        --background: var(--background-dark);
-        --background-highlight: var(--background-dark-highlight);
-        --background-accent: var(--background-dark-accent);
+        --text: var(--sd-text-light);
+        --background: var(--sd-background-dark);
+        --background-highlight: var(--sd-background-dark-highlight);
+        --background-accent: var(--sd-background-dark-accent);
       }
     }
     &--light{
       .sd--nav__item {
-        --text: var(--text-dark);
+        --text: var(--sd-text-dark);
       }
     }
     &--auto{
       .sd--nav__item {
-        color: var(--text);
+        color: var(--sd-text);
       }
     }
   }
@@ -86,9 +86,9 @@ export default defineComponent({
     transition: box-shadow .23s ease-in-out, background-color .23s ease-in-out;
     position: relative;
     font-size: 14px;
-    color: var(--text);
+    color: var(--sd-text);
     &:focus{
-      background-color: var(--background);
+      background-color: var(--sd-background);
       outline:none;
     }
     @include breakpoint-down('sm') {
@@ -105,17 +105,17 @@ export default defineComponent({
         bottom: 0;
         left: 100%;
         right: 0;
-        background-color: var(--background);
+        background-color: var(--sd-background);
         z-index: -1;
         opacity: 0;
       }
       &:hover{
-        background-color: var(--background-highlight);
+        background-color: var(--sd-background-highlight);
       }
       &.is--active, &.is--exact-active {
-        color: var(--text);
-        box-shadow: inset 4px 0 0 var(--primary);
-        background-color: var(--background-accent);
+        color: var(--sd-text);
+        box-shadow: inset 4px 0 0 var(--sd-primary);
+        background-color: var(--sd-background-accent);
       }
       &.is--secondary{
         font-size: 12px;
@@ -124,7 +124,7 @@ export default defineComponent({
           font-size: 14px;
         }
         &.is--active, &.is--exact-active {
-          background-color: var(--background-accent);
+          background-color: var(--sd-background-accent);
         }
         &:hover{
           background-color: rgba(0,0,0, .1);

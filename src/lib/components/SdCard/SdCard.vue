@@ -42,7 +42,7 @@ export default defineComponent({
 @import '../SdElevation/mixins';
 
 .sd--card{
-  background-color: var(--background-highlight);
+  background-color: var(--sd-background-highlight);
   border-radius: 3px;
   display:flex;
   flex-direction: column;

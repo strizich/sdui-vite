@@ -140,13 +140,13 @@ export default defineComponent({
     width: 50px;
     margin-right: 0;
     // &.is--active{
-    //   background-color: var(--background-accent);
+    //   background-color: var(--sd-background-accent);
     // }
     &:focus{
       outline:none;
     }
     &.is--focused{
-      box-shadow: inset 0 0 0 4px var(--primary-accent);
+      box-shadow: inset 0 0 0 4px var(--sd-primary-accent);
     }
   }
   &__flat{
@@ -163,17 +163,17 @@ export default defineComponent({
   position:relative;
   &.is--dark {
     .sd--hamburger__bar {
-      background-color: var(--background-light);
+      background-color: var(--sd-background-light);
     }
   }
   &.is--light {
     .sd--hamburger__bar {
-      background-color: var(--background-dark);
+      background-color: var(--sd-background-dark);
     }
   }
   &.is--auto {
     .sd--hamburger__bar {
-      background-color: var(--background-inverse);
+      background-color: var(--sd-background-inverse);
     }
   }
   &__bar{

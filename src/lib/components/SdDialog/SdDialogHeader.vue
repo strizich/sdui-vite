@@ -46,10 +46,10 @@ export default defineComponent({
       justify-content: space-between;
       align-items: center;
       padding: 16px;
-      background-color: var(--background);
+      background-color: var(--sd-background);
       border-radius: 3px 3px 0 0;
       flex-shrink: 0;
-      border-bottom: 1px solid var(--divider);
+      border-bottom: 1px solid var(--sd-divider);
     }
     &__title {
       font-size: 20px;
@@ -60,7 +60,7 @@ export default defineComponent({
     }
     &__subtitle {
       font-size: 16px;
-      color: var(--text-highlight);
+      color: var(--sd-text-highlight);
       margin: 0;
       font-weight: 300;
     }

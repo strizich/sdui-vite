@@ -88,7 +88,7 @@ export default defineComponent({
   height:0;
   &:before{
     content:'';
-    box-shadow: inset 0 0 0 2px var(--divider);
+    box-shadow: inset 0 0 0 2px var(--sd-divider);
     width: 20px;
     height: 20px;
     display: block;
@@ -99,26 +99,26 @@ export default defineComponent({
     background-color: transparent;
     border-radius: 50%;
     transition: box-shadow .23s ease-in-out, background-color .23s ease-in-out;
-    background-color: var(--background);
+    background-color: var(--sd-background);
     z-index: 15;
   }
   &:checked{
     &:before{
-      box-shadow: inset 0 0 0 2px var(--primary),
-                  inset 0 0 0 4px var(--background);
-      background-color: var(--primary);
+      box-shadow: inset 0 0 0 2px var(--sd-primary),
+                  inset 0 0 0 4px var(--sd-background);
+      background-color: var(--sd-primary);
     }
   }
   &:focus{
     outline:none;
     &:before{
-      box-shadow: inset 0 0 0 2px var(--primary-highlight),
-                  inset 0 0 0 10px var(--background);
+      box-shadow: inset 0 0 0 2px var(--sd-primary-highlight),
+                  inset 0 0 0 10px var(--sd-background);
     }
     &:checked{
       &:before{
-        box-shadow: inset 0 0 0 2px var(--primary-accent),
-                    inset 0 0 0 4px var(--background);
+        box-shadow: inset 0 0 0 2px var(--sd-primary-accent),
+                    inset 0 0 0 4px var(--sd-background);
       }
     }
   }
@@ -126,14 +126,14 @@ export default defineComponent({
     outline:none;
     &:checked{
       &:before{
-        box-shadow: inset 0 0 0 2px var(--disabled),
-                    inset 0 0 0 4px var(--background);
-        background-color: var(--disabled);
+        box-shadow: inset 0 0 0 2px var(--sd-disabled),
+                    inset 0 0 0 4px var(--sd-background);
+        background-color: var(--sd-disabled);
       }
     }
     &:before{
-      box-shadow: inset 0 0 0 2px var(--disabled),
-                  inset 0 0 0 10px var(--background);
+      box-shadow: inset 0 0 0 2px var(--sd-disabled),
+                  inset 0 0 0 10px var(--sd-background);
     }
   }
 }
@@ -144,26 +144,26 @@ export default defineComponent({
     -webkit-user-select: none;
     user-select: none;
     &.is--focused, &:focus{
-      color: var(--primary-highlight);
+      color: var(--sd-primary-highlight);
     }
     &.is--disabled{
-      color: var(--disabled);
+      color: var(--sd-disabled);
     }
     &:hover{
       transition: background-color .15s ease-in-out;
-      background-color: var(--background-highlight);
+      background-color: var(--sd-background-highlight);
       cursor:pointer;
       outline:none;
       .sd--radio__input{
         &:checked{
           &:before{
-            box-shadow: inset 0 0 0 2px var(--primary-accent),
-                        inset 0 0 0 4px var(--background);
+            box-shadow: inset 0 0 0 2px var(--sd-primary-accent),
+                        inset 0 0 0 4px var(--sd-background);
           }
         }
         &:before{
-          box-shadow: inset 0 0 0 2px var(--primary-accent),
-                      inset 0 0 0 10px var(--background);
+          box-shadow: inset 0 0 0 2px var(--sd-primary-accent),
+                      inset 0 0 0 10px var(--sd-background);
         }
       }
     }

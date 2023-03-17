@@ -121,12 +121,12 @@ export default defineComponent({
     &__control{
     appearance: none;
     -webkit-appearance: none;
-    color: var(--text);
+    color: var(--sd-text);
     padding: 8px;
     display:block;
     outline: none;
-    border: 1px solid var(--divider);
-    background: var(--background-highlight);
+    border: 1px solid var(--sd-divider);
+    background: var(--sd-background-highlight);
     border-radius: 3px;
     transition: all .3s ease-in-out;
     font-size: 16px;
@@ -135,21 +135,21 @@ export default defineComponent({
     padding-right: 24px;
     display:block;
     @if $use-field-elevation {
-      box-shadow: var(--btn-elevation-2);
+      box-shadow: var(--sd-btn-elevation-2);
     }
       &:disabled {
-        background-color: var(--background-highlight);
-        color: var(--text-highlight);
+        background-color: var(--sd-background-highlight);
+        color: var(--sd-text-highlight);
       }
       &:focus{
         outline: none;
       }
       &:active {
-        background-color: var(--background-highlight);
-        border-color: var(--primary);
+        background-color: var(--sd-background-highlight);
+        border-color: var(--sd-primary);
       }
       &.is--error{
-        border-color: var(--danger);
+        border-color: var(--sd-danger);
       }
     }
   }

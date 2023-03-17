@@ -140,14 +140,14 @@ export default defineComponent({
       left: 4px;
       top: 50%;
       margin-top: -10px;
-      background-color: var(--background);
-      box-shadow: inset 0 0 0 30px var(--background);
+      background-color: var(--sd-background);
+      box-shadow: inset 0 0 0 30px var(--sd-background);
       display:block;
       transition: box-shadow .4s ease-in,
                   transform .2s ease-in,
                   background-color .4s ease-out,
                   border-color .2s ease-out;
-      border: 2px solid var(--divider);
+      border: 2px solid var(--sd-divider);
       border-radius: 2px;
     }
     &:focus{
@@ -156,7 +156,7 @@ export default defineComponent({
     }
     &:hover{
       &:before{
-        border-color: var(--primary-accent);
+        border-color: var(--sd-primary-accent);
       }
     }
     &.is--rotated {
@@ -167,10 +167,10 @@ export default defineComponent({
   }
   %checked{
     &:before{
-      box-shadow: inset 0 0 0 0 var(--background);
-      border-color: var(--primary);
+      box-shadow: inset 0 0 0 0 var(--sd-background);
+      border-color: var(--sd-primary);
       background: url($checkmarkSvgUri) no-repeat center 2px;
-      background-color: var(--primary);
+      background-color: var(--sd-primary);
       background-size: contain;
       transition: box-shadow .4s ease-out,
                   transform .2s ease-out,
@@ -184,9 +184,9 @@ export default defineComponent({
   }
   %indeterminate{
     &:before{
-      border:2px solid var(--background-accent);
-      background: var(--background-accent) no-repeat center center;
-      box-shadow: inset 0 0 0 0px var(--background-accent);
+      border:2px solid var(--sd-background-accent);
+      background: var(--sd-background-accent) no-repeat center center;
+      box-shadow: inset 0 0 0 0px var(--sd-background-accent);
       background-size: 8px;
     }
      &.is--rotated {
@@ -198,11 +198,11 @@ export default defineComponent({
   %disabled{
     opacity: .65;
     cursor: not-allowed;
-    color: var(--disabled);
+    color: var(--sd-disabled);
      &:before{
-      box-shadow: inset 0 0 0 0 var(--disabled);
-      border-color: var(--disabled);
-      background-color: var(--disabled);
+      box-shadow: inset 0 0 0 0 var(--sd-disabled);
+      border-color: var(--sd-disabled);
+      background-color: var(--sd-disabled);
     }
   }
 
@@ -225,7 +225,7 @@ export default defineComponent({
     &:hover{
       cursor: pointer;
       &:after{
-        background-color: var(--background-highlight);
+        background-color: var(--sd-background-highlight);
         content: '';
         position: absolute;
         top: 0;
@@ -240,9 +240,9 @@ export default defineComponent({
       @extend %disabled;
     }
     &.is--focused{
-      color: var(--primary-highlight);
+      color: var(--sd-primary-highlight);
       input:before{
-        border-color: var(--primary-highlight);
+        border-color: var(--sd-primary-highlight);
       }
     }
     &__label{

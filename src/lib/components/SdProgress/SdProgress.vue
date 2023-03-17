@@ -110,7 +110,7 @@ export default defineComponent({
       width: 100%;
       position: relative;
       height: 24px;
-      background-color: var(--background-accent);
+      background-color: var(--sd-background-accent);
       border-radius: 3px;
     }
     &__rail {
@@ -125,8 +125,8 @@ export default defineComponent({
       overflow: hidden;
     @each $state in $sd-themes {
         &--#{$state} {
-          background-color: var(--#{$state});
-          color: var(--#{$state}-text);
+          background-color: var(--sd-#{$state});
+          color: var(--sd-#{$state}-text);
           &.is--animated {
             &:after{
               animation: shimmer 10s infinite;

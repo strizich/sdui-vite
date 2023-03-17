@@ -260,7 +260,7 @@ export default defineComponent({
     text-transform: none;
     white-space: wrap;
     opacity: 1;
-    background-color: var(--background-accent);
+    background-color: var(--sd-background-accent);
     font-weight: 500;
     min-width: 40px;
     @include elevation(4);

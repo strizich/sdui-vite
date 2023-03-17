@@ -117,26 +117,26 @@ export default defineComponent({
     text-transform: none;
     white-space: wrap;
     opacity: 1;
-    background-color: var(--background-highlight);
-    color: var(--text);
+    background-color: var(--sd-background-highlight);
+    color: var(--sd-text);
     font-weight: 500;
     min-width: 40px;
     @include elevation(4);
     @each $key in $sd-themes{
       &.is--#{$key} {
-        background-color: var(--#{$key}-highlight);
-        color: var(--#{$key}-highlight-text);
+        background-color: var(--sd-#{$key}-highlight);
+        color: var(--sd-#{$key}-highlight-text);
       }
     }
   }
   &__arrow {
     &:before {
-      background-color: var(--background-highlight);
+      background-color: var(--sd-background-highlight);
     }
       @each $key in $sd-themes {
       &.is--#{$key} {
         &:before {
-          background-color: var(--#{$key}-highlight);
+          background-color: var(--sd-#{$key}-highlight);
         }
       }
     }

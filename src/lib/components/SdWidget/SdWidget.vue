@@ -59,8 +59,8 @@ export default defineComponent({
     flex-grow: 2;
     display: flex;
     flex-direction: column;
-    background-color: var(--background-accent);
-    border: 1px solid var(--background-accent);
+    background-color: var(--sd-background-accent);
+    border: 1px solid var(--sd-background-accent);
     border-radius: 6px;
     &.is {
       &--clickable {
@@ -69,13 +69,13 @@ export default defineComponent({
           box-shadow 0.23s ease-in-out;
         &:hover {
           cursor: pointer;
-          border: 1px solid var(--primary);
-          background-color: var(--background);
+          border: 1px solid var(--sd-primary);
+          background-color: var(--sd-background);
           @include elevation(1);
           .sd--widget-footer {
             &:before {
               transition: background-color 0.23s ease-in-out;
-              background-color: var(--primary);
+              background-color: var(--sd-primary);
             }
           }
         }
@@ -83,13 +83,13 @@ export default defineComponent({
     }
     @each $state in colors.$sd-themes {
       &--#{$state} {
-        background-color: var(--#{$state});
-        border: 1px solid var(--#{$state});
-        color: var(--#{$state}-text);
+        background-color: var(--sd-#{$state});
+        border: 1px solid var(--sd-#{$state});
+        color: var(--sd-#{$state}-text);
 
         .sd--text__footnote,
         .sd--text__caption {
-          color: var(--#{$state}-text);
+          color: var(--sd-#{$state}-text);
         }
 
         &.is {
@@ -98,10 +98,10 @@ export default defineComponent({
               background-color 0.23s ease-in-out, box-shadow 0.23s ease-in-out;
             &:hover {
               cursor: pointer;
-              background-color: var(--#{$state}-accent);
+              background-color: var(--sd-#{$state}-accent);
               .sd--widget-footer {
                 &:before {
-                  background-color: var(--#{$state});
+                  background-color: var(--sd-#{$state});
                 }
               }
             }

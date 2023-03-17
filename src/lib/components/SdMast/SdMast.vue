@@ -38,19 +38,19 @@ export default defineComponent({
   
   :root{
     --sd-mast-height: calc(100vh - 140px);
-    --sd-mast-bg: linear-gradient(180deg, var(--background-accent), var(--background-highlight));
+    --sd-mast-bg: linear-gradient(180deg, var(--sd-background-accent), var(--sd-background-highlight));
   }
 
   .sd--mast{
     margin: 0 0 32px 0;
-    min-height: var(--sd-mast-height);
-    background-image: var(--sd-mast-bg);
+    min-height: var(--sd-sd-mast-height);
+    background-image: var(--sd-sd-mast-bg);
     position: relative;
     display:flex;
     flex-direction: column;
     justify-content: center;
     padding: 0 env(safe-area-inset-left) 0 env(safe-area-inset-right);
-    color: var(--text);
+    color: var(--sd-text);
     &__content{
       width: 100%;
       margin: 0 auto;

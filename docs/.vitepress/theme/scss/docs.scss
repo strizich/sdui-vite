@@ -44,7 +44,7 @@ article.sd--container{
     margin: 32px auto;
     position: relative;
     padding: 16px 16px 16px 32px;
-    background-color: var(--background-accent);
+    background-color: var(--sd-background-accent);
     border-radius: 3px;
     @include elevation(12);
     &:before{
@@ -55,7 +55,7 @@ article.sd--container{
       bottom:0;
       left:0;
       position:absolute;
-      background-color: var(--primary);
+      background-color: var(--sd-primary);
       border-radius: 3px 0px 0px 3px;
     }
     p{
@@ -68,11 +68,11 @@ article.sd--container{
 
   // ANCHORS AND LINKS
   a {
-    color: var(--primary); 
+    color: var(--sd-primary); 
   }
   
   .header-anchor{
-    color: var(--primary);
+    color: var(--sd-primary);
     font-size: 16px;
     position: absolute;
     left: -16px;
@@ -81,7 +81,7 @@ article.sd--container{
   }
 
   hr {
-    border: 1px solid var(--divider);
+    border: 1px solid var(--sd-divider);
     margin: 32px 0;
   }
 
@@ -97,10 +97,10 @@ article.sd--container{
     tr {
       &:nth-child(2n + 1) {
         & > td{
-          background-color: var(--background-highlight)
+          background-color: var(--sd-background-highlight)
         }
       }
-      border-bottom: 1px solid var(--background-highlight);
+      border-bottom: 1px solid var(--sd-background-highlight);
     }
     td {
       @extend th;
@@ -111,13 +111,13 @@ article.sd--container{
     }
      
     code:not(pre > code){
-      color: var(--secondary-highlight);
+      color: var(--sd-secondary-highlight);
     }
   }
 
   //MKDN NAVIGATION
   .header-anchor{
-    color: var(--primary);
+    color: var(--sd-primary);
     font-size: 16px;
     position: absolute;
     left: -16px;
@@ -129,24 +129,24 @@ article.sd--container{
   // TODO: split this into fragments to simplify adding other lang types
   .language-html{
     position: relative;
-    background-color: var(--background-highlight);
+    background-color: var(--sd-background-highlight);
     padding: 32px 16px 8px;
     margin-bottom: 24px;
     border-radius: 6px;
     @include elevation(12);
     &:before{
       content: 'HTML';
-      color: var(--text-accent);
+      color: var(--sd-text-accent);
       display:inline-block;
       padding: 4px 8px;
       position: absolute;
       top: 0;
       left: 0;
       font-size: 11px;
-      background-color: var(--background-accent); 
+      background-color: var(--sd-background-accent); 
     }
     &:hover:before{
-      color: var(--primary);
+      color: var(--sd-primary);
       transition: color .3s ease-in-out;
     }
   }
@@ -165,15 +165,15 @@ li{
 
 .token{
   &.tag{
-    color: var(--warning-highlight);
+    color: var(--sd-warning-highlight);
   }
   &.attr-name{
-    color: var(--secondary-highlight);
+    color: var(--sd-secondary-highlight);
   }
   &.attr-value{
-    color: var(--text-accent);
+    color: var(--sd-text-accent);
   }
   &.punctuation{
-    color: var(--text-accent);
+    color: var(--sd-text-accent);
   }
 }

@@ -110,7 +110,7 @@ export default defineComponent({
 <style lang="scss">
 .sd--mouse-icon{
   g {
-    fill: var(--background-inverse);
+    fill: var(--sd-background-inverse);
   }
 }
 .arrow {

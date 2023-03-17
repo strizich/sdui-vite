@@ -52,8 +52,8 @@ export default defineComponent({
   @each $key in $sd-themes {
     $state: $key;
     &__#{$state} {
-      background-color: var(--#{$state});
-      color: var(--#{$state}-text)
+      background-color: var(--sd-#{$state});
+      color: var(--sd-#{$state}-text)
     }
   }
 }

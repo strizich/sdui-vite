@@ -33,7 +33,7 @@ export default defineComponent({
 
   .sd--text{
     &__error{
-      color: var(--danger-highlight);
+      color: var(--sd-danger-highlight);
       font-size: 14px;
     }
   }

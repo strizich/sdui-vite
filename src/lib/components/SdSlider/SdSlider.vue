@@ -223,7 +223,7 @@ export default defineComponent({
     margin: 0 8px;
     padding: 8px 16px;
     font-size: 11px;
-    background-color: var(--background-accent)
+    background-color: var(--sd-background-accent)
   }
   &__min {
     margin-left: 0;
@@ -238,7 +238,7 @@ export default defineComponent({
     width:100%;
   }
   &__track-container{
-    background-color: var(--background-accent);
+    background-color: var(--sd-background-accent);
     position: absolute;
     height: 8px;
     left:0;
@@ -256,7 +256,7 @@ export default defineComponent({
     width: 100%;
     &:after{
       position: relative;
-      background-color: var(--divider);
+      background-color: var(--sd-divider);
       content: '';
       width: 1px;
       height: 8px;
@@ -265,7 +265,7 @@ export default defineComponent({
     }
   }
   &__track{
-    background-color: var(--primary);
+    background-color: var(--sd-primary);
     position: absolute;
     top: 0;
     left: 0;
@@ -273,7 +273,7 @@ export default defineComponent({
     z-index: 0;
     border-radius: 30px;
     &:focus-within {
-      background-color: var(--primary-accent);
+      background-color: var(--sd-primary-accent);
     }
   }
   &__thumb-container{
@@ -282,7 +282,7 @@ export default defineComponent({
     &:focus{
       outline:none;
       .sd--slider__thumb{
-        fill: var(--primary-accent);
+        fill: var(--sd-primary-accent);
       }
     }
     &.is--dragging{
@@ -295,7 +295,7 @@ export default defineComponent({
     }
   }
   &__thumb{
-    fill: var(--primary);
+    fill: var(--sd-primary);
   }
   &__pulse{
     transition: all .13s ease-in-out;
@@ -304,7 +304,7 @@ export default defineComponent({
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--primary-accent);
+    background-color: var(--sd-primary-accent);
     border-radius: 30px;
     z-index: 1;
     opacity: .25;

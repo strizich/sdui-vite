@@ -42,7 +42,7 @@ export default defineComponent({
   border-radius: 0 0 3px 3px;
   position: relative;
   align-items: center;
-  border-top: 1px solid var(--divider);
+  border-top: 1px solid var(--sd-divider);
   flex-grow: 0;
   min-height: 32px;
   padding: 8px 16px;

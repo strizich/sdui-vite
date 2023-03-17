@@ -16,13 +16,13 @@ export default {
     line-height: 1;
     display:flex;
     align-items: center;
-    color: var(--text-accent);
+    color: var(--sd-text-accent);
     position:sticky;
     top:0;
     left:0;
     right:0;
     padding:8px 16px;;
-    background-color: var(--background-accent);
+    background-color: var(--sd-background-accent);
     z-index: 1000;
 }
 </style>

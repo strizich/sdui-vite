@@ -64,7 +64,7 @@ export default defineComponent({
       transform: translateX(-100%);
       animation: shimmer 5s infinite;
       content: '';
-      background-image: linear-gradient(var(--skeleton));
+      background-image: linear-gradient(var(--sd-skeleton));
     }
   }
 }

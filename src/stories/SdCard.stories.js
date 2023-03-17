@@ -73,7 +73,7 @@ const Template = (args => ({
         <img src="https://place-puppy.com/600x600" alt="placepuppy placeholder"/>
       </sd-card-media>
       <sd-card-footer align="space-between">
-        <sd-icon name="image" color="var(--text-accent)"/>
+        <sd-icon name="image" color="var(--sd-text-accent)"/>
         <sd-button flat>Button</sd-button>
       </sd-card-footer>
     </sd-card>

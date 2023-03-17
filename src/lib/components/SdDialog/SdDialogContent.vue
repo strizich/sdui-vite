@@ -14,7 +14,7 @@ export default defineComponent({
 
 <style lang="scss">
   .sd--dialog__content{
-    background-color: var(--background);
+    background-color: var(--sd-background);
     padding: 16px;
     flex-grow: 2;
     overflow-y: auto;

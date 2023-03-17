@@ -99,16 +99,16 @@ export default defineComponent({
 <style lang="scss">
 .sd--header{
   &--light {
-    background-color: var(--background-light);
-    color: var(--text-dark);
+    background-color: var(--sd-background-light);
+    color: var(--sd-text-dark);
   }
   &--dark {
-    background-color: var(--background-dark);
-    color: var(--text-light);
+    background-color: var(--sd-background-dark);
+    color: var(--sd-text-light);
   }
   &--auto {
-    background-color: var(--background-highlight);
-    color: var(--text);
+    background-color: var(--sd-background-highlight);
+    color: var(--sd-text);
   }
   &__container{
     display: flex;

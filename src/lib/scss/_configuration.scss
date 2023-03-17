@@ -1,44 +1,44 @@
 // buttons
 @use './functions';
 
-:root {
-  --spacing-1: 4px;
-  --spacing-2: 8px;
-  --spacing-3: 16px;
-  --spacing-4: 32px;
-  --spacing-6: 64px;
+:root, :before, :after, *, :host {
+  --sd-spacing-1: 4px;
+  --sd-spacing-2: 8px;
+  --sd-spacing-3: 16px;
+  --sd-spacing-4: 32px;
+  --sd-spacing-6: 64px;
 
-  --elevation-0: #{functions.elevation(0)};
-  --elevation-1: #{functions.elevation(1)};
-  --elevation-2: #{functions.elevation(2)};
-  --elevation-3: #{functions.elevation(3)};
-  --elevation-4: #{functions.elevation(4)};
-  --elevation-5: #{functions.elevation(5)};
-  --elevation-6: #{functions.elevation(6)};
+  --sd-elevation-0: #{functions.elevation(0)};
+  --sd-elevation-1: #{functions.elevation(1)};
+  --sd-elevation-2: #{functions.elevation(2)};
+  --sd-elevation-3: #{functions.elevation(3)};
+  --sd-elevation-4: #{functions.elevation(4)};
+  --sd-elevation-5: #{functions.elevation(5)};
+  --sd-elevation-6: #{functions.elevation(6)};
 
-  --btn-casing: inherit;
-  --btn-border-radius: 4px;
+  --sd-btn-casing: inherit;
+  --sd-btn-border-radius: 4px;
 
-  --btn-padding-xs: var(--spacing-1);
-  --btn-font-size-xs: #{rem(11)};
-  --btn-height-xs: 20px;
+  --sd-btn-padding-xs: var(--sd-sd-spacing-1);
+  --sd-btn-font-size-xs: #{rem(11)};
+  --sd-btn-height-xs: 20px;
 
-  --btn-padding-sm: var(--spacing-1) var(--spacing-2);
-  --btn-font-size-sm: #{rem(14)};
-  --btn-height-sm: 26px;
+  --sd-btn-padding-sm: var(--sd-spacing-1) var(--sd-spacing-2);
+  --sd-btn-font-size-sm: #{rem(14)};
+  --sd-btn-height-sm: 26px;
 
-  --btn-padding-md: var(--spacing-2) var(--spacing-3);
-  --btn-font-size-md: #{rem(16)};
-  --btn-height-md: 32px;
+  --sd-btn-padding-md: var(--sd-spacing-2) var(--sd-spacing-3);
+  --sd-btn-font-size-md: #{rem(16)};
+  --sd-btn-height-md: 32px;
 
-  --btn-padding-lg: 16px 16px;
-  --btn-font-size-lg: #{rem(18)};
-  --btn-height-lg: 50px;
+  --sd-btn-padding-lg: 16px 16px;
+  --sd-btn-font-size-lg: #{rem(18)};
+  --sd-btn-height-lg: 50px;
 
-  --btn-padding-xl: 16px 32px;
-  --btn-font-size-xl: #{rem(24)};
-  --btn-height-xl: 64px;
+  --sd-btn-padding-xl: 16px 32px;
+  --sd-btn-font-size-xl: #{rem(24)};
+  --sd-btn-height-xl: 64px;
 
-  --btn-margin: 0 8px 0 0;
-  --btn-letter-spacing: 0.5;
+  --sd-btn-margin: 0 8px 0 0;
+  --sd-btn-letter-spacing: 0.5;
 }

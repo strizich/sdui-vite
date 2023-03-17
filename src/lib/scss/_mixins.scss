@@ -10,7 +10,7 @@
 
 @mixin root-color-scheme($scheme) {
   @media(prefers-color-scheme: $scheme){
-    :root{
+    :root, :before, :after, *, :host {
       @content;
     }
   }
@@ -30,53 +30,53 @@
 
 @mixin flatten-theme($theme) {
   @if $theme == disabled or $theme == 'disabled ' {
-    color: var(--disabled);
+    color: var(--sd-disabled);
     background-color: none;
     svg {
-      fill: var(--disabled);
+      fill: var(--sd-disabled);
     }
     &:hover{
-      color: var(--disabled);
+      color: var(--sd-disabled);
       background-color: transparent;
       svg {
-        fill: var(--disabled);
+        fill: var(--sd-disabled);
       }
     }
   } @else {
-    box-shadow: var(--elevation-0);
+    box-shadow: var(--sd-elevation-0);
 
     @include color-scheme(dark) {
-      color: var(--#{$theme});
+      color: var(--sd-#{$theme});
       background-color: none;
       svg {
-        fill: var(--#{$theme});
+        fill: var(--sd-#{$theme});
       }
       &:hover {
-        background-color: var(--#{$theme});
-        color: var(--#{$theme}-text);
+        background-color: var(--sd-#{$theme});
+        color: var(--sd-#{$theme}-text);
         svg {
-          fill: var(--#{$theme}-text);
+          fill: var(--sd-#{$theme}-text);
         }
       }
       &:active, &.is--active, &.is--exact-active {
-        background-color: var(--#{$theme}-accent);
+        background-color: var(--sd-#{$theme}-accent);
       }
     }
     @include color-scheme(light) {
-      color: var(--#{$theme}-accent);
+      color: var(--sd-#{$theme}-accent);
       background-color: none;
       svg {
-        fill: var(--#{$theme}-accent);
+        fill: var(--sd-#{$theme}-accent);
       }
       &:hover {
-        background-color: var(--#{$theme});
-        color: var(--#{$theme}-text);
+        background-color: var(--sd-#{$theme});
+        color: var(--sd-#{$theme}-text);
         svg {
-          fill: var(--#{$theme}-text);
+          fill: var(--sd-#{$theme}-text);
         }
       }
       &:active, &.is--active, &.is--exact-active {
-        background-color: var(--#{$theme}-highlight);
+        background-color: var(--sd-#{$theme}-highlight);
       }
     }
   }

@@ -9,7 +9,7 @@
 @each $scheme, $map in $sd-color-schemes {
   @include root-color-scheme($scheme){
     @each $key, $color in $map {
-      --#{$key}: #{$color};
+      --sd-#{$key}: #{$color};
     }
   }
 }
@@ -31,12 +31,12 @@
       $text-highlight: sd-color($contrast-highlight, text);
       $text-accent: sd-color($contrast-accent, text);
 
-      --#{$key}: #{$base};
-      --#{$key}-text: #{$text};
-      --#{$key}-highlight: #{$highlight};
-      --#{$key}-highlight-text: #{$text-highlight};
-      --#{$key}-accent: #{$accent};
-      --#{$key}-accent-text: #{$text-accent};
+      --sd-#{$key}: #{$base};
+      --sd-#{$key}-text: #{$text};
+      --sd-#{$key}-highlight: #{$highlight};
+      --sd-#{$key}-highlight-text: #{$text-highlight};
+      --sd-#{$key}-accent: #{$accent};
+      --sd-#{$key}-accent-text: #{$text-accent};
     };
   };
 };

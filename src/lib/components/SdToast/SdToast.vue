@@ -126,12 +126,12 @@ export default defineComponent({
   @each $state in colors.$sd-themes {
     &__#{$state} {
       .sd--toast__content {
-        background-color: var(--#{$state});
-        color: var(--#{$state}-text);
+        background-color: var(--sd-#{$state});
+        color: var(--sd-#{$state}-text);
       }
       .sd--toast__close {
-        background-color: var(--#{$state}-accent);
-        color: var(--#{$state}-text);
+        background-color: var(--sd-#{$state}-accent);
+        color: var(--sd-#{$state}-text);
         border-radius: 3px 0 0 3px;
         margin-right: -3px;
       }

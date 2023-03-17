@@ -217,9 +217,9 @@ export default defineComponent({
     &.is {
       &--focused {
         .sd--field__control{
-          border-color: var(--primary-highlight);
+          border-color: var(--sd-primary-highlight);
           @if $use-field-elevation {
-            box-shadow: var(--btn-elevation-1)
+            box-shadow: var(--sd-btn-elevation-1)
           }
         }
       }
@@ -232,11 +232,11 @@ export default defineComponent({
     &__control {
       appearance: none;
       -webkit-appearance: none;
-      color: var(--text);
+      color: var(--sd-text);
       display:block;
       outline: none;
-      border: 1px solid var(--divider);
-      background: var(--background-highlight);
+      border: 1px solid var(--sd-divider);
+      background: var(--sd-background-highlight);
       border-radius: 3px;
       transition: background-color .13s ease-in-out,  border .3s ease-in-out,  box-shadow .3s ease-in-out, ;
       font-size: 16px;
@@ -249,15 +249,15 @@ export default defineComponent({
         margin-right: 4px;
       }
       @if $use-field-elevation {
-        box-shadow: var(--btn-elevation-2);
+        box-shadow: var(--sd-btn-elevation-2);
       }
       &:disabled, &.is--disabled {
         opacity: .35;
-        background-color: var(--background-accent);
-        color: var(--text-highlight);
+        background-color: var(--sd-background-accent);
+        color: var(--sd-text-highlight);
       }
       & > .sd--icon{
-        color: var(--text-accent);
+        color: var(--sd-text-accent);
         &:first-child{
           margin: 0 0 0 8px;
         }
@@ -270,18 +270,18 @@ export default defineComponent({
         background-color:transparent;
         flex-grow: 2;
         outline: none;
-        color: var(--text);
+        color: var(--sd-text);
         font-size: 16px;
         border:none;
         padding: 8px;
         &::placeholder {
-          color: var(--text-placeholder, --text-highlight);
+          color: var(--sd-text-placeholder, --text-highlight);
         }
         // padding: 4px 0;
         // margin: -4px 0;
       }
        &.is--error{
-        border-color: var(--danger);
+        border-color: var(--sd-danger);
       }
     }
 
@@ -308,9 +308,9 @@ export default defineComponent({
     /* https://github.com/vuejs/vue/issues/7058 */
     animation-name: onAutoFillStart;
     transition: box-shadow .3s ease-in-out 0s, background 20000s ease-in-out 0s;
-    -webkit-text-fill-color: var(--text);
+    -webkit-text-fill-color: var(--sd-text);
     background: black;
-    box-shadow: inset 0 0 0 30px var(--background-highlight);
+    box-shadow: inset 0 0 0 30px var(--sd-background-highlight);
   }
 
   :not(:-webkit-autofill) {

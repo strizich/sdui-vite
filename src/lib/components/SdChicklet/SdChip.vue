@@ -168,8 +168,8 @@ export default defineComponent({
         bottom: 37px;
         padding: 2px 4px;
         display:block;
-        color: var(--text-accent);
-        background-color:var(--background);
+        color: var(--sd-text-accent);
+        background-color:var(--sd-background);
         border-radius: 3px;
         font-size: 12px;
       }
